@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan build &mdash; conan 1.3.1 documentation</title>
+  <title>conan build &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan package" href="package.html"/>
         <link rel="prev" title="conan source" href="source.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -216,16 +223,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-build">
 <span id="id1"></span><h1>conan build<a class="headerlink" href="#conan-build" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan build <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span>
               <span class="o">[</span>-pf PACKAGE_FOLDER<span class="o">]</span> <span class="o">[</span>-sf SOURCE_FOLDER<span class="o">]</span>
               path
 </pre></div>
 </div>
-<p>Calls your local conanfile.py &#8216;build()&#8217; method. The recipe will be built in
-the local directory specified by &#8211;build-folder, reading the sources from
-&#8211;source-folder. If you are using a build helper, like CMake(), the &#8211;package-
+<p>Calls your local conanfile.py ‘build()’ method. The recipe will be built in
+the local directory specified by –build-folder, reading the sources from
+–source-folder. If you are using a build helper, like CMake(), the –package-
 folder will be configured as destination folder for the install step.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to a folder containing a conanfile.py or to a
                         recipe file e.g., my_folder/conanfile.py
 
@@ -260,18 +267,18 @@ optional arguments:
                         directory can also be specified
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">build()</span></code> method might use <cite>settings</cite>, <cite>options</cite> and <cite>environment variables</cite> from the specified profile and dependencies information
-from the declared <code class="docutils literal"><span class="pre">deps_XXX_info</span></code> objects in the conanfile requirements. All that information is saved automatically in the
+<p>The <code class="docutils literal notranslate"><span class="pre">build()</span></code> method might use <cite>settings</cite>, <cite>options</cite> and <cite>environment variables</cite> from the specified profile and dependencies information
+from the declared <code class="docutils literal notranslate"><span class="pre">deps_XXX_info</span></code> objects in the conanfile requirements. All that information is saved automatically in the
 <em>conaninfo.txt</em> and <em>conanbuildinfo.txt</em> files respectively, when you run the <strong class="command">conan install</strong> command. Those files have to be located
 in the specified <strong class="command">--build-folder</strong> or in the <strong class="command">--install-folder</strong> if specified.</p>
-<p>The <strong class="command">--configure, --build, --install</strong> arguments control which parts of the <code class="docutils literal"><span class="pre">build()</span></code> are actually executed.
-They have related conanfile boolean variables <code class="docutils literal"><span class="pre">should_configure,</span> <span class="pre">should_build,</span> <span class="pre">should_install</span></code>, which are <code class="docutils literal"><span class="pre">True</span></code>
-by default, but that will change if some of these arguments are used in the command line. The <code class="docutils literal"><span class="pre">CMake</span></code> and
-<code class="docutils literal"><span class="pre">Meson</span></code> and <code class="docutils literal"><span class="pre">AutotoolsBuildEnvironment</span></code> helpers already use these variables.</p>
+<p>The <strong class="command">--configure, --build, --install</strong> arguments control which parts of the <code class="docutils literal notranslate"><span class="pre">build()</span></code> are actually executed.
+They have related conanfile boolean variables <code class="docutils literal notranslate"><span class="pre">should_configure,</span> <span class="pre">should_build,</span> <span class="pre">should_install</span></code>, which are <code class="docutils literal notranslate"><span class="pre">True</span></code>
+by default, but that will change if some of these arguments are used in the command line. The <code class="docutils literal notranslate"><span class="pre">CMake</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Meson</span></code> and <code class="docutils literal notranslate"><span class="pre">AutotoolsBuildEnvironment</span></code> helpers already use these variables.</p>
 <p><strong>Example</strong>: Building a conan package (for architecture x86) in a local directory.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">conanfile.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span><span class="p">,</span> <span class="n">tools</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span><span class="p">,</span> <span class="n">tools</span>
 
  <span class="k">class</span> <span class="nc">LibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
      <span class="o">...</span>
@@ -288,23 +295,23 @@ by default, but that will change if some of these arguments are used in the comm
 </div>
 <p>First we will call <strong class="command">conan source</strong> to get our source code in the <em>src</em> directory, then <strong class="command">conan install</strong> to install the requirements
 and generate the info files, and finally <strong class="command">conan build</strong> to build the package:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span> $ conan <span class="nb">source</span> . --source-folder src
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ conan <span class="nb">source</span> . --source-folder src
  $ conan install . --install-folder build_x86 -s <span class="nv">arch</span><span class="o">=</span>x86
 <span class="hll"> $ conan build . --build-folder build_x86 --source-folder src
 </span></pre></div>
 </div>
-<p>Or if we want to create the <code class="docutils literal"><span class="pre">conaninfo.txt</span></code> and <code class="docutils literal"><span class="pre">conanbuildinfo.txt</span></code> files in a different folder:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span> $ conan <span class="nb">source</span> . --source-folder src
+<p>Or if we want to create the <code class="docutils literal notranslate"><span class="pre">conaninfo.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.txt</span></code> files in a different folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ conan <span class="nb">source</span> . --source-folder src
  $ conan install . --install-folder install_x86 -s <span class="nv">arch</span><span class="o">=</span>x86
 <span class="hll"> $ conan build . --build-folder build_x86 --install-folder install_x86 --source-folder src
 </span></pre></div>
 </div>
-<p>However, we recommend the <code class="docutils literal"><span class="pre">conaninfo.txt</span></code> and <code class="docutils literal"><span class="pre">conanbuildinfo.txt</span></code> to be generated in the same
-&#8211;build-folder, otherwise, you will need to specify a different folder in your build system to include
-the files generators file. e.j <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code></p>
+<p>However, we recommend the <code class="docutils literal notranslate"><span class="pre">conaninfo.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.txt</span></code> to be generated in the same
+–build-folder, otherwise, you will need to specify a different folder in your build system to include
+the files generators file. e.j <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code></p>
 <p><strong>Example</strong>: Control the build stages</p>
-<p>Given a conanfile with this <code class="docutils literal"><span class="pre">build()</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>Given a conanfile with this <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -312,7 +319,7 @@ the files generators file. e.j <code class="docutils literal"><span class="pre">
 </pre></div>
 </div>
 <p>If nothing is specified, all three methods will be called. But using command line arguments, this can be changed:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan build . -c <span class="c1"># only run cmake.configure(). Other methods will do nothing</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build . -c <span class="c1"># only run cmake.configure(). Other methods will do nothing</span>
 $ conan build . -b <span class="c1"># only run cmake.build(). Other methods will do nothing</span>
 $ conan build . -i <span class="c1"># only run cmake.install(). Other methods will do nothing</span>
 <span class="c1"># They can be combined</span>
@@ -320,8 +327,8 @@ $ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), 
 </pre></div>
 </div>
 <p>Autotools and Meson helpers already implement the same functionality. For other build systems, you can use
-the following variables in the <code class="docutils literal"><span class="pre">build()</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+the following variables in the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_configure</span><span class="p">:</span>
         <span class="c1"># Run my configure stage</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_build</span><span class="p">:</span>
@@ -330,7 +337,7 @@ the following variables in the <code class="docutils literal"><span class="pre">
         <span class="c1"># Run my install stage</span>
 </pre></div>
 </div>
-<p>Note these <code class="docutils literal"><span class="pre">should_configure,</span> <span class="pre">should_build,</span> <span class="pre">should_install</span></code> variables will always be <code class="docutils literal"><span class="pre">True</span></code> while
+<p>Note these <code class="docutils literal notranslate"><span class="pre">should_configure,</span> <span class="pre">should_build,</span> <span class="pre">should_install</span></code> variables will always be <code class="docutils literal notranslate"><span class="pre">True</span></code> while
 building in the local cache. They can only be modified for the local flow with <strong class="command">conan build</strong>.</p>
 </div>
 
@@ -371,23 +378,6 @@ building in the local cache. They can only be modified for the local flow with <
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -395,7 +385,7 @@ building in the local cache. They can only be modified for the local flow with <
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Circle CI &mdash; conan 1.3.1 documentation</title>
+  <title>Circle CI &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Integrations" href="../integrations.html"/>
         <link rel="next" title="YouCompleteMe (vim)" href="youcompleteme.html"/>
         <link rel="prev" title="Gitlab" href="gitlab.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -223,7 +230,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="circleci"></span><span id="circleci-integration"></span><h1><img alt="circleci_logo" src="../_images/circleci_logo.png" /> Circle CI<a class="headerlink" href="#circleci-logo-circle-ci" title="Permalink to this headline">¶</a></h1>
 <p>You can use <a class="reference external" href="https://circleci.com/">Circle CI</a> cloud to automatically build and test your project in Linux/OSX environments.
 It is free for OSS projects, and offers an easy integration with Github, so builds can be automatically
-fired in CircleCI after a <code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code> to Github.</p>
+fired in CircleCI after a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> to Github.</p>
 <p>You can use CircleCI both for:</p>
 <ul class="simple">
 <li>Building and testing your project, which manages dependencies with Conan, and probably a conanfile.txt file</li>
@@ -233,11 +240,11 @@ fired in CircleCI after a <code class="docutils literal"><span class="pre">git</
 <h2>Building and testing your project<a class="headerlink" href="#building-and-testing-your-project" title="Permalink to this headline">¶</a></h2>
 <p>We are going to use an example with GTest package, with <strong>CircleCI</strong> support to run the tests.</p>
 <p>Clone the project from github:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-gtest-example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-gtest-example
 </pre></div>
 </div>
-<p>Create a <code class="docutils literal"><span class="pre">.circleci/config.yml</span></code> file and paste this code in it:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>version: 2
+<p>Create a <code class="docutils literal notranslate"><span class="pre">.circleci/config.yml</span></code> file and paste this code in it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>version: 2
 gcc-6:
   docker:
     - image: lasote/conangcc6
@@ -263,24 +270,24 @@ Then, the <strong>script</strong> section creates the build folder, compiles the
 <h2>Creating, testing and uploading conan package binaries<a class="headerlink" href="#creating-testing-and-uploading-conan-package-binaries" title="Permalink to this headline">¶</a></h2>
 <p>You can use CircleCI to automate the building of binary packages, which will be created in the
 cloud after pushing to Github. You can probably setup your own way, but conan has some utilities to help in the process.</p>
-<p>The command <code class="docutils literal"><span class="pre">conan</span> <span class="pre">new</span></code> has arguments to create a default working <code class="docutils literal"><span class="pre">.circleci/config.yml</span></code> file.
+<p>The command <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">new</span></code> has arguments to create a default working <code class="docutils literal notranslate"><span class="pre">.circleci/config.yml</span></code> file.
 Other setups might be possible, but for this example we are assuming that you are using github and also uploading your final packages to Bintray.
 You could follow these steps:</p>
 <ol class="arabic simple">
-<li>First, create an empty Github repository, lets call it &#8220;hello&#8221;, for creating a &#8220;hello world&#8221; package. Github allows to create it with a Readme, license and .gitignore.</li>
-<li>Get the credentials User and API Key (remember, Bintray uses the API key as &#8220;password&#8221;, not your main Bintray account password)</li>
-<li>Create a conan repository in Bintray under your user or organization, and get its URL (&#8220;Set me up&#8221;). We will call it <code class="docutils literal"><span class="pre">UPLOAD_URL</span></code></li>
-<li>Under your project page, <em>Settings -&gt; Pipelines -&gt; Add a variable</em>, add the <code class="docutils literal"><span class="pre">CONAN_PASSWORD</span></code> environment variable with the Bintray API Key. If your Bintray user is different from the package user, you can define your Bintray username too, defining the environment variable <code class="docutils literal"><span class="pre">CONAN_LOGIN_USERNAME</span></code></li>
-<li>Clone the repo: <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;your_repo/hello&gt;</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">hello</span></code></li>
-<li>Create the package: <code class="docutils literal"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">new</span> <span class="pre">Hello/0.1&#64;&lt;user&gt;/testing</span> <span class="pre">-t</span> <span class="pre">-s</span> <span class="pre">-ciccg</span> <span class="pre">-ciccc</span> <span class="pre">-cicco</span> <span class="pre">-cis</span> <span class="pre">-ciu=UPLOAD_URL</span></code> where <code class="docutils literal"><span class="pre">user</span></code> is your Bintray username</li>
-<li>You can inspect the created files: both <code class="docutils literal"><span class="pre">.circleci/config.yml</span></code> and the <code class="docutils literal"><span class="pre">build.py</span></code> script, that is used by <code class="docutils literal"><span class="pre">conan-package-tools</span></code> utility to split different builds with different configurations in different GitLab CI jobs.</li>
-<li>You can test locally, before pushing, with <code class="docutils literal"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">create</span></code></li>
-<li>Add the changes, commit and push: <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;first</span> <span class="pre">commit&quot;</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">push</span></code></li>
+<li>First, create an empty Github repository, lets call it “hello”, for creating a “hello world” package. Github allows to create it with a Readme, license and .gitignore.</li>
+<li>Get the credentials User and API Key (remember, Bintray uses the API key as “password”, not your main Bintray account password)</li>
+<li>Create a conan repository in Bintray under your user or organization, and get its URL (“Set me up”). We will call it <code class="docutils literal notranslate"><span class="pre">UPLOAD_URL</span></code></li>
+<li>Under your project page, <em>Settings -&gt; Pipelines -&gt; Add a variable</em>, add the <code class="docutils literal notranslate"><span class="pre">CONAN_PASSWORD</span></code> environment variable with the Bintray API Key. If your Bintray user is different from the package user, you can define your Bintray username too, defining the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_LOGIN_USERNAME</span></code></li>
+<li>Clone the repo: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;your_repo/hello&gt;</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">hello</span></code></li>
+<li>Create the package: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">new</span> <span class="pre">Hello/0.1&#64;&lt;user&gt;/testing</span> <span class="pre">-t</span> <span class="pre">-s</span> <span class="pre">-ciccg</span> <span class="pre">-ciccc</span> <span class="pre">-cicco</span> <span class="pre">-cis</span> <span class="pre">-ciu=UPLOAD_URL</span></code> where <code class="docutils literal notranslate"><span class="pre">user</span></code> is your Bintray username</li>
+<li>You can inspect the created files: both <code class="docutils literal notranslate"><span class="pre">.circleci/config.yml</span></code> and the <code class="docutils literal notranslate"><span class="pre">build.py</span></code> script, that is used by <code class="docutils literal notranslate"><span class="pre">conan-package-tools</span></code> utility to split different builds with different configurations in different GitLab CI jobs.</li>
+<li>You can test locally, before pushing, with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">create</span></code></li>
+<li>Add the changes, commit and push: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;first</span> <span class="pre">commit&quot;</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">push</span></code></li>
 <li>Go to Pipelines page and see the pipeline, with the different jobs.</li>
 <li>When it finish, go to your Bintray repository, you should see there the uploaded packages for different configurations</li>
-<li>Check locally, searching in Bintray: <code class="docutils literal"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">search</span> <span class="pre">Hello/0.1&#64;&lt;user&gt;/testing</span> <span class="pre">-r=mybintray</span></code></li>
+<li>Check locally, searching in Bintray: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">conan</span> <span class="pre">search</span> <span class="pre">Hello/0.1&#64;&lt;user&gt;/testing</span> <span class="pre">-r=mybintray</span></code></li>
 </ol>
-<p>If something fails, please report an issue in the <code class="docutils literal"><span class="pre">conan-package-tools</span></code> github repository: <a class="reference external" href="https://github.com/conan-io/conan-package-tools">https://github.com/conan-io/conan-package-tools</a></p>
+<p>If something fails, please report an issue in the <code class="docutils literal notranslate"><span class="pre">conan-package-tools</span></code> github repository: <a class="reference external" href="https://github.com/conan-io/conan-package-tools">https://github.com/conan-io/conan-package-tools</a></p>
 </div>
 </div>
 
@@ -321,23 +328,6 @@ You could follow these steps:</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -345,7 +335,7 @@ You could follow these steps:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Recipe and sources in the same repo &mdash; conan 1.3.1 documentation</title>
+  <title>Recipe and sources in the same repo &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Package development flow" href="package_dev_flow.html"/>
         <link rel="prev" title="Getting started" href="getting_started.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -202,20 +209,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="recipe-and-sources-in-the-same-repo">
 <span id="package-repo"></span><h1>Recipe and sources in the same repo<a class="headerlink" href="#recipe-and-sources-in-the-same-repo" title="Permalink to this headline">¶</a></h1>
-<p>In the previous package we implemented a <code class="docutils literal"><span class="pre">source()</span></code> method that fetched the source code from
+<p>In the previous package we implemented a <code class="docutils literal notranslate"><span class="pre">source()</span></code> method that fetched the source code from
 github. An alternative approach would be embedding the source code into the package recipe, so it is
-self-contained and it doesn&#8217;t require to fetch code from external origins when it is necessary to
+self-contained and it doesn’t require to fetch code from external origins when it is necessary to
 build from sources.</p>
 <p>This could be an appropriate approach if we want the package recipe to live in the same repository
-as the source code it is packaging. It could be considered as a &#8220;snapshot&#8221; of the source code too.</p>
-<p>First, let&#8217;s get the initial source code and create the basic package recipe:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -t -s
+as the source code it is packaging. It could be considered as a “snapshot” of the source code too.</p>
+<p>First, let’s get the initial source code and create the basic package recipe:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -t -s
 </pre></div>
 </div>
-<p>A <em>src</em> folder will be created with the same &#8220;hello&#8221; source code than in the previous example. You
+<p>A <em>src</em> folder will be created with the same “hello” source code than in the previous example. You
 can have a look at it, is straightforward code.</p>
 <p>Now lets have a look to the <em>conanfile.py</em>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span>
 
 <span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
@@ -252,19 +259,19 @@ can have a look at it, is straightforward code.</p>
 </div>
 <p>There are two important changes:</p>
 <ul class="simple">
-<li>Added the <code class="docutils literal"><span class="pre">exports_sources</span></code> field, to tell conan to copy all the files from the local <em>src</em>
+<li>Added the <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> field, to tell conan to copy all the files from the local <em>src</em>
 folder into the package recipe.</li>
-<li>Removed the <code class="docutils literal"><span class="pre">source()</span></code> method, it is not necessary anymore to retrieve external sources.</li>
+<li>Removed the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method, it is not necessary anymore to retrieve external sources.</li>
 </ul>
 <p>Also, you can notice the two CMake lines:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>They are not added in the package recipe, as they can be directly put in the <code class="docutils literal"><span class="pre">src/CMakeLists.txt</span></code>
+<p>They are not added in the package recipe, as they can be directly put in the <code class="docutils literal notranslate"><span class="pre">src/CMakeLists.txt</span></code>
 file.</p>
 <p>And simply create the package for user and channel <strong>demo/testing</strong> as previously:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create . demo/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing
 ...
 Hello/0.1@demo/testing <span class="nb">test</span> package: Running test<span class="o">()</span>
 Hello world!
@@ -309,23 +316,6 @@ Hello world!
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -333,7 +323,7 @@ Hello world!
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Conditional settings, options and requirements &mdash; conan 1.3.1 documentation</title>
+  <title>Conditional settings, options and requirements &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Mastering conan" href="../mastering.html"/>
         <link rel="next" title="Version ranges" href="version_ranges.html"/>
         <link rel="prev" title="Use conanfile.py for consumers" href="conanfile_py.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -202,21 +209,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conditional-settings-options-and-requirements">
 <h1>Conditional settings, options and requirements<a class="headerlink" href="#conditional-settings-options-and-requirements" title="Permalink to this headline">¶</a></h1>
-<p>Remember, in your <code class="docutils literal"><span class="pre">conanfile.py</span></code> you have also access to the options of your dependencies,
+<p>Remember, in your <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> you have also access to the options of your dependencies,
 and you can use them to:</p>
 <ul class="simple">
 <li>Add requirements dynamically</li>
 <li>Change values of options</li>
 </ul>
 <p>The <strong>configure</strong> method might be used to hardcode dependencies options values.
-It is strongly discouraged to use it to change the settings values, please remember that <code class="docutils literal"><span class="pre">settings</span></code>
-are a configuration <em>input</em>, so it doesn&#8217;t make sense to modify it in the recipes.</p>
-<p>Also, for options, a more flexible solution is to define dependencies options values in the <code class="docutils literal"><span class="pre">default_options</span></code>,
-not in the <code class="docutils literal"><span class="pre">configure()</span></code> method, as this would allow to override them. Hardcoding them in the <code class="docutils literal"><span class="pre">configure()</span></code>
-method won&#8217;t allow that and thus won&#8217;t easily allow conflict resolution. Use it only when it is absolutely
+It is strongly discouraged to use it to change the settings values, please remember that <code class="docutils literal notranslate"><span class="pre">settings</span></code>
+are a configuration <em>input</em>, so it doesn’t make sense to modify it in the recipes.</p>
+<p>Also, for options, a more flexible solution is to define dependencies options values in the <code class="docutils literal notranslate"><span class="pre">default_options</span></code>,
+not in the <code class="docutils literal notranslate"><span class="pre">configure()</span></code> method, as this would allow to override them. Hardcoding them in the <code class="docutils literal notranslate"><span class="pre">configure()</span></code>
+method won’t allow that and thus won’t easily allow conflict resolution. Use it only when it is absolutely
 necessary that the package dependencies use those options.</p>
 <p>Here is an example of what we could do in our <strong>configure method</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">...</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;Poco/1.9.0@pocoproject/stable&quot;</span> <span class="c1"># We will add OpenSSL dynamically &quot;OpenSSL/1.0.2d@lasote/stable&quot;</span>
 <span class="o">...</span>
 
@@ -286,23 +293,6 @@ necessary that the package dependencies use those options.</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -310,7 +300,7 @@ necessary that the package dependencies use those options.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

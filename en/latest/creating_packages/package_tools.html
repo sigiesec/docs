@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tools for package creators &mdash; conan 1.3.1 documentation</title>
+  <title>Tools for package creators &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Uploading packages" href="../uploading_packages.html"/>
         <link rel="prev" title="Packaging approaches" href="package_approaches.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -205,7 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>With some python (or just pure shell or bash) scripting, we could easily automate the whole package
 creation and testing process, for many different configurations. For example you could put the
 following script in the package root folder. Name it <em>build.py</em>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">platform</span>
 
 <span class="k">def</span> <span class="nf">system</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
@@ -225,7 +232,7 @@ following script in the package root folder. Name it <em>build.py</em>:</p>
 </pre></div>
 </div>
 <p>This is a pure python script, not related to conan, and should be run as such:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ python build.py
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>$ python build.py
 </pre></div>
 </div>
 <p>We have developed another FOSS tool for package creators, <strong>Conan Package Tools</strong> to ease the
@@ -234,18 +241,18 @@ It offers a simple way to define the different configurations and to call <stron
 Also offers CI integration like <strong>Travis CI, Appveyor and Bamboo</strong>, for cloud based automated
 binary package creation, testing and uploading.</p>
 <p>This tool enables the creation of hundreds of binary packages in the cloud with a simple
-<code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span></code>.</p>
 <ul class="simple">
 <li>Make easier the <strong>generation of multiple conan packages</strong> with different configurations.</li>
 <li>Automated/remote package generation in <strong>Travis/Appveyor</strong> server with distributed builds in CI
 jobs for big/slow builds.</li>
-<li><strong>Docker</strong>: Automatic generation of packages for several versions of <code class="docutils literal"><span class="pre">gcc</span></code> and <code class="docutils literal"><span class="pre">clang</span></code> in
+<li><strong>Docker</strong>: Automatic generation of packages for several versions of <code class="docutils literal notranslate"><span class="pre">gcc</span></code> and <code class="docutils literal notranslate"><span class="pre">clang</span></code> in
 Linux, also in Travis CI.</li>
 <li>Automatic creation of OSX packages with apple-clang, also in Travis-CI.</li>
 <li><strong>Visual Studio</strong>: Automatic configuration of command line environment with detected settings.</li>
 </ul>
-<p>It&#8217;s available in pypi:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install conan_package_tools
+<p>It’s available in pypi:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install conan_package_tools
 </pre></div>
 </div>
 <p>Read the README.md in the <a class="reference external" href="https://github.com/conan-io/conan-package-tools">Conan Package Tools repository</a>.</p>
@@ -288,23 +295,6 @@ Linux, also in Travis CI.</li>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -312,7 +302,7 @@ Linux, also in Travis CI.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

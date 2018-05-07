@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to manage SSL (TLS) certificates &mdash; conan 1.3.1 documentation</title>
+  <title>How to manage SSL (TLS) certificates &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="Reference" href="../reference.html"/>
         <link rel="prev" title="Conan: A Python package manager" href="other_languages_package_manager/python.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -126,7 +133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="custom_generators.html">How to create and share a custom generator with generator packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manage_shared_libraries.html">How to manage shared libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cmake_install.html">How to reuse cmake install for package() method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users&#8217; packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="link_apple_framework.html">How to link with Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capture_version.html">How to capture package version from text or build files</a></li>
@@ -217,12 +224,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="use-tls-certificates"></span><h1>How to manage SSL (TLS) certificates<a class="headerlink" href="#how-to-manage-ssl-tls-certificates" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="server-certificate-validation">
 <h2>Server certificate validation<a class="headerlink" href="#server-certificate-validation" title="Permalink to this headline">¶</a></h2>
-<p>By default, when a remote is added, if the URL schema is <code class="docutils literal"><span class="pre">https</span></code>, the Conan client will verify
-the certificate using a list of authorities declared in the <code class="docutils literal"><span class="pre">cacert.pem</span></code> file located in the conan home (~/.conan).</p>
+<p>By default, when a remote is added, if the URL schema is <code class="docutils literal notranslate"><span class="pre">https</span></code>, the Conan client will verify
+the certificate using a list of authorities declared in the <code class="docutils literal notranslate"><span class="pre">cacert.pem</span></code> file located in the conan home (~/.conan).</p>
 <p>If you have a self signed certificate (not signed by any authority) you have two options:</p>
 <ul class="simple">
 <li>Use the <a class="reference internal" href="../reference/commands/misc/remote.html#conan-remote"><span class="std std-ref">conan remote</span></a> command to disable the SSL verification.</li>
-<li>Append your server <code class="docutils literal"><span class="pre">crt</span></code> file to the <code class="docutils literal"><span class="pre">cacert.pem</span></code> file.</li>
+<li>Append your server <code class="docutils literal notranslate"><span class="pre">crt</span></code> file to the <code class="docutils literal notranslate"><span class="pre">cacert.pem</span></code> file.</li>
 </ul>
 </div>
 <div class="section" id="client-certificates">
@@ -230,15 +237,15 @@ the certificate using a list of authorities declared in the <code class="docutil
 <p>If your server is requiring client certificates to validate a connection from a Conan client,
 you need to create two files in the conan home directory (default ~/.conan):</p>
 <ul class="simple">
-<li>A file <code class="docutils literal"><span class="pre">client.crt</span></code> with the client certificate.</li>
-<li>A file <code class="docutils literal"><span class="pre">client.key</span></code> with the private key.</li>
+<li>A file <code class="docutils literal notranslate"><span class="pre">client.crt</span></code> with the client certificate.</li>
+<li>A file <code class="docutils literal notranslate"><span class="pre">client.key</span></code> with the private key.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>You can create only the <code class="docutils literal"><span class="pre">client.crt</span></code> file containing both the certificate and the private key
-concatenated and not create the <code class="docutils literal"><span class="pre">client.key</span></code></p>
+<p>You can create only the <code class="docutils literal notranslate"><span class="pre">client.crt</span></code> file containing both the certificate and the private key
+concatenated and not create the <code class="docutils literal notranslate"><span class="pre">client.key</span></code></p>
 <p class="last">If you are a familiar with the <a class="reference external" href="https://curl.haxx.se/docs/manpage.html">curl</a> tool, this mechanism is
-similar to specify the <code class="docutils literal"><span class="pre">--cert</span></code> / <code class="docutils literal"><span class="pre">--key</span></code> parameters.</p>
+similar to specify the <code class="docutils literal notranslate"><span class="pre">--cert</span></code> / <code class="docutils literal notranslate"><span class="pre">--key</span></code> parameters.</p>
 </div>
 </div>
 </div>
@@ -280,23 +287,6 @@ similar to specify the <code class="docutils literal"><span class="pre">--cert</
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -304,7 +294,7 @@ similar to specify the <code class="docutils literal"><span class="pre">--cert</
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

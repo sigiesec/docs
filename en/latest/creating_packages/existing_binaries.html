@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Packaging existing binaries &mdash; conan 1.3.1 documentation</title>
+  <title>Packaging existing binaries &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Understanding packaging" href="understand_packaging.html"/>
         <link rel="prev" title="Package development flow" href="package_dev_flow.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -214,7 +221,7 @@ not wanted. You would want to package local files in two situations:</p>
 <li>When it is not possible to build the packages from sources (only pre-built binaries available).</li>
 <li>When you are developing your package locally and want to export the built artifacts to the local
 cache.
-As you don&#8217;t want to rebuild again (clean copy) your artifacts, you don&#8217;t want to call
+As you don’t want to rebuild again (clean copy) your artifacts, you don’t want to call
 <strong class="command">conan create</strong>.
 This way you can keep your build cache if you are using an IDE or calling locally to the
 <strong class="command">conan build</strong> command.</li>
@@ -222,16 +229,16 @@ This way you can keep your build cache if you are using an IDE or calling locall
 </div></blockquote>
 <div class="section" id="packaging-pre-built-binaries">
 <h2>Packaging pre-built binaries<a class="headerlink" href="#packaging-pre-built-binaries" title="Permalink to this headline">¶</a></h2>
-<p>If the files we want to package are just local, creating a <code class="docutils literal"><span class="pre">build()</span></code> method that would copy them
-from the user folder is not reproducible, so it doesn&#8217;t add any value. For this use case, it is
+<p>If the files we want to package are just local, creating a <code class="docutils literal notranslate"><span class="pre">build()</span></code> method that would copy them
+from the user folder is not reproducible, so it doesn’t add any value. For this use case, it is
 possible to use <strong class="command">conan export-pkg</strong> command directly.</p>
 <p>A conan recipe is still needed, in this case it will be very simple, just the meta information of
 the package. A basic recipe can be created with the <strong class="command">conan new</strong> command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare
 </pre></div>
 </div>
 <p>This will create and store in the local cache the following package recipe:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
@@ -243,22 +250,22 @@ the package. A basic recipe can be created with the <strong class="command">cona
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_libs</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The provided <code class="docutils literal"><span class="pre">package_info()</span></code> method will scan the package files to provide the end consumers with
+<p>The provided <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method will scan the package files to provide the end consumers with
 the name of the libraries to link with. This method can be further customized to provide other build
-flags (typically conditioned to the settings). The default <code class="docutils literal"><span class="pre">package_info()</span></code> applies: it will
-define headers in &#8220;include&#8221; folder, libraries in &#8220;lib&#8221; folder, binaries in &#8220;bin&#8221; folder. A different
-package layout can be defined in <code class="docutils literal"><span class="pre">package_info()</span></code> method.</p>
+flags (typically conditioned to the settings). The default <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> applies: it will
+define headers in “include” folder, libraries in “lib” folder, binaries in “bin” folder. A different
+package layout can be defined in <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method.</p>
 <p>This package recipe can be also extended to provide support for more configurations (for example,
-adding options: shared/static, or using different settings), adding dependencies (<code class="docutils literal"><span class="pre">requires</span></code>),
+adding options: shared/static, or using different settings), adding dependencies (<code class="docutils literal notranslate"><span class="pre">requires</span></code>),
 etc.</p>
 <p>Then, we will assume that we have in our current directory a <em>lib</em> folder with some binary for this
-&#8220;hello&#8221; library <em>libhello.a</em>, compatible for example with Windows MinGW (gcc) version 4.9:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan export-pkg . Hello/0.1@myuser/testing  -s <span class="nv">os</span><span class="o">=</span>Windows -s <span class="nv">compiler</span><span class="o">=</span>gcc -s compiler.version<span class="o">=</span><span class="m">4</span>.9 ...
+“hello” library <em>libhello.a</em>, compatible for example with Windows MinGW (gcc) version 4.9:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan export-pkg . Hello/0.1@myuser/testing  -s <span class="nv">os</span><span class="o">=</span>Windows -s <span class="nv">compiler</span><span class="o">=</span>gcc -s compiler.version<span class="o">=</span><span class="m">4</span>.9 ...
 </pre></div>
 </div>
 <p>Having a <em>test_package</em> folder is still very recommended, to locally test the package before
-uploading. As we don&#8217;t want to build the package from sources, the flow would be:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare --test
+uploading. As we don’t want to build the package from sources, the flow would be:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare --test
 <span class="c1"># customize test_package project</span>
 <span class="c1"># customize package recipe if necessary</span>
 $ <span class="nb">cd</span> my/path/to/binaries
@@ -273,7 +280,7 @@ $ conan <span class="nb">test</span> PATH/TO/test_package/conanfile.py Hello/0.1
 <p>In this case, having a complete conan recipe, with the detailed retrieval of the binaries could be
 the preferred way, because it has better reproducibility, and the original binaries might be traced.
 Such a recipe would be like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
@@ -296,7 +303,7 @@ Such a recipe would be like:</p>
 </pre></div>
 </div>
 <p>Typically, pre-compiled binaries come for different configurations, so the only task that the
-<code class="docutils literal"><span class="pre">build()</span></code> method has to implement is to map the <code class="docutils literal"><span class="pre">settings</span></code> to the different URLs.</p>
+<code class="docutils literal notranslate"><span class="pre">build()</span></code> method has to implement is to map the <code class="docutils literal notranslate"><span class="pre">settings</span></code> to the different URLs.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
@@ -352,23 +359,6 @@ being available.</li>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -376,7 +366,7 @@ being available.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

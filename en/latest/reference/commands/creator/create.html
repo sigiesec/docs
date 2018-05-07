@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan create &mdash; conan 1.3.1 documentation</title>
+  <title>conan create &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan export" href="export.html"/>
         <link rel="prev" title="conan search" href="../consumer/search.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -219,7 +226,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-create">
 <span id="id1"></span><h1>conan create<a class="headerlink" href="#conan-create" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-j JSON<span class="o">]</span> <span class="o">[</span>-k<span class="o">]</span> <span class="o">[</span>-kb<span class="o">]</span> <span class="o">[</span>-ne<span class="o">]</span> <span class="o">[</span>-tbf TEST_BUILD_FOLDER<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-j JSON<span class="o">]</span> <span class="o">[</span>-k<span class="o">]</span> <span class="o">[</span>-kb<span class="o">]</span> <span class="o">[</span>-ne<span class="o">]</span> <span class="o">[</span>-tbf TEST_BUILD_FOLDER<span class="o">]</span>
                <span class="o">[</span>-tf TEST_FOLDER<span class="o">]</span> <span class="o">[</span>-m <span class="o">[</span>MANIFESTS<span class="o">]]</span>
                <span class="o">[</span>-mi <span class="o">[</span>MANIFESTS_INTERACTIVE<span class="o">]]</span> <span class="o">[</span>-v <span class="o">[</span>VERIFY<span class="o">]]</span> <span class="o">[</span>-b <span class="o">[</span>BUILD<span class="o">]]</span>
                <span class="o">[</span>-e ENV<span class="o">]</span> <span class="o">[</span>-o OPTIONS<span class="o">]</span> <span class="o">[</span>-pr PROFILE<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span>
@@ -229,11 +236,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>Builds a binary package for a recipe (conanfile.py). Uses the specified
 configuration in a profile or in -s settings, -o options etc. If a
-&#8216;test_package&#8217; folder (the name can be configured with -tf) is found, the
+‘test_package’ folder (the name can be configured with -tf) is found, the
 command will run the consumer project to ensure that the package has been
-created correctly. Check &#8216;conan test&#8217; command to know more about &#8216;test_folder&#8217;
+created correctly. Check ‘conan test’ command to know more about ‘test_folder’
 project.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to a folder containing a conanfile.py or to a
                         recipe file e.g., my_folder/conanfile.py
   reference             user/channel or pkg/version@user/channel (if name and
@@ -297,7 +304,7 @@ optional arguments:
 </div>
 <p>This is the recommended way to create packages.</p>
 <p><strong class="command">conan create . demo/testing</strong> is equivalent to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . demo/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . demo/testing
 $ conan install Hello/0.1@demo/testing --build<span class="o">=</span>Hello
 <span class="c1"># package is created now, use test to test it</span>
 $ <span class="nb">cd</span> test_package
@@ -309,26 +316,26 @@ $ conan <span class="nb">test</span> . Hello/0.1@demo/testing
 <p>Sometimes you need to <strong>skip/disable test stage</strong> to avoid a failure while creating the package,
 i.e: when you are cross compiling libraries and target code cannot be executed in current host platform.
 In that case you can skip/disable the test package stage:</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>$ conan create . demo/testing --test-folder<span class="o">=</span>None
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing --test-folder<span class="o">=</span>None
 </pre></div>
 </div>
 </div>
 <p><strong class="command">conan create</strong> executes methods of a <em>conanfile.py</em> in the following order:</p>
 <ol class="arabic simple">
-<li><code class="docutils literal"><span class="pre">config_options()</span></code></li>
-<li><code class="docutils literal"><span class="pre">configure()</span></code></li>
-<li><code class="docutils literal"><span class="pre">requirements()</span></code></li>
-<li><code class="docutils literal"><span class="pre">package_id()</span></code></li>
-<li><code class="docutils literal"><span class="pre">build_requirements()</span></code></li>
-<li><code class="docutils literal"><span class="pre">build_id()</span></code></li>
-<li><code class="docutils literal"><span class="pre">system_requirements()</span></code></li>
-<li><code class="docutils literal"><span class="pre">source()</span></code></li>
-<li><code class="docutils literal"><span class="pre">imports()</span></code></li>
-<li><code class="docutils literal"><span class="pre">build()</span></code></li>
-<li><code class="docutils literal"><span class="pre">package()</span></code></li>
-<li><code class="docutils literal"><span class="pre">package_info()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">config_options()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">configure()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">requirements()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">package_id()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">build_requirements()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">build_id()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">system_requirements()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">source()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">imports()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">build()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">package()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">package_info()</span></code></li>
 </ol>
-<p>In case of installing a pre-built binary, steps from 5 to 11 will be skipped. Note that <code class="docutils literal"><span class="pre">deploy()</span></code> method is only used in
+<p>In case of installing a pre-built binary, steps from 5 to 11 will be skipped. Note that <code class="docutils literal notranslate"><span class="pre">deploy()</span></code> method is only used in
 <strong class="command">conan install</strong>.</p>
 </div>
 
@@ -369,23 +376,6 @@ In that case you can skip/disable the test package stage:</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -393,7 +383,7 @@ In that case you can skip/disable the test package stage:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

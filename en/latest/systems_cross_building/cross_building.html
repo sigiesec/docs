@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cross building &mdash; conan 1.3.1 documentation</title>
+  <title>Cross building &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Systems and cross building" href="../systems_cross_building.html"/>
         <link rel="next" title="Windows Subsystems" href="windows_subsystems.html"/>
         <link rel="prev" title="Systems and cross building" href="../systems_cross_building.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -208,10 +215,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="cross-building">
 <span id="id1"></span><h1>Cross building<a class="headerlink" href="#cross-building" title="Permalink to this headline">¶</a></h1>
 <p>Cross building is compiling a library or executable in one platform to be used in a different one.</p>
-<p>Cross-compilation is used to build software for embedded devices where you don&#8217;t have an operating system
+<p>Cross-compilation is used to build software for embedded devices where you don’t have an operating system
 nor a compiler available. Also for building software for not too fast devices, like an Android machine, a Raspberry PI etc.</p>
 <p>To cross build code you need the right toolchain.
-A toolchain is basically a compiler with a set of libraries matching the <code class="docutils literal"><span class="pre">host</span></code> platform.</p>
+A toolchain is basically a compiler with a set of libraries matching the <code class="docutils literal notranslate"><span class="pre">host</span></code> platform.</p>
 <div class="section" id="gnu-triplet-convention">
 <h2>GNU triplet convention<a class="headerlink" href="#gnu-triplet-convention" title="Permalink to this headline">¶</a></h2>
 <p>According to the GNU convention, there are three platforms involved in the software building:</p>
@@ -221,43 +228,43 @@ A toolchain is basically a compiler with a set of libraries matching the <code c
 <li><strong>Target platform:</strong> Only when building a compiler, this is the platform that the compiler will
 generate code for</li>
 </ul>
-<p>When you are building code for your own machine it&#8217;s called <strong>native building</strong>, where the <code class="docutils literal"><span class="pre">build</span></code>
-and the <code class="docutils literal"><span class="pre">host</span></code> platforms are the same. The <code class="docutils literal"><span class="pre">target</span></code> platform is not defined in this situation.</p>
-<p>When you are building code for a different platform, it&#8217;s called <strong>cross building</strong>, where the <code class="docutils literal"><span class="pre">build</span></code>
-platform is different from the <code class="docutils literal"><span class="pre">host</span></code> platform. The <code class="docutils literal"><span class="pre">target</span></code> platform is not defined in this situation.</p>
-<p>The use of the <code class="docutils literal"><span class="pre">target</span></code> platform is rarely needed, only makes sense when you are building a compiler. For instance,
+<p>When you are building code for your own machine it’s called <strong>native building</strong>, where the <code class="docutils literal notranslate"><span class="pre">build</span></code>
+and the <code class="docutils literal notranslate"><span class="pre">host</span></code> platforms are the same. The <code class="docutils literal notranslate"><span class="pre">target</span></code> platform is not defined in this situation.</p>
+<p>When you are building code for a different platform, it’s called <strong>cross building</strong>, where the <code class="docutils literal notranslate"><span class="pre">build</span></code>
+platform is different from the <code class="docutils literal notranslate"><span class="pre">host</span></code> platform. The <code class="docutils literal notranslate"><span class="pre">target</span></code> platform is not defined in this situation.</p>
+<p>The use of the <code class="docutils literal notranslate"><span class="pre">target</span></code> platform is rarely needed, only makes sense when you are building a compiler. For instance,
 when you are building in your Linux machine a GCC compiler that will run on Windows, to generate code for Android.
-Here, the <code class="docutils literal"><span class="pre">build</span></code> is your Linux computer, the <code class="docutils literal"><span class="pre">host</span></code> is the Windows computer and the <code class="docutils literal"><span class="pre">target</span></code> is Android.</p>
+Here, the <code class="docutils literal notranslate"><span class="pre">build</span></code> is your Linux computer, the <code class="docutils literal notranslate"><span class="pre">host</span></code> is the Windows computer and the <code class="docutils literal notranslate"><span class="pre">target</span></code> is Android.</p>
 </div>
 <div class="section" id="conan-settings">
 <h2>Conan settings<a class="headerlink" href="#conan-settings" title="Permalink to this headline">¶</a></h2>
 <p>From version 1.0, Conan introduces new settings to model the GNU convention triplet:</p>
-<p><code class="docutils literal"><span class="pre">build</span></code> platform settings:</p>
+<p><code class="docutils literal notranslate"><span class="pre">build</span></code> platform settings:</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>os_build</strong>: Operating system of the <code class="docutils literal"><span class="pre">build</span></code> system.</li>
-<li><strong>arch_build</strong>: Architecture system of the <code class="docutils literal"><span class="pre">build</span></code> system.</li>
+<li><strong>os_build</strong>: Operating system of the <code class="docutils literal notranslate"><span class="pre">build</span></code> system.</li>
+<li><strong>arch_build</strong>: Architecture system of the <code class="docutils literal notranslate"><span class="pre">build</span></code> system.</li>
 </ul>
-<p>These settings are detected the first time you run Conan with the same values than the <code class="docutils literal"><span class="pre">host</span></code> settings,
+<p>These settings are detected the first time you run Conan with the same values than the <code class="docutils literal notranslate"><span class="pre">host</span></code> settings,
 so by default, we are doing <strong>native building</strong>. Probably you will never need to change the value
 of this settings because they describe where are you running Conan.</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">host</span></code> platform settings:</p>
+<p><code class="docutils literal notranslate"><span class="pre">host</span></code> platform settings:</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>os</strong>: Operating system of the <code class="docutils literal"><span class="pre">host</span></code> system.</li>
-<li><strong>arch</strong>: Architecture of the <code class="docutils literal"><span class="pre">host</span></code> system.</li>
-<li><strong>compiler</strong>: Compiler of the <code class="docutils literal"><span class="pre">host</span></code> system (to declare compatibility of libs in the host platform)</li>
-<li>... (all the regular settings)</li>
+<li><strong>os</strong>: Operating system of the <code class="docutils literal notranslate"><span class="pre">host</span></code> system.</li>
+<li><strong>arch</strong>: Architecture of the <code class="docutils literal notranslate"><span class="pre">host</span></code> system.</li>
+<li><strong>compiler</strong>: Compiler of the <code class="docutils literal notranslate"><span class="pre">host</span></code> system (to declare compatibility of libs in the host platform)</li>
+<li>… (all the regular settings)</li>
 </ul>
 <p>These settings are the regular Conan settings, already present before supporting the GNU triplet convention.
-If you are cross building you have to change them according to the <code class="docutils literal"><span class="pre">host</span></code> platform.</p>
+If you are cross building you have to change them according to the <code class="docutils literal notranslate"><span class="pre">host</span></code> platform.</p>
 </div></blockquote>
-<p><code class="docutils literal"><span class="pre">target</span></code> platform:</p>
+<p><code class="docutils literal notranslate"><span class="pre">target</span></code> platform:</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>os_target</strong>: Operating system of the <code class="docutils literal"><span class="pre">target</span></code> system.</li>
-<li><strong>arch_target</strong>: Architecture of the <code class="docutils literal"><span class="pre">target</span></code> system.</li>
+<li><strong>os_target</strong>: Operating system of the <code class="docutils literal notranslate"><span class="pre">target</span></code> system.</li>
+<li><strong>arch_target</strong>: Architecture of the <code class="docutils literal notranslate"><span class="pre">target</span></code> system.</li>
 </ul>
 <p>If you are building a compiler, specify with these settings where the compiled code will run.</p>
 </div></blockquote>
@@ -268,19 +275,19 @@ If you are cross building you have to change them according to the <code class="
 Conan package for Windows, you need to indicate to Conan where to find your cross-compiler/toolchain.</p>
 <p>There are two approaches:</p>
 <ul class="simple">
-<li>Install the toolchain in your computer and use a <code class="docutils literal"><span class="pre">profile</span></code> to declare the settings and
-point to the needed tools/libraries in the toolchain using the <code class="docutils literal"><span class="pre">[env]</span></code> section to declare, at least,
-the <code class="docutils literal"><span class="pre">CC</span></code> and <code class="docutils literal"><span class="pre">CXX</span></code> environment variables.</li>
-<li>Package the toolchain as a Conan package and include it as a <code class="docutils literal"><span class="pre">build_require</span></code>.</li>
+<li>Install the toolchain in your computer and use a <code class="docutils literal notranslate"><span class="pre">profile</span></code> to declare the settings and
+point to the needed tools/libraries in the toolchain using the <code class="docutils literal notranslate"><span class="pre">[env]</span></code> section to declare, at least,
+the <code class="docutils literal notranslate"><span class="pre">CC</span></code> and <code class="docutils literal notranslate"><span class="pre">CXX</span></code> environment variables.</li>
+<li>Package the toolchain as a Conan package and include it as a <code class="docutils literal notranslate"><span class="pre">build_require</span></code>.</li>
 </ul>
 <div class="section" id="using-profiles">
 <h3>Using profiles<a class="headerlink" href="#using-profiles" title="Permalink to this headline">¶</a></h3>
 <p>Create a profile with:</p>
 <ul class="simple">
-<li>A <strong>[settings]</strong> section containing the needed settings: <code class="docutils literal"><span class="pre">os_build</span></code>, <code class="docutils literal"><span class="pre">arch_build</span></code> and the regular
-settings <code class="docutils literal"><span class="pre">os</span></code>, <code class="docutils literal"><span class="pre">arch</span></code>, <code class="docutils literal"><span class="pre">compiler</span></code>, <code class="docutils literal"><span class="pre">build_type</span></code> and so on.</li>
+<li>A <strong>[settings]</strong> section containing the needed settings: <code class="docutils literal notranslate"><span class="pre">os_build</span></code>, <code class="docutils literal notranslate"><span class="pre">arch_build</span></code> and the regular
+settings <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">arch</span></code>, <code class="docutils literal notranslate"><span class="pre">compiler</span></code>, <code class="docutils literal notranslate"><span class="pre">build_type</span></code> and so on.</li>
 <li>An <strong>[env]</strong> section with a PATH variable pointing to your installed toolchain. Also any other variable
-that the toolchain expects (read the docs of your compiler). Some build systems need a variable <code class="docutils literal"><span class="pre">SYSROOT</span></code> to locate
+that the toolchain expects (read the docs of your compiler). Some build systems need a variable <code class="docutils literal notranslate"><span class="pre">SYSROOT</span></code> to locate
 where the host system libraries and tools are.</li>
 </ul>
 <div class="section" id="linux-to-windows">
@@ -288,13 +295,13 @@ where the host system libraries and tools are.</li>
 <ul>
 <li><p class="first">Install the needed toolchain, in ubuntu:</p>
 <blockquote>
-<div><p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">g++-mingw-w64</span> <span class="pre">gcc-mingw-w64</span></code></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">g++-mingw-w64</span> <span class="pre">gcc-mingw-w64</span></code></p>
 </div></blockquote>
 </li>
 <li><p class="first">Create a file named <strong>linux_to_win64</strong> with the contents:</p>
 </li>
 </ul>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[env]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[env]
 # Where is our C compiler
 CC=/usr/bin/x86_64-w64-mingw32-gcc
 # Where is our CPP compiler
@@ -318,13 +325,13 @@ build_type=Release
 <ul class="simple">
 <li>Clone an example recipe or use your own recipe:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/memsharded/conan-hello.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/memsharded/conan-hello.git
 </pre></div>
 </div>
 <ul class="simple">
 <li>Call <strong class="command">conan create</strong> using the created profile.win</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-hello <span class="o">&amp;&amp;</span> conan create . conan/testing --profile ../linux_to_win64
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-hello <span class="o">&amp;&amp;</span> conan create . conan/testing --profile ../linux_to_win64
 ...
 <span class="o">[</span> <span class="m">50</span>%<span class="o">]</span> Building CXX object CMakeFiles/example.dir/example.cpp.obj
 <span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Linking CXX executable bin/example.exe
@@ -341,7 +348,7 @@ You can choose different versions of the GCC cross compiler, choose one and adju
 settings in the profile accordingly.</li>
 <li>Create a file named <strong>win_to_rpi</strong> with the contents:</li>
 </ul>
-<div class="highlight-text"><div class="highlight"><pre><span></span>target_host=arm-linux-gnueabihf
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>target_host=arm-linux-gnueabihf
 standalone_toolchain=C:/sysgcc/raspberry
 cc_compiler=gcc
 cxx_compiler=g++
@@ -376,19 +383,19 @@ declared in the top of the profile:</p>
 <div><ul class="simple">
 <li><strong>target_host</strong>: All the executables in the toolchain starts with this prefix.</li>
 <li><strong>standalone_toolchain</strong>: Path to the toolchain installation.</li>
-<li><strong>cc_compiler/cxx_compiler</strong>: In this case <code class="docutils literal"><span class="pre">gcc</span></code>/<code class="docutils literal"><span class="pre">g++</span></code>, but could be <code class="docutils literal"><span class="pre">clang</span></code>/<code class="docutils literal"><span class="pre">clang++</span></code>.</li>
+<li><strong>cc_compiler/cxx_compiler</strong>: In this case <code class="docutils literal notranslate"><span class="pre">gcc</span></code>/<code class="docutils literal notranslate"><span class="pre">g++</span></code>, but could be <code class="docutils literal notranslate"><span class="pre">clang</span></code>/<code class="docutils literal notranslate"><span class="pre">clang++</span></code>.</li>
 </ul>
 </div></blockquote>
 <ul class="simple">
 <li>Clone an example recipe or use your own recipe:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/memsharded/conan-hello.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/memsharded/conan-hello.git
 </pre></div>
 </div>
 <ul class="simple">
 <li>Call <strong class="command">conan create</strong> using the created profile.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-hello <span class="o">&amp;&amp;</span> conan create . conan/testing --profile<span class="o">=</span>../win_to_rpi
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-hello <span class="o">&amp;&amp;</span> conan create . conan/testing --profile<span class="o">=</span>../win_to_rpi
 ...
 <span class="o">[</span> <span class="m">50</span>%<span class="o">]</span> Building CXX object CMakeFiles/example.dir/example.cpp.obj
 <span class="o">[</span><span class="m">100</span>%<span class="o">]</span> Linking CXX executable bin/example
@@ -407,9 +414,9 @@ architectures (armeabi, armeabi-v7a, x86, arm64-v8a) and the Android API levels.
 <p class="last">If you are in Windows the process will be almost the same, but unzip the file in the root folder of your hard disk (C:) to avoid issues with path lengths.</p>
 </div>
 <p>Now you have to build a <a class="reference external" href="https://developer.android.com/ndk/guides/standalone_toolchain">standalone toolchain</a>,
-we are going to target &#8220;arm&#8221; architecture and the Android API level 21, change the <code class="docutils literal"><span class="pre">--install-dir</span></code> to any other place that works
+we are going to target “arm” architecture and the Android API level 21, change the <code class="docutils literal notranslate"><span class="pre">--install-dir</span></code> to any other place that works
 for you:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> build/tools
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> build/tools
 $ python make_standalone_toolchain.py --arch<span class="o">=</span>arm --api<span class="o">=</span><span class="m">21</span> --stl<span class="o">=</span>libc++ --install-dir<span class="o">=</span>/myfolder/arm_21_toolchain
 </pre></div>
 </div>
@@ -418,9 +425,9 @@ $ python make_standalone_toolchain.py --arch<span class="o">=</span>arm --api<sp
 <p>You can generate the standalone toolchain with several different options to target different architectures, api levels etc.</p>
 <p class="last">Check the Android docs: <a class="reference external" href="https://developer.android.com/ndk/guides/standalone_toolchain">standalone toolchain</a></p>
 </div>
-<p>To use the <code class="docutils literal"><span class="pre">clang</span></code> compiler, create a profile <code class="docutils literal"><span class="pre">android_21_arm_clang</span></code>. Once again, the profile is very similar to the
+<p>To use the <code class="docutils literal notranslate"><span class="pre">clang</span></code> compiler, create a profile <code class="docutils literal notranslate"><span class="pre">android_21_arm_clang</span></code>. Once again, the profile is very similar to the
 RPI one:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>standalone_toolchain=/myfolder/arm_21_toolchain # Adjust this path
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>standalone_toolchain=/myfolder/arm_21_toolchain # Adjust this path
 target_host=arm-linux-androideabi
 cc_compiler=clang
 cxx_compiler=clang++
@@ -450,10 +457,10 @@ CXXFLAGS= -fPIE -fPIC -I$standalone_toolchain/include/c++/4.9.x
 LDFLAGS= -pie
 </pre></div>
 </div>
-<p>You could also use <code class="docutils literal"><span class="pre">gcc</span></code> using this profile <code class="docutils literal"><span class="pre">arm_21_toolchain_gcc</span></code>, changing the <code class="docutils literal"><span class="pre">cc_compiler</span></code> and
-<code class="docutils literal"><span class="pre">cxx_compiler</span></code> variables, removing <code class="docutils literal"><span class="pre">-fPIE</span></code> flag and, of course, changing the <code class="docutils literal"><span class="pre">[settings]</span></code> to
+<p>You could also use <code class="docutils literal notranslate"><span class="pre">gcc</span></code> using this profile <code class="docutils literal notranslate"><span class="pre">arm_21_toolchain_gcc</span></code>, changing the <code class="docutils literal notranslate"><span class="pre">cc_compiler</span></code> and
+<code class="docutils literal notranslate"><span class="pre">cxx_compiler</span></code> variables, removing <code class="docutils literal notranslate"><span class="pre">-fPIE</span></code> flag and, of course, changing the <code class="docutils literal notranslate"><span class="pre">[settings]</span></code> to
 match the gcc toolchain compiler:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>standalone_toolchain=/myfolder/arm_21_toolchain
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>standalone_toolchain=/myfolder/arm_21_toolchain
 target_host=arm-linux-androideabi
 cc_compiler=gcc
 cxx_compiler=g++
@@ -486,13 +493,13 @@ LDFLAGS=
 <ul class="simple">
 <li>Clone, for example, the zlib library to try to build it to Android</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/lasote/conan-zlib.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/lasote/conan-zlib.git
 </pre></div>
 </div>
 <ul class="simple">
 <li>Call <strong class="command">conan create</strong> using the created profile.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-zlib <span class="o">&amp;&amp;</span> conan create . conan/testing --profile<span class="o">=</span>../android_21_arm_clang
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> conan-zlib <span class="o">&amp;&amp;</span> conan create . conan/testing --profile<span class="o">=</span>../android_21_arm_clang
 
 ...
 -- Build files have been written to: /tmp/conan-zlib/test_package/build/ba0b9dbae0576b9a23ce7005180b00e4fdef1198
@@ -509,11 +516,11 @@ zlib/1.2.11@conan/testing <span class="o">(</span><span class="nb">test</span> p
 <div class="section" id="using-build-requires">
 <h3>Using build requires<a class="headerlink" href="#using-build-requires" title="Permalink to this headline">¶</a></h3>
 <p>Instead of downloading manually the toolchain and creating a profile, you can create a Conan package
-with it. The toolchain Conan package needs to fill the <code class="docutils literal"><span class="pre">env_info</span></code> object
-in the <a class="reference internal" href="../reference/conanfile/methods.html#method-package-info"><span class="std std-ref">package_info()</span></a> method with the same variables we&#8217;ve specified in the examples
-above in the <code class="docutils literal"><span class="pre">[env]</span></code> section of profiles.</p>
+with it. The toolchain Conan package needs to fill the <code class="docutils literal notranslate"><span class="pre">env_info</span></code> object
+in the <a class="reference internal" href="../reference/conanfile/methods.html#method-package-info"><span class="std std-ref">package_info()</span></a> method with the same variables we’ve specified in the examples
+above in the <code class="docutils literal notranslate"><span class="pre">[env]</span></code> section of profiles.</p>
 <p>A layout of a Conan package for a toolchain could looks like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 
@@ -540,8 +547,8 @@ above in the <code class="docutils literal"><span class="pre">[env]</span></code
         <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">SYSROOT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span>
 </pre></div>
 </div>
-<p>Finally, when you want to cross-build a library, the profile to be used, will include a <code class="docutils literal"><span class="pre">[build_requires]</span></code>
-section with the reference to our new packaged toolchain. Also will contain a <code class="docutils literal"><span class="pre">[settings]</span></code> section
+<p>Finally, when you want to cross-build a library, the profile to be used, will include a <code class="docutils literal notranslate"><span class="pre">[build_requires]</span></code>
+section with the reference to our new packaged toolchain. Also will contain a <code class="docutils literal notranslate"><span class="pre">[settings]</span></code> section
 with the same settings of the examples above.</p>
 <p>You can</p>
 <div class="admonition seealso">
@@ -556,9 +563,9 @@ more about how to create Conan packages for tools.</li>
 <div class="section" id="using-docker-images">
 <h3>Using Docker images<a class="headerlink" href="#using-docker-images" title="Permalink to this headline">¶</a></h3>
 <p>You can use some <a class="reference internal" href="../howtos/run_conan_in_docker.html#available-docker-images"><span class="std std-ref">available docker images with Conan preinstalled images</span></a> to cross build conan packages.
-Currently there are <code class="docutils literal"><span class="pre">i386</span></code>, <code class="docutils literal"><span class="pre">armv7</span></code> and <code class="docutils literal"><span class="pre">armv7hf</span></code> images with the needed packages and toolchains installed to cross build.</p>
-<p><strong>Example</strong>: Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
+Currently there are <code class="docutils literal notranslate"><span class="pre">i386</span></code>, <code class="docutils literal notranslate"><span class="pre">armv7</span></code> and <code class="docutils literal notranslate"><span class="pre">armv7hf</span></code> images with the needed packages and toolchains installed to cross build.</p>
+<p><strong>Example</strong>: Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal notranslate"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ docker run -it -v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/conan/project --rm lasote/conangcc49-armv7hf /bin/bash
 
@@ -577,8 +584,8 @@ $ conan upload <span class="s2">&quot;*&quot;</span> -r myremoteARMV7 --all
 <h3>Preparing recipes to be cross-compiled<a class="headerlink" href="#preparing-recipes-to-be-cross-compiled" title="Permalink to this headline">¶</a></h3>
 <p>If you use the build helpers <a class="reference internal" href="../reference/build_helpers/autotools.html#autotools-reference"><span class="std std-ref">AutoToolsBuildEnvironment</span></a> or <a class="reference internal" href="../reference/build_helpers/cmake.html#cmake-reference"><span class="std std-ref">CMake</span></a>,
 Conan will adjust the configuration accordingly to the specified settings.</p>
-<p>If don&#8217;t, you can always check the <code class="docutils literal"><span class="pre">self.settings.os</span></code>, <code class="docutils literal"><span class="pre">self.settings.build_os</span></code>,
-<code class="docutils literal"><span class="pre">self.settings.arch</span></code> and <code class="docutils literal"><span class="pre">self.settings.build_arch</span></code> settings values and inject the needed flags to your
+<p>If don’t, you can always check the <code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code>, <code class="docutils literal notranslate"><span class="pre">self.settings.build_os</span></code>,
+<code class="docutils literal notranslate"><span class="pre">self.settings.arch</span></code> and <code class="docutils literal notranslate"><span class="pre">self.settings.build_arch</span></code> settings values and inject the needed flags to your
 build system script.</p>
 <p>You can use this tool to check if you are cross building:</p>
 <ul class="simple">
@@ -590,8 +597,8 @@ build system script.</p>
 <h2>ARM architecture reference<a class="headerlink" href="#arm-architecture-reference" title="Permalink to this headline">¶</a></h2>
 <p>Remember that the conan settings are intended to unify the different names for operating systems, compilers,
 architectures etc.</p>
-<p>Conan has different architecture settings for ARM: <code class="docutils literal"><span class="pre">armv6</span></code>, <code class="docutils literal"><span class="pre">armv7</span></code>, <code class="docutils literal"><span class="pre">armv7hf</span></code>, <code class="docutils literal"><span class="pre">armv8</span></code>.
-The &#8220;problem&#8221; with ARM architecture is that frequently are named in different ways, so maybe you are wondering what setting
+<p>Conan has different architecture settings for ARM: <code class="docutils literal notranslate"><span class="pre">armv6</span></code>, <code class="docutils literal notranslate"><span class="pre">armv7</span></code>, <code class="docutils literal notranslate"><span class="pre">armv7hf</span></code>, <code class="docutils literal notranslate"><span class="pre">armv8</span></code>.
+The “problem” with ARM architecture is that frequently are named in different ways, so maybe you are wondering what setting
 do you need to specify in your case.</p>
 <p>Here is a table with some typical ARM platorms:</p>
 <table border="1" class="docutils">
@@ -606,25 +613,25 @@ do you need to specify in your case.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Raspberry PI 1</td>
-<td><code class="docutils literal"><span class="pre">armv6</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">armv6</span></code></td>
 </tr>
 <tr class="row-odd"><td>Raspberry PI 2</td>
-<td><code class="docutils literal"><span class="pre">armv7</span></code> or <code class="docutils literal"><span class="pre">armv7hf</span></code> if we want to use the float point hard support</td>
+<td><code class="docutils literal notranslate"><span class="pre">armv7</span></code> or <code class="docutils literal notranslate"><span class="pre">armv7hf</span></code> if we want to use the float point hard support</td>
 </tr>
 <tr class="row-even"><td>Raspberry PI 3</td>
-<td><code class="docutils literal"><span class="pre">armv8</span></code> also known as armv64-v8a</td>
+<td><code class="docutils literal notranslate"><span class="pre">armv8</span></code> also known as armv64-v8a</td>
 </tr>
 <tr class="row-odd"><td>Visual Studio</td>
-<td><code class="docutils literal"><span class="pre">armv7</span></code> currently Visual Studio builds <code class="docutils literal"><span class="pre">armv7</span></code> binaries when you select ARM.</td>
+<td><code class="docutils literal notranslate"><span class="pre">armv7</span></code> currently Visual Studio builds <code class="docutils literal notranslate"><span class="pre">armv7</span></code> binaries when you select ARM.</td>
 </tr>
 <tr class="row-even"><td>Android armbeabi-v7a</td>
-<td><code class="docutils literal"><span class="pre">armv7</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">armv7</span></code></td>
 </tr>
 <tr class="row-odd"><td>Android armv64-v8a</td>
-<td><code class="docutils literal"><span class="pre">armv8</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">armv8</span></code></td>
 </tr>
 <tr class="row-even"><td>Android armeabi</td>
-<td><code class="docutils literal"><span class="pre">armv6</span></code> (as a minimal compatible, will be compatible with v7 too)</td>
+<td><code class="docutils literal notranslate"><span class="pre">armv6</span></code> (as a minimal compatible, will be compatible with v7 too)</td>
 </tr>
 </tbody>
 </table>
@@ -695,23 +702,6 @@ do you need to specify in your case.</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -719,7 +709,7 @@ do you need to specify in your case.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

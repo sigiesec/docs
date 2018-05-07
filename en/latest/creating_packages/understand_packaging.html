@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Understanding packaging &mdash; conan 1.3.1 documentation</title>
+  <title>Understanding packaging &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Define package ABI compatibility" href="define_abi_compatibility.html"/>
         <link rel="prev" title="Packaging existing binaries" href="existing_binaries.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -209,25 +216,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="manual-package-creation-and-testing">
 <h2>Manual package creation and testing<a class="headerlink" href="#manual-package-creation-and-testing" title="Permalink to this headline">¶</a></h2>
 <p>The previous <strong>create</strong> approach  using <em>test_package</em> subfolder, is not strictly necessary, though
-<strong>very strongly recommended</strong>. If we didn&#8217;t want to use the <em>test_package</em> functionality, we could
+<strong>very strongly recommended</strong>. If we didn’t want to use the <em>test_package</em> functionality, we could
 just write our recipe ourselves or use the <strong class="command">conan new</strong> command without the <strong class="command">-t</strong>.
 command line argument.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir mypkg <span class="o">&amp;&amp;</span> <span class="nb">cd</span> mypkg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir mypkg <span class="o">&amp;&amp;</span> <span class="nb">cd</span> mypkg
 $ conan new Hello/0.1
 </pre></div>
 </div>
 <p>This will create just the <em>conanfile.py</em> recipe file. Now we could create our package:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create demo/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create demo/testing
 </pre></div>
 </div>
 <p>This would be equivalent to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . demo/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . demo/testing
 $ conan install Hello/0.1@demo/testing --build<span class="o">=</span>Hello
 </pre></div>
 </div>
 <p>Once the package is there, it can be consumed like any other package, just add
-<code class="docutils literal"><span class="pre">Hello/0.1&#64;demo/testing</span></code> to some project <em>conanfile.txt</em> or <em>conanfile.py</em> requirements and run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install .
+<code class="docutils literal notranslate"><span class="pre">Hello/0.1&#64;demo/testing</span></code> to some project <em>conanfile.txt</em> or <em>conanfile.py</em> requirements and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install .
 <span class="c1"># build and run your project to ensure the package works</span>
 </pre></div>
 </div>
@@ -239,7 +246,7 @@ creation inside the conan local cache, and its layout.</p>
 <p>For every package recipe, there are 5 important folders in the <strong>local cache</strong>:</p>
 <ul class="simple">
 <li><strong>export</strong>: The folder where the package recipe is stored.</li>
-<li><strong>export_source</strong>: The folder where code copied with the recipe <code class="docutils literal"><span class="pre">exports_sources</span></code> attribute is
+<li><strong>export_source</strong>: The folder where code copied with the recipe <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> attribute is
 stored.</li>
 <li><strong>source</strong>: Where the source code for building from sources is stored.</li>
 <li><strong>build</strong>: Where the actual compilation of sources is done. There will typically be one subfolder
@@ -249,22 +256,22 @@ different binary configuration</li>
 </ul>
 <p>The <em>source</em> and <em>build</em> folders only exist when the packages have been built from sources.</p>
 <a class="reference internal image-reference" href="../_images/package_create_flow.png"><img alt="../_images/package_create_flow.png" class="align-center" src="../_images/package_create_flow.png" style="width: 600px; height: 500px;" /></a>
-<p>The process starts when a package is &#8220;exported&#8221;, via the <strong class="command">conan export</strong> command or more
+<p>The process starts when a package is “exported”, via the <strong class="command">conan export</strong> command or more
 typically, with the <strong class="command">conan create</strong> command. The <em>conanfile.py</em> and files specified by the
-<code class="docutils literal"><span class="pre">exports_sources</span></code> field are copied from the user space into the <strong>local cache</strong>.</p>
-<p>The <em>export</em> and <em>export_source</em> files are copied to the <em>source</em> folder, and then the <code class="docutils literal"><span class="pre">source()</span></code>
+<code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> field are copied from the user space into the <strong>local cache</strong>.</p>
+<p>The <em>export</em> and <em>export_source</em> files are copied to the <em>source</em> folder, and then the <code class="docutils literal notranslate"><span class="pre">source()</span></code>
 method is executed (if existing). Note that there is only one source folder for all the binary
 packages. If some source code is to be generated that will be different for different
-configurations, it cannot be generated in the <code class="docutils literal"><span class="pre">source()</span></code> method, it has to be done in the
-<code class="docutils literal"><span class="pre">build()</span></code> method.</p>
+configurations, it cannot be generated in the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method, it has to be done in the
+<code class="docutils literal notranslate"><span class="pre">build()</span></code> method.</p>
 <p>Then, for each different configuration of settings and options, a package ID will be computed in the
 form of a SHA-1 hash of such configuration. Sources will be copied to the <em>build/hashXXX</em> folder,
-and the <code class="docutils literal"><span class="pre">build()</span></code> method will be triggered.</p>
-<p>After that, the <code class="docutils literal"><span class="pre">package()</span></code> method will be called to copy artifacts from the <em>build/hashXXX</em>
+and the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method will be triggered.</p>
+<p>After that, the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method will be called to copy artifacts from the <em>build/hashXXX</em>
 folder to the <em>package/hashXXX</em> folder.</p>
-<p>Finally, the <code class="docutils literal"><span class="pre">package_info()</span></code> methods of all dependencies will be called and gathered to be able
-to generate files for the consumer build system, as the <em>conanbuildinfo.cmake</em> for the <code class="docutils literal"><span class="pre">cmake</span></code>
-generator. Also the <code class="docutils literal"><span class="pre">imports</span></code> feature will copy artifacts from the local cache into user space if
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> methods of all dependencies will be called and gathered to be able
+to generate files for the consumer build system, as the <em>conanbuildinfo.cmake</em> for the <code class="docutils literal notranslate"><span class="pre">cmake</span></code>
+generator. Also the <code class="docutils literal notranslate"><span class="pre">imports</span></code> feature will copy artifacts from the local cache into user space if
 specified.</p>
 <p>Any doubts? Please check out our <a class="reference internal" href="../faq.html#faq"><span class="std std-ref">FAQ section</span></a> or <a href="mailto:info@conan.io" target="_blank">write us</a>.</p>
 </div>
@@ -307,23 +314,6 @@ specified.</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -331,7 +321,7 @@ specified.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

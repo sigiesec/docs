@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install &mdash; conan 1.3.1 documentation</title>
+  <title>Install &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="index.html"/>
         <link rel="next" title="Getting started" href="getting_started.html"/>
         <link rel="prev" title="Introduction" href="introduction.html"/>
 
@@ -82,7 +82,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -200,18 +207,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 also actively used in FreeBSD and Solaris SunOS. There are also several additional operating systems on which it has been reported to work.</p>
 <p>There are three ways to install conan:</p>
 <ol class="arabic simple">
-<li>The preferred and <strong>strongly recommended way to install Conan</strong> is from PyPI, the Python Package Index, using the <code class="docutils literal"><span class="pre">pip</span></code> command.</li>
-<li>There are other available installers for different systems, which might come with a bundled python interpreter, so that you don&#8217;t have to
+<li>The preferred and <strong>strongly recommended way to install Conan</strong> is from PyPI, the Python Package Index, using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command.</li>
+<li>There are other available installers for different systems, which might come with a bundled python interpreter, so that you don’t have to
 install python first. Please note that some of <strong>these installers might have some limitations</strong>, specially those created with pyinstaller
 (such as Windows exe &amp; Linux deb).</li>
 <li>Running conan from sources.</li>
 </ol>
 <div class="section" id="install-with-pip-recommended">
 <h2>Install with pip (recommended)<a class="headerlink" href="#install-with-pip-recommended" title="Permalink to this headline">¶</a></h2>
-<p>To install Conan using <code class="docutils literal"><span class="pre">pip</span></code>, you need a python 2.7 or 3.X distribution installed in your machine. Modern python distros come
+<p>To install Conan using <code class="docutils literal notranslate"><span class="pre">pip</span></code>, you need a python 2.7 or 3.X distribution installed in your machine. Modern python distros come
 with pip pre-installed. However, if necessary you can install pip by following the instructions in <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">pip docs</a>.</p>
 <p>Install conan:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install conan
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install conan
 </pre></div>
 </div>
 <div class="admonition important">
@@ -224,13 +231,13 @@ with pip pre-installed. However, if necessary you can install pip by following t
 <li>In <strong>Windows</strong> and with Python 2.7, you might need to use <strong>32bits</strong> python distribution (which is the Windows default one), instead
 of 64 bits.</li>
 <li>In <strong>OSX</strong>, specially latest versions that might have <strong>System Integrity Protection</strong>, pip might fail. Try with virtualenvs, or
-install with other user <code class="docutils literal"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">conan</span></code>.</li>
+install with other user <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">conan</span></code>.</li>
 <li>If you are in Windows, and using python &lt;3.5, you might have problems if python is installed in a path with spaces, like
-&#8220;C:/Program Files(x86)/Python&#8221;. This is a known python&#8217;s limitation, not Conan&#8217;s. Install python in a path without spaces, use a
+“C:/Program Files(x86)/Python”. This is a known python’s limitation, not Conan’s. Install python in a path without spaces, use a
 virtualenv in another location or upgrade your python installation.</li>
 <li>In some Linux distros, like Linux Mint, it is possible that you need a restart (shell restart, or logout/system if not enough) after
 installation, so Conan is found in the path.</li>
-<li>Windows, Python 3 installation can fail installing the <code class="docutils literal"><span class="pre">wrapt</span></code> dependency because a bug in <strong>pip</strong>. Information about the issue and
+<li>Windows, Python 3 installation can fail installing the <code class="docutils literal notranslate"><span class="pre">wrapt</span></code> dependency because a bug in <strong>pip</strong>. Information about the issue and
 workarounds is here: <a class="reference external" href="https://github.com/GrahamDumpleton/wrapt/issues/112">https://github.com/GrahamDumpleton/wrapt/issues/112</a>.</li>
 </ul>
 </div>
@@ -238,7 +245,7 @@ workarounds is here: <a class="reference external" href="https://github.com/Grah
 <div class="section" id="install-from-brew-osx">
 <h2>Install from brew (OSX)<a class="headerlink" href="#install-from-brew-osx" title="Permalink to this headline">¶</a></h2>
 <p>There is a brew recipe, so in OSX, you can install Conan as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ brew update
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew update
 $ brew install conan
 </pre></div>
 </div>
@@ -246,10 +253,10 @@ $ brew install conan
 <div class="section" id="install-from-aur-arch-linux">
 <h2>Install from AUR (Arch Linux)<a class="headerlink" href="#install-from-aur-arch-linux" title="Permalink to this headline">¶</a></h2>
 <p>You can find the package <a class="reference external" href="https://aur.archlinux.org/packages/conan/">here</a>. The easiest way is using <strong>pacaur</strong> tool:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pacaur -S conan
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacaur -S conan
 </pre></div>
 </div>
-<p>Or you can also use <code class="docutils literal"><span class="pre">makepkg</span></code> and install it following the <a class="reference external" href="https://wiki.archlinux.org/index.php/Arch_User_Repository">AUR docs: installing packages</a>.</p>
+<p>Or you can also use <code class="docutils literal notranslate"><span class="pre">makepkg</span></code> and install it following the <a class="reference external" href="https://wiki.archlinux.org/index.php/Arch_User_Repository">AUR docs: installing packages</a>.</p>
 <p>Just remember to install four Conan dependencies first. They are not in the official repositories but there are in <strong>AUR</strong> repository too:</p>
 <ul class="simple">
 <li>python-patch</li>
@@ -261,16 +268,16 @@ $ brew install conan
 <div class="section" id="install-the-binaries">
 <h2>Install the binaries<a class="headerlink" href="#install-the-binaries" title="Permalink to this headline">¶</a></h2>
 <p>Go to the conan website and <a class="reference external" href="https://conan.io/downloads.html">download the installer for your platform</a>!</p>
-<p>Execute the installer. You don&#8217;t need to install python.</p>
+<p>Execute the installer. You don’t need to install python.</p>
 </div>
 <div class="section" id="initial-configuration">
 <h2>Initial configuration<a class="headerlink" href="#initial-configuration" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s check if conan is correctly installed. In your console, run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan
+<p>Let’s check if conan is correctly installed. In your console, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan
 </pre></div>
 </div>
 <p>You will see something similar to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Consumer commands
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Consumer commands
   install    Installs the requirements specified in a conanfile <span class="o">(</span>.py or .txt<span class="o">)</span>.
   config     Manages configuration. Edits the conan.conf or installs config files.
   get        Gets a file or list a directory of a given reference or package.
@@ -284,13 +291,13 @@ $ brew install conan
 <p>You can run conan directly from source code. First you need to install Python 2.7 or Python 3 and
 pip.</p>
 <p>Clone (or download and unzip) the git repository and install its requirements:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-io/conan.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-io/conan.git
 $ <span class="nb">cd</span> conan
 $ pip install -r conans/requirements.txt
 </pre></div>
 </div>
-<p>Create a script to run Conan and add it to your <code class="docutils literal"><span class="pre">PATH</span></code>.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>#!/usr/bin/env python
+<p>Create a script to run Conan and add it to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env python
 
 import sys
 
@@ -301,8 +308,8 @@ from conans.client.command import main
 main(sys.argv[1:])
 </pre></div>
 </div>
-<p>Test your <code class="docutils literal"><span class="pre">conan</span></code> script.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan
+<p>Test your <code class="docutils literal notranslate"><span class="pre">conan</span></code> script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan
 </pre></div>
 </div>
 <p>You should see the Conan commands help.</p>
@@ -346,23 +353,6 @@ main(sys.argv[1:])
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -370,7 +360,7 @@ main(sys.argv[1:])
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

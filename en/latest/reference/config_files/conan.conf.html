@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan.conf &mdash; conan 1.3.1 documentation</title>
+  <title>conan.conf &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
         <link rel="up" title="Configuration files" href="../config_files.html"/>
         <link rel="next" title="profiles/default" href="default_profile.html"/>
         <link rel="prev" title="Configuration files" href="../config_files.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -218,8 +225,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-conf">
 <span id="id1"></span><h1>conan.conf<a class="headerlink" href="#conan-conf" title="Permalink to this headline">¶</a></h1>
-<p>The typical location of the <strong>conan.conf</strong> file is the directory <code class="docutils literal"><span class="pre">~/.conan/</span></code>:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[log]
+<p>The typical location of the <strong>conan.conf</strong> file is the directory <code class="docutils literal notranslate"><span class="pre">~/.conan/</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[log]
 run_to_output = True        # environment CONAN_LOG_RUN_TO_OUTPUT
 run_to_file = False         # environment CONAN_LOG_RUN_TO_FILE
 level = 50                  # environment CONAN_LOGGING_LEVEL
@@ -282,66 +289,66 @@ path = ~/.conan/data
 </div>
 <div class="section" id="log">
 <h2>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">level</span></code> variable, defaulted to 50 (critical events), declares the LOG level .
+<p>The <code class="docutils literal notranslate"><span class="pre">level</span></code> variable, defaulted to 50 (critical events), declares the LOG level .
 If you want to show more detailed logging information, set this variable to lower values,
-as 10 to show debug information. You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_LOGGING_LEVEL</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">print_run_commands</span></code>, when is 1, Conan will print the executed commands in <code class="docutils literal"><span class="pre">self.run</span></code> to the output.
+as 10 to show debug information. You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_LOGGING_LEVEL</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">print_run_commands</span></code>, when is 1, Conan will print the executed commands in <code class="docutils literal notranslate"><span class="pre">self.run</span></code> to the output.
 You can also adjust the environment variable CONAN_PRINT_RUN_COMMANDS</p>
-<p>The <code class="docutils literal"><span class="pre">run_to_file</span></code> variable, defaulted to False, will print the output from the <code class="docutils literal"><span class="pre">self.run</span></code>
+<p>The <code class="docutils literal notranslate"><span class="pre">run_to_file</span></code> variable, defaulted to False, will print the output from the <code class="docutils literal notranslate"><span class="pre">self.run</span></code>
 executions to the path that the variable specifies.
-You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_LOG_RUN_TO_FILE</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">run_to_output</span></code> variable, defaulted to 1, will print to the <code class="docutils literal"><span class="pre">stdout</span></code> the output from the
-<code class="docutils literal"><span class="pre">self.run</span></code> executions in the conanfile. You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_LOG_RUN_TO_OUTPUT</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">trace_file</span></code> variable enable extra logging information about your conan command executions.
+You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_LOG_RUN_TO_FILE</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">run_to_output</span></code> variable, defaulted to 1, will print to the <code class="docutils literal notranslate"><span class="pre">stdout</span></code> the output from the
+<code class="docutils literal notranslate"><span class="pre">self.run</span></code> executions in the conanfile. You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_LOG_RUN_TO_OUTPUT</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">trace_file</span></code> variable enable extra logging information about your conan command executions.
 Set it with an absolute path to a file.
-You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_TRACE_FILE</span></code>.</p>
+You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_TRACE_FILE</span></code>.</p>
 </div>
 <div class="section" id="general">
 <h2>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">vs_installation_preference</span></code> variable determines the preference of usage when searching a Visual installation. The order of preference
+<p>The <code class="docutils literal notranslate"><span class="pre">vs_installation_preference</span></code> variable determines the preference of usage when searching a Visual installation. The order of preference
 by default is Enterprise, Professional, Community and BuildTools. It can be fixed to just one type of installation like only BuildTools. You
-can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_VS_INSTALLATION_PREFERENCE</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">verbose_traceback</span></code> variable will print the complete traceback when an error occurs in a recipe or even in the conan code base, allowing
+can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_VS_INSTALLATION_PREFERENCE</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">verbose_traceback</span></code> variable will print the complete traceback when an error occurs in a recipe or even in the conan code base, allowing
 to debug the detected error.</p>
-<p>The <code class="docutils literal"><span class="pre">bash_path</span></code> variable is used only in windows to help the
+<p>The <code class="docutils literal notranslate"><span class="pre">bash_path</span></code> variable is used only in windows to help the
 <a class="reference internal" href="../tools.html#run-in-windows-bash-tool"><span class="std std-ref">tools.run_in_windows_bash()</span></a> function to locate our Cygwin/MSYS2 bash.
-Set it with the bash executable path if it&#8217;s not in the PATH or you want to use a different one.</p>
-<p>The <code class="docutils literal"><span class="pre">cmake_***</span></code> variables will declare the corresponding CMake variable when you use the
+Set it with the bash executable path if it’s not in the PATH or you want to use a different one.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cmake_***</span></code> variables will declare the corresponding CMake variable when you use the
 <a class="reference internal" href="../generators/cmake.html#cmake-generator"><span class="std std-ref">cmake generator</span></a> and the <a class="reference internal" href="../build_helpers/cmake.html#cmake-reference"><span class="std std-ref">CMake build tool</span></a>.</p>
-<p>The <code class="docutils literal"><span class="pre">cpu_count</span></code> variable set the number of cores that the <a class="reference internal" href="../tools.html#cpu-count"><span class="std std-ref">tools.cpu_count()</span></a> will return,
+<p>The <code class="docutils literal notranslate"><span class="pre">cpu_count</span></code> variable set the number of cores that the <a class="reference internal" href="../tools.html#cpu-count"><span class="std std-ref">tools.cpu_count()</span></a> will return,
 by default the number of cores available in your machine.
 Conan recipes can use the cpu_count() tool to build the library using more than one core.</p>
-<p>The <code class="docutils literal"><span class="pre">pylintrc</span></code> variable points to a custom <code class="docutils literal"><span class="pre">pylintrc</span></code> file that allows configuring custom rules
-for the python linter executed at <code class="docutils literal"><span class="pre">export</span></code> time. A use case could be to define some custom indents
+<p>The <code class="docutils literal notranslate"><span class="pre">pylintrc</span></code> variable points to a custom <code class="docutils literal notranslate"><span class="pre">pylintrc</span></code> file that allows configuring custom rules
+for the python linter executed at <code class="docutils literal notranslate"><span class="pre">export</span></code> time. A use case could be to define some custom indents
 (though the standard pep8 4-spaces indent is recommended, there are companies that define different styles).
-The <code class="docutils literal"><span class="pre">pylintrc</span></code> file has the form:</p>
-<div class="code text highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">FORMAT</span><span class="p">]</span>
+The <code class="docutils literal notranslate"><span class="pre">pylintrc</span></code> file has the form:</p>
+<div class="code text highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">FORMAT</span><span class="p">]</span>
 <span class="n">indent</span><span class="o">-</span><span class="n">string</span><span class="o">=</span><span class="s1">&#39;  &#39;</span>
 </pre></div>
 </div>
-<p>Running <code class="docutils literal"><span class="pre">pylint</span> <span class="pre">--generate-rcfile</span></code> will output a complete rcfile with commments explaining the fields.</p>
-<p>The <code class="docutils literal"><span class="pre">recipe_linter</span></code> variable allows to disable the package recipe analysis (linting) executed at <strong class="command">conan install</strong>.
+<p>Running <code class="docutils literal notranslate"><span class="pre">pylint</span> <span class="pre">--generate-rcfile</span></code> will output a complete rcfile with commments explaining the fields.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">recipe_linter</span></code> variable allows to disable the package recipe analysis (linting) executed at <strong class="command">conan install</strong>.
 Please note that this linting is very recommended, specially for sharing package recipes and collaborating with others.</p>
-<p>The <code class="docutils literal"><span class="pre">sysrequires_mode</span></code> variable, defaulted to <code class="docutils literal"><span class="pre">enabled</span></code> (allowed modes <code class="docutils literal"><span class="pre">enabled/verify/disabled</span></code>)
-controls whether system packages should be installed into the system via <code class="docutils literal"><span class="pre">SystemPackageTool</span></code> helper,
+<p>The <code class="docutils literal notranslate"><span class="pre">sysrequires_mode</span></code> variable, defaulted to <code class="docutils literal notranslate"><span class="pre">enabled</span></code> (allowed modes <code class="docutils literal notranslate"><span class="pre">enabled/verify/disabled</span></code>)
+controls whether system packages should be installed into the system via <code class="docutils literal notranslate"><span class="pre">SystemPackageTool</span></code> helper,
 typically used in <a class="reference internal" href="../conanfile/methods.html#method-system-requirements"><span class="std std-ref">system_requirements()</span></a>.
-You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_SYSREQUIRES_MODE</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">sysrequires_sudo</span></code> variable, defaulted to True, controls whether <code class="docutils literal"><span class="pre">sudo</span></code> is used for installing apt, yum, etc.
-system packages via <code class="docutils literal"><span class="pre">SystemPackageTool</span></code>. You can also adjust the environment variable <code class="docutils literal"><span class="pre">CONAN_SYSREQUIRES_SUDO</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">request_timeout</span></code> variable, defaulted to 30 seconds, controls the time after Conan will stop waiting for a response.
+You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_SYSREQUIRES_MODE</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sysrequires_sudo</span></code> variable, defaulted to True, controls whether <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is used for installing apt, yum, etc.
+system packages via <code class="docutils literal notranslate"><span class="pre">SystemPackageTool</span></code>. You can also adjust the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_SYSREQUIRES_SUDO</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">request_timeout</span></code> variable, defaulted to 30 seconds, controls the time after Conan will stop waiting for a response.
 Timeout is not a time limit on the entire response download; rather, an exception is raised if the server has not issued a
 response for timeout seconds (more precisely, if no bytes have been received on the underlying socket for timeout seconds).
 If no timeout is specified explicitly, it do not timeout.</p>
-<p>The <code class="docutils literal"><span class="pre">user_home_short</span></code> specify the base folder to be used with the <a class="reference internal" href="../conanfile/attributes.html#short-paths-reference"><span class="std std-ref">short paths</span></a> feature.
-If not specified, the packages marked as <cite>short_paths</cite> will be stored in the <cite>C:\.conan</cite> (or the current drive letter).</p>
-<p>If the variable is set to &#8220;None&#8221; will disable the <cite>short_paths</cite> feature in Windows,
+<p>The <code class="docutils literal notranslate"><span class="pre">user_home_short</span></code> specify the base folder to be used with the <a class="reference internal" href="../conanfile/attributes.html#short-paths-reference"><span class="std std-ref">short paths</span></a> feature.
+If not specified, the packages marked as <cite>short_paths</cite> will be stored in the <cite>C:.conan</cite> (or the current drive letter).</p>
+<p>If the variable is set to “None” will disable the <cite>short_paths</cite> feature in Windows,
 for modern Windows that enable long paths at the system level.</p>
-<p>The <code class="docutils literal"><span class="pre">verbose_traceback</span></code> variable will print the complete traceback when an error occurs in a recipe or even
+<p>The <code class="docutils literal notranslate"><span class="pre">verbose_traceback</span></code> variable will print the complete traceback when an error occurs in a recipe or even
 in the conan code base, allowing to debug the detected error.</p>
 </div>
 <div class="section" id="storage">
 <h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">storage.path</span></code> variable define the path where all the packages will be stored.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">storage.path</span></code> variable define the path where all the packages will be stored.</p>
 <p>On Windows:</p>
 <ul class="simple">
 <li>It is recommended to assign it to some unit, e.g. map it to X: in order to avoid hitting the 260 chars path name length limit).</li>
@@ -350,24 +357,24 @@ in the conan code base, allowing to debug the detected error.</p>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you want to change the default &#8220;conan home&#8221; (directory where <code class="docutils literal"><span class="pre">conan.conf</span></code> file is) you can adjust
-the environment variable <code class="docutils literal"><span class="pre">CONAN_USER_HOME</span></code>.</p>
+<p class="last">If you want to change the default “conan home” (directory where <code class="docutils literal notranslate"><span class="pre">conan.conf</span></code> file is) you can adjust
+the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_USER_HOME</span></code>.</p>
 </div>
 </div>
 <div class="section" id="proxies">
 <span id="proxys"></span><h2>Proxies<a class="headerlink" href="#proxies" title="Permalink to this headline">¶</a></h2>
 <p>If you are not using proxies at all, or you want to use the proxies specified by the operating system,
-just remove the <code class="docutils literal"><span class="pre">[proxies]</span></code> section completely. You can run <strong class="command">conan config rm proxies</strong>.</p>
-<p>If you leave leave the <code class="docutils literal"><span class="pre">[proxies]</span></code> section blank, conan will copy the system configured
-proxies, but if you configured some exclusion rule it won&#8217;t work:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[proxies]
+just remove the <code class="docutils literal notranslate"><span class="pre">[proxies]</span></code> section completely. You can run <strong class="command">conan config rm proxies</strong>.</p>
+<p>If you leave leave the <code class="docutils literal notranslate"><span class="pre">[proxies]</span></code> section blank, conan will copy the system configured
+proxies, but if you configured some exclusion rule it won’t work:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[proxies]
 # Empty section will try to use system proxies.
 # If you don&#39;t want Conan to mess with proxies at all, remove section [proxies]
 </pre></div>
 </div>
 <p>You can specify http and https proxies as follows. Use the <cite>no_proxy_match</cite> keyword to specify a list
 of URLs or patterns that will skip the proxy:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[proxies]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[proxies]
 # As documented in http://docs.python-requests.org/en/latest/user/advanced/#proxies
 http: http://user:pass@10.10.1.10:3128/
 http: http://10.10.1.10:3128
@@ -377,7 +384,7 @@ no_proxy_match: http://url1, http://url2, https://url3*, https://*.custom_domain
 </div>
 <p>Use <cite>http=None</cite> and/or <cite>https=None</cite> to disable the usage of a proxy.</p>
 <p>If this fails, you might also try to set environment variables:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># linux/osx</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># linux/osx</span>
 $ <span class="nb">export</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="s2">&quot;http://10.10.1.10:3128&quot;</span>
 $ <span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="s2">&quot;http://10.10.1.10:1080&quot;</span>
 
@@ -430,23 +437,6 @@ $ <span class="nb">set</span> <span class="nv">HTTPS_PROXY</span><span class="o"
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -454,7 +444,7 @@ $ <span class="nb">set</span> <span class="nv">HTTPS_PROXY</span><span class="o"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

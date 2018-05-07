@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gitlab &mdash; conan 1.3.1 documentation</title>
+  <title>Gitlab &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Integrations" href="../integrations.html"/>
         <link rel="next" title="Circle CI" href="circleci.html"/>
         <link rel="prev" title="Appveyor" href="appveyor.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -233,11 +240,11 @@ fired in Gitlab CI after a <strong class="command">git push</strong> to Gitlab.<
 <h2>Building and testing your project<a class="headerlink" href="#building-and-testing-your-project" title="Permalink to this headline">¶</a></h2>
 <p>We are going to use an example with GTest package, with <strong>Gitlab CI</strong> support to run the tests.</p>
 <p>Clone the project from github:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-gtest-example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-gtest-example
 </pre></div>
 </div>
-<p>Create a <code class="docutils literal"><span class="pre">.gitlab-ci.yml</span></code> file and paste this code in it:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>image: lasote/conangcc63
+<p>Create a <code class="docutils literal notranslate"><span class="pre">.gitlab-ci.yml</span></code> file and paste this code in it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>image: lasote/conangcc63
 
 build:
   before_script:
@@ -258,14 +265,14 @@ Then, the <strong>script</strong> section creates the build folder, compiles the
 <h2>Creating, testing and uploading conan binary packages<a class="headerlink" href="#creating-testing-and-uploading-conan-binary-packages" title="Permalink to this headline">¶</a></h2>
 <p>You can use Gitlab CI to automate the building of binary packages, which will be created in the
 cloud after pushing to Gitlab. You can probably setup your own way, but conan has some utilities to help in the process.</p>
-<p>The command <strong class="command">conan new</strong> has arguments to create a default working <code class="docutils literal"><span class="pre">.gitlab-ci.yml</span></code> file.
+<p>The command <strong class="command">conan new</strong> has arguments to create a default working <code class="docutils literal notranslate"><span class="pre">.gitlab-ci.yml</span></code> file.
 Other setups might be possible, but for this example we are assuming that you are using github and also uploading your final packages to Bintray.
 You could follow these steps:</p>
 <ol class="arabic simple">
-<li>First, create an empty gitlab repository, lets call it &#8220;hello&#8221;, for creating a &#8220;hello world&#8221; package. Gitlab allows to create it with a Readme, license and .gitignore.</li>
-<li>Get the credentials User and API Key (remember, Bintray uses the API key as &#8220;password&#8221;, not your main Bintray account password)</li>
-<li>Create a conan repository in Bintray under your user or organization, and get its URL (&#8220;Set me up&#8221;). We will call it <code class="docutils literal"><span class="pre">UPLOAD_URL</span></code></li>
-<li>Under your project page, <em>Settings -&gt; Pipelines -&gt; Add a variable</em>, add the <code class="docutils literal"><span class="pre">CONAN_PASSWORD</span></code> environment variable with the Bintray API Key. If your Bintray user is different from the package user, you can define your Bintray username too, defining the environment variable <code class="docutils literal"><span class="pre">CONAN_LOGIN_USERNAME</span></code></li>
+<li>First, create an empty gitlab repository, lets call it “hello”, for creating a “hello world” package. Gitlab allows to create it with a Readme, license and .gitignore.</li>
+<li>Get the credentials User and API Key (remember, Bintray uses the API key as “password”, not your main Bintray account password)</li>
+<li>Create a conan repository in Bintray under your user or organization, and get its URL (“Set me up”). We will call it <code class="docutils literal notranslate"><span class="pre">UPLOAD_URL</span></code></li>
+<li>Under your project page, <em>Settings -&gt; Pipelines -&gt; Add a variable</em>, add the <code class="docutils literal notranslate"><span class="pre">CONAN_PASSWORD</span></code> environment variable with the Bintray API Key. If your Bintray user is different from the package user, you can define your Bintray username too, defining the environment variable <code class="docutils literal notranslate"><span class="pre">CONAN_LOGIN_USERNAME</span></code></li>
 <li>Clone the repo: <strong class="command">git clone &lt;your_repo/hello&gt; &amp;&amp; cd hello</strong>.</li>
 <li>Create the package: <strong class="command">conan new Hello/0.1&#64;&lt;user&gt;/testing -t -s -ciglg -ciglc -cis -ciu=UPLOAD_URL</strong> where <strong>user</strong> is your Bintray username.</li>
 <li>You can inspect the created files: both <em>.gitlab-ci.yml</em> and the <em>build.py</em> script, that is used by <strong>conan-package-tools</strong> utility to
@@ -317,23 +324,6 @@ split different builds with different configurations in different GitLab CI jobs
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -341,7 +331,7 @@ split different builds with different configurations in different GitLab CI jobs
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

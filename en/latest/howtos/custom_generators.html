@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to create and share a custom generator with generator packages &mdash; conan 1.3.1 documentation</title>
+  <title>How to create and share a custom generator with generator packages &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="How to manage shared libraries" href="manage_shared_libraries.html"/>
         <link rel="prev" title="How to reuse Python code in recipes" href="python_code_reuse.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -131,7 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="toctree-l2"><a class="reference internal" href="manage_shared_libraries.html">How to manage shared libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cmake_install.html">How to reuse cmake install for package() method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users&#8217; packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="link_apple_framework.html">How to link with Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capture_version.html">How to capture package version from text or build files</a></li>
@@ -216,29 +223,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="how-to-create-and-share-a-custom-generator-with-generator-packages">
 <span id="dyn-generators"></span><h1>How to create and share a custom generator with generator packages<a class="headerlink" href="#how-to-create-and-share-a-custom-generator-with-generator-packages" title="Permalink to this headline">¶</a></h1>
-<p>There are several built-in generators, like <code class="docutils literal"><span class="pre">cmake</span></code>, <code class="docutils literal"><span class="pre">visual_studio</span></code>, <code class="docutils literal"><span class="pre">xcode</span></code>...
+<p>There are several built-in generators, like <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, <code class="docutils literal notranslate"><span class="pre">visual_studio</span></code>, <code class="docutils literal notranslate"><span class="pre">xcode</span></code>…
 But what if your build system is not included? Or maybe the existing built-in generators
-doesn&#8217;t satisfy your needs. There are several options:</p>
+doesn’t satisfy your needs. There are several options:</p>
 <ul class="simple">
-<li>Use the <code class="docutils literal"><span class="pre">txt</span></code> generator, that generates a plain text file easy to parse, which you might
+<li>Use the <code class="docutils literal notranslate"><span class="pre">txt</span></code> generator, that generates a plain text file easy to parse, which you might
 be able to use.</li>
-<li>Use <code class="docutils literal"><span class="pre">conanfile.py</span></code> data, and for example in the <code class="docutils literal"><span class="pre">build()</span></code> method, access that information
+<li>Use <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> data, and for example in the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method, access that information
 directly and generate a file or call directly your system</li>
 <li>Fork the conan codebase and write a built-in generator. Please make a pull request if possible to
 contribute it to the community.</li>
-<li>Write a custom generator in a <code class="docutils literal"><span class="pre">conanfile.py</span></code> and manage it as a package. You can upload it
+<li>Write a custom generator in a <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> and manage it as a package. You can upload it
 to your own server and share with your team, or share with the world uploading it to bintray.
-You can manage it as a package, you can version it, overwrite it, delete it, create channels (testing/stable...),
+You can manage it as a package, you can version it, overwrite it, delete it, create channels (testing/stable…),
 and the most important: bring it to your projects as a regular dependency.</li>
 </ul>
 <p>This <strong>how to</strong> will show you how to do the latest one. We will build a generator for <strong>premake</strong> (<a class="reference external" href="https://premake.github.io/">https://premake.github.io/</a>)
 build system:</p>
 <div class="section" id="creating-a-custom-generator">
 <h2>Creating a custom generator<a class="headerlink" href="#creating-a-custom-generator" title="Permalink to this headline">¶</a></h2>
-<p>Basically a generator is a class that extends <code class="docutils literal"><span class="pre">Generator</span></code> and implements two properties: <code class="docutils literal"><span class="pre">filename</span></code>,
-which will be the name of the file that will be generated, and <code class="docutils literal"><span class="pre">content</span></code> with the contents of
+<p>Basically a generator is a class that extends <code class="docutils literal notranslate"><span class="pre">Generator</span></code> and implements two properties: <code class="docutils literal notranslate"><span class="pre">filename</span></code>,
+which will be the name of the file that will be generated, and <code class="docutils literal notranslate"><span class="pre">content</span></code> with the contents of
 that file. The <strong>name of the generator</strong> itself will be taken from the class name:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyGeneratorName</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyGeneratorName</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;mygenerator.file&quot;</span>
@@ -248,13 +255,13 @@ that file. The <strong>name of the generator</strong> itself will be taken from 
         <span class="k">return</span> <span class="s2">&quot;whatever contents the generator produces&quot;</span>
 </pre></div>
 </div>
-<p>This class is just included in a <code class="docutils literal"><span class="pre">conanfile.py</span></code> that must contain also a <code class="docutils literal"><span class="pre">Conanfile</span></code> class
+<p>This class is just included in a <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> that must contain also a <code class="docutils literal notranslate"><span class="pre">Conanfile</span></code> class
 that implements the package itself, with the name of the package, the version, etc. This
-class typically has no <code class="docutils literal"><span class="pre">source()</span></code>, <code class="docutils literal"><span class="pre">build()</span></code>, <code class="docutils literal"><span class="pre">package()</span></code>, and even the <code class="docutils literal"><span class="pre">package_info()</span></code> method is
-overriden as it doesn&#8217;t have to define any include paths or library paths.</p>
-<p>If you want to create a generator that creates more than one file, you can leave the <code class="docutils literal"><span class="pre">filename()</span></code> empty, and return a dictionary of
-filenames-&gt;contents in the <code class="docutils literal"><span class="pre">content()</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+class typically has no <code class="docutils literal notranslate"><span class="pre">source()</span></code>, <code class="docutils literal notranslate"><span class="pre">build()</span></code>, <code class="docutils literal notranslate"><span class="pre">package()</span></code>, and even the <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method is
+overriden as it doesn’t have to define any include paths or library paths.</p>
+<p>If you want to create a generator that creates more than one file, you can leave the <code class="docutils literal notranslate"><span class="pre">filename()</span></code> empty, and return a dictionary of
+filenames-&gt;contents in the <code class="docutils literal notranslate"><span class="pre">content()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -266,18 +273,18 @@ filenames-&gt;contents in the <code class="docutils literal"><span class="pre">c
         <span class="k">pass</span>
 </pre></div>
 </div>
-<p>Once, it is defined in the <code class="docutils literal"><span class="pre">conanfile.py</span></code> you can treat is as a regular package, typically you
-will <code class="docutils literal"><span class="pre">export</span></code> it first to your local cache, test it, and once it is working fine, you would
-<code class="docutils literal"><span class="pre">upload</span></code> it to a server.</p>
+<p>Once, it is defined in the <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> you can treat is as a regular package, typically you
+will <code class="docutils literal notranslate"><span class="pre">export</span></code> it first to your local cache, test it, and once it is working fine, you would
+<code class="docutils literal notranslate"><span class="pre">upload</span></code> it to a server.</p>
 </div>
 <div class="section" id="premake-generator-example">
 <h2>Premake generator example<a class="headerlink" href="#premake-generator-example" title="Permalink to this headline">¶</a></h2>
 <p>Create a project (the best is a git repository):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir conan-premake <span class="o">&amp;&amp;</span> <span class="nb">cd</span> conan-premake
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir conan-premake <span class="o">&amp;&amp;</span> <span class="nb">cd</span> conan-premake
 </pre></div>
 </div>
 <p>Then, write in it the following <strong>conanfile.py</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.model</span> <span class="kn">import</span> <span class="n">Generator</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.model</span> <span class="kn">import</span> <span class="n">Generator</span>
 <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">PremakeDeps</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -345,29 +352,29 @@ will <code class="docutils literal"><span class="pre">export</span></code> it fi
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">bindirs</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
-<p>This is a full working example. Note the <code class="docutils literal"><span class="pre">PremakeDeps</span></code> class as a helper. The generator is
+<p>This is a full working example. Note the <code class="docutils literal notranslate"><span class="pre">PremakeDeps</span></code> class as a helper. The generator is
 creating premake information for each individual library separately, then also an aggregated
-information for all dependencies. This <code class="docutils literal"><span class="pre">PremakeDeps</span></code> wraps a single item of such information.</p>
+information for all dependencies. This <code class="docutils literal notranslate"><span class="pre">PremakeDeps</span></code> wraps a single item of such information.</p>
 <p>Note the <strong>name of the package</strong> will be <strong>PremakeGen/0.1&#64;user/channel</strong> as that is the name given
 to it, while the generator name is <strong>Premake</strong>. You can give the package any name you want, even
 matching the generator name if desired.</p>
-<p>You <code class="docutils literal"><span class="pre">export</span></code> the package recipe to the local cache, so it can be used by other projects as usual:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> memsharded/testing
+<p>You <code class="docutils literal notranslate"><span class="pre">export</span></code> the package recipe to the local cache, so it can be used by other projects as usual:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> memsharded/testing
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-the-generator">
 <h2>Using the generator<a class="headerlink" href="#using-the-generator" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s create a test project that uses this generator, and also an existing library conan package,
-we will use the simple &#8220;Hello World&#8221; package we already created before:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+<p>Let’s create a test project that uses this generator, and also an existing library conan package,
+we will use the simple “Hello World” package we already created before:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
 $ mkdir premake-project <span class="o">&amp;&amp;</span> <span class="nb">cd</span> premake-project
 </pre></div>
 </div>
-<p>Now put the following files inside. Note the <code class="docutils literal"><span class="pre">PremakeGen&#64;0.1&#64;memsharded/testing</span></code> package
+<p>Now put the following files inside. Note the <code class="docutils literal notranslate"><span class="pre">PremakeGen&#64;0.1&#64;memsharded/testing</span></code> package
 reference in conanfile.txt.</p>
 <p><strong>conanfile.txt</strong></p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
 Hello/0.1@memsharded/testing
 PremakeGen@0.1@memsharded/testing
 
@@ -376,7 +383,7 @@ Premake
 </pre></div>
 </div>
 <p><strong>main.cpp</strong></p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;hello.h&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;hello.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">){</span>
     <span class="n">hello</span><span class="p">();</span>
@@ -384,7 +391,7 @@ Premake
 </pre></div>
 </div>
 <p><strong>premake4.lua</strong></p>
-<div class="highlight-lua"><div class="highlight"><pre><span></span><span class="cp">#!lua</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="cp">#!lua</span>
 
 <span class="nb">require</span> <span class="s1">&#39;conanpremake&#39;</span>
 
@@ -409,8 +416,8 @@ Premake
          <span class="n">flags</span> <span class="p">{</span> <span class="s2">&quot;Optimize&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>Let&#8217;s install the requirements and build the project:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install  -s <span class="nv">compiler</span><span class="o">=</span>gcc -s compiler.version<span class="o">=</span><span class="m">4</span>.9 -s compiler.libcxx<span class="o">=</span>libstdc++ --build
+<p>Let’s install the requirements and build the project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install  -s <span class="nv">compiler</span><span class="o">=</span>gcc -s compiler.version<span class="o">=</span><span class="m">4</span>.9 -s compiler.libcxx<span class="o">=</span>libstdc++ --build
 $ premake4 gmake
 $ make <span class="o">(</span>or mingw32-make <span class="k">if</span> in windows-mingw<span class="o">)</span>
 $ ./MyApplication
@@ -418,7 +425,7 @@ Hello World!
 </pre></div>
 </div>
 <p>Now, everything works, so you might want to share your generator:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan upload PremakeGen/0.1@memsharded/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan upload PremakeGen/0.1@memsharded/testing
 </pre></div>
 </div>
 <div class="admonition note">
@@ -466,23 +473,6 @@ invokes premake4 in the build() method, and use <strong class="command">conan te
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -490,7 +480,7 @@ invokes premake4 in the build() method, and use <strong class="command">conan te
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

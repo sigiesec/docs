@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan export &mdash; conan 1.3.1 documentation</title>
+  <title>conan export &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan export-pkg" href="export-pkg.html"/>
         <link rel="prev" title="conan create" href="create.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -219,14 +226,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-export">
 <span id="id1"></span><h1>conan export<a class="headerlink" href="#conan-export" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-k<span class="o">]</span> path reference
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-k<span class="o">]</span> path reference
 </pre></div>
 </div>
 <p>Copies the recipe (conanfile.py &amp; associated files) to your local cache. Use
-the &#8216;reference&#8217; param to specify a user and channel where to export it. Once
+the ‘reference’ param to specify a user and channel where to export it. Once
 the recipe is in the local cache it can be shared, reused and to any remote
-with the &#8216;conan upload&#8217; command.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
+with the ‘conan upload’ command.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to a folder containing a conanfile.py or to a
                         recipe file e.g., my_folder/conanfile.py
   reference             user/channel, or Pkg/version@user/channel (if name and
@@ -239,25 +246,25 @@ optional arguments:
                         this for testing purposes only
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">export</span></code> command will run a linting of the package recipe, looking for possible
+<p>The <code class="docutils literal notranslate"><span class="pre">export</span></code> command will run a linting of the package recipe, looking for possible
 inconsistencies, bugs and py2-3 incompatibilities. It is possible to customize the rules for this
-linting, as well as totally disabling it. Look at the <code class="docutils literal"><span class="pre">recipe_linter</span></code> and <code class="docutils literal"><span class="pre">pylintrc</span></code> variables
-in <a class="reference internal" href="../../config_files/conan.conf.html#conan-conf"><span class="std std-ref">conan.conf</span></a> and the <code class="docutils literal"><span class="pre">PYLINTRC</span></code> environment variable.</p>
+linting, as well as totally disabling it. Look at the <code class="docutils literal notranslate"><span class="pre">recipe_linter</span></code> and <code class="docutils literal notranslate"><span class="pre">pylintrc</span></code> variables
+in <a class="reference internal" href="../../config_files/conan.conf.html#conan-conf"><span class="std std-ref">conan.conf</span></a> and the <code class="docutils literal notranslate"><span class="pre">PYLINTRC</span></code> environment variable.</p>
 <p><strong>Examples</strong></p>
 <ul>
-<li><p class="first">Export a recipe using a full reference. Only valid if <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">version</span></code> are not declared in
+<li><p class="first">Export a recipe using a full reference. Only valid if <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">version</span></code> are not declared in
 the recipe:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . mylib/1.0@myuser/channel
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . mylib/1.0@myuser/channel
 </pre></div>
 </div>
 </li>
-<li><p class="first">Export a recipe from any folder directory, under the <code class="docutils literal"><span class="pre">myuser/stable</span></code> user and channel:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> ./folder_name myuser/stable
+<li><p class="first">Export a recipe from any folder directory, under the <code class="docutils literal notranslate"><span class="pre">myuser/stable</span></code> user and channel:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> ./folder_name myuser/stable
 </pre></div>
 </div>
 </li>
 <li><p class="first">Export a recipe without removing the source folder in the local cache:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . fenix/stable -k
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . fenix/stable -k
 </pre></div>
 </div>
 </li>
@@ -301,23 +308,6 @@ the recipe:</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -325,7 +315,7 @@ the recipe:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

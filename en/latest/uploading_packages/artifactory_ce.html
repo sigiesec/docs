@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Artifactory Community Edition for C/C++ &mdash; conan 1.3.1 documentation</title>
+  <title>Artifactory Community Edition for C/C++ &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Uploading packages" href="../uploading_packages.html"/>
         <link rel="next" title="Running conan_server" href="running_your_server.html"/>
         <link rel="prev" title="Contributing packages to conan-center" href="bintray/conan_center_guide.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -214,24 +221,24 @@ visit <a class="reference external" href="https://www.jfrog.com/confluence/">Art
 <p>There are several ways to download and run Artifactory CE. The simplest one might be to download and unzip the
 given zip file, though other installers, included running from a docker image, are available.
 When the file is unzipped, Artifactory can be launched double clicking on the .bat or .sh script in the <em>bin</em>
-subfolder, depending on the OS. Java 8 update 45 or later runtime is required, if you don&#8217;t have it, please install it first
+subfolder, depending on the OS. Java 8 update 45 or later runtime is required, if you don’t have it, please install it first
 (newer Java versions preferred).</p>
 <img alt="../_images/artifactory_ce.png" src="../_images/artifactory_ce.png" />
 <p>Once Artifactory has started, navigate to the default URL <cite>http://localhost:8081</cite>, where the Web UI should be running.
-The default user and password are <code class="docutils literal"><span class="pre">admin:password</span></code>.</p>
+The default user and password are <code class="docutils literal notranslate"><span class="pre">admin:password</span></code>.</p>
 </div>
 <div class="section" id="creating-and-using-a-conan-repo">
 <h2>Creating and using a conan repo<a class="headerlink" href="#creating-and-using-a-conan-repo" title="Permalink to this headline">¶</a></h2>
-<p>Navigate to Admin -&gt; Repositories -&gt; Local, then click on the &#8220;New&#8221; button. A dialog for selecting the package
-type will appear, select Conan, then type a &#8220;Repository Key&#8221; (the name of the repository you are about to create),
-for example &#8220;conan-local&#8221;. You can create multiple repositories to serve different flows, teams, or projects.</p>
-<p>Now, it is necessary to set-up the client. Go to Artifacts, and click on the created repository. The &#8220;Set Me Up&#8221;
+<p>Navigate to Admin -&gt; Repositories -&gt; Local, then click on the “New” button. A dialog for selecting the package
+type will appear, select Conan, then type a “Repository Key” (the name of the repository you are about to create),
+for example “conan-local”. You can create multiple repositories to serve different flows, teams, or projects.</p>
+<p>Now, it is necessary to set-up the client. Go to Artifacts, and click on the created repository. The “Set Me Up”
 button in the top right corner will give instructions how to configure the remote in the conan client:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add artifactory http://localhost:8081/artifactory/api/conan/conan-local
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add artifactory http://localhost:8081/artifactory/api/conan/conan-local
 </pre></div>
 </div>
 <p>From now, you can upload, download, search, etc. this remote as any other one.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan upload * --all -r<span class="o">=</span>artifactory
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan upload * --all -r<span class="o">=</span>artifactory
 $ conan search * -r<span class="o">=</span>artifactory
 </pre></div>
 </div>
@@ -240,8 +247,8 @@ $ conan search * -r<span class="o">=</span>artifactory
 <h2>Migrating from other servers<a class="headerlink" href="#migrating-from-other-servers" title="Permalink to this headline">¶</a></h2>
 <p>If you are already running another server, like the open source <em>conan_server</em>, it is very easy to migrate
 your packages, using the conan client to download the packages and re-upload them to the new server.</p>
-<p>This python script might be helpful, given that it had already defined the respective <code class="docutils literal"><span class="pre">local</span></code> and <code class="docutils literal"><span class="pre">artifactory</span></code> remotes:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<p>This python script might be helpful, given that it had already defined the respective <code class="docutils literal notranslate"><span class="pre">local</span></code> and <code class="docutils literal notranslate"><span class="pre">artifactory</span></code> remotes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
@@ -300,23 +307,6 @@ your packages, using the conan client to download the packages and re-upload the
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -324,7 +314,7 @@ your packages, using the conan client to download the packages and re-upload the
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

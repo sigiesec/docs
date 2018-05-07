@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to use docker to create and cross build C and C++ conan packages &mdash; conan 1.3.1 documentation</title>
+  <title>How to use docker to create and cross build C and C++ conan packages &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="How to reuse Python code in recipes" href="python_code_reuse.html"/>
         <link rel="prev" title="How to manage C++ standard" href="manage_cpp_standard.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -132,7 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="custom_generators.html">How to create and share a custom generator with generator packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manage_shared_libraries.html">How to manage shared libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cmake_install.html">How to reuse cmake install for package() method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users&#8217; packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="link_apple_framework.html">How to link with Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capture_version.html">How to capture package version from text or build files</a></li>
@@ -224,12 +231,12 @@ different images with different compilers or toolchains and run containers every
 build tools and compilers as well as Conan installed.</p>
 <div class="section" id="using-conan-inside-a-container">
 <h2>Using conan inside a container<a class="headerlink" href="#using-conan-inside-a-container" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker run -it --rm lasote/conangcc7 /bin/bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -it --rm lasote/conangcc7 /bin/bash
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Use <code class="docutils literal"><span class="pre">sudo</span></code> when needed to run <code class="docutils literal"><span class="pre">docker</span></code>.</p>
+<p class="last">Use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> when needed to run <code class="docutils literal notranslate"><span class="pre">docker</span></code>.</p>
 </div>
 <p>The previous code will run a shell in container. We have specified:</p>
 <ul class="simple">
@@ -241,7 +248,7 @@ build tools and compilers as well as Conan installed.</p>
 <p>Now we are running on the conangcc7 container we can use Conan normally. In the following example we are
 creating a package from the recipe by cloning the repository, for OpenSSL.
 It is always recommended to upgrade conan from pip first:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
 $ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ conan create . user/channel
@@ -251,17 +258,17 @@ $ conan create . user/channel
 <div class="section" id="sharing-a-local-folder-with-a-docker-container">
 <h2>Sharing a local folder with a docker container<a class="headerlink" href="#sharing-a-local-folder-with-a-docker-container" title="Permalink to this headline">¶</a></h2>
 <p>You can share a local folder with your container, for example a project:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ docker run -it -v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/conan/project --rm lasote/conangcc7 /bin/bash
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">v$(pwd):/home/conan/project</span></code>: We are mapping the current directory (conan-openssl) to the container
-<code class="docutils literal"><span class="pre">/home/conan/project</span></code> directory, so anything we change in this shared folder, will be really changed
+<li><code class="docutils literal notranslate"><span class="pre">v$(pwd):/home/conan/project</span></code>: We are mapping the current directory (conan-openssl) to the container
+<code class="docutils literal notranslate"><span class="pre">/home/conan/project</span></code> directory, so anything we change in this shared folder, will be really changed
 in our host machine.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Now we are running on the conangcc7 container</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we are running on the conangcc7 container</span>
 $ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
 $ <span class="nb">cd</span> project
 $ conan create . user/channel --build missing
@@ -272,13 +279,13 @@ $ conan upload <span class="s2">&quot;*&quot;</span> -r myremote --all
 </div>
 <div class="section" id="using-the-images-to-cross-build-packages">
 <h2>Using the images to cross-build packages<a class="headerlink" href="#using-the-images-to-cross-build-packages" title="Permalink to this headline">¶</a></h2>
-<p>You can use the <a class="reference internal" href="#available-docker-images"><span class="std std-ref">images</span></a> <code class="docutils literal"><span class="pre">-i386</span></code>, <code class="docutils literal"><span class="pre">-armv7</span></code> and <code class="docutils literal"><span class="pre">-armv7gh</span></code> to cross build
+<p>You can use the <a class="reference internal" href="#available-docker-images"><span class="std std-ref">images</span></a> <code class="docutils literal notranslate"><span class="pre">-i386</span></code>, <code class="docutils literal notranslate"><span class="pre">-armv7</span></code> and <code class="docutils literal notranslate"><span class="pre">-armv7gh</span></code> to cross build
 conan packages.</p>
-<p>The <code class="docutils literal"><span class="pre">armv7</span></code> images have a cross toolchain for linux ARM installed, and declared as main compiler with the
-environment variables <code class="docutils literal"><span class="pre">CC</span></code> and <code class="docutils literal"><span class="pre">CXX</span></code>. Also, the default Conan profile (<code class="docutils literal"><span class="pre">~/.conan/profiles/default</span></code>)
-is adjusted to declare the correct arch (<code class="docutils literal"><span class="pre">armv7</span></code> / <code class="docutils literal"><span class="pre">armv7hf</span></code>).</p>
-<p>Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
+<p>The <code class="docutils literal notranslate"><span class="pre">armv7</span></code> images have a cross toolchain for linux ARM installed, and declared as main compiler with the
+environment variables <code class="docutils literal notranslate"><span class="pre">CC</span></code> and <code class="docutils literal notranslate"><span class="pre">CXX</span></code>. Also, the default Conan profile (<code class="docutils literal notranslate"><span class="pre">~/.conan/profiles/default</span></code>)
+is adjusted to declare the correct arch (<code class="docutils literal notranslate"><span class="pre">armv7</span></code> / <code class="docutils literal notranslate"><span class="pre">armv7hf</span></code>).</p>
+<p>Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal notranslate"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ docker run -it -v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/conan/project --rm lasote/conangcc49-armv7hf /bin/bash
 
@@ -450,23 +457,6 @@ $ conan upload <span class="s2">&quot;*&quot;</span> -r myremoteARMV7 --all
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -474,7 +464,7 @@ $ conan upload <span class="s2">&quot;*&quot;</span> -r myremoteARMV7 --all
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

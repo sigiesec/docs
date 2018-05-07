@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Manage RPATHs &mdash; conan 1.3.1 documentation</title>
+  <title>Manage RPATHs &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
         <link rel="up" title="How to manage shared libraries" href="../manage_shared_libraries.html"/>
         <link rel="next" title="How to reuse cmake install for package() method" href="../cmake_install.html"/>
         <link rel="prev" title="Manage Shared Libraries with Environment Variables" href="env_vars.html"/>
@@ -83,7 +83,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           
           </a>
 
+          
             
+            
+              <div class="version">
+                1.3
+              </div>
+            
+          
 
           
 <div role="search">
@@ -134,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../cmake_install.html">How to reuse cmake install for package() method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../collaborate_packages.html">How to collaborate on other users&#8217; packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../link_apple_framework.html">How to link with Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../capture_version.html">How to capture package version from text or build files</a></li>
@@ -248,15 +255,15 @@ and <strong>shared_lib_1</strong>, in turn, requires another <strong>shared_lib_
 </tr>
 </tbody>
 </table>
-<p>In <strong>linux</strong> if the linker doesn&#8217;t find the library in <strong>rpath</strong>, it will continue the search in
-<strong>system defaults paths</strong> (LD_LIBRARY_PATH... etc)
+<p>In <strong>linux</strong> if the linker doesn’t find the library in <strong>rpath</strong>, it will continue the search in
+<strong>system defaults paths</strong> (LD_LIBRARY_PATH… etc)
 In OSX, if the linker detects an invalid <strong>rpath</strong> (the file does not exist there), it will fail.</p>
 <div class="section" id="default-conan-approach">
 <h2>Default Conan approach<a class="headerlink" href="#default-conan-approach" title="Permalink to this headline">¶</a></h2>
 <p>The consumer project of dependencies with shared libraries needs to import them to the executable
 directory to be able to run it:</p>
 <p><strong>conanfile.txt</strong></p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
 Poco/1.9.0@pocoproject/stable
 
 [imports]
@@ -266,13 +273,13 @@ lib, *.dylib* -&gt; ./bin # Copies all dylib files from packages lib folder to m
 </div>
 <p>On <strong>Windows</strong> this approach works well, importing the shared library to the directory containing
 your executable is a very common procedure.</p>
-<p>On <strong>Linux</strong> there is an additional problem, the dynamic linker doesn&#8217;t look by default in the
+<p>On <strong>Linux</strong> there is an additional problem, the dynamic linker doesn’t look by default in the
 executable directory, and you will need to adjust the <cite>LD_LIBRARY_PATH</cite> environment variable like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span> <span class="o">&amp;&amp;</span> ./mybin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span> <span class="o">&amp;&amp;</span> ./mybin
 </pre></div>
 </div>
 <p>On <strong>OSX</strong> if absolute rpaths are hardcoded in an executable or
-shared library and they don&#8217;t exist the executable will fail to run. This is the most common problem when
+shared library and they don’t exist the executable will fail to run. This is the most common problem when
 we reuse packages in a different environment from where the artifacts have been generated.</p>
 <p>So, for <strong>OSX</strong>, conan, by default when you build your library with <strong>CMake</strong>, the rpaths will be
 generated without any path:</p>
@@ -298,34 +305,34 @@ generated without any path:</p>
 </tr>
 </tbody>
 </table>
-<p>The <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> macro will set the <code class="docutils literal"><span class="pre">set(CMAKE_SKIP_RPATH</span> <span class="pre">1)</span></code> in OSX.</p>
-<p>You can skip this default behavior by passing the <code class="docutils literal"><span class="pre">KEEP_RPATHS</span></code> parameter to the <code class="docutils literal"><span class="pre">conan_basic_setup</span></code> macro:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> macro will set the <code class="docutils literal notranslate"><span class="pre">set(CMAKE_SKIP_RPATH</span> <span class="pre">1)</span></code> in OSX.</p>
+<p>You can skip this default behavior by passing the <code class="docutils literal notranslate"><span class="pre">KEEP_RPATHS</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">conan_basic_setup</span></code> macro:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">(</span><span class="s">KEEP_RPATHS</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">timer</span> <span class="s">timer.cpp</span><span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">timer</span> <span class="o">${</span><span class="nv">CONAN_LIBS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you are using <code class="docutils literal"><span class="pre">autotools</span></code> conan won&#8217;t auto-adjust the rpaths behavior, if you want to follow this
-default behavior probably you will need to replace the <code class="docutils literal"><span class="pre">install_name</span></code> in the <strong>configure</strong> or <strong>MakeFile</strong>
+<p>If you are using <code class="docutils literal notranslate"><span class="pre">autotools</span></code> conan won’t auto-adjust the rpaths behavior, if you want to follow this
+default behavior probably you will need to replace the <code class="docutils literal notranslate"><span class="pre">install_name</span></code> in the <strong>configure</strong> or <strong>MakeFile</strong>
 generated files in your recipe to not use $rpath:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">replace_in_file</span><span class="p">(</span><span class="s2">&quot;./configure&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;-install_name \$rpath/&quot;</span><span class="p">,</span> <span class="s2">&quot;-install_name &quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">replace_in_file</span><span class="p">(</span><span class="s2">&quot;./configure&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;-install_name \$rpath/&quot;</span><span class="p">,</span> <span class="s2">&quot;-install_name &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="different-approaches">
 <h2>Different approaches<a class="headerlink" href="#different-approaches" title="Permalink to this headline">¶</a></h2>
 <p>You can adjust the <strong>rpaths</strong> in the way that adapts better to your needs.</p>
-<p>If you are using <code class="docutils literal"><span class="pre">CMake</span></code> take a look to the <a class="reference external" href="https://cmake.org/Wiki/CMake_RPATH_handling">CMake RPATH handling</a> guide.</p>
-<p>Remember to pass the <code class="docutils literal"><span class="pre">KEEP_RPATHS</span></code> variable to the <code class="docutils literal"><span class="pre">conan_basic_setup</span></code>:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<p>If you are using <code class="docutils literal notranslate"><span class="pre">CMake</span></code> take a look to the <a class="reference external" href="https://cmake.org/Wiki/CMake_RPATH_handling">CMake RPATH handling</a> guide.</p>
+<p>Remember to pass the <code class="docutils literal notranslate"><span class="pre">KEEP_RPATHS</span></code> variable to the <code class="docutils literal notranslate"><span class="pre">conan_basic_setup</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">(</span><span class="s">KEEP_RPATHS</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then, you could, for example, use the <code class="docutils literal"><span class="pre">&#64;executable_path</span></code> in OSX and <code class="docutils literal"><span class="pre">$ORIGIN</span></code> in Linux  to adjust
+<p>Then, you could, for example, use the <code class="docutils literal notranslate"><span class="pre">&#64;executable_path</span></code> in OSX and <code class="docutils literal notranslate"><span class="pre">$ORIGIN</span></code> in Linux  to adjust
 a relative path from the executable:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">if</span> <span class="p">(</span><span class="s">APPLE</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span> <span class="p">(</span><span class="s">APPLE</span><span class="p">)</span>
     <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_INSTALL_RPATH</span> <span class="s2">&quot;@executable_path/../lib&quot;</span><span class="p">)</span>
 <span class="nb">else</span><span class="p">()</span>
     <span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_INSTALL_RPATH</span> <span class="s2">&quot;$ORIGIN/../lib&quot;</span><span class="p">)</span>
@@ -333,7 +340,7 @@ a relative path from the executable:</p>
 </pre></div>
 </div>
 <p>You can use this imports statements in the consumer project:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
 Poco/1.9.0@pocoproject/stable
 
 [imports]
@@ -343,7 +350,7 @@ lib, *.so* -&gt; ./lib # Copies all so files from packages lib folder to my &quo
 </pre></div>
 </div>
 <p>And your finally application can follow this layout:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>bin
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bin
  |_____ my_executable
  |_____ mylib.dll
  |
@@ -394,23 +401,6 @@ correctly.</p>
 
   </div>
   
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-book"> Read the Docs</span>
-      v: 1.3
-      <span class="fa fa-caret-down"></span>
-    </span>
-    <div class="rst-other-versions">
-      <dl>
-        <dt>Versions</dt>
-        
-          <dd><a href="/en/latest/index.html">latest</a></dd>
-        
-      </dl>
-      <hr/>
-    </div>
-  </div>
-
 
 
   
@@ -418,7 +408,7 @@ correctly.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
