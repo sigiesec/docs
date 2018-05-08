@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; conan 1.4.0 documentation</title>
+  <title>Changelog &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="conan 1.4.0 documentation" href="index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="index.html"/>
         <link rel="prev" title="Troubleshooting" href="faq/troubleshooting.html"/>
 
  <!-- Google Tag Manager -->
@@ -269,9 +269,9 @@ Please read more <a class="reference internal" href="introduction.html#stability
 <div class="section" id="may-2018">
 <h2>1.3.2 (7-May-2018)<a class="headerlink" href="#may-2018" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Bugfix: Fixed broken <code class="docutils literal notranslate"><span class="pre">run_in_windows_bash</span></code> due to wrong argument.</li>
+<li>Bugfix: Fixed md5 computation of conan .tgz files for the recipe, exported sources and packages due to file ordering and flags.</li>
+<li>Bugfix: Fixed broken <code class="docutils literal notranslate"><span class="pre">run_in_windows_bash</span></code> due to the wrong argument.</li>
 <li>Bugfix: Fixed <code class="docutils literal notranslate"><span class="pre">VisualStudioBuildEnvironment</span></code> when toolset was not defined.</li>
-<li>Bugfix: Fixed md5 computation of conan .tgz files for recipe, exported sources and packages due to file ordering and flags.</li>
 <li>Bugfix: Fixed <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">download</span> <span class="pre">-p=wrong_id</span></code> command</li>
 <li>Fix: Added apple-clang 9.1</li>
 </ul>
@@ -1647,7 +1647,7 @@ can be checked.</li>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.4
+      Version: 1.3
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -1655,11 +1655,7 @@ can be checked.</li>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
-           
-        
-           
-                <dd><a href="/en/1.3/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.3</a></dd>
            
         
       </dl>
@@ -1674,7 +1670,7 @@ can be checked.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.4.0',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

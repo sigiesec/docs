@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Methods &mdash; conan 1.4.0 documentation</title>
+  <title>Methods &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.4.0 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Output and Running" href="other.html"/>
         <link rel="prev" title="Attributes" href="attributes.html"/>
@@ -526,6 +526,13 @@ recipe has requirements, you can access to your requirements <code class="docuti
 header-only libraries will be used. In this case, the settings that would affect a normal build, and even the other option (static vs
 shared) do not make sense, so we just clear them. That means, if someone consumes MyLib with the <code class="docutils literal notranslate"><span class="pre">header_only=True</span></code> option, the package
 downloaded and used will be the same, irrespective of the OS, compiler or architecture the consumer is building with.</p>
+<p>You can also restrict the settings used deleting any specific one. For example, it is quite common
+for C libraries to delete the <code class="docutils literal notranslate"><span class="pre">libcxx</span></code> as your library does not depend on any C++ standard
+library:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">libcxx</span>
+</pre></div>
+</div>
 <p>The most typical usage would be the one with <code class="docutils literal notranslate"><span class="pre">configure()</span></code> while <code class="docutils literal notranslate"><span class="pre">config_options()</span></code> should be used more sparingly. <code class="docutils literal notranslate"><span class="pre">config_options()</span></code>
 is used to configure or constraint the available options in a package, <strong>before</strong> they are given a value. So when a value is tried to be
 assigned it will raise an error. For example, let’s suppose that a certain package library cannot be built as shared library in Windows, it
@@ -964,7 +971,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.4
+      Version: 1.3
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -972,11 +979,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
-           
-        
-           
-                <dd><a href="/en/1.3/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.3</a></dd>
            
         
       </dl>
@@ -991,7 +994,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.4.0',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
