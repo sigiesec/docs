@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Visual Studio 2017 - CMake integration &mdash; conan 1.3.1 documentation</title>
+  <title>Using Visual Studio 2017 - CMake integration &mdash; conan 1.3.2 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.1 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="How to manage C++ standard" href="manage_cpp_standard.html"/>
         <link rel="prev" title="How to manage the GCC &gt;= 5 ABI" href="manage_gcc_abi.html"/>
@@ -349,29 +349,29 @@ would need to make sure the right CMake code is executed, please check <a class=
 <p class="first admonition-title">Warning</p>
 <p class="last">The file <em>tasks.vs.json</em> is added to your local <em>.vs</em> folder so it is not supposed to be added to your version control system. There is also feature <a class="reference external" href="https://visualstudio.uservoice.com/forums/121579-visual-studio-ide/suggestions/33814138-add-macro-buildroot-to-tasks-vs-json">request</a> to improve this process.</p>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
-  &quot;tasks&quot;: [
-    {
-      &quot;taskName&quot;: &quot;conan install debug&quot;,
-      &quot;appliesTo&quot;: &quot;conanfile.py&quot;,
-      &quot;type&quot;: &quot;launch&quot;,
-<span class="hll">      &quot;command&quot;: &quot;${env.COMSPEC}&quot;,
-</span>      &quot;args&quot;: [
-<span class="hll">        &quot;conan install ${file} -s build_type=Debug -if C:/Users/user/CMakeBuilds/4c2d87b9-ec5a-9a30-a47a-32ccb6cca172/build/x64-Debug/&quot;
-</span>      ]
-    },
-    {
-      &quot;taskName&quot;: &quot;conan install release&quot;,
-      &quot;appliesTo&quot;: &quot;conanfile.py&quot;,
-      &quot;type&quot;: &quot;launch&quot;,
-<span class="hll">      &quot;command&quot;: &quot;${env.COMSPEC}&quot;,
-</span>      &quot;args&quot;: [
-<span class="hll">        &quot;conan install ${file} -s build_type=Release -if C:/Users/user/CMakeBuilds/4c2d87b9-ec5a-9a30-a47a-32ccb6cca172/build/x64-Release/&quot;
-</span>      ]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    {
+      &quot;tasks&quot;: [
+        {
+          &quot;taskName&quot;: &quot;conan install debug&quot;,
+          &quot;appliesTo&quot;: &quot;conanfile.py&quot;,
+          &quot;type&quot;: &quot;launch&quot;,
+<span class="hll">          &quot;command&quot;: &quot;${env.COMSPEC}&quot;,
+</span>          &quot;args&quot;: [
+<span class="hll">            &quot;conan install ${file} -s build_type=Debug -if C:/Users/user/CMakeBuilds/4c2d87b9-ec5a-9a30-a47a-32ccb6cca172/build/x64-Debug/&quot;
+</span>          ]
+        },
+        {
+          &quot;taskName&quot;: &quot;conan install release&quot;,
+          &quot;appliesTo&quot;: &quot;conanfile.py&quot;,
+          &quot;type&quot;: &quot;launch&quot;,
+<span class="hll">          &quot;command&quot;: &quot;${env.COMSPEC}&quot;,
+</span>          &quot;args&quot;: [
+<span class="hll">            &quot;conan install ${file} -s build_type=Release -if C:/Users/user/CMakeBuilds/4c2d87b9-ec5a-9a30-a47a-32ccb6cca172/build/x64-Release/&quot;
+</span>          ]
+        }
+      ],
+      &quot;version&quot;: &quot;0.2.1&quot;
     }
-  ],
-  &quot;version&quot;: &quot;0.2.1&quot;
-}
 </pre></div>
 </div>
 <p>Then just right click on your <em>conanfile.py</em> and launch your <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">install</span></code> and regenerate your <em>CMakeLists.txt</em>.</p>
@@ -426,10 +426,6 @@ would need to make sure the right CMake code is executed, please check <a class=
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/1.2/index.html">1.2</a></dd>
-           
-        
-           
                 <dd><a href="/en/latest/index.html">1.3</a></dd>
            
         
@@ -445,7 +441,7 @@ would need to make sure the right CMake code is executed, please check <a class=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.1',
+            VERSION:'1.3.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
