@@ -216,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-package">
 <span id="id1"></span><h1>conan package<a class="headerlink" href="#conan-package" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan package <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan package <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span>
                 <span class="o">[</span>-pf PACKAGE_FOLDER<span class="o">]</span> <span class="o">[</span>-sf SOURCE_FOLDER<span class="o">]</span>
                 path
 </pre></div>
@@ -226,7 +226,7 @@ user space and it will copy artifacts from the –build-folder and –source-
 folder folder to the –package-folder one. It won’t create a new package in
 the local cache, if you want to do it, use ‘conan create’ or ‘conan export-
 pkg’ after a ‘conan build’ command.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to a folder containing a conanfile.py or to a
                         recipe file e.g., my_folder/conanfile.py
 
@@ -251,17 +251,17 @@ optional arguments:
                         directory can also be specified
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">package()</span></code> method might use <cite>settings</cite>, <cite>options</cite> and <cite>environment variables</cite> from the specified
-profile and dependencies information from the declared <code class="docutils literal notranslate"><span class="pre">deps_XXX_info</span></code> objects in the conanfile
+<p>The <code class="docutils literal"><span class="pre">package()</span></code> method might use <cite>settings</cite>, <cite>options</cite> and <cite>environment variables</cite> from the specified
+profile and dependencies information from the declared <code class="docutils literal"><span class="pre">deps_XXX_info</span></code> objects in the conanfile
 requirements.</p>
 <p>All that information is saved automatically in the <em>conaninfo.txt</em> and <em>conanbuildinfo.txt</em> files respectively, when you run
 <strong class="command">conan install</strong>. Those files have to be located in the specified <strong class="command">--build-folder</strong>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . --build-folder<span class="o">=</span>build
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . --build-folder<span class="o">=</span>build
 </pre></div>
 </div>
 <p><strong>Examples</strong></p>
-<p>This example shows how <code class="docutils literal notranslate"><span class="pre">package()</span></code> works in a package which can be edited and built in user folders instead of the local cache.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s
+<p>This example shows how <code class="docutils literal"><span class="pre">package()</span></code> works in a package which can be edited and built in user folders instead of the local cache.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s
 $ conan install . --install-folder<span class="o">=</span>build_x86 -s <span class="nv">arch</span><span class="o">=</span>x86
 $ conan build . --build-folder<span class="o">=</span>build_x86
 $ conan package . --build-folder<span class="o">=</span>build_x86 --package-folder<span class="o">=</span>package_x86
@@ -275,7 +275,7 @@ $ ls package/x86
 packages, nor they can be uploaded to a remote repository. In order to make these packages
 available to the system, they have to be put in the conan local cache, which can be done with
 the <strong class="command">conan export-pkg</strong> command instead of using <strong class="command">conan package</strong> command:</p>
-<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s
 $ conan install . --install-folder<span class="o">=</span>build_x86 -s <span class="nv">arch</span><span class="o">=</span>x86
 $ conan build . --build-folder<span class="o">=</span>build_x86
 $ conan export-pkg . Hello/0.1@user/stable --build-folder<span class="o">=</span>build_x86 -s <span class="nv">arch</span><span class="o">=</span>x86

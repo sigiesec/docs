@@ -217,11 +217,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="compilers-on-command-line">
 <span id="gcc-integration"></span><h1>Compilers on command line<a class="headerlink" href="#compilers-on-command-line" title="Permalink to this headline">¶</a></h1>
-<p>The <strong>compiler_args</strong> generator creates a file named <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.args</span></code> containing a command
-line arguments to invoke <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code> or <code class="docutils literal notranslate"><span class="pre">cl</span></code> (Visual Studio) compiler.</p>
+<p>The <strong>compiler_args</strong> generator creates a file named <code class="docutils literal"><span class="pre">conanbuildinfo.args</span></code> containing a command
+line arguments to invoke <code class="docutils literal"><span class="pre">gcc</span></code>, <code class="docutils literal"><span class="pre">clang</span></code> or <code class="docutils literal"><span class="pre">cl</span></code> (Visual Studio) compiler.</p>
 <p>Now we are going to compile the <a class="reference internal" href="../getting_started.html#getting-started"><span class="std std-ref">getting started</span></a> example using <strong>compiler_args</strong> instead of the <strong>cmake</strong> generator.</p>
-<p>Open <code class="docutils literal notranslate"><span class="pre">conanfile.txt</span></code> and change (or add) <strong>compiler_args</strong> generator:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
+<p>Open <code class="docutils literal"><span class="pre">conanfile.txt</span></code> and change (or add) <strong>compiler_args</strong> generator:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
 Poco/1.9.0@pocoproject/stable
 
 [generators]
@@ -229,16 +229,16 @@ compiler_args
 </pre></div>
 </div>
 <p>Install the requirements (from the mytimer/build folder):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install ..
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install ..
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Remember, if you don’t specify settings in <strong>install command</strong> with <strong>-s</strong>, conan will use the detected defaults.
-You can always change them by editing the <code class="docutils literal notranslate"><span class="pre">~/.conan/profiles/default</span></code> or override them with “-s” parameters.</p>
+You can always change them by editing the <code class="docutils literal"><span class="pre">~/.conan/profiles/default</span></code> or override them with “-s” parameters.</p>
 </div>
-<p>The generated <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.args</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-DPOCO_STATIC=ON -DPOCO_NO_AUTOMATIC_LIBS
+<p>The generated <code class="docutils literal"><span class="pre">conanbuildinfo.args</span></code>:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>-DPOCO_STATIC=ON -DPOCO_NO_AUTOMATIC_LIBS
 -Ipath/to/Poco/1.7.9/pocoproject/stable/package/dd758cf2da203f96c86eb99047ac152bcd0c0fa9/include
 -Ipath/to/OpenSSL/1.0.2l/conan/stable/package/227fb0ea22f4797212e72ba94ea89c7b3fbc2a0c/include
 -Ipath/to/zlib/1.2.11/conan/stable/package/8018a4df6e7d2b4630a814fa40c81b85b9182d2b/include
@@ -261,9 +261,9 @@ You can always change them by editing the <code class="docutils literal notransl
 <li>and so on… see the <a class="reference internal" href="../reference/generators/compiler_args.html#compiler-args-generator"><span class="std std-ref">complete reference here</span></a></li>
 </ul>
 </div></blockquote>
-<p>It’s almost the same information we can see in <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> and many other generators’ files.</p>
+<p>It’s almost the same information we can see in <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> and many other generators’ files.</p>
 <p>Run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir bin
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir bin
 $ g++ ../timer.cpp @conanbuildinfo.args -std<span class="o">=</span>c++14 -o bin/timer
 </pre></div>
 </div>
@@ -271,16 +271,16 @@ $ g++ ../timer.cpp @conanbuildinfo.args -std<span class="o">=</span>c++14 -o bin
 <p class="first admonition-title">Note</p>
 <p class="last">“&#64;conanbuildinfo.args” appends all the file contents to g++ command parameters</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/timer
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./bin/timer
  Callback called after <span class="m">250</span> milliseconds.
  ...
 </pre></div>
 </div>
-<p>To invoke <code class="docutils literal notranslate"><span class="pre">cl</span></code> (Visual Studio compiler):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cl /EHsc timer.cpp @conanbuildinfo.args
+<p>To invoke <code class="docutils literal"><span class="pre">cl</span></code> (Visual Studio compiler):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cl /EHsc timer.cpp @conanbuildinfo.args
 </pre></div>
 </div>
-<p>You can also use the generator within your <code class="docutils literal notranslate"><span class="pre">build()</span></code> method of your conanfile.py.</p>
+<p>You can also use the generator within your <code class="docutils literal"><span class="pre">build()</span></code> method of your conanfile.py.</p>
 <p>Check the <a class="reference internal" href="../reference/generators/compiler_args.html#compiler-args-generator"><span class="std std-ref">Reference, generators, compiler_args</span></a> section for more info.</p>
 </div>
 

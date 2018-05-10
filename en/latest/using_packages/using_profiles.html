@@ -196,12 +196,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="using-profiles">
 <span id="id1"></span><h1>Using profiles<a class="headerlink" href="#using-profiles" title="Permalink to this headline">¶</a></h1>
-<p>So far we have used the default settings stored in <code class="docutils literal notranslate"><span class="pre">~/.conan/profiles/default</span></code> and defined as command line arguments.</p>
+<p>So far we have used the default settings stored in <code class="docutils literal"><span class="pre">~/.conan/profiles/default</span></code> and defined as command line arguments.</p>
 <p>However, configurations can be large, settings can be very different, and we might want to switch easily between different configurations
 with different settings, options, etc. The best way to do it is using profiles.</p>
-<p>A profile file contains a predefined set of <code class="docutils literal notranslate"><span class="pre">settings</span></code>, <code class="docutils literal notranslate"><span class="pre">options</span></code>, <code class="docutils literal notranslate"><span class="pre">environment</span> <span class="pre">variables</span></code>, and <code class="docutils literal notranslate"><span class="pre">build_requires</span></code> and has this
+<p>A profile file contains a predefined set of <code class="docutils literal"><span class="pre">settings</span></code>, <code class="docutils literal"><span class="pre">options</span></code>, <code class="docutils literal"><span class="pre">environment</span> <span class="pre">variables</span></code>, and <code class="docutils literal"><span class="pre">build_requires</span></code> and has this
 structure:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[settings]
+<div class="highlight-text"><div class="highlight"><pre><span></span>[settings]
 setting=value
 
 [options]
@@ -217,14 +217,14 @@ Tool2/0.1@user/channel, Tool3/0.1@user/channel
 </pre></div>
 </div>
 <p>Options allow definition with wildcards, to apply same option value to many packages:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[options]
+<div class="highlight-text"><div class="highlight"><pre><span></span>[options]
 *:shared=True
 </pre></div>
 </div>
 <p>They would contain the desired configuration, for example:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><em>clang_3.5</em></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> [settings]
+<div class="highlight-text"><div class="highlight"><pre><span></span> [settings]
  os=Macos
  arch=x86_64
  compiler=clang
@@ -239,7 +239,7 @@ Tool2/0.1@user/channel, Tool3/0.1@user/channel
 </div>
 </div>
 <p>You can store them in the default profile folder or anywhere in you project and you can use it instead of command line arguments:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create demo/testing -pr<span class="o">=</span>clang_3.5
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create demo/testing -pr<span class="o">=</span>clang_3.5
 </pre></div>
 </div>
 <p>If we continue with the example of Poco, we could have a handy profile to help us build our project with the desired configuration and avoid
@@ -247,7 +247,7 @@ the usage of all the command line arguments when installing the dependency packa
 <p>A profile to install dependencies as <strong>shared</strong> and in <strong>debug</strong> mode will look like this:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><em>debug_shared</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> include(default)
+<div class="highlight-text"><div class="highlight"><pre><span></span> include(default)
 
  [settings]
  build_type=Debug
@@ -260,13 +260,13 @@ the usage of all the command line arguments when installing the dependency packa
 </div>
 </div>
 <p>With this we could just install using the profile:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -pr<span class="o">=</span>debug_shared
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . -pr<span class="o">=</span>debug_shared
 </pre></div>
 </div>
 <p>We could also create a new profile to use a different compiler version and store it in our project directory:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text"><em>poco_clang_3.5</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> include(clang_3.5)
+<div class="highlight-text"><div class="highlight"><pre><span></span> include(clang_3.5)
 
  [options]
  Poco:shared=True
@@ -276,7 +276,7 @@ the usage of all the command line arguments when installing the dependency packa
 </div>
 </div>
 <p>Installation will be as easy as:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -pr<span class="o">=</span>./poco_clang_3.5
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . -pr<span class="o">=</span>./poco_clang_3.5
 </pre></div>
 </div>
 <div class="admonition seealso">

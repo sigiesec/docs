@@ -127,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#approach-2-prepare-and-package-pc-files-before-package-them">Approach 2: Prepare and package <cite>pc</cite> files before package them</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#approach-3-use-define-prefix">Approach 3: Use <cite>–define-prefix</cite></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#approach-4-use-pkg-config-package-variable">Approach 4: Use <cite>PKG_CONFIG_$PACKAGE_$VARIABLE</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#approach-5-use-the-pkg-config-generator">Approach 5: Use the <code class="docutils literal notranslate"><span class="pre">pkg_config</span></code> generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#approach-5-use-the-pkg-config-generator">Approach 5: Use the <code class="docutils literal"><span class="pre">pkg_config</span></code> generator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="boost_build.html"> Boost Build</a></li>
@@ -227,22 +227,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="pc-files"></span><h1>pkg-config and pc files<a class="headerlink" href="#pkg-config-and-pc-files" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
-<p>If you are creating a Conan package for a library (A) and the build system uses <code class="docutils literal notranslate"><span class="pre">.pc</span></code> files to locate
+<p>If you are creating a Conan package for a library (A) and the build system uses <code class="docutils literal"><span class="pre">.pc</span></code> files to locate
 its dependencies (B and C), Conan packages too, you can follow different approaches.</p>
 <p>The main issue to solve is the absolute paths. When an user installs a package in the local cache,
 the directory will probably be different from the directory where the package was created,
 because of the different computer, conan home directory or even different user or channel:</p>
 <p>In the machine where the packages were created:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/home/user/lasote/.data/storage/zlib/1.2.11/conan/stable
+<div class="highlight-text"><div class="highlight"><pre><span></span>/home/user/lasote/.data/storage/zlib/1.2.11/conan/stable
 </pre></div>
 </div>
 <p>In the machine where some user are reusing the library:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/custom/dir/.data/storage/zlib/1.2.11/conan/testing
+<div class="highlight-text"><div class="highlight"><pre><span></span>/custom/dir/.data/storage/zlib/1.2.11/conan/testing
 </pre></div>
 </div>
-<p>So the <code class="docutils literal notranslate"><span class="pre">.pc</span></code>  files containing absolute paths won’t work to locate the dependencies.</p>
-<p>Example of a <code class="docutils literal notranslate"><span class="pre">.pc</span></code> file with an absolute path:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>prefix=/Users/lasote/.conan/data/zlib/1.2.11/lasote/stable/package/b5d68b3533204ad67e01fa587ad28fb8ce010527
+<p>So the <code class="docutils literal"><span class="pre">.pc</span></code>  files containing absolute paths won’t work to locate the dependencies.</p>
+<p>Example of a <code class="docutils literal"><span class="pre">.pc</span></code> file with an absolute path:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>prefix=/Users/lasote/.conan/data/zlib/1.2.11/lasote/stable/package/b5d68b3533204ad67e01fa587ad28fb8ce010527
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 sharedlibdir=${libdir}
@@ -260,12 +260,12 @@ Cflags: -I${includedir}
 </div>
 <div class="section" id="approach-1-import-and-patch-the-prefix-in-the-pc-files">
 <h2>Approach 1: Import and patch the prefix in the <cite>pc</cite> files<a class="headerlink" href="#approach-1-import-and-patch-the-prefix-in-the-pc-files" title="Permalink to this headline">¶</a></h2>
-<p>Following this approach your library <cite>A</cite> will import to a local directory the <code class="docutils literal notranslate"><span class="pre">.pc</span></code> files from <cite>B</cite> and <cite>C</cite>, then,
+<p>Following this approach your library <cite>A</cite> will import to a local directory the <code class="docutils literal"><span class="pre">.pc</span></code> files from <cite>B</cite> and <cite>C</cite>, then,
 as they will contain absolute paths, the recipe for <cite>A</cite> will patch the paths to match the current installation
 directory.</p>
 <p>You will need to package the <cite>pc</cite> files from your dependencies.
-You can adjust the <cite>PKG_CONFIG_PATH</cite> to let <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> tool locate your <code class="docutils literal notranslate"><span class="pre">.pc</span></code> files.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+You can adjust the <cite>PKG_CONFIG_PATH</cite> to let <code class="docutils literal"><span class="pre">pkg-config</span></code> tool locate your <code class="docutils literal"><span class="pre">.pc</span></code> files.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span>
 
 <span class="k">class</span> <span class="nc">LibAConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -289,15 +289,15 @@ You can adjust the <cite>PKG_CONFIG_PATH</cite> to let <code class="docutils lit
 </div>
 <div class="section" id="approach-2-prepare-and-package-pc-files-before-package-them">
 <h2>Approach 2: Prepare and package <cite>pc</cite> files before package them<a class="headerlink" href="#approach-2-prepare-and-package-pc-files-before-package-them" title="Permalink to this headline">¶</a></h2>
-<p>With this approach you will patch the <code class="docutils literal notranslate"><span class="pre">pc</span></code> files from B and C before package them.
+<p>With this approach you will patch the <code class="docutils literal"><span class="pre">pc</span></code> files from B and C before package them.
 The goal is to replace the absolute path (the variable part of the path) with a variable placeholder.
-Then in the consumer package A, declare the variable using <code class="docutils literal notranslate"><span class="pre">--define-variable</span></code> when calling the
+Then in the consumer package A, declare the variable using <code class="docutils literal"><span class="pre">--define-variable</span></code> when calling the
 <cite>pkg-config</cite> command.</p>
 <p>This approach is cleaner than approach 1, because the packaged files are already prepared to be
-reused with or without conan, just declaring the needed variable. And it’s not needed to import the <code class="docutils literal notranslate"><span class="pre">pc</span></code>
-files to the consumer package. However, you need B and C libraries to package the <code class="docutils literal notranslate"><span class="pre">pc</span></code> files correctly.</p>
-<p>Library B recipe (preparing the <code class="docutils literal notranslate"><span class="pre">pc</span></code> file):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span>
+reused with or without conan, just declaring the needed variable. And it’s not needed to import the <code class="docutils literal"><span class="pre">pc</span></code>
+files to the consumer package. However, you need B and C libraries to package the <code class="docutils literal"><span class="pre">pc</span></code> files correctly.</p>
+<p>Library B recipe (preparing the <code class="docutils literal"><span class="pre">pc</span></code> file):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span>
 
 <span class="k">class</span> <span class="nc">LibraryBrecipe</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="o">....</span>
@@ -310,8 +310,8 @@ files to the consumer package. However, you need B and C libraries to package th
         <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;*.pc&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Library A recipe (importing and consuming <code class="docutils literal notranslate"><span class="pre">pc</span></code> file):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LibraryArecipe</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>Library A recipe (importing and consuming <code class="docutils literal"><span class="pre">pc</span></code> file):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LibraryArecipe</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="o">....</span>
 
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;libB/1.0@conan/stable, libC/1.0@conan/stable&quot;</span>
@@ -335,15 +335,15 @@ files to the consumer package. However, you need B and C libraries to package th
 </div>
 <div class="section" id="approach-3-use-define-prefix">
 <h2>Approach 3: Use <cite>–define-prefix</cite><a class="headerlink" href="#approach-3-use-define-prefix" title="Permalink to this headline">¶</a></h2>
-<p>If you have available <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> &gt;= 0.29 and you have only one dependency, you can use directly
-the <code class="docutils literal notranslate"><span class="pre">--define-prefix</span></code> option to declare a custom <code class="docutils literal notranslate"><span class="pre">prefix</span></code> variable. With this approach you won’t
+<p>If you have available <code class="docutils literal"><span class="pre">pkg-config</span></code> &gt;= 0.29 and you have only one dependency, you can use directly
+the <code class="docutils literal"><span class="pre">--define-prefix</span></code> option to declare a custom <code class="docutils literal"><span class="pre">prefix</span></code> variable. With this approach you won’t
 need to patch anything, just declare the correct variable.</p>
 </div>
 <div class="section" id="approach-4-use-pkg-config-package-variable">
 <h2>Approach 4: Use <cite>PKG_CONFIG_$PACKAGE_$VARIABLE</cite><a class="headerlink" href="#approach-4-use-pkg-config-package-variable" title="Permalink to this headline">¶</a></h2>
-<p>If you have available <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> &gt;= 0.29.1 you can manage multiple dependencies declaring N variables
+<p>If you have available <code class="docutils literal"><span class="pre">pkg-config</span></code> &gt;= 0.29.1 you can manage multiple dependencies declaring N variables
 with the prefixes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LibraryArecipe</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LibraryArecipe</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="o">....</span>
 
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;libB/1.0@conan/stable, libC/1.0@conan/stable&quot;</span>
@@ -361,14 +361,14 @@ with the prefixes:</p>
 </div>
 </div>
 <div class="section" id="approach-5-use-the-pkg-config-generator">
-<span id="pkg-config-generator-example"></span><h2>Approach 5: Use the <code class="docutils literal notranslate"><span class="pre">pkg_config</span></code> generator<a class="headerlink" href="#approach-5-use-the-pkg-config-generator" title="Permalink to this headline">¶</a></h2>
-<p>If you use <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> in libB and libC, and specify all the library names and any other needed flag,
-you can use the <code class="docutils literal notranslate"><span class="pre">pkg_config</span></code> generator during the <code class="docutils literal notranslate"><span class="pre">libA</span></code>. Those files doesn’t need to be patched, because
+<span id="pkg-config-generator-example"></span><h2>Approach 5: Use the <code class="docutils literal"><span class="pre">pkg_config</span></code> generator<a class="headerlink" href="#approach-5-use-the-pkg-config-generator" title="Permalink to this headline">¶</a></h2>
+<p>If you use <code class="docutils literal"><span class="pre">package_info()</span></code> in libB and libC, and specify all the library names and any other needed flag,
+you can use the <code class="docutils literal"><span class="pre">pkg_config</span></code> generator during the <code class="docutils literal"><span class="pre">libA</span></code>. Those files doesn’t need to be patched, because
 are dynamically generated with the correct path.</p>
-<p>So it can be a good solution in case you are building <code class="docutils literal notranslate"><span class="pre">libA</span></code> with a build system that manages <code class="docutils literal notranslate"><span class="pre">pc</span> <span class="pre">files</span></code> like
+<p>So it can be a good solution in case you are building <code class="docutils literal"><span class="pre">libA</span></code> with a build system that manages <code class="docutils literal"><span class="pre">pc</span> <span class="pre">files</span></code> like
 <a class="reference internal" href="meson.html#meson-build-tool"><span class="std std-ref">Meson Build</span></a> or <a class="reference internal" href="makefile.html#autotools-build-tool"><span class="std std-ref">AutoTools</span></a>:</p>
 <p><strong>Meson Build</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">Meson</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">Meson</span>
  <span class="kn">import</span> <span class="nn">os</span>
 
  <span class="k">class</span> <span class="nc">ConanFileToolsTest</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -383,7 +383,7 @@ are dynamically generated with the correct path.</p>
 </span></pre></div>
 </div>
 <p><strong>Autotools</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">Meson</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">Meson</span>
  <span class="kn">import</span> <span class="nn">os</span>
 
  <span class="k">class</span> <span class="nc">ConanFileToolsTest</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -402,7 +402,7 @@ are dynamically generated with the correct path.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">Check the <a class="reference internal" href="../reference/tools.html#pkgconfigtool"><span class="std std-ref">tools.PkgConfig() class</span></a>,
-a wrapper of the <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> tool that allows to extract flags, library paths, etc for any <code class="docutils literal notranslate"><span class="pre">pc</span></code> file.</p>
+a wrapper of the <code class="docutils literal"><span class="pre">pkg-config</span></code> tool that allows to extract flags, library paths, etc for any <code class="docutils literal"><span class="pre">pc</span></code> file.</p>
 </div>
 </div>
 </div>

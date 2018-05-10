@@ -216,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="output-contents">
 <h2>Output contents<a class="headerlink" href="#output-contents" title="Permalink to this headline">¶</a></h2>
 <p>Use the <cite>self.output</cite> to print contents to the output.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;This is a good, should be green&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;This is a good, should be green&quot;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is a neutral, should be white&quot;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This is a warning, should be yellow&quot;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error, should be red&quot;</span><span class="p">)</span>
@@ -227,30 +227,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="section" id="running-commands">
 <h2>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">win_bash</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">subsystem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">msys_mingw</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">win_bash</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">subsystem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">msys_mingw</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">self.run()</span></code> is a helper to run system commands and throw exceptions when errors occur,
-so that command errors are do not pass unnoticed. It is just a wrapper for <code class="docutils literal notranslate"><span class="pre">os.system()</span></code></p>
+<p><code class="docutils literal"><span class="pre">self.run()</span></code> is a helper to run system commands and throw exceptions when errors occur,
+so that command errors are do not pass unnoticed. It is just a wrapper for <code class="docutils literal"><span class="pre">os.system()</span></code></p>
 <p>Optional parameters:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt><strong>output</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) When True it will write in stdout.</dt>
-<dd>You can pass any stream that accepts a <code class="docutils literal notranslate"><span class="pre">write</span></code> method like a <code class="docutils literal notranslate"><span class="pre">six.StringIO()</span></code>:</dd>
+<dt><strong>output</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">True</span></code>) When True it will write in stdout.</dt>
+<dd>You can pass any stream that accepts a <code class="docutils literal"><span class="pre">write</span></code> method like a <code class="docutils literal"><span class="pre">six.StringIO()</span></code>:</dd>
 </dl>
 </li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">StringIO</span>  <span class="c1"># Python 2 and 3 compatible</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">StringIO</span>  <span class="c1"># Python 2 and 3 compatible</span>
 <span class="n">mybuf</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mycommand&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">mybuf</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">mybuf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><strong>cwd</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">.</span></code> current directory): Current directory to run the command.</li>
-<li><strong>win_bash</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): When True, it will run the configure/make commands inside a bash.</li>
-<li><strong>subsystem</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code> will autodetect the subsystem). Used to escape the command according to the specified subsystem.</li>
-<li><strong>msys_mingw</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) If the specified subsystem is MSYS2, will start it in MinGW mode (native windows development).</li>
+<li><strong>cwd</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">.</span></code> current directory): Current directory to run the command.</li>
+<li><strong>win_bash</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): When True, it will run the configure/make commands inside a bash.</li>
+<li><strong>subsystem</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">None</span></code> will autodetect the subsystem). Used to escape the command according to the specified subsystem.</li>
+<li><strong>msys_mingw</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">True</span></code>) If the specified subsystem is MSYS2, will start it in MinGW mode (native windows development).</li>
 </ul>
 </div>
 </div>

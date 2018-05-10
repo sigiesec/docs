@@ -222,7 +222,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-remove">
 <span id="id1"></span><h1>conan remove<a class="headerlink" href="#conan-remove" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b <span class="o">[</span>BUILDS <span class="o">[</span>BUILDS ...<span class="o">]]]</span> <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-o<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b <span class="o">[</span>BUILDS <span class="o">[</span>BUILDS ...<span class="o">]]]</span> <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-o<span class="o">]</span>
                <span class="o">[</span>-p <span class="o">[</span>PACKAGES <span class="o">[</span>PACKAGES ...<span class="o">]]]</span> <span class="o">[</span>-q QUERY<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>-s<span class="o">]</span>
                <span class="o">[</span>-l<span class="o">]</span>
                <span class="o">[</span>pattern_or_reference<span class="o">]</span>
@@ -232,7 +232,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 can also be used to remove temporary source or build folders in the local
 conan cache. If no remote is specified, the removal will be done by default in
 the local conan cache.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
   pattern_or_reference  Pattern or package recipe reference, e.g., &#39;boost/*&#39;,
                         &#39;MyPackage/1.2@user/channel&#39;
 
@@ -255,28 +255,28 @@ optional arguments:
   -l, --locks           Remove locks
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-q</span></code> parameter can’t be used along with <code class="docutils literal notranslate"><span class="pre">-p</span></code> nor <code class="docutils literal notranslate"><span class="pre">-b</span></code> parameters.</p>
+<p>The <code class="docutils literal"><span class="pre">-q</span></code> parameter can’t be used along with <code class="docutils literal"><span class="pre">-p</span></code> nor <code class="docutils literal"><span class="pre">-b</span></code> parameters.</p>
 <p><strong>Examples</strong>:</p>
 <ul>
 <li><p class="first">Remove from the local cache the binary packages (the package recipes will not be removed)
-from all the recipes matching <code class="docutils literal notranslate"><span class="pre">OpenSSL/*</span></code> pattern:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/* --packages
+from all the recipes matching <code class="docutils literal"><span class="pre">OpenSSL/*</span></code> pattern:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/* --packages
 </pre></div>
 </div>
 </li>
-<li><p class="first">Remove the temporary build folders from all the recipes matching <code class="docutils literal notranslate"><span class="pre">OpenSSL/*</span></code> pattern without
+<li><p class="first">Remove the temporary build folders from all the recipes matching <code class="docutils literal"><span class="pre">OpenSSL/*</span></code> pattern without
 requesting confirmation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/* --builds --force
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/* --builds --force
 </pre></div>
 </div>
 </li>
 <li><p class="first">Remove the recipe and the binary packages from a specific remote:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/1.0.2@lasote/stable -r myremote
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/1.0.2@lasote/stable -r myremote
 </pre></div>
 </div>
 </li>
 <li><p class="first">Remove only Windows OpenSSL packages from local cache:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/1.0.2@lasote/stable -q <span class="s2">&quot;os=Windows&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove OpenSSL/1.0.2@lasote/stable -q <span class="s2">&quot;os=Windows&quot;</span>
 </pre></div>
 </div>
 </li>

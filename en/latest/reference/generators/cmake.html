@@ -231,16 +231,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="cmake">
 <span id="cmake-generator"></span><h1><cite>cmake</cite><a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h1>
 <div class="out-reference-box docutils container">
-This is the reference page for <code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator.
+This is the reference page for <code class="docutils literal"><span class="pre">cmake</span></code> generator.
 Go to <a class="reference internal" href="../../integrations/cmake.html#cmake"><span class="std std-ref">Integrations/CMake</span></a> if you want to learn how to integrate your project or recipes with CMake.</div>
-<p>It generates a file named <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> and declares some variables and methods</p>
+<p>It generates a file named <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> and declares some variables and methods</p>
 <div class="section" id="variables-in-conanbuildinfo-cmake">
 <span id="conanbuildinfocmake-variables"></span><h2>Variables in conanbuildinfo.cmake<a class="headerlink" href="#variables-in-conanbuildinfo-cmake" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><strong>Package declared vars</strong></li>
 </ul>
-<p>For each requirement <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> file declares the following variables.
-<code class="docutils literal notranslate"><span class="pre">XXX</span></code> is the name of the require in uppercase. e.k “ZLIB” for <code class="docutils literal notranslate"><span class="pre">zlib/1.2.8&#64;lasote/stable</span></code> requirement:</p>
+<p>For each requirement <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> file declares the following variables.
+<code class="docutils literal"><span class="pre">XXX</span></code> is the name of the require in uppercase. e.k “ZLIB” for <code class="docutils literal"><span class="pre">zlib/1.2.8&#64;lasote/stable</span></code> requirement:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -350,8 +350,8 @@ method a set of variables will be declared following this naming:</p>
 </tr>
 </tbody>
 </table>
-<p><code class="docutils literal notranslate"><span class="pre">XXXX</span></code> is the name of the requirement in uppercase and <code class="docutils literal notranslate"><span class="pre">YYYY</span></code> the variable name. e.j:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p><code class="docutils literal"><span class="pre">XXXX</span></code> is the name of the requirement in uppercase and <code class="docutils literal"><span class="pre">YYYY</span></code> the variable name. e.j:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;MyLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.6.0&quot;</span>
 
@@ -361,9 +361,9 @@ method a set of variables will be declared following this naming:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">var1</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>When other library requires <code class="docutils literal notranslate"><span class="pre">MyLib</span></code> and uses the cmake generator:</p>
+<p>When other library requires <code class="docutils literal"><span class="pre">MyLib</span></code> and uses the cmake generator:</p>
 <p><strong>conanbuildinfo.cmake</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
 <span class="nb">set</span><span class="p">(</span><span class="n">CONAN_USER_MYLIB_var1</span> <span class="s2">&quot;2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -373,12 +373,12 @@ method a set of variables will be declared following this naming:</p>
 <div class="section" id="conan-basic-setup">
 <h3>conan_basic_setup<a class="headerlink" href="#conan-basic-setup" title="Permalink to this headline">¶</a></h3>
 <p>Setup all the CMake vars according to our settings, by default with the global approach (no targets).</p>
-<p><strong>parameters</strong>: You can combine several parameters to the <code class="docutils literal notranslate"><span class="pre">conan_basic_setup</span></code> macro. e.j: <code class="docutils literal notranslate"><span class="pre">conan_basic_setup(TARGETS</span> <span class="pre">KEEP_RPATHS)</span></code></p>
+<p><strong>parameters</strong>: You can combine several parameters to the <code class="docutils literal"><span class="pre">conan_basic_setup</span></code> macro. e.j: <code class="docutils literal"><span class="pre">conan_basic_setup(TARGETS</span> <span class="pre">KEEP_RPATHS)</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">TARGETS</span></code>:  Setup all the CMake vars by target (only CMake &gt; 3.1.2)</li>
-<li><code class="docutils literal notranslate"><span class="pre">NO_OUTPUT_DIRS</span></code>: Do not adjust the output directories</li>
-<li><code class="docutils literal notranslate"><span class="pre">KEEP_RPATHS</span></code>: Do not adjust the CMAKE_SKIP_RPATH variable in OSX</li>
+<li><code class="docutils literal"><span class="pre">TARGETS</span></code>:  Setup all the CMake vars by target (only CMake &gt; 3.1.2)</li>
+<li><code class="docutils literal"><span class="pre">NO_OUTPUT_DIRS</span></code>: Do not adjust the output directories</li>
+<li><code class="docutils literal"><span class="pre">KEEP_RPATHS</span></code>: Do not adjust the CMAKE_SKIP_RPATH variable in OSX</li>
 </ul>
 </div></blockquote>
 </div>
@@ -388,7 +388,7 @@ method a set of variables will be declared following this naming:</p>
 </div>
 <div class="section" id="other-optional-methods">
 <h3>Other optional methods<a class="headerlink" href="#other-optional-methods" title="Permalink to this headline">¶</a></h3>
-<p>There are other methods automatically called by <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> but you can use them directly:</p>
+<p>There are other methods automatically called by <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> but you can use them directly:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -433,19 +433,19 @@ method a set of variables will be declared following this naming:</p>
 </div>
 <div class="section" id="targets-generated-by-conanbuildinfo-cmake">
 <h2>Targets generated by conanbuildinfo.cmake<a class="headerlink" href="#targets-generated-by-conanbuildinfo-cmake" title="Permalink to this headline">¶</a></h2>
-<p>If you use <code class="docutils literal notranslate"><span class="pre">conan_basic_setup(TARGETS)</span></code>, then some cmake targets will be generated (this only works for CMake &gt; 3.1.2)</p>
+<p>If you use <code class="docutils literal"><span class="pre">conan_basic_setup(TARGETS)</span></code>, then some cmake targets will be generated (this only works for CMake &gt; 3.1.2)</p>
 <p>These targets are:</p>
 <ul class="simple">
-<li>A <code class="docutils literal notranslate"><span class="pre">CONAN_PKG::PkgName</span></code> target per package in the dependency graph. This is an <code class="docutils literal notranslate"><span class="pre">IMPORTED</span> <span class="pre">INTERFACE</span></code> target. IMPORTED
+<li>A <code class="docutils literal"><span class="pre">CONAN_PKG::PkgName</span></code> target per package in the dependency graph. This is an <code class="docutils literal"><span class="pre">IMPORTED</span> <span class="pre">INTERFACE</span></code> target. IMPORTED
 because it is external, a pre-compiled library. INTERFACE, because it doesn’t necessarily match a library,
 it could be a header-only library, or the package could even contain several libraries. It contains all the
-properties (include paths, compile flags, etc) that are defined in the <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method of the package.</li>
-<li>Inside each package a <code class="docutils literal notranslate"><span class="pre">CONAN_LIB::PkgName_LibName</span></code> target will be generated for each library. Its type is <code class="docutils literal notranslate"><span class="pre">IMPORTED</span>
+properties (include paths, compile flags, etc) that are defined in the <code class="docutils literal"><span class="pre">package_info()</span></code> method of the package.</li>
+<li>Inside each package a <code class="docutils literal"><span class="pre">CONAN_LIB::PkgName_LibName</span></code> target will be generated for each library. Its type is <code class="docutils literal"><span class="pre">IMPORTED</span>
 <span class="pre">UNKNOWN</span></code>, its mainly purpose is to provide a correct link order. Their only properties are the location and the
 dependencies</li>
-<li>A <code class="docutils literal notranslate"><span class="pre">CONAN_PKG</span></code> depends on every <code class="docutils literal notranslate"><span class="pre">CONAN_LIB</span></code> that belongs to it, and to its direct public dependencies (i.e. other <code class="docutils literal notranslate"><span class="pre">CONAN_PKG</span></code>
-targets from its <code class="docutils literal notranslate"><span class="pre">requires</span></code>)</li>
-<li>Each <code class="docutils literal notranslate"><span class="pre">CONAN_LIB</span></code> depends on the direct public dependencies <code class="docutils literal notranslate"><span class="pre">CONAN_PKG</span></code> targets of its container package. This guarantees
+<li>A <code class="docutils literal"><span class="pre">CONAN_PKG</span></code> depends on every <code class="docutils literal"><span class="pre">CONAN_LIB</span></code> that belongs to it, and to its direct public dependencies (i.e. other <code class="docutils literal"><span class="pre">CONAN_PKG</span></code>
+targets from its <code class="docutils literal"><span class="pre">requires</span></code>)</li>
+<li>Each <code class="docutils literal"><span class="pre">CONAN_LIB</span></code> depends on the direct public dependencies <code class="docutils literal"><span class="pre">CONAN_PKG</span></code> targets of its container package. This guarantees
 correct link order.</li>
 </ul>
 </div>

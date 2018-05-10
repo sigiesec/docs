@@ -217,12 +217,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="use-tls-certificates"></span><h1>How to manage SSL (TLS) certificates<a class="headerlink" href="#how-to-manage-ssl-tls-certificates" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="server-certificate-validation">
 <h2>Server certificate validation<a class="headerlink" href="#server-certificate-validation" title="Permalink to this headline">¶</a></h2>
-<p>By default, when a remote is added, if the URL schema is <code class="docutils literal notranslate"><span class="pre">https</span></code>, the Conan client will verify
-the certificate using a list of authorities declared in the <code class="docutils literal notranslate"><span class="pre">cacert.pem</span></code> file located in the conan home (~/.conan).</p>
+<p>By default, when a remote is added, if the URL schema is <code class="docutils literal"><span class="pre">https</span></code>, the Conan client will verify
+the certificate using a list of authorities declared in the <code class="docutils literal"><span class="pre">cacert.pem</span></code> file located in the conan home (~/.conan).</p>
 <p>If you have a self signed certificate (not signed by any authority) you have two options:</p>
 <ul class="simple">
 <li>Use the <a class="reference internal" href="../reference/commands/misc/remote.html#conan-remote"><span class="std std-ref">conan remote</span></a> command to disable the SSL verification.</li>
-<li>Append your server <code class="docutils literal notranslate"><span class="pre">crt</span></code> file to the <code class="docutils literal notranslate"><span class="pre">cacert.pem</span></code> file.</li>
+<li>Append your server <code class="docutils literal"><span class="pre">crt</span></code> file to the <code class="docutils literal"><span class="pre">cacert.pem</span></code> file.</li>
 </ul>
 </div>
 <div class="section" id="client-certificates">
@@ -230,15 +230,15 @@ the certificate using a list of authorities declared in the <code class="docutil
 <p>If your server is requiring client certificates to validate a connection from a Conan client,
 you need to create two files in the conan home directory (default ~/.conan):</p>
 <ul class="simple">
-<li>A file <code class="docutils literal notranslate"><span class="pre">client.crt</span></code> with the client certificate.</li>
-<li>A file <code class="docutils literal notranslate"><span class="pre">client.key</span></code> with the private key.</li>
+<li>A file <code class="docutils literal"><span class="pre">client.crt</span></code> with the client certificate.</li>
+<li>A file <code class="docutils literal"><span class="pre">client.key</span></code> with the private key.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>You can create only the <code class="docutils literal notranslate"><span class="pre">client.crt</span></code> file containing both the certificate and the private key
-concatenated and not create the <code class="docutils literal notranslate"><span class="pre">client.key</span></code></p>
+<p>You can create only the <code class="docutils literal"><span class="pre">client.crt</span></code> file containing both the certificate and the private key
+concatenated and not create the <code class="docutils literal"><span class="pre">client.key</span></code></p>
 <p class="last">If you are a familiar with the <a class="reference external" href="https://curl.haxx.se/docs/manpage.html">curl</a> tool, this mechanism is
-similar to specify the <code class="docutils literal notranslate"><span class="pre">--cert</span></code> / <code class="docutils literal notranslate"><span class="pre">--key</span></code> parameters.</p>
+similar to specify the <code class="docutils literal"><span class="pre">--cert</span></code> / <code class="docutils literal"><span class="pre">--key</span></code> parameters.</p>
 </div>
 </div>
 </div>

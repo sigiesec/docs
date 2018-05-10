@@ -245,12 +245,12 @@ Check <a class="reference internal" href="bintray/conan_center_guide.html#conan-
 <div>Deprecated. Contains mostly outdated packages some of them even not compatible with latest Conan
 versions, so its usage is discouraged. This repository only exists for backwards compatibility,
 it is not a default remote in the Conan client and will be completely removed soon. This
-repository is an exact copy of the old <code class="docutils literal notranslate"><span class="pre">server.conan.io</span></code> repository at
+repository is an exact copy of the old <code class="docutils literal"><span class="pre">server.conan.io</span></code> repository at
 <strong>June 11, 2017 08:00 CET</strong>. It’s a read-only repository, so you can only download hosted
 packages.</div></blockquote>
 <p>Conan comes with <strong>conan-center</strong> repository configured by default. Just in case you want to manually configure this repository you can
 always add it like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add conan-center https://conan.bintray.com
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add conan-center https://conan.bintray.com
 </pre></div>
 </div>
 </div>
@@ -264,7 +264,7 @@ open source packages from. Some of these repositories are not affiliated with th
 OSS community. This repository contains a wide and growing variety of conan packages from
 contributors.</p>
 <p>Use the following command to add this remote to Conan:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 </pre></div>
 </div>
 </div></blockquote>
@@ -273,13 +273,13 @@ contributors.</p>
 <div><p>Created by Conan developers, it should be considered as an incubator to mature packages before contacting authors or including them in
 <a class="reference external" href="https://bintray.com/conan/conan-center">conan-center</a>. This repository contains work-in-progress packages that may still not work and may not be fully featured.</p>
 <p>Use the following command to add this remote to Conan:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
 </pre></div>
 </div>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you are working in a team, you probably want to use the same remotes everywhere: developer machines, CI. The <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">config</span> <span class="pre">install</span></code>
+<p class="last">If you are working in a team, you probably want to use the same remotes everywhere: developer machines, CI. The <code class="docutils literal"><span class="pre">conan</span> <span class="pre">config</span> <span class="pre">install</span></code>
 command can automatically define the remotes in a conan client, as well as other resources as profiles. Have a look to the
 <a class="reference internal" href="../reference/commands/consumer/config.html#conan-config-install"><span class="std std-ref">conan config install</span></a> command.</p>
 </div>

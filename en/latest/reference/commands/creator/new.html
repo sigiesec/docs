@@ -219,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-new">
 <span id="id1"></span><h1>conan new<a class="headerlink" href="#conan-new" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-s<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-cis<span class="o">]</span> <span class="o">[</span>-cilg<span class="o">]</span> <span class="o">[</span>-cilc<span class="o">]</span> <span class="o">[</span>-cio<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-s<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-cis<span class="o">]</span> <span class="o">[</span>-cilg<span class="o">]</span> <span class="o">[</span>-cilc<span class="o">]</span> <span class="o">[</span>-cio<span class="o">]</span>
             <span class="o">[</span>-ciw<span class="o">]</span> <span class="o">[</span>-ciglg<span class="o">]</span> <span class="o">[</span>-ciglc<span class="o">]</span> <span class="o">[</span>-ciccg<span class="o">]</span> <span class="o">[</span>-ciccc<span class="o">]</span> <span class="o">[</span>-cicco<span class="o">]</span> <span class="o">[</span>-gi<span class="o">]</span>
             <span class="o">[</span>-ciu CI_UPLOAD_URL<span class="o">]</span>
             name
@@ -227,7 +227,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>Creates a new package recipe template with a ‘conanfile.py’ and optionally,
 ‘test_package’ testing files.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
   name                  Package name, e.g.: &quot;Poco/1.7.3&quot; or complete reference
                         for CI scripts: &quot;Poco/1.7.3@conan/stable&quot;
 
@@ -270,23 +270,23 @@ optional arguments:
 </div>
 <p><strong>Examples</strong>:</p>
 <ul>
-<li><p class="first">Create a new <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> for a new package <strong>mypackage/1.0&#64;myuser/stable</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0
+<li><p class="first">Create a new <code class="docutils literal"><span class="pre">conanfile.py</span></code> for a new package <strong>mypackage/1.0&#64;myuser/stable</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0
 </pre></div>
 </div>
 </li>
-<li><p class="first">Create also a <code class="docutils literal notranslate"><span class="pre">test_package</span></code> folder skeleton:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0 -t
+<li><p class="first">Create also a <code class="docutils literal"><span class="pre">test_package</span></code> folder skeleton:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0 -t
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create files for travis (both Linux and OSX) and appveyor Continuous Integration:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0@myuser/stable -t -cilg -cio -ciw
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0@myuser/stable -t -cilg -cio -ciw
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create files for gitlab (linux) Continuous integration and set upload conan server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0@myuser/stable -t -ciglg -ciglc -ciu https://api.bintray.com/conan/myuser/myrepo
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new mypackage/1.0@myuser/stable -t -ciglg -ciglc -ciu https://api.bintray.com/conan/myuser/myrepo
 </pre></div>
 </div>
 </li>

@@ -224,12 +224,12 @@ different images with different compilers or toolchains and run containers every
 build tools and compilers as well as Conan installed.</p>
 <div class="section" id="using-conan-inside-a-container">
 <h2>Using conan inside a container<a class="headerlink" href="#using-conan-inside-a-container" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -it --rm lasote/conangcc7 /bin/bash
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker run -it --rm lasote/conangcc7 /bin/bash
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> when needed to run <code class="docutils literal notranslate"><span class="pre">docker</span></code>.</p>
+<p class="last">Use <code class="docutils literal"><span class="pre">sudo</span></code> when needed to run <code class="docutils literal"><span class="pre">docker</span></code>.</p>
 </div>
 <p>The previous code will run a shell in container. We have specified:</p>
 <ul class="simple">
@@ -241,7 +241,7 @@ build tools and compilers as well as Conan installed.</p>
 <p>Now we are running on the conangcc7 container we can use Conan normally. In the following example we are
 creating a package from the recipe by cloning the repository, for OpenSSL.
 It is always recommended to upgrade conan from pip first:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
 $ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ conan create . user/channel
@@ -251,17 +251,17 @@ $ conan create . user/channel
 <div class="section" id="sharing-a-local-folder-with-a-docker-container">
 <h2>Sharing a local folder with a docker container<a class="headerlink" href="#sharing-a-local-folder-with-a-docker-container" title="Permalink to this headline">¶</a></h2>
 <p>You can share a local folder with your container, for example a project:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ docker run -it -v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/conan/project --rm lasote/conangcc7 /bin/bash
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">v$(pwd):/home/conan/project</span></code>: We are mapping the current directory (conan-openssl) to the container
-<code class="docutils literal notranslate"><span class="pre">/home/conan/project</span></code> directory, so anything we change in this shared folder, will be really changed
+<li><code class="docutils literal"><span class="pre">v$(pwd):/home/conan/project</span></code>: We are mapping the current directory (conan-openssl) to the container
+<code class="docutils literal"><span class="pre">/home/conan/project</span></code> directory, so anything we change in this shared folder, will be really changed
 in our host machine.</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we are running on the conangcc7 container</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Now we are running on the conangcc7 container</span>
 $ sudo pip install conan --upgrade <span class="c1"># We make sure we are running the latest Conan version</span>
 $ <span class="nb">cd</span> project
 $ conan create . user/channel --build missing
@@ -272,13 +272,13 @@ $ conan upload <span class="s2">&quot;*&quot;</span> -r myremote --all
 </div>
 <div class="section" id="using-the-images-to-cross-build-packages">
 <h2>Using the images to cross-build packages<a class="headerlink" href="#using-the-images-to-cross-build-packages" title="Permalink to this headline">¶</a></h2>
-<p>You can use the <a class="reference internal" href="#available-docker-images"><span class="std std-ref">images</span></a> <code class="docutils literal notranslate"><span class="pre">-i386</span></code>, <code class="docutils literal notranslate"><span class="pre">-armv7</span></code> and <code class="docutils literal notranslate"><span class="pre">-armv7gh</span></code> to cross build
+<p>You can use the <a class="reference internal" href="#available-docker-images"><span class="std std-ref">images</span></a> <code class="docutils literal"><span class="pre">-i386</span></code>, <code class="docutils literal"><span class="pre">-armv7</span></code> and <code class="docutils literal"><span class="pre">-armv7gh</span></code> to cross build
 conan packages.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">armv7</span></code> images have a cross toolchain for linux ARM installed, and declared as main compiler with the
-environment variables <code class="docutils literal notranslate"><span class="pre">CC</span></code> and <code class="docutils literal notranslate"><span class="pre">CXX</span></code>. Also, the default Conan profile (<code class="docutils literal notranslate"><span class="pre">~/.conan/profiles/default</span></code>)
-is adjusted to declare the correct arch (<code class="docutils literal notranslate"><span class="pre">armv7</span></code> / <code class="docutils literal notranslate"><span class="pre">armv7hf</span></code>).</p>
-<p>Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal notranslate"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
+<p>The <code class="docutils literal"><span class="pre">armv7</span></code> images have a cross toolchain for linux ARM installed, and declared as main compiler with the
+environment variables <code class="docutils literal"><span class="pre">CC</span></code> and <code class="docutils literal"><span class="pre">CXX</span></code>. Also, the default Conan profile (<code class="docutils literal"><span class="pre">~/.conan/profiles/default</span></code>)
+is adjusted to declare the correct arch (<code class="docutils literal"><span class="pre">armv7</span></code> / <code class="docutils literal"><span class="pre">armv7hf</span></code>).</p>
+<p>Cross-building and uploading a package along with all its missing dependencies for <code class="docutils literal"><span class="pre">Linux/armv7hf</span></code> is done in few steps:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-community/conan-openssl
 $ <span class="nb">cd</span> conan-openssl
 $ docker run -it -v<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/conan/project --rm lasote/conangcc49-armv7hf /bin/bash
 

@@ -219,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-test">
 <span id="id1"></span><h1>conan test<a class="headerlink" href="#conan-test" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">test</span> <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-tbf TEST_BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-b <span class="o">[</span>BUILD<span class="o">]]</span> <span class="o">[</span>-e ENV<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">test</span> <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-tbf TEST_BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-b <span class="o">[</span>BUILD<span class="o">]]</span> <span class="o">[</span>-e ENV<span class="o">]</span>
              <span class="o">[</span>-o OPTIONS<span class="o">]</span> <span class="o">[</span>-pr PROFILE<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>-s SETTINGS<span class="o">]</span> <span class="o">[</span>-u<span class="o">]</span>
              path reference
 </pre></div>
@@ -230,7 +230,7 @@ calls a ‘conan build’ to build test apps and finally executes the test()
 method. The testing recipe does not require name or version, neither
 definition of package() or package_info() methods. The package to be tested
 must exist in the local cache or in any configured remote.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to the &quot;testing&quot; folder containing a conanfile.py
                         or to a recipe file with test() methode.g. conan
                         test_package/conanfile.py pkg/version@user/channel
@@ -274,7 +274,7 @@ optional arguments:
 <strong class="command">conan create</strong> will automatically run this test if a <em>test_package</em> folder is found besides the <em>conanfile.py</em>, or if the
 <strong class="command">--test-folder</strong> argument is provided to <strong class="command">conan create</strong>.</p>
 <p><strong>Example</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s -t
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -s -t
 $ mv test_package test_package2
 $ conan create . user/testing
 <span class="c1"># doesn&#39;t automatically run test, it has been renamed</span>

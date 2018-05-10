@@ -219,8 +219,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>Without unit tests<a class="headerlink" href="#without-unit-tests" title="Permalink to this headline">¶</a></h2>
 <p>Packaging a header only library, without requiring to build and run unit tests for it within conan, can be
 done with a very simple recipe. Assuming you have the recipe in the source repo root folder, and the headers
-in a subfolder called <code class="docutils literal notranslate"><span class="pre">include</span></code>, you could do:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+in a subfolder called <code class="docutils literal"><span class="pre">include</span></code>, you could do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
@@ -233,32 +233,32 @@ in a subfolder called <code class="docutils literal notranslate"><span class="pr
         <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.h&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you want to package an external repository, you can use the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method to do a clone or download
-instead of the <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> fields.</p>
+<p>If you want to package an external repository, you can use the <code class="docutils literal"><span class="pre">source()</span></code> method to do a clone or download
+instead of the <code class="docutils literal"><span class="pre">exports_sources</span></code> fields.</p>
 <ul class="simple">
-<li>There is no need for <code class="docutils literal notranslate"><span class="pre">settings</span></code>, as changing them will not affect the final package artifacts</li>
-<li>There is no need for <code class="docutils literal notranslate"><span class="pre">build()</span></code> method, as header-only are not built</li>
-<li>There is no need for a custom <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method. The default one already adds “include” subfolder
+<li>There is no need for <code class="docutils literal"><span class="pre">settings</span></code>, as changing them will not affect the final package artifacts</li>
+<li>There is no need for <code class="docutils literal"><span class="pre">build()</span></code> method, as header-only are not built</li>
+<li>There is no need for a custom <code class="docutils literal"><span class="pre">package_info()</span></code> method. The default one already adds “include” subfolder
 to the include path</li>
-<li><code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">True</span></code> will disable the copy of the source folder to the build directory as there is
-no need to do so because source code is not modified at all by the <code class="docutils literal notranslate"><span class="pre">configure()</span></code> or <code class="docutils literal notranslate"><span class="pre">build()</span></code> methods.</li>
+<li><code class="docutils literal"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">True</span></code> will disable the copy of the source folder to the build directory as there is
+no need to do so because source code is not modified at all by the <code class="docutils literal"><span class="pre">configure()</span></code> or <code class="docutils literal"><span class="pre">build()</span></code> methods.</li>
 <li>Note that this recipe has no other dependencies, settings or options. If it had any of those, it would be very
-convenient to add the <code class="docutils literal notranslate"><span class="pre">package_id()</span></code> method, to ensure that only one package with always the same ID is
+convenient to add the <code class="docutils literal"><span class="pre">package_id()</span></code> method, to ensure that only one package with always the same ID is
 create irrespective of the configurations and dependencies:</li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">header_only</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Package is created with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . user/channel
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create . user/channel
 </pre></div>
 </div>
 </div>
 <div class="section" id="with-unit-tests">
 <h2>With unit tests<a class="headerlink" href="#with-unit-tests" title="Permalink to this headline">¶</a></h2>
 <p>If you want to run the library unit test while packaging, you would need this recipe:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span>
 
 <span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
@@ -286,14 +286,14 @@ create irrespective of the configurations and dependencies:</li>
 to skip the <strong>unit tests</strong> because your target binary cannot be executed in current building host.
 To do it you can use <a class="reference internal" href="../reference/tools.html#tools-get-env"><span class="std std-ref">tools.get_env()</span></a> in combination with
 <a class="reference internal" href="../reference/env_vars.html#conan-run-tests"><span class="std std-ref">CONAN_RUN_TESTS</span></a> env variable, defined as <strong>False</strong>
-in profile for cross building and replace <code class="docutils literal notranslate"><span class="pre">cmake.test()</span></code> with:</p>
-<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">tools</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="s2">&quot;CONAN_RUN_TESTS&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span>
+in profile for cross building and replace <code class="docutils literal"><span class="pre">cmake.test()</span></code> with:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">tools</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="s2">&quot;CONAN_RUN_TESTS&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<p>Which will use a <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file in the root folder:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">Package</span> <span class="s">CXX</span><span class="p">)</span>
+<p>Which will use a <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> file in the root folder:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">Package</span> <span class="s">CXX</span><span class="p">)</span>
 <span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8.12</span><span class="p">)</span>
 
 <span class="nb">include_directories</span><span class="p">(</span><span class="s2">&quot;include&quot;</span><span class="p">)</span>
@@ -305,8 +305,8 @@ in profile for cross building and replace <code class="docutils literal notransl
         <span class="s">COMMAND</span> <span class="s">example</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>and some <code class="docutils literal notranslate"><span class="pre">example.cpp</span></code> file, which will be our “unit test” of the library:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<p>and some <code class="docutils literal"><span class="pre">example.cpp</span></code> file, which will be our “unit test” of the library:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;hello.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -317,11 +317,11 @@ in profile for cross building and replace <code class="docutils literal notransl
 <ul class="simple">
 <li>This will use different compilers and versions, as configured by conan settings (in command line or
 profiles), but will always generate just 1 output package, always with the same ID.</li>
-<li>The necessary files for the unit tests, must be <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> too (or retrieved from <code class="docutils literal notranslate"><span class="pre">source()</span></code> method)</li>
-<li>If the package had dependencies, via <code class="docutils literal notranslate"><span class="pre">requires</span></code>, it would be necessary to add the <code class="docutils literal notranslate"><span class="pre">generators</span> <span class="pre">=</span> <span class="pre">&quot;cmake&quot;</span></code>
-to the package recipe and adding the <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> file to the testing CMakeLists.txt:</li>
+<li>The necessary files for the unit tests, must be <code class="docutils literal"><span class="pre">exports_sources</span></code> too (or retrieved from <code class="docutils literal"><span class="pre">source()</span></code> method)</li>
+<li>If the package had dependencies, via <code class="docutils literal"><span class="pre">requires</span></code>, it would be necessary to add the <code class="docutils literal"><span class="pre">generators</span> <span class="pre">=</span> <span class="pre">&quot;cmake&quot;</span></code>
+to the package recipe and adding the <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> file to the testing CMakeLists.txt:</li>
 </ul>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">()</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">example</span> <span class="s">example.cpp</span><span class="p">)</span>
@@ -329,7 +329,7 @@ to the package recipe and adding the <code class="docutils literal notranslate">
 </pre></div>
 </div>
 <p>Package is created with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . user/channel
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create . user/channel
 </pre></div>
 </div>
 <div class="admonition note">

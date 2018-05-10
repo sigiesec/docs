@@ -211,13 +211,13 @@ if it’s not present the install command will fail.</p>
 <li><strong class="command">--build</strong> will build all requirements from sources.</li>
 <li><strong class="command">--build outdated</strong> will try to build from code if the binary is not built with the current recipe or when missing binary package.</li>
 </ul>
-<p>With the <code class="docutils literal notranslate"><span class="pre">build_policy</span></code> attribute the package creator can change the default conan’s build behavior. The allowed build_policy values are:</p>
+<p>With the <code class="docutils literal"><span class="pre">build_policy</span></code> attribute the package creator can change the default conan’s build behavior. The allowed build_policy values are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">missing</span></code>: If no binary package is found, conan will build it without the need of invoke conan install with <strong class="command">--build missing</strong>
+<li><code class="docutils literal"><span class="pre">missing</span></code>: If no binary package is found, conan will build it without the need of invoke conan install with <strong class="command">--build missing</strong>
 option.</li>
-<li><code class="docutils literal notranslate"><span class="pre">always</span></code>: The package will be built always, <strong>retrieving each time the source code</strong> executing the “source” method.</li>
+<li><code class="docutils literal"><span class="pre">always</span></code>: The package will be built always, <strong>retrieving each time the source code</strong> executing the “source” method.</li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">PocoTimerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">PocoTimerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
      <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
      <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;Poco/1.7.8p3@pocoproject/stable&quot;</span> <span class="c1"># comma-separated list of requirements</span>
      <span class="n">generators</span> <span class="o">=</span> <span class="s2">&quot;cmake&quot;</span><span class="p">,</span> <span class="s2">&quot;gcc&quot;</span><span class="p">,</span> <span class="s2">&quot;txt&quot;</span>
@@ -227,7 +227,7 @@ option.</li>
 </div>
 <p>These build policies are especially useful if the package creator doesn’t want to provide binary package, for example, with header only
 libraries.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">always</span></code> policy, will retrieve the sources each time the package is installed so it can be useful for providing a “latest” mechanism
+<p>The <code class="docutils literal"><span class="pre">always</span></code> policy, will retrieve the sources each time the package is installed so it can be useful for providing a “latest” mechanism
 or ignoring the uploaded binary packages.</p>
 </div>
 

@@ -114,12 +114,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../../systems_cross_building.html">Systems and cross building</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../integrations.html">Integrations</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../cmake.html"> CMake</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">cmake</span></code> generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#global-variables-approach">Global variables approach</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#targets-approach">Targets approach</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="cmake_multi_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake_multi_generator.html"><code class="docutils literal"><span class="pre">cmake_multi</span></code> generator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_automation.html">Build automation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="find_packages.html">Find Packages</a></li>
 </ul>
@@ -208,7 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
           <li><a href="../cmake.html"> CMake</a> &raquo;</li>
         
-      <li><code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator</li>
+      <li><code class="docutils literal"><span class="pre">cmake</span></code> generator</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -228,45 +228,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
             
   <div class="section" id="cmake-generator">
-<h1><code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator<a class="headerlink" href="#cmake-generator" title="Permalink to this headline">¶</a></h1>
-<p>If you are using <strong>CMake</strong> to build your project, you can use the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator to define all your requirements information in cmake syntax.
-It creates a file named <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> that can be imported from your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>.</p>
+<h1><code class="docutils literal"><span class="pre">cmake</span></code> generator<a class="headerlink" href="#cmake-generator" title="Permalink to this headline">¶</a></h1>
+<p>If you are using <strong>CMake</strong> to build your project, you can use the <code class="docutils literal"><span class="pre">cmake</span></code> generator to define all your requirements information in cmake syntax.
+It creates a file named <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> that can be imported from your <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code>.</p>
 <p><strong>conanfile.txt</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>...
+<div class="highlight-text"><div class="highlight"><pre><span></span>...
 
 [generators]
 cmake
 </pre></div>
 </div>
-<p>When <strong>conan install</strong> is executed, a file named <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> is created.</p>
-<p>We can include <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> in our project’s <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to manage our requirements.
-The inclusion of <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> doesn’t alter cmake environment at all, it just provides <code class="docutils literal notranslate"><span class="pre">CONAN_</span></code> variables and some useful macros.</p>
+<p>When <strong>conan install</strong> is executed, a file named <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> is created.</p>
+<p>We can include <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> in our project’s <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> to manage our requirements.
+The inclusion of <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> doesn’t alter cmake environment at all, it just provides <code class="docutils literal"><span class="pre">CONAN_</span></code> variables and some useful macros.</p>
 <div class="section" id="global-variables-approach">
 <h2>Global variables approach<a class="headerlink" href="#global-variables-approach" title="Permalink to this headline">¶</a></h2>
-<p>The simplest way to consume it would be to invoke the <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> macro, which will basically
+<p>The simplest way to consume it would be to invoke the <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> macro, which will basically
 set global include directories, libraries directories, definitions, etc. so typically is enough to do:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">()</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">timer</span> <span class="s">timer.cpp</span><span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">timer</span> <span class="o">${</span><span class="nv">CONAN_LIBS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> is split in smaller macros, that should be self explanatory. If you need to do
+<p>The <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> is split in smaller macros, that should be self explanatory. If you need to do
 something different, you can just use them individually.</p>
 </div>
 <div class="section" id="targets-approach">
 <h2>Targets approach<a class="headerlink" href="#targets-approach" title="Permalink to this headline">¶</a></h2>
 <p>For <strong>modern cmake (&gt;=3.1.2)</strong>, you can use the following approach:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
 <span class="nb">conan_basic_setup</span><span class="p">(</span><span class="s">TARGETS</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">timer</span> <span class="s">timer.cpp</span><span class="p">)</span>
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">timer</span> <span class="s">CONAN_PKG::Poco</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Using <code class="docutils literal notranslate"><span class="pre">TARGETS</span></code> as argument, <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> will internally call the macro <code class="docutils literal notranslate"><span class="pre">conan_define_targets()</span></code>
-which defines cmake <code class="docutils literal notranslate"><span class="pre">INTERFACE</span> <span class="pre">IMPORTED</span></code> targets, one per package. These targets, named <code class="docutils literal notranslate"><span class="pre">CONAN_PKG::PackageName</span></code> can be used to link with, instead of using global cmake setup.</p>
+<p>Using <code class="docutils literal"><span class="pre">TARGETS</span></code> as argument, <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> will internally call the macro <code class="docutils literal"><span class="pre">conan_define_targets()</span></code>
+which defines cmake <code class="docutils literal"><span class="pre">INTERFACE</span> <span class="pre">IMPORTED</span></code> targets, one per package. These targets, named <code class="docutils literal"><span class="pre">CONAN_PKG::PackageName</span></code> can be used to link with, instead of using global cmake setup.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">Check the section <a class="reference internal" href="../../reference/generators/cmake.html#cmake-generator"><span class="std std-ref">Reference/Generators/cmake</span></a> to read more about this generator.</p>

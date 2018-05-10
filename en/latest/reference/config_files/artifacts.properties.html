@@ -214,14 +214,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="id1"></span><h1>artifacts.properties<a class="headerlink" href="#artifacts-properties" title="Permalink to this headline">¶</a></h1>
 <p>This file is used to send custom headers in the PUT requests that <strong class="command">conan upload</strong> command does:</p>
 <p><strong>.conan/artifacts.properties</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>custom_header1=Value1
+<div class="highlight-text"><div class="highlight"><pre><span></span>custom_header1=Value1
 custom_header2=45
 </pre></div>
 </div>
 <p>Artifactory users can use this file to set file properties for the uploaded files. The variables should have the prefix
-<code class="docutils literal notranslate"><span class="pre">artifact_property</span></code>. You can use <code class="docutils literal notranslate"><span class="pre">;</span></code> to set multiple values to a property:</p>
+<code class="docutils literal"><span class="pre">artifact_property</span></code>. You can use <code class="docutils literal"><span class="pre">;</span></code> to set multiple values to a property:</p>
 <p><strong>.conan/artifacts.properties</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>artifact_property_build.name=Build1
+<div class="highlight-text"><div class="highlight"><pre><span></span>artifact_property_build.name=Build1
 artifact_property_build.number=23
 artifact_property_build.timestamp=1487676992
 artifact_property_custom_multiple_var=one;two;three;four

@@ -226,17 +226,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="compiler-args">
 <span id="compiler-args-generator"></span><h1>compiler_args<a class="headerlink" href="#compiler-args" title="Permalink to this headline">¶</a></h1>
 <div class="out-reference-box docutils container">
-This is the reference page for <code class="docutils literal notranslate"><span class="pre">compiler_args</span></code> generator.
+This is the reference page for <code class="docutils literal"><span class="pre">compiler_args</span></code> generator.
 Go to <a class="reference internal" href="../../integrations/gcc.html#gcc-integration"><span class="std std-ref">Integrations/Compilers on command line</span></a> if you want to learn how to integrate your project calling
 your compiler in the command line.</div>
-<p>Generates a file named <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.args</span></code> containing a command line parameters to invoke <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code> or <code class="docutils literal notranslate"><span class="pre">cl</span></code> compiler.</p>
+<p>Generates a file named <code class="docutils literal"><span class="pre">conanbuildinfo.args</span></code> containing a command line parameters to invoke <code class="docutils literal"><span class="pre">gcc</span></code>, <code class="docutils literal"><span class="pre">clang</span></code> or <code class="docutils literal"><span class="pre">cl</span></code> compiler.</p>
 <p>You can use the <strong>compiler_args</strong> generator directly to build simple programs:</p>
 <p><strong>gcc/clang</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; g++ timer.cpp @conanbuildinfo.args -o bin/timer
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; g++ timer.cpp @conanbuildinfo.args -o bin/timer
 </pre></div>
 </div>
 <p><strong>cl</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cl /EHsc timer.cpp @conanbuildinfo.args
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cl /EHsc timer.cpp @conanbuildinfo.args
 </pre></div>
 </div>
 <p><strong>gcc/clang</strong></p>
@@ -325,7 +325,7 @@ your compiler in the command line.</div>
 </tbody>
 </table>
 <p>You can also use it in a recipe:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">PocoTimerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
    <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>

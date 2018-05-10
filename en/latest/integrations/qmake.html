@@ -220,23 +220,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="qmake">
 <span id="id1"></span><h1>QMake<a class="headerlink" href="#qmake" title="Permalink to this headline">¶</a></h1>
-<p>A qmake generator will generate a <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.pri</span></code> file that can be used for your qmake builds.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -g qmake
+<p>A qmake generator will generate a <code class="docutils literal"><span class="pre">conanbuildinfo.pri</span></code> file that can be used for your qmake builds.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . -g qmake
 </pre></div>
 </div>
-<p>Add <code class="docutils literal notranslate"><span class="pre">conan_basic_setup</span></code> to <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> and include the file in your existing project <code class="docutils literal notranslate"><span class="pre">.pro</span></code> file:</p>
+<p>Add <code class="docutils literal"><span class="pre">conan_basic_setup</span></code> to <code class="docutils literal"><span class="pre">CONFIG</span></code> and include the file in your existing project <code class="docutils literal"><span class="pre">.pro</span></code> file:</p>
 <p><strong>yourproject.pro</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># ...
+<div class="highlight-text"><div class="highlight"><pre><span></span># ...
 
 CONFIG += conan_basic_setup
 include(conanbuildinfo.pri)
 </pre></div>
 </div>
-<p>This will include all the statements in <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.pri</span></code> in your project.
-Include paths, libraries, defines, etc. will be set up for all requirements you have defined in <code class="docutils literal notranslate"><span class="pre">conanfile.txt</span></code>.</p>
-<p>If you’d rather like to manually add the variables for each dependency, you can do so by skipping the CONFIG statement and only include <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.pri</span></code>:</p>
+<p>This will include all the statements in <code class="docutils literal"><span class="pre">conanbuildinfo.pri</span></code> in your project.
+Include paths, libraries, defines, etc. will be set up for all requirements you have defined in <code class="docutils literal"><span class="pre">conanfile.txt</span></code>.</p>
+<p>If you’d rather like to manually add the variables for each dependency, you can do so by skipping the CONFIG statement and only include <code class="docutils literal"><span class="pre">conanbuildinfo.pri</span></code>:</p>
 <p><strong>yourproject.pro</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># ...
+<div class="highlight-text"><div class="highlight"><pre><span></span># ...
 
 include(conanbuildinfo.pri)
 
@@ -244,19 +244,19 @@ include(conanbuildinfo.pri)
 # INCLUDEPATH += CONAN_INCLUDEPATH_POCO
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">qmake</span></code> generator allows multi-configuration packages, i.e. packages that contains both debug and release artifacts. Lets see an example:</p>
+<p>The <code class="docutils literal"><span class="pre">qmake</span></code> generator allows multi-configuration packages, i.e. packages that contains both debug and release artifacts. Lets see an example:</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>There is a complete example in <a class="reference external" href="https://github.com/memsharded/qmake_example">https://github.com/memsharded/qmake_example</a>
 This project will depend on a multi-configuration (debug/release) “Hello World” package, that should be installed first:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/hello_multi_config
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/hello_multi_config
 $ <span class="nb">cd</span> hello_multi_config
 $ conan create user/channel
 </pre></div>
 </div>
 <p>This hello package is created with cmake, but that doesn’t matter, it can be consumed from a qmake project:</p>
 <p>Then, you can get the qmake project and build it, both for debug and release (this example has been tested on linux):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/qmake_example
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/qmake_example
 $ <span class="nb">cd</span> qmake_example
 $ conan install .
 $ qmake

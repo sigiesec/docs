@@ -220,19 +220,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>If you are a vim user, you are possibly already also a user of <a class="reference external" href="http://valloric.github.io/YouCompleteMe/">YouCompleteMe</a>.</p>
 <p>With this generator, you can create the necessary files for your project dependencies, so YouCompleteMe
 will show symbols from your conan installed dependencies for your project.
-You only have to add the <code class="docutils literal notranslate"><span class="pre">ycm</span></code> generator to your <code class="docutils literal notranslate"><span class="pre">conanfile</span></code>:</p>
+You only have to add the <code class="docutils literal"><span class="pre">ycm</span></code> generator to your <code class="docutils literal"><span class="pre">conanfile</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><em>conanfile.txt</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> [generators]
+<div class="highlight-text"><div class="highlight"><pre><span></span> [generators]
  ycm
 </pre></div>
 </div>
 </div>
 <p>It will generate a <em>conan_ycm_extra_conf.py</em> and a <em>conan_ycm_flags.json</em> file in your folder. Those files will be overwritten each time you run <strong class="command">conan install</strong>.</p>
-<p>In order to make YouCompleteMe work, copy/move <em>conan_ycm_extra_conf.py</em> to your project base folder (usually the one containing your <code class="docutils literal notranslate"><span class="pre">conanfile</span></code>) and rename it to <em>.ycm_extra_conf.py</em>.</p>
+<p>In order to make YouCompleteMe work, copy/move <em>conan_ycm_extra_conf.py</em> to your project base folder (usually the one containing your <code class="docutils literal"><span class="pre">conanfile</span></code>) and rename it to <em>.ycm_extra_conf.py</em>.</p>
 <p>You can (and probably should) edit this file to add your project specific configuration.
 If your base folder is different from your build folder, link the <em>conan_ycm_flags.json</em> from your build folder to your base folder.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from your base folder</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># from your base folder</span>
 $ cp build/conan_ycm_extra_conf.py .ycm_extra_conf.py
 $ ln -s build/conan_ycm_flags.json conan_ycm_flags.json
 </pre></div>

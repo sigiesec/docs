@@ -221,18 +221,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="git-logo-git">
 <h1><img alt="git_logo" src="../_images/git_logo.png" /> Git<a class="headerlink" href="#git-logo-git" title="Permalink to this headline">¶</a></h1>
-<p><strong>Conan</strong> uses plain text files, <code class="docutils literal notranslate"><span class="pre">conanfile.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code>, so it’s perfectly
+<p><strong>Conan</strong> uses plain text files, <code class="docutils literal"><span class="pre">conanfile.txt</span></code> or <code class="docutils literal"><span class="pre">conanfile.py</span></code>, so it’s perfectly
 suitable for the use of any version control system. We use and highly recommend git.</p>
 <p>Check <a class="reference internal" href="../using_packages/workflows.html#workflows"><span class="std std-ref">workflows section</span></a> to know more about project layouts that naturally fit version control systems.</p>
 <div class="section" id="temporary-files">
 <h2>Temporary files<a class="headerlink" href="#temporary-files" title="Permalink to this headline">¶</a></h2>
-<p><strong>Conan</strong> generates some files than should not be committed, as <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.*</span></code> and <code class="docutils literal notranslate"><span class="pre">conaninfo.txt</span></code>.
+<p><strong>Conan</strong> generates some files than should not be committed, as <code class="docutils literal"><span class="pre">conanbuildinfo.*</span></code> and <code class="docutils literal"><span class="pre">conaninfo.txt</span></code>.
 These files can change in different computers and are re-generated with the <strong>conan install</strong> command.</p>
 <p>However, these files are typically generated in the <strong>build tree</strong> not in the source tree, so they
 will be naturally disregarded. Just take care in case you have created the <strong>build</strong> folder inside
-your project (we do this in several examples in this docs). In this case, you should add it to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file:</p>
+your project (we do this in several examples in this docs). In this case, you should add it to your <code class="docutils literal"><span class="pre">.gitignore</span></code> file:</p>
 <p><strong>.gitignore</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>...
+<div class="highlight-text"><div class="highlight"><pre><span></span>...
 build/
 </pre></div>
 </div>

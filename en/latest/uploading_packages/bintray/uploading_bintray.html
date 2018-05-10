@@ -227,7 +227,7 @@ Repository form making sure to select Conan as the Type.</p>
 </li>
 <li><p class="first"><strong>Add your Bintray repository</strong></p>
 <p>Add a Conan remote in your Conan client pointing to your Bintray repository</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add &lt;REMOTE&gt; &lt;YOUR_BINTRAY_REPO_URL&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add &lt;REMOTE&gt; &lt;YOUR_BINTRAY_REPO_URL&gt;
 </pre></div>
 </div>
 <p>Use the Set Me Up button on your repository’s page on Bintray to get its URL.</p>
@@ -239,7 +239,7 @@ check the API Key section.</p>
 </li>
 <li><p class="first"><strong>Set your user credentials</strong></p>
 <p>Add your conan user with the API Key, your remote and your Bintray user name:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan user -p &lt;APIKEY&gt; -r &lt;REMOTE&gt; &lt;USERNAME&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan user -p &lt;APIKEY&gt; -r &lt;REMOTE&gt; &lt;USERNAME&gt;
 </pre></div>
 </div>
 </li>
@@ -252,9 +252,9 @@ repositories in the following order of priority:</p>
 <li>Your own repository</li>
 </ol>
 </div></blockquote>
-<p>If you want to have your own repository prioritized, please use the <code class="docutils literal notranslate"><span class="pre">--insert</span></code> command line option
+<p>If you want to have your own repository prioritized, please use the <code class="docutils literal"><span class="pre">--insert</span></code> command line option
 when adding it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add &lt;your_remote&gt; &lt;your_url&gt; --insert <span class="m">0</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add &lt;your_remote&gt; &lt;your_url&gt; --insert <span class="m">0</span>
 $ conan remote list
   &lt;your remote&gt;: &lt;your_url&gt; <span class="o">[</span>Verify SSL: True<span class="o">]</span>
   conan-center: https://conan.bintray.com <span class="o">[</span>Verify SSL: True<span class="o">]</span>

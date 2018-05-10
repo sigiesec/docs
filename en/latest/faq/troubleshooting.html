@@ -207,7 +207,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>ERROR: Missing prebuilt package<a class="headerlink" href="#error-missing-prebuilt-package" title="Permalink to this headline">¶</a></h2>
 <p>When you are installing packages (with <strong class="command">conan install</strong> or <strong class="command">conan create</strong>) it is possible
 that you get an error like the following one:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>WARN: Can&#39;t find a &#39;libzmq/4.2.0@memsharded/testing&#39; package for the specified options and settings:
+<div class="highlight-text"><div class="highlight"><pre><span></span>WARN: Can&#39;t find a &#39;libzmq/4.2.0@memsharded/testing&#39; package for the specified options and settings:
 - Settings: arch=x86_64, build_type=Release, compiler=gcc, compiler.libcxx=libstdc++, compiler.version=4.9, os=Windows
 - Options: shared=False
 - Package ID: 7fe67dff831b24bc4a8b5db678a51f1be5e44e7c
@@ -216,7 +216,7 @@ ERROR: Missing prebuilt package for &#39;libzmq/4.2.0@memsharded/testing&#39;
 Try to build it from sources with &quot;--build libzmq&quot; or read &quot;http://docs.conan.io/en/latest/faq.html&quot;
 </pre></div>
 </div>
-<p>This means that the package recipe <code class="docutils literal notranslate"><span class="pre">libzmq/4.2.0&#64;memsharded/testing</span></code> exists, but for some reason
+<p>This means that the package recipe <code class="docutils literal"><span class="pre">libzmq/4.2.0&#64;memsharded/testing</span></code> exists, but for some reason
 there is no precompiled package for your current settings. Maybe the package creator didn’t build
 and shared pre-built packages at all and only uploaded the package recipe, or maybe they are only
 providing packages for some platforms or compilers. E.g. the package creator built packages
@@ -224,7 +224,7 @@ from the recipe for gcc 4.8 and 4.9, but you are using gcc 5.4.</p>
 <p>By default, conan doesn’t build packages from sources. There are several possibilities:</p>
 <ul class="simple">
 <li>You can try to build the package for your settings from sources, indicating some build
-policy as argument, like <code class="docutils literal notranslate"><span class="pre">--build</span> <span class="pre">libzmq</span></code> or <code class="docutils literal notranslate"><span class="pre">--build</span> <span class="pre">missing</span></code>. If the package recipe and the source
+policy as argument, like <code class="docutils literal"><span class="pre">--build</span> <span class="pre">libzmq</span></code> or <code class="docutils literal"><span class="pre">--build</span> <span class="pre">missing</span></code>. If the package recipe and the source
 code work for your settings you will have your binaries built locally and ready for use.</li>
 <li>If building from sources fail, you might want to fork the original recipe, improve it until it
 supports your configuration, and then use it. Most likely contributing back to the original
@@ -236,7 +236,7 @@ binaries under your own username too.</li>
 <span id="id1"></span><h2>ERROR: Invalid setting<a class="headerlink" href="#error-invalid-setting" title="Permalink to this headline">¶</a></h2>
 <p>It might happen sometimes, when you specify a setting not present in the defaults
 that you receive a message like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install -s compiler.version<span class="o">=</span><span class="m">4</span>.19 ...
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install -s compiler.version<span class="o">=</span><span class="m">4</span>.19 ...
 
 ERROR: Invalid setting <span class="s1">&#39;4.19&#39;</span> is not a valid <span class="s1">&#39;settings.compiler.version&#39;</span> value.
 Possible values are <span class="o">[</span><span class="s1">&#39;4.4&#39;</span>, <span class="s1">&#39;4.5&#39;</span>, <span class="s1">&#39;4.6&#39;</span>, <span class="s1">&#39;4.7&#39;</span>, <span class="s1">&#39;4.8&#39;</span>, <span class="s1">&#39;4.9&#39;</span>, <span class="s1">&#39;5.1&#39;</span>, <span class="s1">&#39;5.2&#39;</span>, <span class="s1">&#39;5.3&#39;</span>, <span class="s1">&#39;5.4&#39;</span>, <span class="s1">&#39;6.1&#39;</span>, <span class="s1">&#39;6.2&#39;</span><span class="o">]</span>
@@ -244,38 +244,38 @@ Read <span class="s2">&quot;http://docs.conan.io/en/latest/faq/troubleshooting.h
 </pre></div>
 </div>
 <p>This doesn’t mean that such architecture is not supported by conan, it is just that it is not present in the actual
-defaults settings. You can find in your user home folder <code class="docutils literal notranslate"><span class="pre">~/.conan/settings.yml</span></code> a settings file that you
+defaults settings. You can find in your user home folder <code class="docutils literal"><span class="pre">~/.conan/settings.yml</span></code> a settings file that you
 can modify, edit, add any setting or any value, with any nesting if necessary.</p>
-<p>As long as your team or users have the same settings (you can share with them the file), everything will work. The <code class="docutils literal notranslate"><span class="pre">settings.yml</span></code> file is just a
+<p>As long as your team or users have the same settings (you can share with them the file), everything will work. The <code class="docutils literal"><span class="pre">settings.yml</span></code> file is just a
 mechanism so users agree on a common spelling for typically settings. Also, if you think that some settings would
 be useful for many other conan users, please submit it as an issue or a pull request, so it is included in future
 releases.</p>
-<p>It is possible that some build helper, like <code class="docutils literal notranslate"><span class="pre">CMake</span></code> will not understand the new added settings,
+<p>It is possible that some build helper, like <code class="docutils literal"><span class="pre">CMake</span></code> will not understand the new added settings,
 don’t use them or even fail.
-Such helpers as <code class="docutils literal notranslate"><span class="pre">CMake</span></code> are simple utilities to translate from conan settings to the respective
+Such helpers as <code class="docutils literal"><span class="pre">CMake</span></code> are simple utilities to translate from conan settings to the respective
 build system syntax and command line arguments, so they can be extended or replaced with your own
 one that would handle your own private settings.</p>
 </div>
 <div class="section" id="error-setting-value-not-defined">
 <h2>ERROR: Setting value not defined<a class="headerlink" href="#error-setting-value-not-defined" title="Permalink to this headline">¶</a></h2>
 <p>When you install or create a package, it is possible to see an error like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ERROR: Hello/0.1@user/testing: <span class="s1">&#39;settings.arch&#39;</span> value not defined
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ERROR: Hello/0.1@user/testing: <span class="s1">&#39;settings.arch&#39;</span> value not defined
 </pre></div>
 </div>
-<p>This means that the recipe defined <code class="docutils literal notranslate"><span class="pre">settings</span> <span class="pre">=</span> <span class="pre">&quot;os&quot;,</span> <span class="pre">&quot;arch&quot;,</span> <span class="pre">...</span></code> but a value for the <code class="docutils literal notranslate"><span class="pre">arch</span></code> setting was
+<p>This means that the recipe defined <code class="docutils literal"><span class="pre">settings</span> <span class="pre">=</span> <span class="pre">&quot;os&quot;,</span> <span class="pre">&quot;arch&quot;,</span> <span class="pre">...</span></code> but a value for the <code class="docutils literal"><span class="pre">arch</span></code> setting was
 not provided either in a profile or in the command line. Make sure to specify a value for it in your profile,
 or in the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -s <span class="nv">arch</span><span class="o">=</span>x86 ...
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . -s <span class="nv">arch</span><span class="o">=</span>x86 ...
 </pre></div>
 </div>
 <p>If you are building a pure C library with gcc/clang, you might encounter an error like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ERROR: Hello/0.1@user/testing: <span class="s1">&#39;settings.compiler.libcxx&#39;</span> value not defined
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ERROR: Hello/0.1@user/testing: <span class="s1">&#39;settings.compiler.libcxx&#39;</span> value not defined
 </pre></div>
 </div>
 <p>Indeed, for building a C library, it is not necessary to define a C++ standard library. And if you provide a value,
 you might end with multiple packages for exactly the same binary. What has to be done is to remove such subsetting
 in your recipe:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">libcxx</span>
 </pre></div>
 </div>
@@ -288,14 +288,14 @@ The current workarounds would be:</p>
 <li>Install python in a path without spaces</li>
 <li>Use virtualenvs. Short guide:</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install virtualenvwrapper-win <span class="c1"># virtualenvwrapper if not Windows</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install virtualenvwrapper-win <span class="c1"># virtualenvwrapper if not Windows</span>
 $ mkvirtualenv conan
 <span class="o">(</span>conan<span class="o">)</span> $ pip install conan
 <span class="o">(</span>conan<span class="o">)</span> $ conan --help
 </pre></div>
 </div>
 <p>Then, when you will be using conan, for example in a new shell, you have to activate the virtualenv:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ workon conan
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ workon conan
 <span class="o">(</span>conan<span class="o">)</span> $ conan --help
 </pre></div>
 </div>

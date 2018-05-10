@@ -213,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>How to capture package version from text or build files<a class="headerlink" href="#how-to-capture-package-version-from-text-or-build-files" title="Permalink to this headline">¶</a></h1>
 <p>It is common that a library version number would be already encoded in a text file, in some build scripts, etc.
 Lets take as an example that we have the following library layout, that we want to create a package from it:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conanfile.py
+<div class="highlight-text"><div class="highlight"><pre><span></span>conanfile.py
 CMakeLists.txt
 src
    hello.cpp
@@ -222,20 +222,20 @@ src
 </div>
 <p>The <em>CMakeLists.txt</em> will have some variables to define the library version number. Lets assume for simplicity
 that it has some line like:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8</span><span class="p">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8</span><span class="p">)</span>
 <span class="nb">set</span><span class="p">(</span><span class="s">MY_LIBRARY_VERSION</span> <span class="s">1.2.3</span><span class="p">)</span> <span class="c"># This is the version we want</span>
 <span class="nb">add_library</span><span class="p">(</span><span class="s">hello</span> <span class="s">src/hello.cpp</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We will typically have in our <em>conanfile.py</em> package recipe:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.2.3&quot;</span>
 </pre></div>
 </div>
 <p>Usually this takes very little maintenance, and when the CMakeLists version is bumped, the <em>conanfile.py</em> version is bumped too.
 But if you want to only have to update the <em>CMakeLists.txt</em> version, you can extract the version dynamically, with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">load</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
@@ -252,7 +252,7 @@ But if you want to only have to update the <em>CMakeLists.txt</em> version, you 
     <span class="n">version</span> <span class="o">=</span> <span class="n">get_version</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Even if the <em>CMakeLists.txt</em> file is not exported to the local cache, it will still work, as the <code class="docutils literal notranslate"><span class="pre">get_version()</span></code> function returns None
+<p>Even if the <em>CMakeLists.txt</em> file is not exported to the local cache, it will still work, as the <code class="docutils literal"><span class="pre">get_version()</span></code> function returns None
 when it is not found, then taking the version number from the package metadata (layout).</p>
 </div>
 

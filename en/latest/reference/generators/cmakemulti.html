@@ -232,28 +232,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="cmake-multi">
 <span id="cmakemulti-generator"></span><h1><cite>cmake_multi</cite><a class="headerlink" href="#cmake-multi" title="Permalink to this headline">¶</a></h1>
 <div class="out-reference-box docutils container">
-This is the reference page for <code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generator.
+This is the reference page for <code class="docutils literal"><span class="pre">cmake_multi</span></code> generator.
 Go to <a class="reference internal" href="../../integrations/cmake.html#cmake"><span class="std std-ref">Integrations/CMake</span></a> if you want to learn how to integrate your project or recipes with CMake.</div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install -g cmake_multi -s <span class="nv">build_type</span><span class="o">=</span>Release ...
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install -g cmake_multi -s <span class="nv">build_type</span><span class="o">=</span>Release ...
 $ conan install -g cmake_multi -s <span class="nv">build_type</span><span class="o">=</span>Debug ...
 </pre></div>
 </div>
 <p>These commands will generate 3 files:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">conanbuildinfo_release.cmake</span></code>: Variables adjusted only for build_type Release</li>
-<li><code class="docutils literal notranslate"><span class="pre">conanbuildinfo_debug.cmake</span></code>: Variables adjusted only for build_type Debug</li>
-<li><code class="docutils literal notranslate"><span class="pre">conanbuildinfo_multi.cmake</span></code>: Which includes the other two, and enables its use</li>
+<li><code class="docutils literal"><span class="pre">conanbuildinfo_release.cmake</span></code>: Variables adjusted only for build_type Release</li>
+<li><code class="docutils literal"><span class="pre">conanbuildinfo_debug.cmake</span></code>: Variables adjusted only for build_type Debug</li>
+<li><code class="docutils literal"><span class="pre">conanbuildinfo_multi.cmake</span></code>: Which includes the other two, and enables its use</li>
 </ul>
 </div>
 <div class="section" id="variables-in-conanbuildinfo-release-cmake">
 <h2>Variables in conanbuildinfo_release.cmake<a class="headerlink" href="#variables-in-conanbuildinfo-release-cmake" title="Permalink to this headline">¶</a></h2>
-<p>Same as <a class="reference internal" href="cmake.html#conanbuildinfocmake-variables"><span class="std std-ref">conanbuildinfo.cmake</span></a> with suffix <code class="docutils literal notranslate"><span class="pre">_RELEASE</span></code></p>
+<p>Same as <a class="reference internal" href="cmake.html#conanbuildinfocmake-variables"><span class="std std-ref">conanbuildinfo.cmake</span></a> with suffix <code class="docutils literal"><span class="pre">_RELEASE</span></code></p>
 </div>
 <div class="section" id="variables-in-conanbuildinfo-debug-cmake">
 <h2>Variables in conanbuildinfo_debug.cmake<a class="headerlink" href="#variables-in-conanbuildinfo-debug-cmake" title="Permalink to this headline">¶</a></h2>
-<p>Same as <a class="reference internal" href="cmake.html#conanbuildinfocmake-variables"><span class="std std-ref">conanbuildinfo.cmake</span></a> with suffix <code class="docutils literal notranslate"><span class="pre">_DEBUG</span></code></p>
+<p>Same as <a class="reference internal" href="cmake.html#conanbuildinfocmake-variables"><span class="std std-ref">conanbuildinfo.cmake</span></a> with suffix <code class="docutils literal"><span class="pre">_DEBUG</span></code></p>
 </div>
 <div class="section" id="available-methods">
 <h2>Available Methods<a class="headerlink" href="#available-methods" title="Permalink to this headline">¶</a></h2>

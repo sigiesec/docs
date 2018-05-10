@@ -219,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-export-pkg">
 <span id="id1"></span><h1>conan export-pkg<a class="headerlink" href="#conan-export-pkg" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan export-pkg <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-e ENV<span class="o">]</span> <span class="o">[</span>-f<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan export-pkg <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-e ENV<span class="o">]</span> <span class="o">[</span>-f<span class="o">]</span>
                    <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span> <span class="o">[</span>-o OPTIONS<span class="o">]</span> <span class="o">[</span>-pr PROFILE<span class="o">]</span>
                    <span class="o">[</span>-pf PACKAGE_FOLDER<span class="o">]</span> <span class="o">[</span>-s SETTINGS<span class="o">]</span> <span class="o">[</span>-sf SOURCE_FOLDER<span class="o">]</span>
                    path reference
@@ -229,7 +229,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 method applied to the local folders ‘–source-folder’ and ‘–build-folder’ and
 creates a new package in the local cache for the specified ‘reference’ and for
 the specified ‘–settings’, ‘–options’ and or ‘–profile’.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>positional arguments:
+<div class="highlight-text"><div class="highlight"><pre><span></span>positional arguments:
   path                  Path to a folder containing a conanfile.py or to a
                         recipe file e.g., my_folder/conanfile.py
   reference             user/channel or pkg/version@user/channel (if name and
@@ -267,16 +267,16 @@ optional arguments:
                         directory can also be specified
 </pre></div>
 </div>
-<p><strong class="command">conan export-pkg</strong> executes the following methods of a <em>conanfile.py</em> whenever <code class="docutils literal notranslate"><span class="pre">--package-folder</span></code> is used:</p>
+<p><strong class="command">conan export-pkg</strong> executes the following methods of a <em>conanfile.py</em> whenever <code class="docutils literal"><span class="pre">--package-folder</span></code> is used:</p>
 <ol class="arabic simple">
-<li><code class="docutils literal notranslate"><span class="pre">config_options()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">configure()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">requirements()</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">package_id()</span></code></li>
+<li><code class="docutils literal"><span class="pre">config_options()</span></code></li>
+<li><code class="docutils literal"><span class="pre">configure()</span></code></li>
+<li><code class="docutils literal"><span class="pre">requirements()</span></code></li>
+<li><code class="docutils literal"><span class="pre">package_id()</span></code></li>
 </ol>
 <p>In case a package folder is not specified, this command will also execute:</p>
 <ol class="arabic simple" start="5">
-<li><code class="docutils literal notranslate"><span class="pre">package()</span></code></li>
+<li><code class="docutils literal"><span class="pre">package()</span></code></li>
 </ol>
 <p>Note that this is <strong>not</strong> the normal or recommended flow for creating Conan packages,
 as packages created this way will not have a reproducible build from sources.
@@ -289,59 +289,59 @@ cache.</li>
 </ul>
 </div></blockquote>
 <p>The command <strong class="command">conan new &lt;ref&gt; --bare</strong> will create a simple recipe that could be used in combination
-with the <code class="docutils literal notranslate"><span class="pre">export-pkg</span></code> command. Check this <a class="reference internal" href="../../../creating_packages/existing_binaries.html#existing-binaries"><span class="std std-ref">How to package existing binaries</span></a>.</p>
+with the <code class="docutils literal"><span class="pre">export-pkg</span></code> command. Check this <a class="reference internal" href="../../../creating_packages/existing_binaries.html#existing-binaries"><span class="std std-ref">How to package existing binaries</span></a>.</p>
 <p><strong class="command">export-pkg</strong> has two different modes of operation:</p>
 <ul class="simple">
-<li>Specifying <strong class="command">--package-folder</strong> will perform a copy of the given folder, without executing the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method.
+<li>Specifying <strong class="command">--package-folder</strong> will perform a copy of the given folder, without executing the <code class="docutils literal"><span class="pre">package()</span></code> method.
 Use it if you have already created the package, for example with <strong class="command">conan package</strong> or
-with <code class="docutils literal notranslate"><span class="pre">cmake.install()</span></code> from the <code class="docutils literal notranslate"><span class="pre">build()</span></code> step.</li>
-<li>Specifying <strong class="command">--build-folder</strong> and/or <strong class="command">--source-folder</strong> will execute the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method,
+with <code class="docutils literal"><span class="pre">cmake.install()</span></code> from the <code class="docutils literal"><span class="pre">build()</span></code> step.</li>
+<li>Specifying <strong class="command">--build-folder</strong> and/or <strong class="command">--source-folder</strong> will execute the <code class="docutils literal"><span class="pre">package()</span></code> method,
 to filter, select and arrange the layout of the artifacts.</li>
 </ul>
 <p><strong>Examples</strong>:</p>
 <ul>
 <li><p class="first">Create a package from a directory containing the binaries for Windows/x86/Release:</p>
 <p>Having these files:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Release_x86/lib/libmycoollib.a
+<div class="highlight-text"><div class="highlight"><pre><span></span>Release_x86/lib/libmycoollib.a
 Release_x86/lib/other.a
 Release_x86/include/mylib.h
 Release_x86/include/other.h
 </pre></div>
 </div>
 <p>Run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare  <span class="c1"># In case you still don&#39;t have a recipe for the binaries</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 --bare  <span class="c1"># In case you still don&#39;t have a recipe for the binaries</span>
 $ conan export-pkg . Hello/0.1@user/stable -s <span class="nv">os</span><span class="o">=</span>Windows -s <span class="nv">arch</span><span class="o">=</span>x86 -s <span class="nv">build_type</span><span class="o">=</span>Release --build-folder<span class="o">=</span>Release_x86
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create a package from a user folder build and sources folders:</p>
 <p>Given these files in the current folder</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sources/include/mylib.h
+<div class="highlight-text"><div class="highlight"><pre><span></span>sources/include/mylib.h
 sources/src/file.cpp
 build/lib/mylib.lib
 build/lib/mylib.tmp
 build/file.obj
 </pre></div>
 </div>
-<p>And assuming the <code class="docutils literal notranslate"><span class="pre">Hello/0.1&#64;user/stable</span></code> recipe has a <code class="docutils literal notranslate"><span class="pre">package()</span></code> method like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>And assuming the <code class="docutils literal"><span class="pre">Hello/0.1&#64;user/stable</span></code> recipe has a <code class="docutils literal"><span class="pre">package()</span></code> method like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.h&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;include&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;include&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.lib&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;lib&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Then, the following code will create a package in the conan local cache:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan export-pkg . Hello/0.1@user/stable -pr<span class="o">=</span>myprofile --source-folder<span class="o">=</span>sources --build-folder<span class="o">=</span>build
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan export-pkg . Hello/0.1@user/stable -pr<span class="o">=</span>myprofile --source-folder<span class="o">=</span>sources --build-folder<span class="o">=</span>build
 </pre></div>
 </div>
 <p>And such package will contain just the files:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>include/mylib.h
+<div class="highlight-text"><div class="highlight"><pre><span></span>include/mylib.h
 lib/mylib.lib
 </pre></div>
 </div>
 </li>
 <li><p class="first">Building a conan package (for architecture x86) in a local directory and then send it to the local cache:</p>
 <p><strong>conanfile.py</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span><span class="p">,</span> <span class="n">tools</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span><span class="p">,</span> <span class="n">tools</span>
 
 <span class="k">class</span> <span class="nc">LibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
@@ -365,7 +365,7 @@ lib/mylib.lib
 <strong class="command">conan install</strong> to install the requirements and generate the info files, <strong class="command">conan build</strong> to
 build the package, and finally <strong class="command">conan export-pkg</strong> to send the binary files to a package in the
 local cache:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">source</span> . --source-folder src
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">source</span> . --source-folder src
 $ conan install --install-folder build_x86 -s <span class="nv">arch</span><span class="o">=</span>x86
 $ conan build . --build-folder build_x86 --source-folder src
 <span class="hll">$ conan export-pkg . Hello/0.1@user/stable --build-folder build_x86

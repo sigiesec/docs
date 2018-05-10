@@ -213,15 +213,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="link-apple-framework"></span><h1>How to link with Apple Frameworks<a class="headerlink" href="#how-to-link-with-apple-frameworks" title="Permalink to this headline">¶</a></h1>
 <p>It is common in OSx that your conan package needs to link with a complete Apple framework,
 and, of course, you want to propagate this information to all projects/libraries that uses your package.</p>
-<p>With regular libraries we use <code class="docutils literal notranslate"><span class="pre">self.cpp_info.libs</span></code> object to append to it all the libraries:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>With regular libraries we use <code class="docutils literal"><span class="pre">self.cpp_info.libs</span></code> object to append to it all the libraries:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SDL2&quot;</span><span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;OpenGL32&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>With frameworks we need to declare the “-framework flag” as a linker flag:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SDL2&quot;</span><span class="p">]</span>
 
@@ -233,10 +233,10 @@ and, of course, you want to propagate this information to all projects/libraries
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">sharedlinkflags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">exelinkflags</span>
 </pre></div>
 </div>
-<p>In the previous example we are using <code class="docutils literal notranslate"><span class="pre">self.cpp_info.exelinkflags</span></code>. If we are using CMake to consume this package, it will only link those
-frameworks if we are building an executable and <code class="docutils literal notranslate"><span class="pre">sharedlinkflags</span></code> will only apply if we are building a shared library.</p>
-<p>If we are not using CMake to consume this package <code class="docutils literal notranslate"><span class="pre">sharedlinkflags</span></code> and <code class="docutils literal notranslate"><span class="pre">exelinkflags</span></code> are used indistinctly.
-In the example above we are assigning in the last line <code class="docutils literal notranslate"><span class="pre">sharedlinkflags</span></code> with <code class="docutils literal notranslate"><span class="pre">exelinkflags</span></code>, so no matter what the consumer will build,
+<p>In the previous example we are using <code class="docutils literal"><span class="pre">self.cpp_info.exelinkflags</span></code>. If we are using CMake to consume this package, it will only link those
+frameworks if we are building an executable and <code class="docutils literal"><span class="pre">sharedlinkflags</span></code> will only apply if we are building a shared library.</p>
+<p>If we are not using CMake to consume this package <code class="docutils literal"><span class="pre">sharedlinkflags</span></code> and <code class="docutils literal"><span class="pre">exelinkflags</span></code> are used indistinctly.
+In the example above we are assigning in the last line <code class="docutils literal"><span class="pre">sharedlinkflags</span></code> with <code class="docutils literal"><span class="pre">exelinkflags</span></code>, so no matter what the consumer will build,
 it will indicate to the linker to link with the specified frameworks.</p>
 </div>
 

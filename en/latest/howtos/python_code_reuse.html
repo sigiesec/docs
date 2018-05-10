@@ -225,25 +225,25 @@ useful for other Conan users, please propose it in a github issue.</p>
 <ul class="simple">
 <li>To put common code in files, as explained <a class="reference internal" href="#split-conanfile"><span class="std std-ref">below</span></a>. This code
 has to be exported into the recipe itself.</li>
-<li>To create a Conan package with the common python code, and then <code class="docutils literal notranslate"><span class="pre">require</span></code> it from the recipe.</li>
+<li>To create a Conan package with the common python code, and then <code class="docutils literal"><span class="pre">require</span></code> it from the recipe.</li>
 </ul>
 <p>This howto explains the latter.</p>
 <div class="section" id="a-basic-python-package">
 <h2>A basic Python package<a class="headerlink" href="#a-basic-python-package" title="Permalink to this headline">¶</a></h2>
 <p>Let’s begin with a simple python package, a “hello world” functionality that we want to package and reuse:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello World from Python!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To create a package, all we need to do is create the following layout:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-| hello.py
+<div class="highlight-text"><div class="highlight"><pre><span></span>-| hello.py
  | __init__.py
  | conanfile.py
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> is blank.
-It is not necessary to compile code, so the package recipe <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> is quite simple:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<p>The <code class="docutils literal"><span class="pre">__init__.py</span></code> is blank.
+It is not necessary to compile code, so the package recipe <code class="docutils literal"><span class="pre">conanfile.py</span></code> is quite simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">HelloPythonConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;HelloPy&quot;</span>
@@ -258,32 +258,32 @@ It is not necessary to compile code, so the package recipe <code class="docutils
         <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">PYTHONPATH</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">exports</span></code> will copy both the <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> into the recipe. The <code class="docutils literal notranslate"><span class="pre">package()</span></code> method is also obvious: to
+<p>The <code class="docutils literal"><span class="pre">exports</span></code> will copy both the <code class="docutils literal"><span class="pre">hello.py</span></code> and the <code class="docutils literal"><span class="pre">__init__.py</span></code> into the recipe. The <code class="docutils literal"><span class="pre">package()</span></code> method is also obvious: to
 construct the package just copy the python sources.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> adds the current package folder to the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> conan environment variable. It will not affect the real
+<p>The <code class="docutils literal"><span class="pre">package_info()</span></code> adds the current package folder to the <code class="docutils literal"><span class="pre">PYTHONPATH</span></code> conan environment variable. It will not affect the real
 environment variable unless the end user wants it.</p>
-<p>It can be seen that this recipe would be practically the same for most python packages, so it could be factored in a <code class="docutils literal notranslate"><span class="pre">PythonConanFile</span></code>
+<p>It can be seen that this recipe would be practically the same for most python packages, so it could be factored in a <code class="docutils literal"><span class="pre">PythonConanFile</span></code>
 base class to further simplify it (open a feature request, or better a pull request :) )</p>
 <p>With this recipe, all we have to do is:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . memsharded/testing
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . memsharded/testing
 </pre></div>
 </div>
 <p>Of course if you want to share the package with your team, you can <strong class="command">conan upload</strong> it to a remote server. But to create and test the
 package, we can do everything locally.</p>
 <p>Now the package is ready for consumption. In another folder, we can create a <em>conanfile.txt</em> (or a <em>conanfile.py</em> if we prefer):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
+<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
 HelloPy/0.1@memsharded/testing
 </pre></div>
 </div>
 <p>And install it with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -g virtualenv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install . -g virtualenv
 </pre></div>
 </div>
-<p>Creating the above <code class="docutils literal notranslate"><span class="pre">conanfile.txt</span></code> might be unnecessary for this simple example, as you can directly run
+<p>Creating the above <code class="docutils literal"><span class="pre">conanfile.txt</span></code> might be unnecessary for this simple example, as you can directly run
 <strong class="command">conan install HelloPy/0.1&#64;memsharded/testing -g virtualenv</strong>, however, using the file is the canonical way.</p>
-<p>The specified <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> generator will create an <code class="docutils literal notranslate"><span class="pre">activate</span></code> script (in Windows <em>activate.bat</em>), that basically contains the
-environment, in this case, the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>. Once we activate it, we are able to find the package in the path and use it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ activate
+<p>The specified <code class="docutils literal"><span class="pre">virtualenv</span></code> generator will create an <code class="docutils literal"><span class="pre">activate</span></code> script (in Windows <em>activate.bat</em>), that basically contains the
+environment, in this case, the <code class="docutils literal"><span class="pre">PYTHONPATH</span></code>. Once we activate it, we are able to find the package in the path and use it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ activate
 $ python
 Python <span class="m">2</span>.7.12 <span class="o">(</span>v2.7.12:d33e0cf91556, Jun <span class="m">27</span> <span class="m">2016</span>, <span class="m">15</span>:19:22<span class="o">)</span> <span class="o">[</span>MSC v.1500 <span class="m">32</span> bit <span class="o">(</span>Intel<span class="o">)]</span> on win32
 ...
@@ -300,7 +300,7 @@ Hello World from Python!
 <div class="section" id="requiring-a-python-conan-package">
 <h3>Requiring a python conan package<a class="headerlink" href="#requiring-a-python-conan-package" title="Permalink to this headline">¶</a></h3>
 <p>As the conan recipes are python code itself, it is easy to reuse python packages in them. A basic recipe using the created package would be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">HelloPythonReuseConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;HelloPy/0.1@memsharded/testing&quot;</span>
@@ -310,11 +310,11 @@ Hello World from Python!
         <span class="n">hello</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">requires</span></code> section is just referencing the previously created package. The functionality of that package can be used in several
-methods of the recipe: <code class="docutils literal notranslate"><span class="pre">source()</span></code>, <code class="docutils literal notranslate"><span class="pre">build()</span></code>, <code class="docutils literal notranslate"><span class="pre">package()</span></code> and <code class="docutils literal notranslate"><span class="pre">package_info()</span></code>, i.e. all of the methods used for creating the
+<p>The <code class="docutils literal"><span class="pre">requires</span></code> section is just referencing the previously created package. The functionality of that package can be used in several
+methods of the recipe: <code class="docutils literal"><span class="pre">source()</span></code>, <code class="docutils literal"><span class="pre">build()</span></code>, <code class="docutils literal"><span class="pre">package()</span></code> and <code class="docutils literal"><span class="pre">package_info()</span></code>, i.e. all of the methods used for creating the
 package itself. Note that in other places it is not possible, as it would require the dependencies of the recipe to be already retrieved,
 and such dependencies cannot be retrieved until the basic evaluation of the recipe has been executed.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install .
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install .
 ...
 $ conan build .
 Hello World from Python!
@@ -324,13 +324,13 @@ Hello World from Python!
 <div class="section" id="sharing-a-python-module">
 <h3>Sharing a python module<a class="headerlink" href="#sharing-a-python-module" title="Permalink to this headline">¶</a></h3>
 <p>Another approach is sharing a python module and exporting within the recipe.</p>
-<p id="split-conanfile">Lets write for example a <code class="docutils literal notranslate"><span class="pre">msgs.py</span></code> file and put it besides the <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_msg</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+<p id="split-conanfile">Lets write for example a <code class="docutils literal"><span class="pre">msgs.py</span></code> file and put it besides the <code class="docutils literal"><span class="pre">conanfile.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_msg</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
     <span class="n">output</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And then the main <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> would be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<p>And then the main <code class="docutils literal"><span class="pre">conanfile.py</span></code> would be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">from</span> <span class="nn">msgs</span> <span class="kn">import</span> <span class="n">build_msg</span>
 
 <span class="k">class</span> <span class="nc">ConanFileToolsTest</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -343,17 +343,17 @@ Hello World from Python!
         <span class="c1"># ...</span>
 </pre></div>
 </div>
-<p>It is important to note that such <code class="docutils literal notranslate"><span class="pre">msgs.py</span></code> file <strong>must be exported</strong> too when exporting the package, because package recipes must be
+<p>It is important to note that such <code class="docutils literal"><span class="pre">msgs.py</span></code> file <strong>must be exported</strong> too when exporting the package, because package recipes must be
 self-contained.</p>
-<p>The code reuse can also be done in the form of a base class, something like a file <code class="docutils literal notranslate"><span class="pre">base_conan.py</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<p>The code reuse can also be done in the form of a base class, something like a file <code class="docutils literal"><span class="pre">base_conan.py</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">ConanBase</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="c1"># common code here</span>
 </pre></div>
 </div>
 <p>And then:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">from</span> <span class="nn">base_conan</span> <span class="kn">import</span> <span class="n">ConanBase</span>
 
 <span class="k">class</span> <span class="nc">ConanFileToolsTest</span><span class="p">(</span><span class="n">ConanBase</span><span class="p">):</span>

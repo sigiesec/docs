@@ -220,12 +220,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>You can use Conan to <a class="reference internal" href="../systems_cross_building/cross_building.html#cross-building-android"><span class="std std-ref">cross-build your libraries for Android</span></a> in different architectures.
 If you are using Android Studio for your Android application development, you can integrate it conan to automate the
 library building for the different architectures that you want to support in your project.</p>
-<p>Here is an example of how to integrate the <code class="docutils literal notranslate"><span class="pre">libpng</span></code> conan package library in an Android application, but any library
+<p>Here is an example of how to integrate the <code class="docutils literal"><span class="pre">libpng</span></code> conan package library in an Android application, but any library
 that can be cross-compiled to Android could be used using the same procedure.</p>
-<p>We are going to start from the “Hello World” wizard application and then will add it the <code class="docutils literal notranslate"><span class="pre">libpng</span></code> C library:</p>
+<p>We are going to start from the “Hello World” wizard application and then will add it the <code class="docutils literal"><span class="pre">libpng</span></code> C library:</p>
 <ol class="arabic simple">
 <li>Follow the <a class="reference internal" href="../systems_cross_building/cross_building.html#cross-building-android"><span class="std std-ref">cross-build your libraries for Android</span></a> guide to create
-a standalone toolchain and create a profile <code class="docutils literal notranslate"><span class="pre">android_21_arm_clang</span></code> for Android.
+a standalone toolchain and create a profile <code class="docutils literal"><span class="pre">android_21_arm_clang</span></code> for Android.
 You can also use the NDK that the Android Studio installs.</li>
 <li>Create a new Android Studio project and include C++ support.</li>
 </ol>
@@ -247,10 +247,10 @@ toolchain created in step 1.</p>
 </ol>
 <blockquote>
 <div><img alt="wizard5" src="../_images/wizard5.png" /></div></blockquote>
-<p>6. Change to the <cite>project view</cite> and in the <cite>app</cite> folder create a <code class="docutils literal notranslate"><span class="pre">conanfile.txt</span></code> with
+<p>6. Change to the <cite>project view</cite> and in the <cite>app</cite> folder create a <code class="docutils literal"><span class="pre">conanfile.txt</span></code> with
 the following contents:</p>
 <p><strong>conanfile.txt</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
+<div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
 libpng/1.6.23@lasote/stable
 
 [generators]
@@ -258,9 +258,9 @@ cmake
 </pre></div>
 </div>
 <ol class="arabic simple" start="7">
-<li>Open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file from the app folder and replace the contents with:</li>
+<li>Open the <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> file from the app folder and replace the contents with:</li>
 </ol>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cmake_minimum_required(VERSION 3.4.1)
+<div class="highlight-text"><div class="highlight"><pre><span></span>cmake_minimum_required(VERSION 3.4.1)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/conan_build/conanbuildinfo.cmake)
 set(CMAKE_CXX_COMPILER_VERSION &quot;5.0&quot;) # Unknown miss-detection of the compiler by CMake
@@ -270,12 +270,12 @@ add_library(native-lib SHARED src/main/cpp/native-lib.cpp)
 target_link_libraries(native-lib CONAN_PKG::libpng)
 </pre></div>
 </div>
-<p>8. Open the <em>app/build.gradle</em> file, we are configuring the architectures we want to build specifying adding a new task <code class="docutils literal notranslate"><span class="pre">conanInstall</span></code>
+<p>8. Open the <em>app/build.gradle</em> file, we are configuring the architectures we want to build specifying adding a new task <code class="docutils literal"><span class="pre">conanInstall</span></code>
 that will call <strong class="command">conan install</strong> to install the requirements:</p>
 <ul class="simple">
 <li>In the defaultConfig section, append:</li>
 </ul>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">ndk</span> <span class="o">{</span>
+<div class="highlight-groovy"><div class="highlight"><pre><span></span><span class="n">ndk</span> <span class="o">{</span>
    <span class="c1">// Specifies the ABI configurations of your native</span>
    <span class="c1">// libraries Gradle should build and package with your APK.</span>
    <span class="n">abiFilters</span> <span class="s1">&#39;armeabi-v7a&#39;</span>
@@ -285,7 +285,7 @@ that will call <strong class="command">conan install</strong> to install the req
 <ul class="simple">
 <li>After the android block:</li>
 </ul>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>task conanInstall {
+<div class="highlight-text"><div class="highlight"><pre><span></span>task conanInstall {
     def buildDir = new File(&quot;app/conan_build&quot;)
     buildDir.mkdirs()
     // if you have problems running the command try to specify the absolute
@@ -305,10 +305,10 @@ that will call <strong class="command">conan install</strong> to install the req
 </pre></div>
 </div>
 <ol class="arabic simple" start="9">
-<li>Finally open the default example cpp library in <code class="docutils literal notranslate"><span class="pre">app/src/main/cpp/native-lib.cpp</span></code> and include some lines using your library.
+<li>Finally open the default example cpp library in <code class="docutils literal"><span class="pre">app/src/main/cpp/native-lib.cpp</span></code> and include some lines using your library.
 Be careful with the JNICALL name if you used other app name in the wizard:</li>
 </ol>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;jni.h&gt;</span><span class="cp"></span>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;jni.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;png.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;zlib.h&quot;</span><span class="cp"></span>
@@ -330,7 +330,7 @@ Be careful with the JNICALL name if you used other app name in the wizard:</li>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Build your project normally, conan will create a “conan” folder with a folder for each different architecture you have speified in the abiFilters with a <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code> file.</p>
+<p>Build your project normally, conan will create a “conan” folder with a folder for each different architecture you have speified in the abiFilters with a <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code> file.</p>
 <p>Then run the app using an x86 emulator for best performance:</p>
 <p><img alt="wizard9" src="../_images/wizard9.png" /></p>
 <div class="admonition seealso">

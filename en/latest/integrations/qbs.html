@@ -217,11 +217,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="qbs">
 <span id="id1"></span><h1>qbs<a class="headerlink" href="#qbs" title="Permalink to this headline">¶</a></h1>
-<p>Conan provides a <strong>qbs</strong> generator, it will generate a <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.qbs</span></code> file that can be used for your
+<p>Conan provides a <strong>qbs</strong> generator, it will generate a <code class="docutils literal"><span class="pre">conanbuildinfo.qbs</span></code> file that can be used for your
 qbs builds.</p>
-<p>Add <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.qbs</span></code> as a reference on the project level and a Depends item with the name <code class="docutils literal notranslate"><span class="pre">conanbuildinfo</span></code>:</p>
+<p>Add <code class="docutils literal"><span class="pre">conanbuildinfo.qbs</span></code> as a reference on the project level and a Depends item with the name <code class="docutils literal"><span class="pre">conanbuildinfo</span></code>:</p>
 <p><strong>yourproject.qbs</strong></p>
-<div class="highlight-qbs notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">qbs</span>
+<div class="highlight-qbs"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">qbs</span>
 
 <span class="nx">Project</span> <span class="p">{</span>
    <span class="k">references:</span> <span class="p">[</span><span class="s2">&quot;conanbuildinfo.qbs&quot;</span><span class="p">]</span>
@@ -238,13 +238,13 @@ qbs builds.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This will include the product called <code class="docutils literal notranslate"><span class="pre">ConanBasicSetup</span></code> which holds all
+<p>This will include the product called <code class="docutils literal"><span class="pre">ConanBasicSetup</span></code> which holds all
 the necessary settings for all your dependencies.</p>
 <p>If you’d rather like to manually add each dependency, just replace
-<code class="docutils literal notranslate"><span class="pre">ConanBasicSetup</span></code> with the dependency you would like to include.
+<code class="docutils literal"><span class="pre">ConanBasicSetup</span></code> with the dependency you would like to include.
 You may also specify multiple dependencies:</p>
 <p><strong>yourproject.qbs</strong></p>
-<div class="highlight-qbs notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">qbs</span>
+<div class="highlight-qbs"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">qbs</span>
 
 <span class="nx">Project</span> <span class="p">{</span>
    <span class="k">references:</span> <span class="p">[</span><span class="s2">&quot;conanbuildinfo.qbs&quot;</span><span class="p">]</span>

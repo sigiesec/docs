@@ -213,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="profiles-default">
 <span id="default-profile"></span><h1>profiles/default<a class="headerlink" href="#profiles-default" title="Permalink to this headline">¶</a></h1>
 <p>This is the typical <em>~/.conan/profiles/default</em> file:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[build_requires]
+<div class="highlight-text"><div class="highlight"><pre><span></span>[build_requires]
 [settings]
     os=Macos
     arch=x86_64
@@ -228,11 +228,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The settings defaults are the setting values used whenever you issue a <strong class="command">conan install</strong> command over a <em>conanfile</em> in one of your
 projects. The initial values for these default settings are auto-detected the first time you run a <strong class="command">conan</strong> command.</p>
 <p>You can override the default settings using the <strong class="command">-s</strong> parameter in <strong class="command">conan install</strong> and <strong class="command">conan info</strong> commands but when you
-specify a profile, <strong class="command">conan install --profile gcc48</strong>, the default profile won’t be applied, unless you specify it with an <code class="docutils literal notranslate"><span class="pre">include()</span></code>
+specify a profile, <strong class="command">conan install --profile gcc48</strong>, the default profile won’t be applied, unless you specify it with an <code class="docutils literal"><span class="pre">include()</span></code>
 statement:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">my_clang_profile</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> include(default)
+<div class="highlight-text"><div class="highlight"><pre><span></span> include(default)
 
  [settings]
  compiler=clang
