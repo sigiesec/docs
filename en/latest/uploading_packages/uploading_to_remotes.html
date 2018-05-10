@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Uploading packages to remotes &mdash; conan 1.3.2 documentation</title>
+  <title>Uploading packages to remotes &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Uploading packages" href="../uploading_packages.html"/>
         <link rel="next" title="Using Bintray" href="using_bintray.html"/>
         <link rel="prev" title="Remotes" href="remotes.html"/>
@@ -199,29 +199,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="uploading-packages-to-remotes">
 <h1>Uploading packages to remotes<a class="headerlink" href="#uploading-packages-to-remotes" title="Permalink to this headline">¶</a></h1>
 <p>First, check if the remote you want to upload to is already in your current remote list:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote list
 </pre></div>
 </div>
 <p>You can add any remote easily. For a remote running in your machine, you could run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remote add my_local_server http://localhost:9300
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remote add my_local_server http://localhost:9300
 </pre></div>
 </div>
 <p>You can search any remote in the same way you search your computer. Actually, many conan commands
 can specify a specific remote.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan search -r<span class="o">=</span>my_local_server
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan search -r<span class="o">=</span>my_local_server
 </pre></div>
 </div>
 <p>Now, upload the package recipe and all the packages to your remote. In this example we are using
-our <code class="docutils literal"><span class="pre">my_local_server</span></code> remote, but you could use any other.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan upload Hello/0.1@demo/testing --all -r<span class="o">=</span>my_local_server
+our <code class="docutils literal notranslate"><span class="pre">my_local_server</span></code> remote, but you could use any other.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan upload Hello/0.1@demo/testing --all -r<span class="o">=</span>my_local_server
 </pre></div>
 </div>
 <p>You might be prompted for a username and password. The default conan server remote has a
 <strong>demo/demo</strong> account we can use for testing.</p>
-<p>The <code class="docutils literal"><span class="pre">--all</span></code> option will upload the package recipe plus all the binary packages. Now try again to
+<p>The <code class="docutils literal notranslate"><span class="pre">--all</span></code> option will upload the package recipe plus all the binary packages. Now try again to
 read the information from the remote (we refer to it as remote, even if it is running on your local
 machine, as it could be run on another server in your LAN):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan search Hello/0.1@demo/testing -r<span class="o">=</span>my_local_server
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan search Hello/0.1@demo/testing -r<span class="o">=</span>my_local_server
 </pre></div>
 </div>
 <div class="admonition note">
@@ -232,19 +232,19 @@ upload integrity and will only upload missing files.</p>
 <p>Now we can check if we are able to download and use them in a project. For that purpose, we first
 have to <strong>remove the local copies</strong>, otherwise the remote packages will not be downloaded. Since we
 have just uploaded them, they are identical to the local ones.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan remove Hello*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan remove Hello*
 $ conan search
 </pre></div>
 </div>
 <p>Since we have our test setup from the previous section, we can just use it for our test. Go to your
 package folder and run the tests again, now saying that we don’t want to build the sources again, we
 just want to check if we can download the binaries and use them:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create . demo/testing --not-export --build<span class="o">=</span>never
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing --not-export --build<span class="o">=</span>never
 </pre></div>
 </div>
 <p>You will see that the test is built, but the packages are not. The binaries are simply downloaded
 from your local server. You can check their existence on your local computer again with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan search
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan search
 </pre></div>
 </div>
 </div>
@@ -312,7 +312,7 @@ from your local server. You can check their existence on your local computer aga
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

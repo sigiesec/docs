@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Conan local cache: concurrency, Continuous Integration, isolation &mdash; conan 1.3.2 documentation</title>
+  <title>Conan local cache: concurrency, Continuous Integration, isolation &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Mastering conan" href="../mastering.html"/>
         <link rel="next" title="Systems and cross building" href="../systems_cross_building.html"/>
         <link rel="prev" title="Sharing the settings and other configuration" href="sharing_settings_and_config.html"/>
@@ -234,12 +234,12 @@ different user credentials, different user default settings, and different remot
 <p class="last">Use an absolute path or a path starting with ~/ (relative to user home). In Windows do not use quotes.</p>
 </div>
 <p>Windows users:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ SET <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>c:<span class="se">\d</span>ata
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ SET <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>c:<span class="se">\d</span>ata
 $ conan install . <span class="c1"># call conan normally, config &amp; data will be in c:\data</span>
 </pre></div>
 </div>
 <p>Linux/OSx users:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>/tmp/conan
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>/tmp/conan
 $ conan install . <span class="c1"># call conan normally, config &amp; data will be in /tmp/conan</span>
 </pre></div>
 </div>
@@ -249,7 +249,7 @@ $ conan install . <span class="c1"># call conan normally, config &amp; data will
 <li>You can test locally different user credentials, default configurations, different remotes, just by switching from one cache to the
 others.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>/tmp/conan
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">CONAN_USER_HOME</span><span class="o">=</span>/tmp/conan
 $ conan search  <span class="c1"># using that /tmp/conan cache</span>
 $ conan user  <span class="c1"># using that /tmp/conan cache</span>
 
@@ -265,15 +265,15 @@ $ <span class="nb">export</span> <span class="nv">CONAN_USER_HOME</span><span cl
 <p>Conan local cache support some degree of concurrency, allowing simultaneous creation or installation of different packages, or building
 different binaries for the same package. However, concurrent operations like removal of packages while creating them will fail. If you need
 different environments that operate totally independently, you probably want to use different conan caches for that.</p>
-<p>The concurrency is implemented with a Readers-Writers lock mechanism, which in turn uses <code class="docutils literal"><span class="pre">fasteners</span></code> library file locks to achieve
+<p>The concurrency is implemented with a Readers-Writers lock mechanism, which in turn uses <code class="docutils literal notranslate"><span class="pre">fasteners</span></code> library file locks to achieve
 multi-platform portability. As this “mutex” resource is by definition not enough to implement a Readers-Writers solution, some active-wait
 with time sleeps in a loop is necessary. However, this time sleeps will be rare, only sleeping when there is actually a collision and
 waiting on a lock.</p>
-<p>The lock files will be stored inside each <code class="docutils literal"><span class="pre">Pkg/version/user/channel</span></code> folder in the local cache, in a <code class="docutils literal"><span class="pre">rw</span></code> file for locking the entire
-package, or in a set of locks (one per each different binary package, under a subfolder called <code class="docutils literal"><span class="pre">locks</span></code>, each lock named with the binary
+<p>The lock files will be stored inside each <code class="docutils literal notranslate"><span class="pre">Pkg/version/user/channel</span></code> folder in the local cache, in a <code class="docutils literal notranslate"><span class="pre">rw</span></code> file for locking the entire
+package, or in a set of locks (one per each different binary package, under a subfolder called <code class="docutils literal notranslate"><span class="pre">locks</span></code>, each lock named with the binary
 ID of the package).</p>
-<p>It is possible to disable the locking mechanism in <code class="docutils literal"><span class="pre">conan.conf</span></code>:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[general]
+<p>It is possible to disable the locking mechanism in <code class="docutils literal notranslate"><span class="pre">conan.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[general]
 cache_no_locks = True
 </pre></div>
 </div>
@@ -343,7 +343,7 @@ cache_no_locks = True
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

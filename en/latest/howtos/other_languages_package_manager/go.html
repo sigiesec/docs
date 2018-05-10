@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Conan: A Go package manager &mdash; conan 1.3.2 documentation</title>
+  <title>Conan: A Go package manager &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
         <link rel="up" title="How to use Conan as other language package manager" href="../other_languages_package_manager.html"/>
         <link rel="next" title="Conan: A Python package manager" href="python.html"/>
         <link rel="prev" title="How to use Conan as other language package manager" href="../other_languages_package_manager.html"/>
@@ -226,11 +226,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="section" id="the-source-code">
 <h2>The source code<a class="headerlink" href="#the-source-code" title="Permalink to this headline">¶</a></h2>
 <p>You can just clone the following example repository:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-goserver-example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/lasote/conan-goserver-example
 </pre></div>
 </div>
 <p>Or, alternatively, manually create the folder and copy the following files inside:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir conan-goserver-example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir conan-goserver-example
 $ <span class="nb">cd</span> conan-goserver-example
 $ mkdir src
 $ mkdir src/server
@@ -238,7 +238,7 @@ $ mkdir src/server
 </div>
 <p>The files are:</p>
 <p><em>src/server/main.go</em> is a small http server that will answer “Hello world!” if we connect to it.</p>
-<div class="highlight-go"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;github.com/go-martini/martini&quot;</span>
 
@@ -257,7 +257,7 @@ $ mkdir src/server
 <p>Create a <em>conanfile.txt</em>, with the following content:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><em>conanfile.txt</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-text"><div class="highlight"><pre><span></span> [requires]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> [requires]
  go-martini/1.0@lasote/stable
 
  [imports]
@@ -268,15 +268,15 @@ $ mkdir src/server
 <p>Our project requires a package, <strong>go-martini/1.0&#64;lasote/stable</strong>, and we indicate that all <strong>src contents</strong> from all our requirements have
 to be copied to <em>./deps/src</em>.</p>
 <p>The package go-martini depends on go-inject, so Conan will handle automatically the go-inject dependency.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install .
 </pre></div>
 </div>
 <p>This command will download our packages and will copy the contents in the <em>./deps/src</em> folder.</p>
 </div>
 <div class="section" id="running-our-server">
 <h2>Running our server<a class="headerlink" href="#running-our-server" title="Permalink to this headline">¶</a></h2>
-<p>Just add the <strong>deps</strong> folder to <code class="docutils literal"><span class="pre">GOPATH</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Linux / Macos</span>
+<p>Just add the <strong>deps</strong> folder to <code class="docutils literal notranslate"><span class="pre">GOPATH</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linux / Macos</span>
 $ <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">GOPATH</span><span class="si">}</span>:<span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/deps
 
 <span class="c1"># Windows</span>
@@ -284,12 +284,12 @@ $ SET <span class="nv">GOPATH</span><span class="o">=</span>%GOPATH%<span class=
 </pre></div>
 </div>
 <p>And run the server:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> src/server
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> src/server
 $ go run main.go
 </pre></div>
 </div>
 <p>Open your browser and go to <cite>localhost:9300</cite></p>
-<div class="highlight-html"><div class="highlight"><pre><span></span>Hello World!
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>Hello World!
 </pre></div>
 </div>
 </div>
@@ -302,7 +302,7 @@ binaries. Source code packages are settings agnostic.</p>
 <p>Let’s take a look at the <em>conanfile.py</em> of the <strong>go inject</strong> library:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><em>conanfile.py</em></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
  <span class="k">class</span> <span class="nc">InjectConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;go-inject&quot;</span>
@@ -318,22 +318,22 @@ binaries. Source code packages are settings agnostic.</p>
 </div>
 </div>
 <p>If you have read the <a class="reference internal" href="../../creating_packages/getting_started.html#packaging-getting-started"><span class="std std-ref">Building a hello world package</span></a>, the previous code may look quite simple to you.</p>
-<p>We want to pack <strong>version 1.0</strong> of the <strong>go inject</strong> library, so the <strong>version</strong> variable is <strong>“1.0”</strong>. In the <code class="docutils literal"><span class="pre">source()</span></code> method, we
+<p>We want to pack <strong>version 1.0</strong> of the <strong>go inject</strong> library, so the <strong>version</strong> variable is <strong>“1.0”</strong>. In the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method, we
 declare how to obtain the source code of the library, in this case just by cloning the github repository and making a checkout of the
-<strong>v1.0-rc1</strong> tag. In the <code class="docutils literal"><span class="pre">package()</span></code> method, we are just copying all the sources to a folder named “src/github.com/codegangsta/inject”.</p>
+<strong>v1.0-rc1</strong> tag. In the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method, we are just copying all the sources to a folder named “src/github.com/codegangsta/inject”.</p>
 <p>This way, we can keep importing the library in the same way:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;github.com/codegangsta/inject&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;github.com/codegangsta/inject&quot;</span>
 </pre></div>
 </div>
 <p>We can export and upload the package to a remote and we are done:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . lasote/stable  <span class="c1"># Or any other user/channel</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . lasote/stable  <span class="c1"># Or any other user/channel</span>
 $ conan upload go-inject/1.0@lasote/stable --all
 </pre></div>
 </div>
 <p>Now look at the <strong>go martini</strong> conanfile:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><em>conanfile.py</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
  <span class="k">class</span> <span class="nc">InjectConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;go-martini&quot;</span>
@@ -349,9 +349,9 @@ $ conan upload go-inject/1.0@lasote/stable --all
 </pre></div>
 </div>
 </div>
-<p>It is very similar. The only difference is the <code class="docutils literal"><span class="pre">requires</span></code> variable. It defines the <strong>go-inject/1.0&#64;lasote/stable</strong> library, as a
+<p>It is very similar. The only difference is the <code class="docutils literal notranslate"><span class="pre">requires</span></code> variable. It defines the <strong>go-inject/1.0&#64;lasote/stable</strong> library, as a
 requirement.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . lasote/stable  <span class="c1"># Or any other user/channel</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan <span class="nb">export</span> . lasote/stable  <span class="c1"># Or any other user/channel</span>
 $ conan upload go-martini/1.0@lasote/stable  --all
 </pre></div>
 </div>
@@ -422,7 +422,7 @@ $ conan upload go-martini/1.0@lasote/stable  --all
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Methods &mdash; conan 1.3.2 documentation</title>
+  <title>Methods &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Output and Running" href="other.html"/>
         <link rel="prev" title="Attributes" href="attributes.html"/>
@@ -225,10 +225,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="id1"></span><h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="source">
 <span id="method-source"></span><h2>source()<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
-<p>Method used to retrieve the source code from any other external origin like github using <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span></code> or just a regular download.</p>
+<p>Method used to retrieve the source code from any other external origin like github using <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span></code> or just a regular download.</p>
 <p>For example, “exporting” the source code files, together with the <em>conanfile.py</em> file, can be handy if the source code is not under version
 control. But if the source code is available in a repository, you can directly get it from there:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
@@ -244,7 +244,7 @@ control. But if the source code is available in a repository, you can directly g
 <p>This will work, as long as git is in your current path (so in Win you probably want to run things in msysgit, cmder, etc). You can also use
 another VCS or direct download/unzip. For that purpose, we have provided some helpers, but you can use your own code or origin as well. This
 is a snippet of the conanfile of the Poco library:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">download</span><span class="p">,</span> <span class="n">unzip</span><span class="p">,</span> <span class="n">check_md5</span><span class="p">,</span> <span class="n">check_sha1</span><span class="p">,</span> <span class="n">check_sha256</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
@@ -267,16 +267,16 @@ is a snippet of the conanfile of the Poco library:</p>
 <p>The download, unzip utilities can be imported from conan, but you can also use your own code here
 to retrieve source code from any origin. You can even create packages for pre-compiled libraries
 you already have, even if you don’t have the source code. You can download the binaries, skip
-the <code class="docutils literal"><span class="pre">build()</span></code> method and define your <code class="docutils literal"><span class="pre">package()</span></code> and <code class="docutils literal"><span class="pre">package_info()</span></code> accordingly.</p>
-<p>You can also use <code class="docutils literal"><span class="pre">check_md5()</span></code>, <code class="docutils literal"><span class="pre">check_sha1()</span></code> and <code class="docutils literal"><span class="pre">check_sha256()</span></code> from the <a class="reference internal" href="../tools.html#tools-check-with-algorithm-sum"><span class="std std-ref">tools</span></a> module to
+the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method and define your <code class="docutils literal notranslate"><span class="pre">package()</span></code> and <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> accordingly.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">check_md5()</span></code>, <code class="docutils literal notranslate"><span class="pre">check_sha1()</span></code> and <code class="docutils literal notranslate"><span class="pre">check_sha256()</span></code> from the <a class="reference internal" href="../tools.html#tools-check-with-algorithm-sum"><span class="std std-ref">tools</span></a> module to
 verify that a package is downloaded correctly.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>It is very important to recall that the <code class="docutils literal"><span class="pre">source()</span></code> method will be executed just once, and the source code will be shared for all the
+<p>It is very important to recall that the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method will be executed just once, and the source code will be shared for all the
 package builds. So it is not a good idea to conditionally use settings or options to make changes or patches on the source code. Maybe
-the only setting that makes sense is the OS <code class="docutils literal"><span class="pre">self.settings.os</span></code>, if not doing cross-building, for example to retrieve different
+the only setting that makes sense is the OS <code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code>, if not doing cross-building, for example to retrieve different
 sources:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
         <span class="c1"># download some Win source zip</span>
     <span class="k">else</span><span class="p">:</span>
@@ -284,14 +284,14 @@ sources:</p>
 </pre></div>
 </div>
 <p class="last">If you need to patch the source code or build scripts differently for different variants of your packages, you can do it in the
-<code class="docutils literal"><span class="pre">build()</span></code> method, which uses a different folder and source code copy for each variant.</p>
+<code class="docutils literal notranslate"><span class="pre">build()</span></code> method, which uses a different folder and source code copy for each variant.</p>
 </div>
 </div>
 <div class="section" id="build">
 <h2>build()<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
 <p>This method is used to build the source code of the recipe using the desired commands. You can use your command line tools to invoke your
 build system or any of the build helpers provided with Conan.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;cmake . </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cmake</span><span class="o">.</span><span class="n">command_line</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;cmake --build . </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cmake</span><span class="o">.</span><span class="n">build_config</span><span class="p">)</span>
@@ -313,8 +313,8 @@ For lower level control, the <strong>VisualStudioBuildEnvironment</strong> can a
 <p>We have seen how to run package tests with conan, but what if we want to run full unit tests on
 our library before packaging, so that they are run for every build configuration?
 Nothing special is required here. We can just launch the tests from the last command in our
-<code class="docutils literal"><span class="pre">build()</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -326,49 +326,49 @@ Nothing special is required here. We can just launch the tests from the last com
 </div>
 <div class="section" id="package">
 <span id="method-package"></span><h2>package()<a class="headerlink" href="#package" title="Permalink to this headline">¶</a></h2>
-<p>The actual creation of the package, once that it is built, is done in the <code class="docutils literal"><span class="pre">package()</span></code> method. Using the <code class="docutils literal"><span class="pre">self.copy()</span></code> method, artifacts
+<p>The actual creation of the package, once that it is built, is done in the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method. Using the <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> method, artifacts
 are copied from the build folder to the package folder.</p>
-<p>The syntax of <code class="docutils literal"><span class="pre">self.copy</span></code> inside <code class="docutils literal"><span class="pre">package()</span></code> is as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<p>The syntax of <code class="docutils literal notranslate"><span class="pre">self.copy</span></code> inside <code class="docutils literal notranslate"><span class="pre">package()</span></code> is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="docutils">
 <dt>Parameters:</dt>
 <dd><ul class="first last simple">
 <li><strong>pattern</strong> (Required): A pattern following fnmatch syntax of the files you want to copy, from the build to the package folders.
-Typically something like <code class="docutils literal"><span class="pre">*.lib</span></code> or <code class="docutils literal"><span class="pre">*.h</span></code>.</li>
-<li><strong>src</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">&quot;&quot;</span></code>): The folder where you want to search the files in the build folder. If you know that your
-libraries when you build your package will be in <em>build/lib</em>, you will typically use <code class="docutils literal"><span class="pre">build/lib</span></code> in this parameter. Leaving it empty
+Typically something like <code class="docutils literal notranslate"><span class="pre">*.lib</span></code> or <code class="docutils literal notranslate"><span class="pre">*.h</span></code>.</li>
+<li><strong>src</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): The folder where you want to search the files in the build folder. If you know that your
+libraries when you build your package will be in <em>build/lib</em>, you will typically use <code class="docutils literal notranslate"><span class="pre">build/lib</span></code> in this parameter. Leaving it empty
 means the root build folder in local cache.</li>
-<li><strong>dst</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">&quot;&quot;</span></code>): Destination folder in the package. They will typically be <code class="docutils literal"><span class="pre">include</span></code> for headers, <code class="docutils literal"><span class="pre">lib</span></code>
+<li><strong>dst</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): Destination folder in the package. They will typically be <code class="docutils literal notranslate"><span class="pre">include</span></code> for headers, <code class="docutils literal notranslate"><span class="pre">lib</span></code>
 for libraries and so on, though you can use any convention you like. Leaving it empty means the root package folder in local cache.</li>
-<li><strong>keep_path</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">True</span></code>): Means if you want to keep the relative path when you copy the files from the <strong>src</strong>
+<li><strong>keep_path</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Means if you want to keep the relative path when you copy the files from the <strong>src</strong>
 folder to the <strong>dst</strong> one. Typically headers are packaged with relative path.</li>
-<li><strong>symlinks</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">None</span></code>): Set it to True to activate symlink copying, like typical lib.so-&gt;lib.so.9.</li>
-<li><strong>excludes</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">None</span></code>): Single pattern or a tuple of patterns to be excluded from the copy. If a file matches
+<li><strong>symlinks</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Set it to True to activate symlink copying, like typical lib.so-&gt;lib.so.9.</li>
+<li><strong>excludes</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Single pattern or a tuple of patterns to be excluded from the copy. If a file matches
 both the include and the exclude pattern, it will be excluded.</li>
-<li><strong>ignore_case</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): If enabled, it will do a case-insensitive pattern matching.</li>
+<li><strong>ignore_case</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): If enabled, it will do a case-insensitive pattern matching.</li>
 </ul>
 </dd>
 </dl>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.h&quot;</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">,</span> <span class="s2">&quot;build/include&quot;</span><span class="p">)</span> <span class="c1">#keep_path default is True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.h&quot;</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">,</span> <span class="s2">&quot;build/include&quot;</span><span class="p">)</span> <span class="c1">#keep_path default is True</span>
 </pre></div>
 </div>
-<p>The final path in the package will be: <code class="docutils literal"><span class="pre">include/mylib/path/header.h</span></code>, and as the <em>include</em> is usually added to the path, the includes
-will be in the form: <code class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;mylib/path/header.h&quot;</span></code> which is something desired.</p>
-<p><code class="docutils literal"><span class="pre">keep_path=False</span></code> is something typically desired for libraries, both static and dynamic. Some compilers as MSVC, put them in paths as
+<p>The final path in the package will be: <code class="docutils literal notranslate"><span class="pre">include/mylib/path/header.h</span></code>, and as the <em>include</em> is usually added to the path, the includes
+will be in the form: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;mylib/path/header.h&quot;</span></code> which is something desired.</p>
+<p><code class="docutils literal notranslate"><span class="pre">keep_path=False</span></code> is something typically desired for libraries, both static and dynamic. Some compilers as MSVC, put them in paths as
 <em>Debug/x64/MyLib/Mylib.lib</em>. Using this option, we could write:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.lib&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.lib&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And it will copy the lib to the package folder <em>lib/Mylib.lib</em>, which can be linked easily.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If you are using CMake and you have an install target defined in your CMakeLists.txt, you might be able to reuse it for this
-<code class="docutils literal"><span class="pre">package()</span></code> method. Please check <a class="reference internal" href="../../howtos/cmake_install.html#reuse-cmake-install"><span class="std std-ref">How to reuse cmake install for package() method</span></a>.</p>
+<code class="docutils literal notranslate"><span class="pre">package()</span></code> method. Please check <a class="reference internal" href="../../howtos/cmake_install.html#reuse-cmake-install"><span class="std std-ref">How to reuse cmake install for package() method</span></a>.</p>
 </div>
-<p>The <code class="docutils literal"><span class="pre">package()</span></code> method will be called twice if the attribute <code class="docutils literal"><span class="pre">no_copy_source</span></code> is defined and <code class="docutils literal"><span class="pre">True</span></code>. One will copy from the <em>source</em>
+<p>The <code class="docutils literal notranslate"><span class="pre">package()</span></code> method will be called twice if the attribute <code class="docutils literal notranslate"><span class="pre">no_copy_source</span></code> is defined and <code class="docutils literal notranslate"><span class="pre">True</span></code>. One will copy from the <em>source</em>
 folder (typically packaging the headers and other data files), and the other will copy from the <em>build</em> folder, packaging the libraries and
 other binary artifacts. Also, when the local <strong class="command">conan package</strong> command is issued with <strong class="command">--source-folder</strong> and <strong class="command">--build-folder</strong>, it will
 execute two times, one in each folder, in the same way.</p>
@@ -377,10 +377,10 @@ execute two times, one in each folder, in the same way.</p>
 <span id="method-package-info"></span><h2>package_info()<a class="headerlink" href="#package-info" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="cpp-info">
 <h3>cpp_info<a class="headerlink" href="#cpp-info" title="Permalink to this headline">¶</a></h3>
-<p>Each package has to specify certain build information for its consumers. This can be done in the <code class="docutils literal"><span class="pre">cpp_info</span></code> attribute within the
-<code class="docutils literal"><span class="pre">package_info()</span></code> method.</p>
-<p>The <code class="docutils literal"><span class="pre">cpp_info</span></code> attribute has the following properties you can assign/append to:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">includedirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">]</span>  <span class="c1"># Ordered list of include paths</span>
+<p>Each package has to specify certain build information for its consumers. This can be done in the <code class="docutils literal notranslate"><span class="pre">cpp_info</span></code> attribute within the
+<code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cpp_info</span></code> attribute has the following properties you can assign/append to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">includedirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">]</span>  <span class="c1"># Ordered list of include paths</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># The libs to link against</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lib&#39;</span><span class="p">]</span>  <span class="c1"># Directories where libraries can be found</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">resdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;res&#39;</span><span class="p">]</span>  <span class="c1"># Directories where resources, data, etc can be found</span>
@@ -394,11 +394,11 @@ execute two times, one in each folder, in the same way.</p>
 </div>
 <ul class="simple">
 <li><strong>includedirs</strong>: List of relative paths (starting from the package root) of directories where headers can be found. By default it is
-initialized to <code class="docutils literal"><span class="pre">['include']</span></code>, and it is rarely changed.</li>
+initialized to <code class="docutils literal notranslate"><span class="pre">['include']</span></code>, and it is rarely changed.</li>
 <li><strong>libs</strong>: Ordered list of libs the client should link against. Empty by default, it is common that different configurations produce
 different library names. For example:</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;libzmq-static.a&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">static</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;libzmq.so&quot;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -407,18 +407,18 @@ different library names. For example:</li>
 </div>
 <ul class="simple">
 <li><strong>libdirs</strong>: List of relative paths (starting from the package root) of directories in which to find library object binaries (*.lib,
-*.a, *.so, *.dylib). By default it is initialized to <code class="docutils literal"><span class="pre">['lib']</span></code>, and it is rarely changed.</li>
+*.a, *.so, *.dylib). By default it is initialized to <code class="docutils literal notranslate"><span class="pre">['lib']</span></code>, and it is rarely changed.</li>
 <li><strong>resdirs</strong>: List of relative paths (starting from the package root) of directories in which to find resource files (images, xml, etc). By
-default it is initialized to <code class="docutils literal"><span class="pre">['res']</span></code>, and it is rarely changed.</li>
+default it is initialized to <code class="docutils literal notranslate"><span class="pre">['res']</span></code>, and it is rarely changed.</li>
 <li><strong>bindirs</strong>: List of relative paths (starting from the package root) of directories in which to find library runtime binaries (like
-Windows .dlls). By default it is initialized to <code class="docutils literal"><span class="pre">['bin']</span></code>, and it is rarely changed.</li>
+Windows .dlls). By default it is initialized to <code class="docutils literal notranslate"><span class="pre">['bin']</span></code>, and it is rarely changed.</li>
 <li><strong>defines</strong>: Ordered list of preprocessor directives. It is common that the consumers have to specify some sort of defines in some cases,
 so that including the library headers matches the binaries:</li>
 <li><strong>cflags</strong>, <strong>cppflags</strong>, <strong>sharedlinkflags</strong>, <strong>exelinkflags</strong>: List of flags that the consumer should activate for proper behavior.
 Usage of C++11 could be configured here, for example, although it is true that the consumer may want to do some flag processing to check
 if different dependencies are setting incompatible flags (c++11 after c++14).</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">static</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">static</span><span class="p">:</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span> <span class="o">==</span> <span class="s2">&quot;Visual Studio&quot;</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ws2_32&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">defines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ZMQ_STATIC&quot;</span><span class="p">]</span>
@@ -427,8 +427,8 @@ if different dependencies are setting incompatible flags (c++11 after c++14).</l
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">cppflags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-pthread&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>If your recipe has requirements, you can access to your requirements <code class="docutils literal"><span class="pre">cpp_info</span></code> as well using the <code class="docutils literal"><span class="pre">deps_cpp_info</span></code> object.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>If your recipe has requirements, you can access to your requirements <code class="docutils literal notranslate"><span class="pre">cpp_info</span></code> as well using the <code class="docutils literal notranslate"><span class="pre">deps_cpp_info</span></code> object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;OtherLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;MyLib/1.6.0@conan/stable&quot;</span>
@@ -439,34 +439,34 @@ if different dependencies are setting incompatible flags (c++11 after c++14).</l
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Please take into account that defining <code class="docutils literal"><span class="pre">self.cpp_info.bindirs</span></code> directories, does not have any effect on system paths, PATH environment
-variable, nor will be directly accessible by consumers. <code class="docutils literal"><span class="pre">self.cpp_info</span></code> information is translated to build-systems information via
-generators, for example for CMake, it will be a variable in <code class="docutils literal"><span class="pre">conanbuildinfo.cmake</span></code>. If you want a package to make accessible its
-executables to its consumers, you have to specify it with <code class="docutils literal"><span class="pre">self.env_info</span></code> as described in <a class="reference internal" href="#method-package-info-env-info"><span class="std std-ref">env_info</span></a>.</p>
+<p class="last">Please take into account that defining <code class="docutils literal notranslate"><span class="pre">self.cpp_info.bindirs</span></code> directories, does not have any effect on system paths, PATH environment
+variable, nor will be directly accessible by consumers. <code class="docutils literal notranslate"><span class="pre">self.cpp_info</span></code> information is translated to build-systems information via
+generators, for example for CMake, it will be a variable in <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code>. If you want a package to make accessible its
+executables to its consumers, you have to specify it with <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> as described in <a class="reference internal" href="#method-package-info-env-info"><span class="std std-ref">env_info</span></a>.</p>
 </div>
 </div>
 <div class="section" id="env-info">
 <span id="method-package-info-env-info"></span><h3>env_info<a class="headerlink" href="#env-info" title="Permalink to this headline">¶</a></h3>
 <p>Each package can also define some environment variables that the package needs to be reused. It’s specially useful for
 <a class="reference internal" href="../../devtools/create_installer_packages.html#create-installer-packages"><span class="std std-ref">installer packages</span></a>, to set the path with the “bin” folder of the packaged application. This can be done in
-the <code class="docutils literal"><span class="pre">env_info</span></code> attribute within the <code class="docutils literal"><span class="pre">package_info()</span></code> method.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ANOTHER VALUE&quot;</span><span class="p">)</span> <span class="c1"># Append &quot;ANOTHER VALUE&quot; to the path variable</span>
+the <code class="docutils literal notranslate"><span class="pre">env_info</span></code> attribute within the <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ANOTHER VALUE&quot;</span><span class="p">)</span> <span class="c1"># Append &quot;ANOTHER VALUE&quot; to the path variable</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">othervar</span> <span class="o">=</span> <span class="s2">&quot;OTHER VALUE&quot;</span> <span class="c1"># Assign &quot;OTHER VALUE&quot; to the othervar variable</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">thirdvar</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;some value&quot;</span><span class="p">)</span> <span class="c1"># Every variable can be set or appended a new value</span>
 </pre></div>
 </div>
 <p>One of the most typical usages for the PATH environment variable, would be to add the current binary package directories to the path, so
 consumers can use those executables easily:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># assuming the binaries are in the &quot;bin&quot; subfolder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assuming the binaries are in the &quot;bin&quot; subfolder</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">PATH</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../../mastering/virtualenv.html#virtual-environment-generator"><span class="std std-ref">virtualenv</span></a> generator will use the self.env_info variables to prepare a script to activate/deactive
 a virtual environment.</p>
-<p>They will be automatically applied before calling the consumer <em>conanfile.py</em> methods <code class="docutils literal"><span class="pre">source()</span></code>, <code class="docutils literal"><span class="pre">build()</span></code>, <code class="docutils literal"><span class="pre">package()</span></code> and
-<code class="docutils literal"><span class="pre">imports()</span></code>.</p>
-<p>If your recipe has requirements, you can access to your requirements <code class="docutils literal"><span class="pre">env_info</span></code> as well using the <code class="docutils literal"><span class="pre">deps_env_info</span></code> object.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>They will be automatically applied before calling the consumer <em>conanfile.py</em> methods <code class="docutils literal notranslate"><span class="pre">source()</span></code>, <code class="docutils literal notranslate"><span class="pre">build()</span></code>, <code class="docutils literal notranslate"><span class="pre">package()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">imports()</span></code>.</p>
+<p>If your recipe has requirements, you can access to your requirements <code class="docutils literal notranslate"><span class="pre">env_info</span></code> as well using the <code class="docutils literal notranslate"><span class="pre">deps_env_info</span></code> object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;OtherLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;MyLib/1.6.0@conan/stable&quot;</span>
@@ -478,10 +478,10 @@ a virtual environment.</p>
 </div>
 <div class="section" id="user-info">
 <span id="method-package-info-user-info"></span><h3>user_info<a class="headerlink" href="#user-info" title="Permalink to this headline">¶</a></h3>
-<p>If you need to declare custom variables not related with C/C++ (<code class="docutils literal"><span class="pre">cpp_info</span></code>) and the variables are not environment variables
-(<code class="docutils literal"><span class="pre">env_info</span></code>), you can use the <code class="docutils literal"><span class="pre">self.user_info</span></code> object.</p>
-<p>Currently only the <code class="docutils literal"><span class="pre">cmake</span></code>, <code class="docutils literal"><span class="pre">cmake_multi</span></code> and <code class="docutils literal"><span class="pre">txt</span></code> generators supports <code class="docutils literal"><span class="pre">user_info</span></code> variables.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>If you need to declare custom variables not related with C/C++ (<code class="docutils literal notranslate"><span class="pre">cpp_info</span></code>) and the variables are not environment variables
+(<code class="docutils literal notranslate"><span class="pre">env_info</span></code>), you can use the <code class="docutils literal notranslate"><span class="pre">self.user_info</span></code> object.</p>
+<p>Currently only the <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, <code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> and <code class="docutils literal notranslate"><span class="pre">txt</span></code> generators supports <code class="docutils literal notranslate"><span class="pre">user_info</span></code> variables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;MyLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.6.0&quot;</span>
 
@@ -491,9 +491,9 @@ a virtual environment.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">var1</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>For the example above, in the <code class="docutils literal"><span class="pre">cmake</span></code> and <code class="docutils literal"><span class="pre">cmake_multi</span></code> generators, a variable <code class="docutils literal"><span class="pre">CONAN_USER_MYLIB_var1</span></code> will be declared. If your
-recipe has requirements, you can access to your requirements <code class="docutils literal"><span class="pre">user_info</span></code> using the <code class="docutils literal"><span class="pre">deps_user_info</span></code> object.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>For the example above, in the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generators, a variable <code class="docutils literal notranslate"><span class="pre">CONAN_USER_MYLIB_var1</span></code> will be declared. If your
+recipe has requirements, you can access to your requirements <code class="docutils literal notranslate"><span class="pre">user_info</span></code> using the <code class="docutils literal notranslate"><span class="pre">deps_user_info</span></code> object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;OtherLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;MyLib/1.6.0@conan/stable&quot;</span>
@@ -506,9 +506,9 @@ recipe has requirements, you can access to your requirements <code class="docuti
 </div>
 <div class="section" id="configure-config-options">
 <span id="method-configure-config-options"></span><h2>configure(), config_options()<a class="headerlink" href="#configure-config-options" title="Permalink to this headline">¶</a></h2>
-<p>If the package options and settings are related, and you want to configure either, you can do so in the <code class="docutils literal"><span class="pre">configure()</span></code> and
-<code class="docutils literal"><span class="pre">config_options()</span></code> methods.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<p>If the package options and settings are related, and you want to configure either, you can do so in the <code class="docutils literal notranslate"><span class="pre">configure()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">config_options()</span></code> methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyLibConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;MyLib&quot;</span>
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;2.5&quot;</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
@@ -524,33 +524,33 @@ recipe has requirements, you can access to your requirements <code class="docuti
 </div>
 <p>The package has 2 options set, to be compiled as a static (as opposed to shared) library, and also not to involve any builds, because
 header-only libraries will be used. In this case, the settings that would affect a normal build, and even the other option (static vs
-shared) do not make sense, so we just clear them. That means, if someone consumes MyLib with the <code class="docutils literal"><span class="pre">header_only=True</span></code> option, the package
+shared) do not make sense, so we just clear them. That means, if someone consumes MyLib with the <code class="docutils literal notranslate"><span class="pre">header_only=True</span></code> option, the package
 downloaded and used will be the same, irrespective of the OS, compiler or architecture the consumer is building with.</p>
 <p>You can also restrict the settings used deleting any specific one. For example, it is quite common
-for C libraries to delete the <code class="docutils literal"><span class="pre">libcxx</span></code> as your library does not depend on any C++ standard
+for C libraries to delete the <code class="docutils literal notranslate"><span class="pre">libcxx</span></code> as your library does not depend on any C++ standard
 library:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">libcxx</span>
 </pre></div>
 </div>
-<p>The most typical usage would be the one with <code class="docutils literal"><span class="pre">configure()</span></code> while <code class="docutils literal"><span class="pre">config_options()</span></code> should be used more sparingly. <code class="docutils literal"><span class="pre">config_options()</span></code>
+<p>The most typical usage would be the one with <code class="docutils literal notranslate"><span class="pre">configure()</span></code> while <code class="docutils literal notranslate"><span class="pre">config_options()</span></code> should be used more sparingly. <code class="docutils literal notranslate"><span class="pre">config_options()</span></code>
 is used to configure or constraint the available options in a package, <strong>before</strong> they are given a value. So when a value is tried to be
 assigned it will raise an error. For example, let’s suppose that a certain package library cannot be built as shared library in Windows, it
 can be done:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">config_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">config_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">shared</span>
 </pre></div>
 </div>
-<p>This will be executed before the actual assignment of <code class="docutils literal"><span class="pre">options</span></code> (then, such <code class="docutils literal"><span class="pre">options</span></code> values cannot be used inside this function), so
-the command <strong class="command">conan install -o Pkg:shared=True</strong> will raise an exception in Windows saying that <code class="docutils literal"><span class="pre">shared</span></code> is not an option for such
+<p>This will be executed before the actual assignment of <code class="docutils literal notranslate"><span class="pre">options</span></code> (then, such <code class="docutils literal notranslate"><span class="pre">options</span></code> values cannot be used inside this function), so
+the command <strong class="command">conan install -o Pkg:shared=True</strong> will raise an exception in Windows saying that <code class="docutils literal notranslate"><span class="pre">shared</span></code> is not an option for such
 package.</p>
 </div>
 <div class="section" id="requirements">
 <h2>requirements()<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Besides the <code class="docutils literal"><span class="pre">requires</span></code> field, more advanced requirement logic can be defined in the <code class="docutils literal"><span class="pre">requirements()</span></code> optional method, using for example
-values from the package <code class="docutils literal"><span class="pre">settings</span></code> or <code class="docutils literal"><span class="pre">options</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>Besides the <code class="docutils literal notranslate"><span class="pre">requires</span></code> field, more advanced requirement logic can be defined in the <code class="docutils literal notranslate"><span class="pre">requirements()</span></code> optional method, using for example
+values from the package <code class="docutils literal notranslate"><span class="pre">settings</span></code> or <code class="docutils literal notranslate"><span class="pre">options</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">myoption</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="s2">&quot;zlib/1.2@drl/testing&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -558,18 +558,18 @@ values from the package <code class="docutils literal"><span class="pre">setting
 </pre></div>
 </div>
 <p>This is a powerful mechanism for handling <strong>conditional dependencies</strong>.</p>
-<p>When you are inside the method, each call to <code class="docutils literal"><span class="pre">self.requires()</span></code> will add the corresponding requirement to the current list of requirements.
+<p>When you are inside the method, each call to <code class="docutils literal notranslate"><span class="pre">self.requires()</span></code> will add the corresponding requirement to the current list of requirements.
 It also has optional parameters that allow defining the special cases, as is shown below:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="s2">&quot;zlib/1.2@drl/testing&quot;</span><span class="p">,</span> <span class="n">private</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">self.requires()</span></code> parameters:</dt>
+<dt><code class="docutils literal notranslate"><span class="pre">self.requires()</span></code> parameters:</dt>
 <dd><ul class="first last simple">
-<li><strong>override</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): True means that this is not an actual requirement, but something to be passed
+<li><strong>override</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): True means that this is not an actual requirement, but something to be passed
 upstream and override possible existing values.</li>
-<li><strong>private</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): True means that this requirement will be somewhat embedded (like a static lib linked
+<li><strong>private</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): True means that this requirement will be somewhat embedded (like a static lib linked
 into a shared lib), so it is not required to link.</li>
 </ul>
 </dd>
@@ -580,7 +580,7 @@ into a shared lib), so it is not required to link.</li>
 <p>Build requirements are requirements that are only installed and used when the package is built from sources. If there is an existing
 pre-compiled binary, then the build requirements for this package will not be retrieved.</p>
 <p>This method is useful for defining conditional build requirements, for example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyPkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyPkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">build_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
@@ -594,25 +594,25 @@ pre-compiled binary, then the build requirements for this package will not be re
 </div>
 <div class="section" id="system-requirements">
 <span id="method-system-requirements"></span><h2>system_requirements()<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
-<p>It is possible to install system-wide packages from conan. Just add a <code class="docutils literal"><span class="pre">system_requirements()</span></code> method to your conanfile and specify what
+<p>It is possible to install system-wide packages from conan. Just add a <code class="docutils literal notranslate"><span class="pre">system_requirements()</span></code> method to your conanfile and specify what
 you need there.</p>
-<p>For a special use case you can use also <code class="docutils literal"><span class="pre">conans.tools.os_info</span></code> object to detect the operating system, version and distribution (linux):</p>
+<p>For a special use case you can use also <code class="docutils literal notranslate"><span class="pre">conans.tools.os_info</span></code> object to detect the operating system, version and distribution (linux):</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">os_info.is_linux</span></code>: True if Linux.</li>
-<li><code class="docutils literal"><span class="pre">os_info.is_windows</span></code>: True if Windows.</li>
-<li><code class="docutils literal"><span class="pre">os_info.is_macos</span></code>: True if OSx.</li>
-<li><code class="docutils literal"><span class="pre">os_info.is_freebsd</span></code>: True if FreeBSD.</li>
-<li><code class="docutils literal"><span class="pre">os_info.is_solaris</span></code>: True if SunOS.</li>
-<li><code class="docutils literal"><span class="pre">os_info.os_version</span></code>: OS version.</li>
-<li><code class="docutils literal"><span class="pre">os_info.os_version_name</span></code>: Common name of the OS (Windows 7, Mountain Lion, Wheezy…).</li>
-<li><code class="docutils literal"><span class="pre">os_info.linux_distro</span></code>: Linux distribution name (None if not Linux).</li>
-<li><code class="docutils literal"><span class="pre">os_info.bash_path</span></code>: Returns the absolute path to a bash in the system.</li>
-<li><code class="docutils literal"><span class="pre">os_info.uname(options=None)</span></code>: Runs the “uname” command and returns the ouput. You can pass arguments with the <cite>options</cite> parameter.</li>
-<li><code class="docutils literal"><span class="pre">os_info.detect_windows_subsystem()</span></code>: Returns “MSYS”, “MSYS2”, “CYGWIN” or “WSL” if any of these Windows subsystems are detected.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.is_linux</span></code>: True if Linux.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.is_windows</span></code>: True if Windows.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.is_macos</span></code>: True if OSx.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.is_freebsd</span></code>: True if FreeBSD.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.is_solaris</span></code>: True if SunOS.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.os_version</span></code>: OS version.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.os_version_name</span></code>: Common name of the OS (Windows 7, Mountain Lion, Wheezy…).</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.linux_distro</span></code>: Linux distribution name (None if not Linux).</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.bash_path</span></code>: Returns the absolute path to a bash in the system.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.uname(options=None)</span></code>: Runs the “uname” command and returns the ouput. You can pass arguments with the <cite>options</cite> parameter.</li>
+<li><code class="docutils literal notranslate"><span class="pre">os_info.detect_windows_subsystem()</span></code>: Returns “MSYS”, “MSYS2”, “CYGWIN” or “WSL” if any of these Windows subsystems are detected.</li>
 </ul>
-<p>You can also use <code class="docutils literal"><span class="pre">SystemPackageTool</span></code> class, that will automatically invoke the right system package tool: <strong>apt</strong>, <strong>yum</strong>, <strong>pkg</strong>,
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">SystemPackageTool</span></code> class, that will automatically invoke the right system package tool: <strong>apt</strong>, <strong>yum</strong>, <strong>pkg</strong>,
 <strong>pkgutil</strong>, <strong>brew</strong> and <strong>pacman</strong> depending on the system we are running.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">os_info</span><span class="p">,</span> <span class="n">SystemPackageTool</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">os_info</span><span class="p">,</span> <span class="n">SystemPackageTool</span>
 
 <span class="k">def</span> <span class="nf">system_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">pack_name</span> <span class="o">=</span> <span class="bp">None</span>
@@ -636,7 +636,7 @@ you need there.</p>
 </pre></div>
 </div>
 <p>On Windows, there is no standard package manager, however <strong>choco</strong> can be invoked as an optional:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">os_info</span><span class="p">,</span> <span class="n">SystemPackageTool</span><span class="p">,</span> <span class="n">ChocolateyTool</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans.tools</span> <span class="kn">import</span> <span class="n">os_info</span><span class="p">,</span> <span class="n">SystemPackageTool</span><span class="p">,</span> <span class="n">ChocolateyTool</span>
 
 <span class="k">def</span> <span class="nf">system_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">os_info</span><span class="o">.</span><span class="n">is_windows</span><span class="p">:</span>
@@ -647,7 +647,7 @@ you need there.</p>
 </div>
 <div class="section" id="systempackagetool">
 <h3>SystemPackageTool<a class="headerlink" href="#systempackagetool" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SystemPackageTool</span><span class="p">(</span><span class="n">tool</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SystemPackageTool</span><span class="p">(</span><span class="n">tool</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Available tool classes: <strong>AptTool</strong>, <strong>YumTool</strong>, <strong>BrewTool</strong>, <strong>PkgTool</strong>, <strong>PkgUtilTool</strong>, <strong>ChocolateyTool</strong>,
@@ -655,19 +655,19 @@ you need there.</p>
 <dl class="docutils">
 <dt>Methods:</dt>
 <dd><ul class="first last simple">
-<li><strong>update()</strong>: Updates the system package manager database. It’s called automatically from the <code class="docutils literal"><span class="pre">install()</span></code> method by default.</li>
-<li><strong>install(packages, update=True, force=False)</strong>: Installs the <code class="docutils literal"><span class="pre">packages</span></code> (could be a list or a string). If <code class="docutils literal"><span class="pre">update</span></code> is True it
-will execute <code class="docutils literal"><span class="pre">update()</span></code> first if it’s needed. The packages won’t be installed if they are already installed at least of <code class="docutils literal"><span class="pre">force</span></code>
-parameter is set to True. If <code class="docutils literal"><span class="pre">packages</span></code> is a list the first available package will be picked (short-circuit like logical <strong>or</strong>).</li>
+<li><strong>update()</strong>: Updates the system package manager database. It’s called automatically from the <code class="docutils literal notranslate"><span class="pre">install()</span></code> method by default.</li>
+<li><strong>install(packages, update=True, force=False)</strong>: Installs the <code class="docutils literal notranslate"><span class="pre">packages</span></code> (could be a list or a string). If <code class="docutils literal notranslate"><span class="pre">update</span></code> is True it
+will execute <code class="docutils literal notranslate"><span class="pre">update()</span></code> first if it’s needed. The packages won’t be installed if they are already installed at least of <code class="docutils literal notranslate"><span class="pre">force</span></code>
+parameter is set to True. If <code class="docutils literal notranslate"><span class="pre">packages</span></code> is a list the first available package will be picked (short-circuit like logical <strong>or</strong>).</li>
 </ul>
 </dd>
 </dl>
-<p>The use of <code class="docutils literal"><span class="pre">sudo</span></code> in the internals of the <code class="docutils literal"><span class="pre">install()</span></code> and <code class="docutils literal"><span class="pre">update()</span></code> methods is controlled by the <code class="docutils literal"><span class="pre">CONAN_SYSREQUIRES_SUDO</span></code>
+<p>The use of <code class="docutils literal notranslate"><span class="pre">sudo</span></code> in the internals of the <code class="docutils literal notranslate"><span class="pre">install()</span></code> and <code class="docutils literal notranslate"><span class="pre">update()</span></code> methods is controlled by the <code class="docutils literal notranslate"><span class="pre">CONAN_SYSREQUIRES_SUDO</span></code>
 environment variable, so if the users don’t need sudo permissions, it is easy to opt-in/out.</p>
 <p>Conan will keep track of the execution of this method, so that it is not invoked again and again at every Conan command. The execution is
 done per package, since some packages of the same library might have different system dependencies. If you are sure that all your binary
 packages have the same system requirements, just add the following line to your method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">system_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">system_requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">global_system_requirements</span><span class="o">=</span><span class="bp">True</span>
     <span class="k">if</span> <span class="o">...</span>
 </pre></div>
@@ -685,67 +685,67 @@ XML pattern files are required.</li>
 </ul>
 <p>Importing files is also very convenient in order to redistribute your application, as many times you will just have to bundle your project’s
 bin folder.</p>
-<p>A typical <code class="docutils literal"><span class="pre">imports()</span></code> method for shared libs could be:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>A typical <code class="docutils literal notranslate"><span class="pre">imports()</span></code> method for shared libs could be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.dll&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">)</span>
    <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.dylib&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">self.copy()</span></code> method inside <code class="docutils literal"><span class="pre">imports()</span></code> supports the following arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">root_package</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> method inside <code class="docutils literal notranslate"><span class="pre">imports()</span></code> supports the following arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">root_package</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="docutils">
 <dt>Parameters:</dt>
 <dd><ul class="first last simple">
 <li><strong>pattern</strong> (Required): An fnmatch file pattern of the files that should be copied.</li>
-<li><strong>dst</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">&quot;&quot;</span></code>): Destination local folder, with reference to current directory, to which the files will be
+<li><strong>dst</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): Destination local folder, with reference to current directory, to which the files will be
 copied.</li>
-<li><strong>src</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">&quot;&quot;</span></code>): Source folder in which those files will be searched. This folder will be stripped from the
+<li><strong>src</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): Source folder in which those files will be searched. This folder will be stripped from the
 dst parameter. Eg.: lib/Debug/x86</li>
 <li><strong>root_package</strong> (Optional, Defaulted to <em>all packages in deps</em>): An fnmatch pattern of the package name (“OpenCV”, “Boost”) from
 which files will be copied.</li>
-<li><strong>folder</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): If enabled, it will copy the files from the local cache to a subfolder named as the
+<li><strong>folder</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): If enabled, it will copy the files from the local cache to a subfolder named as the
 package containing the files. Useful to avoid conflicting imports of files with the same name (e.g. License).</li>
-<li><strong>ignore_case</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">False</span></code>): If enabled, it will do a case-insensitive pattern matching.</li>
-<li><strong>excludes</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">None</span></code>): Allows defining a list of patterns (even a single pattern) to be excluded from the
-copy, even if they match the main <code class="docutils literal"><span class="pre">pattern</span></code>.</li>
-<li><strong>keep_path</strong> (Optional, Defaulted to <code class="docutils literal"><span class="pre">True</span></code>): Means if you want to keep the relative path when you copy the files from the <strong>src</strong>
-folder to the <strong>dst</strong> one. Useful to ignore (<code class="docutils literal"><span class="pre">keep_path=False</span></code>) path of <em>library.dll</em> files in the package it is imported from.</li>
+<li><strong>ignore_case</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): If enabled, it will do a case-insensitive pattern matching.</li>
+<li><strong>excludes</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Allows defining a list of patterns (even a single pattern) to be excluded from the
+copy, even if they match the main <code class="docutils literal notranslate"><span class="pre">pattern</span></code>.</li>
+<li><strong>keep_path</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Means if you want to keep the relative path when you copy the files from the <strong>src</strong>
+folder to the <strong>dst</strong> one. Useful to ignore (<code class="docutils literal notranslate"><span class="pre">keep_path=False</span></code>) path of <em>library.dll</em> files in the package it is imported from.</li>
 </ul>
 </dd>
 </dl>
 <p>Example to collect license files from dependencies:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;license*&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;licenses&quot;</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you want to be able to customize the output user directory to work with both the <code class="docutils literal"><span class="pre">cmake</span></code> and <code class="docutils literal"><span class="pre">cmake_multi</span></code> generators, then you can
+<p>If you want to be able to customize the output user directory to work with both the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generators, then you can
 do:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imports</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;CONAN_IMPORT_PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.dll&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;bin&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.dylib*&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And then use, for example: <strong class="command">conan install . -e CONAN_IMPORT_PATH=Release -g cmake_multi</strong></p>
-<p>When a conanfile recipe has an <code class="docutils literal"><span class="pre">imports()</span></code> method and it builds from sources, it will do the following:</p>
+<p>When a conanfile recipe has an <code class="docutils literal notranslate"><span class="pre">imports()</span></code> method and it builds from sources, it will do the following:</p>
 <ul class="simple">
-<li>Before running <code class="docutils literal"><span class="pre">build()</span></code> it will execute <code class="docutils literal"><span class="pre">imports()</span></code> in the build folder, copying dependencies artifacts</li>
-<li>Run the <code class="docutils literal"><span class="pre">build()</span></code> method, which could use such imported binaries.</li>
-<li>Remove the copied (imported) artifacts after <code class="docutils literal"><span class="pre">build()</span></code> is finished.</li>
+<li>Before running <code class="docutils literal notranslate"><span class="pre">build()</span></code> it will execute <code class="docutils literal notranslate"><span class="pre">imports()</span></code> in the build folder, copying dependencies artifacts</li>
+<li>Run the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method, which could use such imported binaries.</li>
+<li>Remove the copied (imported) artifacts after <code class="docutils literal notranslate"><span class="pre">build()</span></code> is finished.</li>
 </ul>
 <p>You can use the <a class="reference internal" href="attributes.html#keep-imports"><span class="std std-ref">keep_imports</span></a> attribute to keep the imported artifacts, and maybe <a class="reference internal" href="../../devtools/running_packages.html#repackage"><span class="std std-ref">repackage</span></a> them.</p>
 </div>
 <div class="section" id="package-id">
 <span id="method-package-id"></span><h2>package_id()<a class="headerlink" href="#package-id" title="Permalink to this headline">¶</a></h2>
-<p>Creates a unique ID for the package. Default package ID is calculated using <code class="docutils literal"><span class="pre">settings</span></code>, <code class="docutils literal"><span class="pre">options</span></code> and <code class="docutils literal"><span class="pre">requires</span></code> properties. When a
+<p>Creates a unique ID for the package. Default package ID is calculated using <code class="docutils literal notranslate"><span class="pre">settings</span></code>, <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">requires</span></code> properties. When a
 package creator specifies the values for any of thoses properties, it is telling that any value change will require a different binary
 package.</p>
 <p>However, sometimes a package creator would need to alter the default behavior, for example, to have only one binary package for several
-different compiler versions. In that case you can set a custom <code class="docutils literal"><span class="pre">self.info</span></code> object implementing this method and the package ID will be
+different compiler versions. In that case you can set a custom <code class="docutils literal notranslate"><span class="pre">self.info</span></code> object implementing this method and the package ID will be
 computed with the given information:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">Version</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span> <span class="o">==</span> <span class="s2">&quot;gcc&quot;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="s2">&quot;4.5&quot;</span> <span class="ow">and</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="s2">&quot;5.0&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;GCC 4 between 4.5 and 5.0&quot;</span>
@@ -754,10 +754,10 @@ computed with the given information:</p>
 <p>Please, check the section <a class="reference internal" href="../../creating_packages/define_abi_compatibility.html#define-abi-compatibility"><span class="std std-ref">Define package ABI compatibility</span></a> to get more details.</p>
 <div class="section" id="self-info">
 <h3>self.info<a class="headerlink" href="#self-info" title="Permalink to this headline">¶</a></h3>
-<p>This <code class="docutils literal"><span class="pre">self.info</span></code> object stores the information that will be used to compute the package ID.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">self.info</span></code> object stores the information that will be used to compute the package ID.</p>
 <p>This object can be manipulated to reflect the information you want in the computation of the package ID. For example, you can delete
 any setting or option:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span>
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">shared</span>
 </pre></div>
@@ -765,32 +765,32 @@ any setting or option:</p>
 <div class="section" id="self-info-header-only">
 <h4>self.info.header_only()<a class="headerlink" href="#self-info-header-only" title="Permalink to this headline">¶</a></h4>
 <p>The package will always be the same, irrespective of the OS, compiler or architecture the consumer is building with.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">header_only</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="self-info-vs-toolset-compatible-self-info-vs-toolset-incompatible">
 <h4>self.info.vs_toolset_compatible() / self.info.vs_toolset_incompatible()<a class="headerlink" href="#self-info-vs-toolset-compatible-self-info-vs-toolset-incompatible" title="Permalink to this headline">¶</a></h4>
-<p>By default (<code class="docutils literal"><span class="pre">vs_toolset_compatible()</span></code> mode) Conan will generate the same binary package when the compiler is Visual Studio and the
-<code class="docutils literal"><span class="pre">compiler.toolset</span></code> matches the specified <code class="docutils literal"><span class="pre">compiler.version</span></code>. For example, if we install some packages specifying the following settings:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>By default (<code class="docutils literal notranslate"><span class="pre">vs_toolset_compatible()</span></code> mode) Conan will generate the same binary package when the compiler is Visual Studio and the
+<code class="docutils literal notranslate"><span class="pre">compiler.toolset</span></code> matches the specified <code class="docutils literal notranslate"><span class="pre">compiler.version</span></code>. For example, if we install some packages specifying the following settings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">vs_toolset_compatible</span><span class="p">()</span>
     <span class="c1"># self.info.vs_toolset_incompatible()</span>
 </pre></div>
 </div>
-<div class="highlight-text"><div class="highlight"><pre><span></span>compiler=&quot;Visual Studio&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>compiler=&quot;Visual Studio&quot;
 compiler.version=14
 </pre></div>
 </div>
 <p>And then we install again specifying these settings:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>compiler=&quot;Visual Studio&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>compiler=&quot;Visual Studio&quot;
 compiler.version=15
 compiler.toolset=v140
 </pre></div>
 </div>
-<p>The compiler version is different, but Conan will not install a different package, because the used <code class="docutils literal"><span class="pre">toolchain</span></code> in both cases are
-considered the same. You can deactivate this default behavior using calling <code class="docutils literal"><span class="pre">self.info.vs_toolset_incompatible()</span></code>.</p>
+<p>The compiler version is different, but Conan will not install a different package, because the used <code class="docutils literal notranslate"><span class="pre">toolchain</span></code> in both cases are
+considered the same. You can deactivate this default behavior using calling <code class="docutils literal notranslate"><span class="pre">self.info.vs_toolset_incompatible()</span></code>.</p>
 <p>This is the relation of Visual Studio versions and the compatible toolchain:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -832,11 +832,11 @@ considered the same. You can deactivate this default behavior using calling <cod
 </div>
 <div class="section" id="self-info-discard-build-settings-self-info-include-build-settings">
 <span id="info-discard-include-build-settings"></span><h4>self.info.discard_build_settings() / self.info.include_build_settings()<a class="headerlink" href="#self-info-discard-build-settings-self-info-include-build-settings" title="Permalink to this headline">¶</a></h4>
-<p>By default (<code class="docutils literal"><span class="pre">discard_build_settings()</span></code>) Conan will generate the same binary when you change the <code class="docutils literal"><span class="pre">os_build</span></code> or <code class="docutils literal"><span class="pre">arch_build</span></code> when the
-<code class="docutils literal"><span class="pre">os</span></code> and <code class="docutils literal"><span class="pre">arch</span></code> are declared respectively. This is because <code class="docutils literal"><span class="pre">os_build</span></code> represent the machine running Conan, so, for the consumer, the
-only setting that matters is where the built software will run, not where is running the compilation. The same applies to <code class="docutils literal"><span class="pre">arch_build</span></code>.</p>
-<p>With <code class="docutils literal"><span class="pre">self.info.include_build_settings()</span></code>, Conan will generate different packages when you change the <code class="docutils literal"><span class="pre">os_build</span></code> or <code class="docutils literal"><span class="pre">arch_build</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<p>By default (<code class="docutils literal notranslate"><span class="pre">discard_build_settings()</span></code>) Conan will generate the same binary when you change the <code class="docutils literal notranslate"><span class="pre">os_build</span></code> or <code class="docutils literal notranslate"><span class="pre">arch_build</span></code> when the
+<code class="docutils literal notranslate"><span class="pre">os</span></code> and <code class="docutils literal notranslate"><span class="pre">arch</span></code> are declared respectively. This is because <code class="docutils literal notranslate"><span class="pre">os_build</span></code> represent the machine running Conan, so, for the consumer, the
+only setting that matters is where the built software will run, not where is running the compilation. The same applies to <code class="docutils literal notranslate"><span class="pre">arch_build</span></code>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">self.info.include_build_settings()</span></code>, Conan will generate different packages when you change the <code class="docutils literal notranslate"><span class="pre">os_build</span></code> or <code class="docutils literal notranslate"><span class="pre">arch_build</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">discard_build_settings</span><span class="p">()</span>
     <span class="c1"># self.info.include_build_settings()</span>
 </pre></div>
@@ -844,14 +844,14 @@ only setting that matters is where the built software will run, not where is run
 </div>
 <div class="section" id="self-info-default-std-matching-self-info-default-std-non-matching">
 <h4>self.info.default_std_matching() / self.info.default_std_non_matching()<a class="headerlink" href="#self-info-default-std-matching-self-info-default-std-non-matching" title="Permalink to this headline">¶</a></h4>
-<p>By default (<code class="docutils literal"><span class="pre">default_std_matching()</span></code>) Conan will detect the default C++ standard of your compiler to
+<p>By default (<code class="docutils literal notranslate"><span class="pre">default_std_matching()</span></code>) Conan will detect the default C++ standard of your compiler to
 not generate different binary packages.</p>
-<p>For example, you already built some <code class="docutils literal"><span class="pre">gcc</span> <span class="pre">&gt;</span> <span class="pre">6.1</span></code> packages, where the default std is <code class="docutils literal"><span class="pre">gnu14</span></code>.
-If you introduce the <code class="docutils literal"><span class="pre">cppstd</span></code> setting in your recipes and specify the <code class="docutils literal"><span class="pre">gnu14</span></code> value, Conan won’t generate
+<p>For example, you already built some <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">&gt;</span> <span class="pre">6.1</span></code> packages, where the default std is <code class="docutils literal notranslate"><span class="pre">gnu14</span></code>.
+If you introduce the <code class="docutils literal notranslate"><span class="pre">cppstd</span></code> setting in your recipes and specify the <code class="docutils literal notranslate"><span class="pre">gnu14</span></code> value, Conan won’t generate
 new packages, because it was already the default of your compiler.</p>
-<p>With <code class="docutils literal"><span class="pre">self.info.default_std_non_matching()</span></code>, Conan will generate different packages when you specify the <code class="docutils literal"><span class="pre">cppstd</span></code>
+<p>With <code class="docutils literal notranslate"><span class="pre">self.info.default_std_non_matching()</span></code>, Conan will generate different packages when you specify the <code class="docutils literal notranslate"><span class="pre">cppstd</span></code>
 even if it matches with the default of the compiler being used:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">default_std_non_matching</span><span class="p">()</span>
     <span class="c1"># self.info.default_std_matching()</span>
 </pre></div>
@@ -872,27 +872,27 @@ library for general usage, and another one also containing the tests. First pack
 tool to debug errors.</li>
 </ul>
 <p>In both cases, if using different settings, the system will build twice (or more times) the same binaries, just to produce a different final
-binary package. With the <code class="docutils literal"><span class="pre">build_id()</span></code> method this logic can be changed. <code class="docutils literal"><span class="pre">build_id()</span></code> will create a new package ID/hash for the build
+binary package. With the <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> method this logic can be changed. <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> will create a new package ID/hash for the build
 folder, and you can define the logic you want in it. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
 
 <span class="k">def</span> <span class="nf">build_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info_build</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">build_type</span> <span class="o">=</span> <span class="s2">&quot;Any&quot;</span>
 </pre></div>
 </div>
-<p>So this recipe will generate a final different package for each debug/release configuration. But as the <code class="docutils literal"><span class="pre">build_id()</span></code> will generate the
-same ID for any <code class="docutils literal"><span class="pre">build_type</span></code>, then just one folder and one build will be done. Such build should build both debug and release artifacts,
-and then the <code class="docutils literal"><span class="pre">package()</span></code> method should package them accordingly to the <code class="docutils literal"><span class="pre">self.settings.build_type</span></code> value. Different builds will still be
+<p>So this recipe will generate a final different package for each debug/release configuration. But as the <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> will generate the
+same ID for any <code class="docutils literal notranslate"><span class="pre">build_type</span></code>, then just one folder and one build will be done. Such build should build both debug and release artifacts,
+and then the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method should package them accordingly to the <code class="docutils literal notranslate"><span class="pre">self.settings.build_type</span></code> value. Different builds will still be
 executed if using different compilers or architectures. This method is basically an optimization of build time, avoiding multiple re-builds.</p>
 <p>Other information like custom package options can also be changed:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info_build</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">myoption</span> <span class="o">=</span> <span class="s1">&#39;MyValue&#39;</span> <span class="c1"># any value possible</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info_build</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">fullsource</span> <span class="o">=</span> <span class="s1">&#39;Always&#39;</span>
 </pre></div>
 </div>
-<p>If the <code class="docutils literal"><span class="pre">build_id()</span></code> method does not modify the <code class="docutils literal"><span class="pre">build_id</span></code>, and produce a different one than
-the <code class="docutils literal"><span class="pre">package_id</span></code>, then the standard behavior will be applied. Consider the following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
+<p>If the <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> method does not modify the <code class="docutils literal notranslate"><span class="pre">build_id</span></code>, and produce a different one than
+the <code class="docutils literal notranslate"><span class="pre">package_id</span></code>, then the standard behavior will be applied. Consider the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
 
 <span class="k">def</span> <span class="nf">build_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
@@ -900,27 +900,27 @@ the <code class="docutils literal"><span class="pre">package_id</span></code>, t
 </pre></div>
 </div>
 <p>This will only produce a build ID different if the package is for Windows. So the behavior
-in any other OS will be the standard one, as if the <code class="docutils literal"><span class="pre">build_id()</span></code> method was not defined:
+in any other OS will be the standard one, as if the <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> method was not defined:
 the build folder will be wiped at each <strong class="command">conan create</strong> command and a clean build will
 be done.</p>
 </div>
 <div class="section" id="deploy">
 <span id="method-deploy"></span><h2>deploy()<a class="headerlink" href="#deploy" title="Permalink to this headline">¶</a></h2>
 <p>This method can be used in a <em>conanfile.py</em> to install in the system or user folder artifacts from packages.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deploy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deploy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.exe&quot;</span><span class="p">)</span>  <span class="c1"># copy from current package</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy_deps</span><span class="p">(</span><span class="s2">&quot;*.dll&quot;</span><span class="p">)</span> <span class="c1"># copy from dependencies</span>
 </pre></div>
 </div>
 <p>Where:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">self.copy()</span></code> is the <code class="docutils literal"><span class="pre">self.copy()</span></code> method executed inside <a class="reference internal" href="#method-package"><span class="std std-ref">package() method</span></a>.</li>
-<li><code class="docutils literal"><span class="pre">self.copy_deps()</span></code> is the same as <code class="docutils literal"><span class="pre">self.copy()</span></code> method inside <a class="reference internal" href="#method-imports"><span class="std std-ref">imports() method</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> is the <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> method executed inside <a class="reference internal" href="#method-package"><span class="std std-ref">package() method</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">self.copy_deps()</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> method inside <a class="reference internal" href="#method-imports"><span class="std std-ref">imports() method</span></a>.</li>
 </ul>
-<p>Both methods allow the definition of absolute paths (to install in the system), in the <code class="docutils literal"><span class="pre">dst</span></code> argument. By default, the <code class="docutils literal"><span class="pre">dst</span></code>
+<p>Both methods allow the definition of absolute paths (to install in the system), in the <code class="docutils literal notranslate"><span class="pre">dst</span></code> argument. By default, the <code class="docutils literal notranslate"><span class="pre">dst</span></code>
 destionation folder will be the current one.</p>
-<p>The <code class="docutils literal"><span class="pre">deploy()</span></code> method is designed to work on a package that is installed directly from its reference, as:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install Pkg/0.1@user/channel
+<p>The <code class="docutils literal notranslate"><span class="pre">deploy()</span></code> method is designed to work on a package that is installed directly from its reference, as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install Pkg/0.1@user/channel
 &gt; ...
 &gt; Pkg/0.1@user/testing deploy<span class="o">()</span>: Copied <span class="m">1</span> <span class="s1">&#39;.dll&#39;</span> files: mylib.dll
 &gt; Pkg/0.1@user/testing deploy<span class="o">()</span>: Copied <span class="m">1</span> <span class="s1">&#39;.exe&#39;</span> files: myexe.exe
@@ -994,7 +994,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

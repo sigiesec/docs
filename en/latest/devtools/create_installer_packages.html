@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating conan packages to install dev tools &mdash; conan 1.3.2 documentation</title>
+  <title>Creating conan packages to install dev tools &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Package apps and devtools" href="../devtools.html"/>
         <link rel="next" title="Build requirements" href="build_requires.html"/>
         <link rel="prev" title="Running and deploying packages" href="running_packages.html"/>
@@ -200,16 +200,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="creating-conan-packages-to-install-dev-tools">
 <span id="create-installer-packages"></span><h1>Creating conan packages to install dev tools<a class="headerlink" href="#creating-conan-packages-to-install-dev-tools" title="Permalink to this headline">¶</a></h1>
-<p>Conan 1.0 introduced two new settings, <code class="docutils literal"><span class="pre">os_build</span></code> and <code class="docutils literal"><span class="pre">arch_build</span></code>. These settings represent the machine where Conan is running, and are
+<p>Conan 1.0 introduced two new settings, <code class="docutils literal notranslate"><span class="pre">os_build</span></code> and <code class="docutils literal notranslate"><span class="pre">arch_build</span></code>. These settings represent the machine where Conan is running, and are
 important settings when we are packaging tools.</p>
-<p>These settings are different from <code class="docutils literal"><span class="pre">os</span></code> and <code class="docutils literal"><span class="pre">arch</span></code>. These mean where the built software by the Conan recipe will run. When we are
+<p>These settings are different from <code class="docutils literal notranslate"><span class="pre">os</span></code> and <code class="docutils literal notranslate"><span class="pre">arch</span></code>. These mean where the built software by the Conan recipe will run. When we are
 packaging a tool, it usually makes no sense, because we are not building any software, but it makes sense if you are
 <a class="reference internal" href="../systems_cross_building/cross_building.html#cross-building"><span class="std std-ref">cross building software</span></a>.</p>
-<p>We recommend the use of <code class="docutils literal"><span class="pre">os_build</span></code> and <code class="docutils literal"><span class="pre">arch_build</span></code> settings instead of <code class="docutils literal"><span class="pre">os</span></code> and <code class="docutils literal"><span class="pre">arch</span></code> if you are packaging a tool involved in the
-building process, like a compiler, a build system etc. If you are building a package to be run on the <strong>host</strong> system you can use <code class="docutils literal"><span class="pre">os</span></code> and
-<code class="docutils literal"><span class="pre">arch</span></code>.</p>
-<p>A Conan package for a tool follows always a similar structure, this is a recipe for packaging the <code class="docutils literal"><span class="pre">nasm</span></code> tool for building assembler:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<p>We recommend the use of <code class="docutils literal notranslate"><span class="pre">os_build</span></code> and <code class="docutils literal notranslate"><span class="pre">arch_build</span></code> settings instead of <code class="docutils literal notranslate"><span class="pre">os</span></code> and <code class="docutils literal notranslate"><span class="pre">arch</span></code> if you are packaging a tool involved in the
+building process, like a compiler, a build system etc. If you are building a package to be run on the <strong>host</strong> system you can use <code class="docutils literal notranslate"><span class="pre">os</span></code> and
+<code class="docutils literal notranslate"><span class="pre">arch</span></code>.</p>
+<p>A Conan package for a tool follows always a similar structure, this is a recipe for packaging the <code class="docutils literal notranslate"><span class="pre">nasm</span></code> tool for building assembler:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 <span class="kn">from</span> <span class="nn">conans.client</span> <span class="kn">import</span> <span class="n">tools</span>
 
@@ -255,25 +255,25 @@ building process, like a compiler, a build system etc. If you are building a pac
 <ul class="simple">
 <li>The configure method discards some combinations of settings and options, by throwing an exception. In this case this package is only for
 Windows.</li>
-<li><code class="docutils literal"><span class="pre">build()</span></code> downloads the appropriate file and unzips it.</li>
-<li><code class="docutils literal"><span class="pre">package()</span></code> copies all the files from the zip to the package folder.</li>
-<li><code class="docutils literal"><span class="pre">package_info()</span></code> uses <code class="docutils literal"><span class="pre">self.env_info</span></code> to append to the environment variable <code class="docutils literal"><span class="pre">path</span></code> the package’s bin folder.</li>
+<li><code class="docutils literal notranslate"><span class="pre">build()</span></code> downloads the appropriate file and unzips it.</li>
+<li><code class="docutils literal notranslate"><span class="pre">package()</span></code> copies all the files from the zip to the package folder.</li>
+<li><code class="docutils literal notranslate"><span class="pre">package_info()</span></code> uses <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> to append to the environment variable <code class="docutils literal notranslate"><span class="pre">path</span></code> the package’s bin folder.</li>
 </ul>
 <p>This package has only 2 differences from a regular Conan library package:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">source()</span></code> method is missing. That’s because when you compile a library, the source code is always the same for all the generated
+<li><code class="docutils literal notranslate"><span class="pre">source()</span></code> method is missing. That’s because when you compile a library, the source code is always the same for all the generated
 packages, but in this case we are downloading the binaries, so we do it in the build method to download the appropriate zip file according
 to each combination of settings/options. Instead of actually building the tools, we just download them. Of course, if you want to build it
 from source, you can do it too by creating your own package recipe.</li>
-<li>The <code class="docutils literal"><span class="pre">package_info()</span></code> method uses the new <code class="docutils literal"><span class="pre">self.env_info</span></code> object. With <code class="docutils literal"><span class="pre">self.env_info</span></code> the package can declare environment variables
+<li>The <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method uses the new <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> object. With <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> the package can declare environment variables
 that will be set automatically before <cite>build()</cite>, <cite>package()</cite>, <cite>source()</cite> and <cite>imports()</cite> methods of a package requiring this build tool.
 This is a convenient method to use these tools without having to mess with the system path.</li>
 </ul>
 <div class="section" id="using-the-tool-packages-in-other-recipes">
 <h2>Using the tool packages in other recipes<a class="headerlink" href="#using-the-tool-packages-in-other-recipes" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">self.env_info</span></code> variables will be automatically applied when you require a recipe that declares them. For example, take a look at the
+<p>The <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> variables will be automatically applied when you require a recipe that declares them. For example, take a look at the
 MinGW <em>conanfile.py</em> recipe (<a class="reference external" href="https://github.com/conan-community/conan-mingw-installer">https://github.com/conan-community/conan-mingw-installer</a>):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">MingwInstallerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">MingwInstallerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mingw_installer&quot;</span>
      <span class="o">...</span>
 
@@ -294,15 +294,15 @@ MinGW <em>conanfile.py</em> recipe (<a class="reference external" href="https://
      <span class="o">...</span>
 </pre></div>
 </div>
-<p>We are requiring a <code class="docutils literal"><span class="pre">build_require</span></code> to another package: <code class="docutils literal"><span class="pre">7z_installer</span></code>. In this case it will be used to unzip the 7z compressed files
+<p>We are requiring a <code class="docutils literal notranslate"><span class="pre">build_require</span></code> to another package: <code class="docutils literal notranslate"><span class="pre">7z_installer</span></code>. In this case it will be used to unzip the 7z compressed files
 after downloading the appropriate MinGW installer.</p>
-<p>That way, after the download of the installer, the 7z executable will be in the PATH, because the <code class="docutils literal"><span class="pre">7z_installer</span></code> dependency declares the
-<em>bin</em> folder in its <code class="docutils literal"><span class="pre">package_info()</span></code>.</p>
+<p>That way, after the download of the installer, the 7z executable will be in the PATH, because the <code class="docutils literal notranslate"><span class="pre">7z_installer</span></code> dependency declares the
+<em>bin</em> folder in its <code class="docutils literal notranslate"><span class="pre">package_info()</span></code>.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p>Some build requires will need settings such as <code class="docutils literal"><span class="pre">os</span></code>, <code class="docutils literal"><span class="pre">compiler</span></code> or <code class="docutils literal"><span class="pre">arch</span></code> to build themselves from sources. In that case the
+<p>Some build requires will need settings such as <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">compiler</span></code> or <code class="docutils literal notranslate"><span class="pre">arch</span></code> to build themselves from sources. In that case the
 recipe might look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAwesomeBuildTool</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyAwesomeBuildTool</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os_build&quot;</span><span class="p">,</span> <span class="s2">&quot;arch_build&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span>
     <span class="o">...</span>
 
@@ -316,8 +316,8 @@ recipe might look like this:</p>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">arch</span>
 </pre></div>
 </div>
-<p class="last">Note <code class="docutils literal"><span class="pre">package_id()</span></code> deletes not needed information for the computation of the package ID and includes the build settings <code class="docutils literal"><span class="pre">os_build</span></code>
-and <code class="docutils literal"><span class="pre">arch_build</span></code> that are excluded by default. Read more about
+<p class="last">Note <code class="docutils literal notranslate"><span class="pre">package_id()</span></code> deletes not needed information for the computation of the package ID and includes the build settings <code class="docutils literal notranslate"><span class="pre">os_build</span></code>
+and <code class="docutils literal notranslate"><span class="pre">arch_build</span></code> that are excluded by default. Read more about
 <a class="reference internal" href="../reference/conanfile/methods.html#info-discard-include-build-settings"><span class="std std-ref">self.info.include_build_settings()</span></a> in the reference section.</p>
 </div>
 </div>
@@ -328,14 +328,14 @@ Windows with MinGW and CMake.</p>
 <ol class="arabic simple">
 <li>Create a separate folder from your project, this folder will handle our global development environment.</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir my_cpp_environ
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir my_cpp_environ
 $ <span class="nb">cd</span> my_cpp_environ
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li>Create a <em>conanfile.txt</em> file:</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>requires<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>requires<span class="o">]</span>
 mingw_installer/1.0@conan/stable
 cmake_installer/3.10.0@conan/stable
 
@@ -343,25 +343,25 @@ cmake_installer/3.10.0@conan/stable
 virtualenv
 </pre></div>
 </div>
-<p>Note that you can adjust the <code class="docutils literal"><span class="pre">options</span></code> and retrieve a different configuration of the required packages, or leave them unspecified in the
+<p>Note that you can adjust the <code class="docutils literal notranslate"><span class="pre">options</span></code> and retrieve a different configuration of the required packages, or leave them unspecified in the
 file and pass them as command line parameters.</p>
 <ol class="arabic simple" start="3">
 <li>Install them:</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install .
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Activate the virtual environment in your shell:</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ activate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ activate
 <span class="o">(</span>my_cpp_environ<span class="o">)</span>$
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li>Check that the tools are in the path:</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">(</span>my_cpp_environ<span class="o">)</span>$ gcc --version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>my_cpp_environ<span class="o">)</span>$ gcc --version
 
 &gt; gcc <span class="o">(</span>x86_64-posix-seh-rev1, Built by MinGW-W64 project<span class="o">)</span> <span class="m">4</span>.9.2
 
@@ -379,7 +379,7 @@ file and pass them as command line parameters.</p>
 <ol class="arabic simple" start="6">
 <li>You can deactivate the virtual environment with the <em>deactivate.bat</em> script</li>
 </ol>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">(</span>my_cpp_environ<span class="o">)</span>$ deactivate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>my_cpp_environ<span class="o">)</span>$ deactivate
 </pre></div>
 </div>
 </div>
@@ -448,7 +448,7 @@ file and pass them as command line parameters.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

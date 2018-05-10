@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to collaborate on other users’ packages &mdash; conan 1.3.2 documentation</title>
+  <title>How to collaborate on other users’ packages &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="How to link with Apple Frameworks" href="link_apple_framework.html"/>
         <link rel="prev" title="How to reuse cmake install for package() method" href="cmake_install.html"/>
@@ -221,20 +221,20 @@ package creator, you might still be able to do so:</p>
 <h2>Collaborate from source repository<a class="headerlink" href="#collaborate-from-source-repository" title="Permalink to this headline">¶</a></h2>
 <p>If the original package creator has the package recipe in a repository, this would be the simplest approach. Just clone the package recipe
 in your machine, change something if you want, and then export the package recipe under your own user name. Point your project’s
-<code class="docutils literal"><span class="pre">[requires]</span></code> to the new package name, and use it as usual:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone &lt;repository&gt;
+<code class="docutils literal notranslate"><span class="pre">[requires]</span></code> to the new package name, and use it as usual:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone &lt;repository&gt;
 $ <span class="nb">cd</span> &lt;repository&gt;
 //make changes <span class="k">if</span> desired
 $ conan <span class="nb">export</span> . &lt;youruser/yourchannel&gt;
 </pre></div>
 </div>
 <p>You can just directly run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan create . demo/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing
 </pre></div>
 </div>
 <p>Once you have generated the desired binaries, you can store your pre-compiled binaries in your bintray repository or in your own Conan
 server:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan upload Package/0.1@myuser/stable -r<span class="o">=</span>myremote --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan upload Package/0.1@myuser/stable -r<span class="o">=</span>myremote --all
 </pre></div>
 </div>
 <p>Finally, if you made useful changes, you might want to create a pull request to the original repository of the package creator.</p>
@@ -244,7 +244,7 @@ server:</p>
 <p>If you don’t need to modify the original package creator recipe, it is fine to just copy the package in your local storage. You can copy the
 recipes and existing binary packages. This could be enough for caching existing binary packages from the orginal remote into your own
 remote, under your own username:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan copy Poco/1.7.8p3@pocoproject/stable myuser/testing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan copy Poco/1.7.8p3@pocoproject/stable myuser/testing
 $ conan upload Poco/1.7.8p3@myuser/testing -r<span class="o">=</span>myremote --all
 </pre></div>
 </div>
@@ -314,7 +314,7 @@ $ conan upload Poco/1.7.8p3@myuser/testing -r<span class="o">=</span>myremote --
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

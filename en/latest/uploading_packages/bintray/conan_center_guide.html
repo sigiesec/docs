@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing packages to conan-center &mdash; conan 1.3.2 documentation</title>
+  <title>Contributing packages to conan-center &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
         <link rel="up" title="Using Bintray" href="../using_bintray.html"/>
         <link rel="next" title="Artifactory Community Edition for C/C++" href="../artifactory_ce.html"/>
         <link rel="prev" title="Uploading to Bintray" href="uploading_bintray.html"/>
@@ -229,7 +229,7 @@ suggestions for improvements or better/cleaner ways to implement the package.</p
 <p>Before creating packages for third party libraries, please read these general guidelines.</p>
 <ul class="simple">
 <li>Ensure that there is no other conan package for the same library. If you are planning to support a
-new version of a library that already exists in the <code class="docutils literal"><span class="pre">conan-center</span></code> repository, please, contact
+new version of a library that already exists in the <code class="docutils literal notranslate"><span class="pre">conan-center</span></code> repository, please, contact
 the package author and collaborate. All the versions of the same library have to be on the same
 Bintray Conan package.</li>
 <li>It is recommended to contact the <strong>library author</strong> and suggest to maintain the Conan package.
@@ -257,10 +257,10 @@ helpers etc.</li>
 etc., so a minimal commitment will be required. Conan organization reserves the right to unlink a
 poorly maintained package or replace it with better alternatives.</li>
 <li><strong>Raise errors on invalid configurations:</strong> If the library doesn’t work for a specific
-configuration, e.g. requires <strong>gcc&gt;7</strong> the recipe must contain a <code class="docutils literal"><span class="pre">configure(self)</span></code> method  that
+configuration, e.g. requires <strong>gcc&gt;7</strong> the recipe must contain a <code class="docutils literal notranslate"><span class="pre">configure(self)</span></code> method  that
 raises an exception in case of invalid settings/options.</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">():</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span> <span class="o">==</span> <span class="s2">&quot;gcc&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">version</span> <span class="o">&lt;</span> <span class="s2">&quot;7.0&quot;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ConanException</span><span class="p">(</span><span class="s2">&quot;GCC &gt; 7.0 is required&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
@@ -270,19 +270,19 @@ raises an exception in case of invalid settings/options.</li>
 <ul class="simple">
 <li><strong>Without version ranges</strong>: As many libraries does not follow semantic versioning and the dependency resolution of version ranges is not
 always clear, recipes in conan center should fix the version of their dependencies and not use version ranges.</li>
-<li><strong>LICENSE of the recipe:</strong> The public repository must contain a <code class="docutils literal"><span class="pre">LICENSE</span></code> file with an OSS
+<li><strong>LICENSE of the recipe:</strong> The public repository must contain a <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file with an OSS
 license.</li>
-<li><strong>LICENSE of the library:</strong> Every built binary package must contain one or more <code class="docutils literal"><span class="pre">license*</span></code>
-file(s), so make sure that in the <code class="docutils literal"><span class="pre">package()</span></code> method of your recipe, you are copying the library
-licenses to a <code class="docutils literal"><span class="pre">licenses</span></code> subfolder.</li>
+<li><strong>LICENSE of the library:</strong> Every built binary package must contain one or more <code class="docutils literal notranslate"><span class="pre">license*</span></code>
+file(s), so make sure that in the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method of your recipe, you are copying the library
+licenses to a <code class="docutils literal notranslate"><span class="pre">licenses</span></code> subfolder.</li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">():</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;license*&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;licenses&quot;</span><span class="p">,</span>  <span class="n">ignore_case</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Sometimes there is no <code class="docutils literal"><span class="pre">license</span></code> file, and you need to extract the license from a header file, this
+<p>Sometimes there is no <code class="docutils literal notranslate"><span class="pre">license</span></code> file, and you need to extract the license from a header file, this
 is an example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">():</span>
     <span class="c1"># Extract the License/s from the header to a file</span>
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;header.h&quot;</span><span class="p">)</span>
     <span class="n">license_contents</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="n">tmp</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;*/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="c1"># The license begins with a C comment /* and ends with */</span>
@@ -316,9 +316,9 @@ look to the options to generate a library layout with the needed appveyor/travis
 <p>You can also copy the following files from this <a class="reference external" href="https://github.com/conan-community/conan-zlib">zlib Conan package repository</a> and adapt them:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">.travis</span></code> folder. Not needed to adjust anything.</li>
-<li><code class="docutils literal"><span class="pre">.travis.yml</span></code> file. Adjust your username, library reference etc</li>
-<li><code class="docutils literal"><span class="pre">appveyor.yml</span></code> file. Adjust your username, library reference etc</li>
+<li><code class="docutils literal notranslate"><span class="pre">.travis</span></code> folder. Not needed to adjust anything.</li>
+<li><code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file. Adjust your username, library reference etc</li>
+<li><code class="docutils literal notranslate"><span class="pre">appveyor.yml</span></code> file. Adjust your username, library reference etc</li>
 </ul>
 </div></blockquote>
 </li>
@@ -418,7 +418,7 @@ look to the options to generate a library layout with the needed appveyor/travis
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Custom integrations &mdash; conan 1.3.2 documentation</title>
+  <title>Custom integrations &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Integrations" href="../integrations.html"/>
         <link rel="next" title="Howtos" href="../howtos.html"/>
         <link rel="prev" title="SCons" href="scons.html"/>
@@ -244,7 +244,7 @@ as share it with your team or community. Check <a class="reference internal" hre
 <span id="json-integration"></span><h2>Use the JSON generator<a class="headerlink" href="#use-the-json-generator" title="Permalink to this headline">¶</a></h2>
 <p>Specify the <strong>json</strong> generator in your conanfile:</p>
 <blockquote>
-<div><div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[requires]</span>
+<div><div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[requires]</span>
 <span class="na">fmt/4.1.0@&lt;user&gt;/&lt;stable&gt;</span>
 <span class="na">Poco/1.9.0@pocoproject/stable</span>
 
@@ -254,7 +254,7 @@ as share it with your team or community. Check <a class="reference internal" hre
 </div>
 </div></blockquote>
 <p>A file named <em>conanbuildinfo.json</em> will be generated. It will contain the information about every dependency:</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span>
   <span class="p">[</span>
     <span class="p">{</span>
@@ -285,7 +285,7 @@ as share it with your team or community. Check <a class="reference internal" hre
 <span id="txt-integration"></span><h2>Use the text generator<a class="headerlink" href="#use-the-text-generator" title="Permalink to this headline">¶</a></h2>
 <p>Just specify the <strong>txt</strong> generator in your conanfile:</p>
 <blockquote>
-<div><div class="highlight-text"><div class="highlight"><pre><span></span>[requires]
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[requires]
 Poco/1.9.0@pocoproject/stable
 
 [generators]
@@ -294,9 +294,9 @@ txt
 </div>
 </div></blockquote>
 <p>And a file is generated, with the same information as in the case of CMake and gcc, only in a generic, text format,
-containing the information from the <code class="docutils literal"><span class="pre">deps_cpp_info</span></code> and <code class="docutils literal"><span class="pre">deps_user_info</span></code>. Check the conanfile <a class="reference internal" href="../reference/conanfile/methods.html#method-package-info"><span class="std std-ref">package_info</span></a>
+containing the information from the <code class="docutils literal notranslate"><span class="pre">deps_cpp_info</span></code> and <code class="docutils literal notranslate"><span class="pre">deps_user_info</span></code>. Check the conanfile <a class="reference internal" href="../reference/conanfile/methods.html#method-package-info"><span class="std std-ref">package_info</span></a>
 method to know more about these objects:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>[includedirs]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[includedirs]
 /home/laso/.conan/data/Poco/1.6.1/lasote/stable/package/afafc631e705f7296bec38318b28e4361ab6787c/include
 /home/laso/.conan/data/OpenSSL/1.0.2d/lasote/stable/package/154942d8bccb87fbba9157e1daee62e1200e80fc/include
 /home/laso/.conan/data/zlib/1.2.8/lasote/stable/package/3b92a20cb586af0d984797002d12b7120d38e95e/include
@@ -345,10 +345,10 @@ myvar=34
 <div class="section" id="use-conan-data-model-conanfile-py">
 <h2>Use conan data model (conanfile.py)<a class="headerlink" href="#use-conan-data-model-conanfile-py" title="Permalink to this headline">¶</a></h2>
 <p>If you are using any other build system you can use conan too.
-In the <code class="docutils literal"><span class="pre">build()</span></code> method you can access your settings and build information
+In the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method you can access your settings and build information
 from your requirements and pass it to your build system. Note, however, that probably is simpler
 and much more reusable to create a generator to simplify the task for your build system.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
 
 <span class="k">class</span> <span class="nc">MyProjectWithConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
    <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
@@ -437,7 +437,7 @@ and much more reusable to create a generator to simplify the task for your build
 <li>Forking and adding the new generator in conan codebase. This will be a built-in generator.
 It might have a much slower release and update cycle, it needs to pass some tests before being accepted,
 but it has the advantage than no extra things are needed to use that generator (once released in conan)</li>
-<li>Creating a custom <a class="reference internal" href="../howtos/custom_generators.html#dyn-generators"><span class="std std-ref">generator package</span></a>. You can write a <code class="docutils literal"><span class="pre">conanfile.py</span></code> and add
+<li>Creating a custom <a class="reference internal" href="../howtos/custom_generators.html#dyn-generators"><span class="std std-ref">generator package</span></a>. You can write a <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> and add
 the custom logic for a generator inside that file, then upload, refer and depend on it as any other package. These
 generators have to be discovered (search), but they have many advantages: much faster release cycles,
 independent from the main conan codebase, can be versioned, so backward compatibility and
@@ -509,7 +509,7 @@ upgrades are much easier.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Packaging approaches &mdash; conan 1.3.2 documentation</title>
+  <title>Packaging approaches &mdash; conan 1.3.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Tools for package creators" href="package_tools.html"/>
         <link rel="prev" title="Inspecting packages" href="inspecting_packages.html"/>
@@ -221,9 +221,9 @@ the release version of the “hello.lib” library and a different package conta
 that library (in the figure denoted as “hello_d.lib”, to make it clear, it is not necessary to use
 different names).</p>
 <a class="reference internal image-reference" href="../_images/single_conf_packages.png"><img alt="../_images/single_conf_packages.png" class="align-center" src="../_images/single_conf_packages.png" style="width: 400px; height: 300px;" /></a>
-<p>In this approach, the <code class="docutils literal"><span class="pre">package_info()</span></code> method can just set the appropriate values for consumers,
+<p>In this approach, the <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method can just set the appropriate values for consumers,
 to let them know about the package library names, and necessary definitions and compile flags.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
 
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
 
@@ -231,21 +231,21 @@ to let them know about the package library names, and necessary definitions and 
         <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mylib&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>It is very important to note that it is declaring the <code class="docutils literal"><span class="pre">build_type</span></code> as a setting. This means that a
+<p>It is very important to note that it is declaring the <code class="docutils literal notranslate"><span class="pre">build_type</span></code> as a setting. This means that a
 different package will be generated for each different value of such setting.</p>
 <p>The values that packages declare here (the <em>include</em>, <em>lib</em> and <em>bin</em> subfolders are already
 defined by default, so they define the include and library path to the package) are translated
-to variables of the respective build system by the used generators. That is, if using the <code class="docutils literal"><span class="pre">cmake</span></code>
+to variables of the respective build system by the used generators. That is, if using the <code class="docutils literal notranslate"><span class="pre">cmake</span></code>
 generator, such above definition will be translated in <em>conanbuildinfo.cmake</em> to something like:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_MYPKG</span> <span class="s">mylib</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_MYPKG</span> <span class="s">mylib</span><span class="p">)</span>
 <span class="c"># ...</span>
 <span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS</span> <span class="s">mylib</span> <span class="o">${</span><span class="nv">CONAN_LIBS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Those variables, will be used in the <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code> macro to actually set cmake relevant
+<p>Those variables, will be used in the <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code> macro to actually set cmake relevant
 variables.</p>
 <p>If the developer wants to switch configuration of the dependencies, he will usually switch with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ conan install -s <span class="nv">build_type</span><span class="o">=</span>Release ...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install -s <span class="nv">build_type</span><span class="o">=</span>Release ...
 <span class="c1"># when need to debug</span>
 $ conan install -s <span class="nv">build_type</span><span class="o">=</span>Debug ...
 </pre></div>
@@ -272,7 +272,7 @@ library, in the same package.</p>
 <p class="first admonition-title">Note</p>
 <p>A complete working example of the following code can be found in a github repo. You should be
 able to run:</p>
-<div class="code bash last highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/hello_multi_config
+<div class="code bash last highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/hello_multi_config
 $ cd hello_multi_config
 $ conan create . user/channel -s build_type=Release
 $ conan create . user/channel -s build_type=Debug --build=missing
@@ -281,12 +281,12 @@ $ conan create . user/channel -s build_type=Debug --build=missing
 </div>
 <p>Creating a multi-configuration Debug/Release package is not difficult, see the following example
 using CMake.</p>
-<p>The first step is to remove <code class="docutils literal"><span class="pre">build_type</span></code> from the settings. It will not be an input setting, the
+<p>The first step is to remove <code class="docutils literal notranslate"><span class="pre">build_type</span></code> from the settings. It will not be an input setting, the
 generated package will always be the same, containing both Debug and Release artifacts.
-The Visual Studio runtime is different for debug and release (<code class="docutils literal"><span class="pre">MDd</span></code> or <code class="docutils literal"><span class="pre">MD</span></code>), so if we are fine
-with the default runtime (MD/MDd), it is also good to remove the <code class="docutils literal"><span class="pre">runtime</span></code> subsetting in the
-<code class="docutils literal"><span class="pre">configure()</span></code> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+The Visual Studio runtime is different for debug and release (<code class="docutils literal notranslate"><span class="pre">MDd</span></code> or <code class="docutils literal notranslate"><span class="pre">MD</span></code>), so if we are fine
+with the default runtime (MD/MDd), it is also good to remove the <code class="docutils literal notranslate"><span class="pre">runtime</span></code> subsetting in the
+<code class="docutils literal notranslate"><span class="pre">configure()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="c1"># build_type has been ommitted. It is not an input setting.</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span>
 
@@ -314,24 +314,24 @@ with the default runtime (MD/MDd), it is also good to remove the <code class="do
 </div>
 <p>In this case, we are assuming that the binaries will be differentiated with a suffix, in cmake
 syntax:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">set_target_properties</span><span class="p">(</span><span class="s">mylibrary</span> <span class="s">PROPERTIES</span> <span class="s">DEBUG_POSTFIX</span> <span class="s">_d</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set_target_properties</span><span class="p">(</span><span class="s">mylibrary</span> <span class="s">PROPERTIES</span> <span class="s">DEBUG_POSTFIX</span> <span class="s">_d</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Such a package can define its information for consumers as:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">release</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mylibrary&quot;</span><span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">debug</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mylibrary_d&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>This will translate to the cmake variables:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_MYPKG_DEBUG</span> <span class="s">mylibrary_d</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_MYPKG_DEBUG</span> <span class="s">mylibrary_d</span><span class="p">)</span>
 <span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_MYPKG_RELEASE</span> <span class="s">mylibrary</span><span class="p">)</span>
 <span class="c"># ...</span>
 <span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_DEBUG</span> <span class="s">mylibrary_d</span> <span class="o">${</span><span class="nv">CONAN_LIBS_DEBUG</span><span class="o">}</span><span class="p">)</span>
 <span class="nb">set</span><span class="p">(</span><span class="s">CONAN_LIBS_RELEASE</span> <span class="s">mylibrary</span> <span class="o">${</span><span class="nv">CONAN_LIBS_RELEASE</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And these variables will be correctly applied to each configuration by <code class="docutils literal"><span class="pre">conan_basic_setup()</span></code>
+<p>And these variables will be correctly applied to each configuration by <code class="docutils literal notranslate"><span class="pre">conan_basic_setup()</span></code>
 helper.</p>
 <p>In this case you can still use the general, not config-specific variables. For example, the include
 directory, set by default to <em>include</em>, is still the same for both debug and release. Those general
@@ -342,13 +342,13 @@ variables will be applied for all configurations.</p>
 If we want to keep the package configurable for supporting static(MT)/dynamic(MD) linking with the VS runtime
 library, some extra work is needed. Basically:</p>
 <ul class="simple">
-<li>Keep, the <code class="docutils literal"><span class="pre">compiler.runtime</span></code> setting, i.e. do not implement the <code class="docutils literal"><span class="pre">configure()</span></code> method removing it</li>
-<li>Don’t let the <code class="docutils literal"><span class="pre">CMake</span></code> helper define the <code class="docutils literal"><span class="pre">CONAN_LINK_RUNTIME</span></code> env-var to define the runtime, because
+<li>Keep, the <code class="docutils literal notranslate"><span class="pre">compiler.runtime</span></code> setting, i.e. do not implement the <code class="docutils literal notranslate"><span class="pre">configure()</span></code> method removing it</li>
+<li>Don’t let the <code class="docutils literal notranslate"><span class="pre">CMake</span></code> helper define the <code class="docutils literal notranslate"><span class="pre">CONAN_LINK_RUNTIME</span></code> env-var to define the runtime, because
 being defined by the consumer it would be incorrectly applied to both Debug and Release artifacts.
-This can be done with a <code class="docutils literal"><span class="pre">cmake.command_line.replace(&quot;CONAN_LINK_RUNTIME&quot;,</span> <span class="pre">&quot;CONAN_LINK_RUNTIME_MULTI&quot;)</span></code>
+This can be done with a <code class="docutils literal notranslate"><span class="pre">cmake.command_line.replace(&quot;CONAN_LINK_RUNTIME&quot;,</span> <span class="pre">&quot;CONAN_LINK_RUNTIME_MULTI&quot;)</span></code>
 to define a new variable</li>
-<li>Write a <code class="docutils literal"><span class="pre">package_id()</span></code> method that defines the packages to be built, one for MD/MDd, and other for MT/MTd</li>
-<li>In <em>CMakeLists.txt</em>, use the <code class="docutils literal"><span class="pre">CONAN_LINK_RUNTIME_MULTI</span></code> variable to correctly setup up the runtime for
+<li>Write a <code class="docutils literal notranslate"><span class="pre">package_id()</span></code> method that defines the packages to be built, one for MD/MDd, and other for MT/MTd</li>
+<li>In <em>CMakeLists.txt</em>, use the <code class="docutils literal notranslate"><span class="pre">CONAN_LINK_RUNTIME_MULTI</span></code> variable to correctly setup up the runtime for
 debug and release flags</li>
 </ul>
 <p class="last">All these steps are already coded in the repo <a class="reference external" href="https://github.com/memsharded/hello_multi_config">https://github.com/memsharded/hello_multi_config</a> and commented
@@ -356,7 +356,7 @@ out as <strong>“Alternative 2”</strong></p>
 </div>
 <p>Also, you can use any custom configuration you want, they are not restricted. For example, if
 your package is a multi-library package, you could try doing something like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">regex</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;myregexlib1&quot;</span><span class="p">,</span> <span class="s2">&quot;myregexlib2&quot;</span><span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">filesystem</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;myfilesystemlib&quot;</span><span class="p">]</span>
 </pre></div>
@@ -366,7 +366,7 @@ in your consumer CMake build script.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The automatic conversion of multi-config variables to generators is currently only implemented
-in the <code class="docutils literal"><span class="pre">cmake</span></code> and <code class="docutils literal"><span class="pre">txt</span></code> generators. If you want to have support for them in another
+in the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">txt</span></code> generators. If you want to have support for them in another
 build system, please open a GitHub issue for it.</p>
 </div>
 </div>
@@ -381,9 +381,9 @@ the given configuration, leaving the others.</p>
 <p>It is possible to specify the logic, so the same build can be reused to create different packages,
 which will be more efficient:</p>
 <a class="reference internal image-reference" href="../_images/build_once.png"><img alt="../_images/build_once.png" class="align-center" src="../_images/build_once.png" style="width: 400px; height: 300px;" /></a>
-<p>This can be done by defining a <code class="docutils literal"><span class="pre">build_id()</span></code> method in the package recipe that will specify the
+<p>This can be done by defining a <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> method in the package recipe that will specify the
 logic.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
 
 <span class="k">def</span> <span class="nf">build_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">info_build</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">build_type</span> <span class="o">=</span> <span class="s2">&quot;Any&quot;</span>
@@ -395,12 +395,12 @@ logic.</p>
         <span class="c1"># package release</span>
 </pre></div>
 </div>
-<p>Note that the <code class="docutils literal"><span class="pre">build_id()</span></code> method uses the <code class="docutils literal"><span class="pre">self.info_build</span></code> object to alter the build hash. If
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">build_id()</span></code> method uses the <code class="docutils literal notranslate"><span class="pre">self.info_build</span></code> object to alter the build hash. If
 the method doesn’t change it, the hash will match the package folder one. By setting
-<code class="docutils literal"><span class="pre">build_type=&quot;Any&quot;</span></code>, we are forcing that for both Debug and Release values of <code class="docutils literal"><span class="pre">build_type</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">build_type=&quot;Any&quot;</span></code>, we are forcing that for both Debug and Release values of <code class="docutils literal notranslate"><span class="pre">build_type</span></code>, the
 hash will be the same (the particular string is mostly irrelevant, as long as it is the same for
-both configurations). Note that the build hash <code class="docutils literal"><span class="pre">sha3</span></code> will be different of both <code class="docutils literal"><span class="pre">sha1</span></code> and
-<code class="docutils literal"><span class="pre">sha2</span></code> package identifiers.</p>
+both configurations). Note that the build hash <code class="docutils literal notranslate"><span class="pre">sha3</span></code> will be different of both <code class="docutils literal notranslate"><span class="pre">sha1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sha2</span></code> package identifiers.</p>
 <p>This doesn’t imply that there will be strictly one build folder. There will be a build folder for
 every configuration (architecture, compiler version, etc). So if we just have Debug/Release build
 types, and we’re producing N packages for N different configurations, we’ll have N/2 build folders,
@@ -472,7 +472,7 @@ saving half of the build time.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
