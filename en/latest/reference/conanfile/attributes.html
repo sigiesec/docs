@@ -455,6 +455,16 @@ independent in VS, we can just remove that setting field:</p>
     <span class="n">default_options</span> <span class="o">=</span> <span class="s2">&quot;Pkg:pkg_option=value&quot;</span>
 </pre></div>
 </div>
+<p>You can also specify default option values of the conditional required dependencies:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherPkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+    <span class="n">default_options</span> <span class="o">=</span> <span class="s2">&quot;Pkg:pkg_option=value&quot;</span>
+
+    <span class="k">def</span> <span class="nf">requirements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">!=</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="s2">&quot;Pkg/0.1@user/channel&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will always work, on Windows the <cite>default_options</cite> for the <cite>Pkg/0.1&#64;user/channel</cite> will be ignored, they will only be used on every other os.</p>
 <p>If you need to dynamically set some dependency options, you could do:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OtherPkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;Pkg/0.1@user/channel&quot;</span>
