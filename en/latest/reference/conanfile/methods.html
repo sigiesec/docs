@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Methods &mdash; conan 1.3.3 documentation</title>
+  <title>Methods &mdash; conan 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.4.0 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Output and Running" href="other.html"/>
         <link rel="prev" title="Attributes" href="attributes.html"/>
@@ -239,6 +239,10 @@ control. But if the source code is available in a repository, you can directly g
         <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;git clone https://github.com/memsharded/hello.git&quot;</span><span class="p">)</span>
         <span class="c1"># You can also change branch, commit or whatever</span>
         <span class="c1"># self.run(&quot;cd hello &amp;&amp; git checkout 2fe5...&quot;)</span>
+        <span class="c1">#</span>
+        <span class="c1"># Or using the Git class:</span>
+        <span class="c1"># git = tools.Git(folder=&quot;hello&quot;)</span>
+        <span class="c1"># git.clone(&quot;https://github.com/memsharded/hello.git&quot;, &quot;static_shared&quot;)</span>
 </pre></div>
 </div>
 <p>This will work, as long as git is in your current path (so in Win you probably want to run things in msysgit, cmder, etc). You can also use
@@ -971,7 +975,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.3
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -979,7 +983,11 @@ of the installed package to deploy what it needs from its dependencies.</p>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.4</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.3/index.html">1.3</a></dd>
            
         
       </dl>
@@ -994,7 +1002,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.3',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

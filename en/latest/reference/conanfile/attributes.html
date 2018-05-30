@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Attributes &mdash; conan 1.3.3 documentation</title>
+  <title>Attributes &mdash; conan 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.4.0 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Methods" href="methods.html"/>
         <link rel="prev" title="conanfile.py" href="../conanfile.html"/>
@@ -147,6 +147,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#in-local-cache">in_local_cache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#develop">develop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#keep-imports">keep_imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scm">scm</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="methods.html">Methods</a></li>
@@ -581,7 +582,7 @@ we would do something like:</p>
 for evaluation of the recipe.</p>
 </div>
 <div class="section" id="exports-sources">
-<h2>exports_sources<a class="headerlink" href="#exports-sources" title="Permalink to this headline">¶</a></h2>
+<span id="exports-sources-attribute"></span><h2>exports_sources<a class="headerlink" href="#exports-sources" title="Permalink to this headline">¶</a></h2>
 <p>There are 2 ways of getting source code to build a package. Using the <code class="docutils literal notranslate"><span class="pre">source()</span></code> recipe method
 and using the <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> field. With <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> you specify which sources are required,
 and they will be exported together with the <strong>conanfile.py</strong>, copying them from your folder to the
@@ -666,14 +667,14 @@ Only when <code class="docutils literal notranslate"><span class="pre">no_copy_s
 <p>When executing local conan commands (for a package not in the local cache, but in user folder), those fields would be pointing to the corresponding local user folder.</p>
 </div>
 <div class="section" id="cpp-info">
-<h2>cpp_info<a class="headerlink" href="#cpp-info" title="Permalink to this headline">¶</a></h2>
+<span id="cpp-info-attributes-reference"></span><h2>cpp_info<a class="headerlink" href="#cpp-info" title="Permalink to this headline">¶</a></h2>
 <p>This attribute is only defined inside <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method, being None elsewhere, so please use it only inside this method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">self.cpp_info</span></code> object can be filled with the needed information for the consumers of the current
 package:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="38%" />
-<col width="62%" />
+<col width="26%" />
+<col width="74%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">NAME</th>
@@ -694,7 +695,7 @@ package:</p>
 <td>Ordered list with include paths, by default [‘bin’]</td>
 </tr>
 <tr class="row-even"><td>self.cpp_info.builddirs</td>
-<td>Ordered list with build scripts paths, by default [‘’]</td>
+<td>Ordered list with build scripts paths, by default [‘’]. CMake will search in these dirs for cmake files, like findXXX.cmake</td>
 </tr>
 <tr class="row-odd"><td>self.cpp_info.libs</td>
 <td>Ordered list with the library names, by default empty []</td>
@@ -887,6 +888,40 @@ so they are not later unnecessarily repackaged.</p>
 <p>This behavior can be avoided declaring the <code class="docutils literal notranslate"><span class="pre">keep_imports=True</span></code> attribute. This can be useful, for example
 to <a class="reference internal" href="../../devtools/running_packages.html#repackage"><span class="std std-ref">repackage artifacts</span></a></p>
 </div>
+<div class="section" id="scm">
+<span id="scm-attribute"></span><h2>scm<a class="headerlink" href="#scm" title="Permalink to this headline">¶</a></h2>
+<p>Used to clone/checkout a repository. It is a dictionary with the following possible values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span><span class="p">,</span> <span class="n">tools</span>
+
+<span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+     <span class="n">scm</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;subfolder&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/memsharded/hello.git&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;revision&quot;</span><span class="p">:</span> <span class="s2">&quot;static_shared&quot;</span>
+     <span class="p">}</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>type</strong> (Required): Currently only <code class="docutils literal notranslate"><span class="pre">git</span></code> supported. Others like <code class="docutils literal notranslate"><span class="pre">svn</span></code> will be added eventually.</li>
+<li><strong>url</strong> (Required): URL of the remote or <code class="docutils literal notranslate"><span class="pre">auto</span></code> to capture the remote from the local directory.</li>
+<li><dl class="first docutils">
+<dt><strong>revision</strong> (Required):</dt>
+<dd>When type is <code class="docutils literal notranslate"><span class="pre">git</span></code>, it can be a string with a branch name, a commit or a tag.</dd>
+</dl>
+</li>
+<li><strong>subfolder</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">.</span></code>): A subfolder where the repository will be cloned.</li>
+<li><strong>username</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the login to authenticate with the remote.</li>
+<li><strong>password</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the password to authenticate with the remote.</li>
+<li><strong>verify_ssl</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Verify SSL certificate of the specified <strong>url</strong>.</li>
+</ul>
+<p>To know more about the usage of <code class="docutils literal notranslate"><span class="pre">scm</span></code> check:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../creating_packages/external_repo.html#external-repo"><span class="std std-ref">Creating packages/Recipe and sources in a different repo</span></a></li>
+<li><a class="reference internal" href="../../creating_packages/package_repo.html#package-repo"><span class="std std-ref">Creating packages/Recipe and sources in the same repo</span></a></li>
+</ul>
+</div>
 </div>
 
 
@@ -929,7 +964,7 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.3
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -937,7 +972,11 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.4</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.3/index.html">1.3</a></dd>
            
         
       </dl>
@@ -952,7 +991,7 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.3',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

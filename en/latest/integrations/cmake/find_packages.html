@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Find Packages &mdash; conan 1.3.3 documentation</title>
+  <title>Find Packages &mdash; conan 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.3.3 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.4.0 documentation" href="../../index.html"/>
         <link rel="up" title="CMake" href="../cmake.html"/>
         <link rel="next" title="Autotools: configure/make" href="../makefile.html"/>
         <link rel="prev" title="Build automation" href="build_automation.html"/>
@@ -116,6 +116,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2 current"><a class="reference internal" href="../cmake.html"> CMake</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="cmake_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake</span></code> generator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake_multi_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake_paths_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake_paths</span></code> generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake_find_package_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake_find_package</span></code> generator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build_automation.html">Build automation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Find Packages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#creating-a-custom-findxxx-cmake-file">Creating a custom FindXXX.cmake file</a></li>
@@ -229,7 +231,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="find-packages">
 <h1>Find Packages<a class="headerlink" href="#find-packages" title="Permalink to this headline">¶</a></h1>
 <p>If a FindXXX.cmake file for the library you are packaging is already available, it should work automatically.</p>
-<p>Variables <strong>CMAKE_INCLUDE_PATH</strong> and <strong>CMAKE_LIBRARY_PATH</strong> are set with the right requirements paths. CMake <strong>find_library</strong> function will be able to locate the libraries in the package’s folders.</p>
+<p>Variables <strong>CMAKE_INCLUDE_PATH</strong> and <strong>CMAKE_LIBRARY_PATH</strong> are set with the right requirements paths.
+CMake <strong>find_library</strong> function will be able to locate the libraries in the package’s folders.</p>
 <p>So, you can use <strong>find_package</strong> normally:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">MyHello</span><span class="p">)</span>
 <span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8.12</span><span class="p">)</span>
@@ -248,7 +251,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In addition to automatic <strong>find_package</strong> support, <strong>CMAKE_MODULE_PATH</strong> variable is set with your requirements root package paths. You can override the default behavior of any find_package() by creating a <code class="docutils literal notranslate"><span class="pre">findXXX.cmake</span></code> file in your package.</p>
+<p>In addition to automatic <strong>find_package</strong> support, <strong>CMAKE_MODULE_PATH</strong> variable is set with your requirements root package paths.
+You can override the default behavior of any find_package() by creating a <code class="docutils literal notranslate"><span class="pre">findXXX.cmake</span></code> file in your package.</p>
 <div class="section" id="creating-a-custom-findxxx-cmake-file">
 <h2>Creating a custom FindXXX.cmake file<a class="headerlink" href="#creating-a-custom-findxxx-cmake-file" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes the “official” CMake FindXXX.cmake scripts are not ready to find our libraries (not supported library names for specific settings, fixed installation directories like C:\OpenSSL… etc)
@@ -338,7 +342,7 @@ Then the same for the library names with CONAN_LIBS_XXX and the paths where the 
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.3
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -346,7 +350,11 @@ Then the same for the library names with CONAN_LIBS_XXX and the paths where the 
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.4</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.3/index.html">1.3</a></dd>
            
         
       </dl>
@@ -361,7 +369,7 @@ Then the same for the library names with CONAN_LIBS_XXX and the paths where the 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.3.3',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

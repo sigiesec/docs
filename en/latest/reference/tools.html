@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tools &mdash; conan 1.3.3 documentation</title>
+  <title>Tools &mdash; conan 1.4.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.3.3 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Reference" href="../reference.html"/>
         <link rel="next" title="Configuration files" href="config_files.html"/>
         <link rel="prev" title="RunEnvironment" href="build_helpers/run_environment.html"/>
@@ -164,6 +164,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#tools-replace-prefix-in-pc-file">tools.replace_prefix_in_pc_file()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-collect-libs">tools.collect_libs()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-pkgconfig">tools.PkgConfig()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-git">tools.Git()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config_files.html">Configuration files</a></li>
@@ -265,12 +266,14 @@ Can be overwritten with the environment variable <code class="docutils literal n
 </div>
 <div class="section" id="tools-vcvars-command">
 <h2>tools.vcvars_command()<a class="headerlink" href="#tools-vcvars-command" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vcvars_command</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">compiler_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vcvars_command</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">compiler_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">vcvars_ver</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                   <span class="n">winsdk_version</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Returns, for given settings, the command that should be called to load the Visual
-Studio environment variables for a certain Visual Studio version. It does not execute
-the command, as that typically have to be done in the same command as the compilation,
+Studio environment variables for a certain Visual Studio version. It wraps thefunctionality of
+<a class="reference external" href="https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line">vcvarsall</a> but
+does not execute the command, as that typically have to be done in the same command as the compilation,
 so the variables are loaded for the same subprocess. It will be typically used in the <code class="docutils literal notranslate"><span class="pre">build()</span></code>
 method, like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
@@ -296,13 +299,16 @@ to set the Visual Studio environment for these parameters.</p>
 <li><strong>arch</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Will use <code class="docutils literal notranslate"><span class="pre">settings.arch</span></code>.</li>
 <li><strong>compiler_version</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Will use <code class="docutils literal notranslate"><span class="pre">settings.compiler.version</span></code>.</li>
 <li><strong>force</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Will ignore if the environment is already set for a different Visual Studio version.</li>
+<li><strong>winsdk_version</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Specifies the version of the Windows SDK to use.</li>
+<li><strong>vcvars_ver</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Specifies the Visual Studio compiler toolset to use.</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="tools-vcvars-dict">
 <h2>tools.vcvars_dict()<a class="headerlink" href="#tools-vcvars-dict" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vcvars_dict</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">compiler_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">filter_known_paths</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vcvars_dict</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">compiler_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">filter_known_paths</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">vcvars_ver</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">winsdk_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">only_diff</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Returns a dictionary with the variables set by the <strong>tools.vcvars_command</strong>.</p>
@@ -321,6 +327,8 @@ to set the Visual Studio environment for these parameters.</p>
 <li><strong>filter_known_paths</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): When True, the function will only keep the PATH
 entries that follows some known patterns, filtering all the non-Visual Studio ones. When False,
 it will keep the PATH will all the system entries.</li>
+<li><strong>only_diff</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Returns only the variables set by
+<code class="docutils literal notranslate"><span class="pre">vcvarsall</span></code> and not the whole environment.</li>
 </ul>
 </dd>
 </dl>
@@ -1361,6 +1369,59 @@ them to achieve correct linking order.</p>
 </tbody>
 </table>
 </div>
+<div class="section" id="tools-git">
+<span id="id4"></span><h2>tools.Git()<a class="headerlink" href="#tools-git" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Git</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force_english</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Wrapper of the <code class="docutils literal notranslate"><span class="pre">git</span></code> tool.</p>
+<p>Parameters of the constructor:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>folder</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Specify a subfolder where the code will be cloned. If not specified it will clone in the current directory.</li>
+<li><strong>verify_ssl</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Verify SSL certificate of the specified <strong>url</strong>.</li>
+<li><strong>username</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the login to authenticate with the remote.</li>
+<li><strong>password</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the password to authenticate with the remote.</li>
+<li><strong>force_english</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): The encoding of the tool will be forced to use <code class="docutils literal notranslate"><span class="pre">en_US.UTF-8</span></code> to ease the output parsing.</li>
+<li><strong>runner</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): By default <code class="docutils literal notranslate"><span class="pre">subprocess.check_output</span></code> will be used to invoke the <code class="docutils literal notranslate"><span class="pre">git</span></code> tool.</li>
+</ul>
+</div></blockquote>
+<p>Methods:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><strong>run(command)</strong>:</dt>
+<dd>Run any “git” command. <code class="docutils literal notranslate"><span class="pre">e.j</span> <span class="pre">run(&quot;status&quot;)</span></code></dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>get_url_with_credentials(url)</strong>:</dt>
+<dd>Returns the passed url but containing the <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> in the URL to authenticate (only if <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> is specified)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>clone(url, branch=None)</strong>:</dt>
+<dd>Clone a repository. Optionally you can specify a branch. Note: If you want to clone a repository and the specified <strong>folder</strong> already exist you have to specify a <code class="docutils literal notranslate"><span class="pre">branch</span></code>.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>checkout(element)</strong>:</dt>
+<dd>Checkout a branch, commit or tag.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>get_remote_url(remote_name=None)</strong>:</dt>
+<dd>Returns the remote url of the specified remote. If not <code class="docutils literal notranslate"><span class="pre">remote_name</span></code> is specified <code class="docutils literal notranslate"><span class="pre">origin</span></code> will be used.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>get_revision()</strong>:</dt>
+<dd>Gets the current commit hash.</dd>
+</dl>
+</li>
+</ul>
+</div>
 </div>
 
 
@@ -1403,7 +1464,7 @@ them to achieve correct linking order.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.3
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -1411,7 +1472,11 @@ them to achieve correct linking order.</p>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.3</a></dd>
+                <dd><a href="/en/latest/index.html">1.4</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.3/index.html">1.3</a></dd>
            
         
       </dl>
@@ -1426,7 +1491,7 @@ them to achieve correct linking order.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.3',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
