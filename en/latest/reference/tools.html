@@ -165,6 +165,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#tools-collect-libs">tools.collect_libs()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-pkgconfig">tools.PkgConfig()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-git">tools.Git()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-is-apple-os">tools.is_apple_os()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-to-apple-arch">tools.to_apple_arch()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-apple-sdk-name">tools.apple_sdk_name()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-apple-deployment-target-env">tools.apple_deployment_target_env()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-apple-deployment-target-flag">tools.apple_deployment_target_flag()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-xcrun">tools.XCRun()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config_files.html">Configuration files</a></li>
@@ -1421,6 +1427,103 @@ them to achieve correct linking order.</p>
 </dl>
 </li>
 </ul>
+</div>
+<div class="section" id="tools-is-apple-os">
+<h2>tools.is_apple_os()<a class="headerlink" href="#tools-is-apple-os" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_apple_os</span><span class="p">(</span><span class="n">os_</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if OS is an Apple one: Macos, iOS, watchOS or tvOS.</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>os_</strong> (Required): OS to perform the check. Usually this would be <code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-to-apple-arch">
+<h2>tools.to_apple_arch()<a class="headerlink" href="#tools-to-apple-arch" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_apple_arch</span><span class="p">(</span><span class="n">arch</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Converts conan-style architecture into Apple-style architecture.</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>arch</strong> (Required): arch to perform the conversion. Usually this would be <code class="docutils literal notranslate"><span class="pre">self.settings.arch</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-apple-sdk-name">
+<h2>tools.apple_sdk_name()<a class="headerlink" href="#tools-apple-sdk-name" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apple_sdk_name</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns proper SDK name suitable for OS and architecture you are building for (considering simulators).</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>settings</strong> (Required): Conanfile settings.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-apple-deployment-target-env">
+<h2>tools.apple_deployment_target_env()<a class="headerlink" href="#tools-apple-deployment-target-env" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apple_deployment_target_env</span><span class="p">(</span><span class="n">os_</span><span class="p">,</span> <span class="n">os_version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Environment variable name which controls deployment target: <code class="docutils literal notranslate"><span class="pre">MACOSX_DEPLOYMENT_TARGET</span></code>, <code class="docutils literal notranslate"><span class="pre">IOS_DEPLOYMENT_TARGET</span></code>,
+<code class="docutils literal notranslate"><span class="pre">WATCHOS_DEPLOYMENT_TARGET</span></code> or <code class="docutils literal notranslate"><span class="pre">TVOS_DEPLOYMENT_TARGET</span></code>.</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>os_</strong> (Required): OS of the settings. Usually <code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code>.</li>
+<li><strong>os_version</strong> (Required): OS version.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-apple-deployment-target-flag">
+<h2>tools.apple_deployment_target_flag()<a class="headerlink" href="#tools-apple-deployment-target-flag" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apple_deployment_target_flag</span><span class="p">(</span><span class="n">os_</span><span class="p">,</span> <span class="n">os_version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Compiler flag name which controls deployment target. For example: <code class="docutils literal notranslate"><span class="pre">-mappletvos-version-min=9.0</span></code></p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>os_</strong> (Required): OS of the settings. Usually <code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code>.</li>
+<li><strong>os_version</strong> (Required): OS version.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-xcrun">
+<h2>tools.XCRun()<a class="headerlink" href="#tools-xcrun" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">XCRun</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">sdk</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>XCRun wrapper used to get information for building.</p>
+<dl class="docutils">
+<dt>Properties:</dt>
+<dd><ul class="first last simple">
+<li><strong>sdk_path</strong>: Obtain SDK path (a.k.a. Apple sysroot or -isysroot).</li>
+<li><strong>sdk_version</strong>: Obtain SDK version.</li>
+<li><strong>sdk_platform_path</strong>: Obtain SDK platform path.</li>
+<li><strong>sdk_platform_version</strong>: Obtain SDK platform version.</li>
+<li><strong>cc</strong>: Path to C compiler (CC).</li>
+<li><strong>cxx</strong>: Path to C++ compiler (CXX).</li>
+<li><strong>ar</strong>: Path to archiver (AR).</li>
+<li><strong>ranlib</strong>: Path to archive indexer (RANLIB).</li>
+<li><strong>strip</strong>: Path to symbol removal utility (STRIP).</li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 

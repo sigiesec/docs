@@ -288,6 +288,7 @@ using transitive CMake targets. Read more <a class="reference internal" href="in
 <li>Feature: <code class="docutils literal notranslate"><span class="pre">tools.vcvars_command()</span></code> and <code class="docutils literal notranslate"><span class="pre">tools.vcvars_dict()</span></code> now take <code class="docutils literal notranslate"><span class="pre">vcvars_ver</span></code> and <code class="docutils literal notranslate"><span class="pre">winsdk_version</span></code> as parameters.</li>
 <li>Feature: <code class="docutils literal notranslate"><span class="pre">tools.vcvars_dict()</span></code> gets only the env vars set by vcvars with new parameter <code class="docutils literal notranslate"><span class="pre">only_diff=True</span></code>.</li>
 <li>Feature: Generator <code class="docutils literal notranslate"><span class="pre">virtualbuildenv</span></code> now sets Visual Studio env vars via <code class="docutils literal notranslate"><span class="pre">tool.vcvars_dict()</span></code>.</li>
+<li>Feature: New tools for Apple development including XCRun wrapper.</li>
 <li>Fix: Message “Package ‘1’ created” in package commands with <code class="docutils literal notranslate"><span class="pre">short_paths=True</span></code> now shows package ID.</li>
 <li>Fix: <code class="docutils literal notranslate"><span class="pre">tools.vcvars_dict()</span></code> failing to create dictionary due to newlines in vcvars command output.</li>
 <li>Bugfix: <code class="docutils literal notranslate"><span class="pre">tools.which()</span></code> returning directories instead of only files.</li>
@@ -338,10 +339,12 @@ Compiler flags will be automatically defined in build helpers that do not unders
 <li>Feature: New <strong>CircleCI</strong> template scripts can be generated with the <strong class="command">conan new</strong> command.</li>
 <li>Feature: The CMake() build helper manages the fPIC flag automatically based on the options <code class="docutils literal notranslate"><span class="pre">fPIC</span></code> and <code class="docutils literal notranslate"><span class="pre">shared</span></code> when present.</li>
 <li>Feature: Allowing requiring color output with <code class="docutils literal notranslate"><span class="pre">CONAN_COLOR_DISPLAY=1</span></code> environment variable.
-If <code class="docutils literal notranslate"><span class="pre">CONAN_COLOR_DISPLAY</span></code> is not set rely on tty detection for colored output</li>
+If <code class="docutils literal notranslate"><span class="pre">CONAN_COLOR_DISPLAY</span></code> is not set rely on tty detection for colored output.</li>
 <li>Feature: New <strong class="command">conan remote rename</strong> and <strong class="command">conan add --force</strong> commands to handle remotes.</li>
 <li>Feature: Added parameter <code class="docutils literal notranslate"><span class="pre">use_env</span></code> to the <code class="docutils literal notranslate"><span class="pre">MSBuild().build()</span></code> build helper method to control the <code class="docutils literal notranslate"><span class="pre">/p:UseEnv</span></code> msbuild argument.</li>
 <li>Feature: Timeout for downloading files from remotes is now configurable (defaulted to 60 seconds)</li>
+<li>Feature: Improved Autotools build helper with new parameters and automatic set of <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> to <code class="docutils literal notranslate"><span class="pre">self.package_folder</span></code>.</li>
+<li>Feature: Added new tool to compose GNU like triplets for cross-building: <code class="docutils literal notranslate"><span class="pre">tools.get_gnu_triplet()</span></code></li>
 <li>Fix: Use International Units for download/upload transfer sizes (Mb, Kb, etc).</li>
 <li>Fix: Removed duplicated paths in <code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generated files.</li>
 <li>Fix: Removed false positive linter warning for local imports.</li>
