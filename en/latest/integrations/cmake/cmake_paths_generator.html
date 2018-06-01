@@ -129,6 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="cmake_multi_generator.html"><code class="docutils literal notranslate"><span class="pre">cmake_multi</span></code> generator</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">cmake_paths</span></code> generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#included-as-a-toolchain">Included as a toolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#included-using-the-cmake-project-project-name-include">Included using the CMAKE_PROJECT_&lt;PROJECT-NAME&gt;_INCLUDE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#included-in-your-cmakelists-txt">Included in your CMakeLists.txt</a></li>
 </ul>
 </li>
@@ -288,6 +289,18 @@ it would have been located because of the <code class="docutils literal notransl
  $ conan install ..
 <span class="hll"> $ cmake .. -DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>conan_paths.cmake -G <span class="s2">&quot;Unix Makefiles&quot;</span> -DCMAKE_BUILD_TYPE<span class="o">=</span>Release
 </span> $ cmake --build .
+</pre></div>
+</div>
+</div>
+<div class="section" id="included-using-the-cmake-project-project-name-include">
+<h2>Included using the CMAKE_PROJECT_&lt;PROJECT-NAME&gt;_INCLUDE<a class="headerlink" href="#included-using-the-cmake-project-project-name-include" title="Permalink to this headline">¶</a></h2>
+<p>With <code class="docutils literal notranslate"><span class="pre">CMAKE_PROJECT_&lt;PROJECT-NAME&gt;_INCLUDE</span></code> you can specify a file to be included by the project() command.
+If you already have a toolchain file you can use this variable to include the <code class="docutils literal notranslate"><span class="pre">conan_paths.cmake</span></code>
+and insert your toolchain with the <code class="docutils literal notranslate"><span class="pre">CMAKE_TOOLCHAIN_FILE</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+$ conan install ..
+$ cmake .. -G <span class="s2">&quot;Unix Makefiles&quot;</span> -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_PROJECT_helloworld_INCLUDE<span class="o">=</span>build/conan_paths.cmake
+$ cmake --build .
 </pre></div>
 </div>
 </div>
