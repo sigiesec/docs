@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Xcode &mdash; conan 1.4.2 documentation</title>
+  <title>Apple/Xcode &mdash; conan 1.4.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.4.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.3 documentation" href="../index.html"/>
         <link rel="up" title="Integrations" href="../integrations.html"/>
         <link rel="next" title="Compilers on command line" href="gcc.html"/>
         <link rel="prev" title="Visual Studio" href="visual_studio.html"/>
@@ -127,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="cmake.html"> CMake</a></li>
 <li class="toctree-l2"><a class="reference internal" href="makefile.html">Autotools: configure/make</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visual_studio.html"> Visual Studio</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">  Xcode</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">  Apple/Xcode</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#with-cmake">With CMake</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#with-the-xcode-generator">With the <em>xcode</em> generator</a></li>
 </ul>
@@ -211,7 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
           <li><a href="../integrations.html">Integrations</a> &raquo;</li>
         
-      <li>  Xcode</li>
+      <li>  Apple/Xcode</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -230,8 +230,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="xcode-logo-xcode">
-<span id="xcode"></span><h1><img alt="xcode_logo" src="../_images/xcode_logo.jpg" />  Xcode<a class="headerlink" href="#xcode-logo-xcode" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="xcode-logo-apple-xcode">
+<span id="xcode"></span><h1><img alt="xcode_logo" src="../_images/xcode_logo.jpg" />  Apple/Xcode<a class="headerlink" href="#xcode-logo-apple-xcode" title="Permalink to this headline">¶</a></h1>
 <p>Conan can be integrated with <strong>XCode</strong> in two different ways:</p>
 <ul class="simple">
 <li>Using the <strong>cmake</strong> generator to create a <strong>conanbuildinfo.cmake</strong> file.</li>
@@ -268,6 +268,15 @@ xcode
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last">Check the <a class="reference internal" href="../reference/generators/xcode.html#xcode-generator"><span class="std std-ref">Reference/Generators/xcode</span></a> for the complete reference.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Check the <a class="reference internal" href="../reference/tools.html#tools-apple"><span class="std std-ref">Tools section about Apple tools</span></a> to ease the integration with the Apple development tools
+in your recipes using the toolchain as a <a class="reference internal" href="../devtools/build_requires.html#build-requires"><span class="std std-ref">build require</span></a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Check the <a class="reference internal" href="../systems_cross_building/cross_building.html#darwin-toolchain"><span class="std std-ref">Darwin Toolchain package</span></a> section to know how to <strong>cross build</strong> for <code class="docutils literal notranslate"><span class="pre">iOS</span></code>, <code class="docutils literal notranslate"><span class="pre">watchOS</span></code> and <code class="docutils literal notranslate"><span class="pre">tvOS</span></code>.</p>
 </div>
 </div>
 </div>
@@ -339,7 +348,7 @@ xcode
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.2',
+            VERSION:'1.4.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
