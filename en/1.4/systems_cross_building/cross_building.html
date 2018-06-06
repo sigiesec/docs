@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cross building &mdash; conan 1.4.2 documentation</title>
+  <title>Cross building &mdash; conan 1.4.3 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.4.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.3 documentation" href="../index.html"/>
         <link rel="up" title="Systems and cross building" href="../systems_cross_building.html"/>
         <link rel="next" title="Windows Subsystems" href="windows_subsystems.html"/>
         <link rel="prev" title="Systems and cross building" href="../systems_cross_building.html"/>
@@ -554,7 +554,27 @@ above in the <code class="docutils literal notranslate"><span class="pre">[env]<
 <p>Finally, when you want to cross-build a library, the profile to be used, will include a <code class="docutils literal notranslate"><span class="pre">[build_requires]</span></code>
 section with the reference to our new packaged toolchain. Also will contain a <code class="docutils literal notranslate"><span class="pre">[settings]</span></code> section
 with the same settings of the examples above.</p>
-<p>You can</p>
+<div class="section" id="example-darwin-toolchain">
+<span id="darwin-toolchain"></span><h4>Example: Darwin Toolchain<a class="headerlink" href="#example-darwin-toolchain" title="Permalink to this headline">¶</a></h4>
+<p>Check the <a class="reference external" href="https://github.com/theodelrieu/conan-darwin-toolchain">Darwin Toolchain</a>  package in conan-center.
+You can use a profile like the following to cross build your packages for <code class="docutils literal notranslate"><span class="pre">iOS</span></code>,  <code class="docutils literal notranslate"><span class="pre">watchOS</span></code> and <code class="docutils literal notranslate"><span class="pre">tvOS</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">ios_profile</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>include(default)
+
+[settings]
+os=iOS
+os.version=9.0
+arch=armv7
+
+[build_requires]
+darwin-toolchain/1.0@theodelrieu/stable
+</pre></div>
+</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . --profile ios_profile
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <ul class="last simple">
@@ -562,6 +582,7 @@ with the same settings of the examples above.</p>
 more about how to create Conan packages for tools.</li>
 <li>Check the <a class="reference external" href="https://github.com/conan-community/conan-mingw-installer/blob/master/conanfile.py">mingw-installer</a> build require recipe as an example of packaging a compiler.</li>
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="using-docker-images">
@@ -736,7 +757,7 @@ do you need to specify in your case.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.2',
+            VERSION:'1.4.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
