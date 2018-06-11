@@ -383,10 +383,15 @@ will be in the form: <code class="docutils literal notranslate"><span class="pre
 <p class="last">If you are using CMake and you have an install target defined in your CMakeLists.txt, you might be able to reuse it for this
 <code class="docutils literal notranslate"><span class="pre">package()</span></code> method. Please check <a class="reference internal" href="../../howtos/cmake_install.html#reuse-cmake-install"><span class="std std-ref">How to reuse cmake install for package() method</span></a>.</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">package()</span></code> method will be called twice if the attribute <code class="docutils literal notranslate"><span class="pre">no_copy_source</span></code> is defined and <code class="docutils literal notranslate"><span class="pre">True</span></code>. One will copy from the <em>source</em>
-folder (typically packaging the headers and other data files), and the other will copy from the <em>build</em> folder, packaging the libraries and
-other binary artifacts. Also, when the local <strong class="command">conan package</strong> command is issued with <strong class="command">--source-folder</strong> and <strong class="command">--build-folder</strong>, it will
-execute two times, one in each folder, in the same way.</p>
+<p>This method copies files from build/source folder to the package folder depending on two situations:</p>
+<ul class="simple">
+<li><strong>Build folder and source folder are the same</strong>: Normally during <strong class="command">conan create</strong> source folder content is copied to the build
+folder. In this situation <code class="docutils literal notranslate"><span class="pre">src</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> will point to the build folder in the local cache.</li>
+<li><strong>Build folder is different from source folder</strong>: When <a class="reference internal" href="../../creating_packages/package_dev_flow.html#package-dev-flow"><span class="std std-ref">developing a package recipe</span></a> and source and build folder
+are different (<strong class="command">conan package . --source-folder=source --build-folder=build</strong>) or when <a class="reference internal" href="attributes.html#no-copy-source"><span class="std std-ref">no_copy_source</span></a> is defined,
+<code class="docutils literal notranslate"><span class="pre">package()</span></code> method is called twice: One will copy from the source folder (<code class="docutils literal notranslate"><span class="pre">src</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> will point to the
+source folder), and the other will copy from the build folder (<code class="docutils literal notranslate"><span class="pre">src</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> will point to the build folder).</li>
+</ul>
 </div>
 <div class="section" id="package-info">
 <span id="method-package-info"></span><h2>package_info()<a class="headerlink" href="#package-info" title="Permalink to this headline">¶</a></h2>
