@@ -657,7 +657,7 @@ Latest python installers might offer to enable this while installing python. Wit
 Please note that this only works with Python 3.6 and newer.</p>
 </div>
 <div class="section" id="no-copy-source">
-<h2>no_copy_source<a class="headerlink" href="#no-copy-source" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>no_copy_source<a class="headerlink" href="#no-copy-source" title="Permalink to this headline">¶</a></h2>
 <p>The attribute <code class="docutils literal notranslate"><span class="pre">no_copy_source</span></code> tells the recipe that the source code will not be copied from the <code class="docutils literal notranslate"><span class="pre">source</span></code> folder to the <code class="docutils literal notranslate"><span class="pre">build</span></code> folder.
 This is mostly an optimization for packages with large source codebases, to avoid extra copies. It is <strong>mandatory</strong> that the source code must not be modified at all by the configure or build scripts, as the source code will be shared among all builds.</p>
 <p>To be able to use it, the package recipe can access the <code class="docutils literal notranslate"><span class="pre">self.source_folder</span></code> attribute, which will point to the <code class="docutils literal notranslate"><span class="pre">build</span></code> folder when <code class="docutils literal notranslate"><span class="pre">no_copy_source=False</span></code> or not defined, and will point to the <code class="docutils literal notranslate"><span class="pre">source</span></code> folder when <code class="docutils literal notranslate"><span class="pre">no_copy_source=True</span></code></p>
@@ -832,7 +832,7 @@ you want to access to the variable declared by some specific requirement you can
 object.</p>
 </div>
 <div class="section" id="apply-env">
-<span id="id2"></span><h2>apply_env<a class="headerlink" href="#apply-env" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>apply_env<a class="headerlink" href="#apply-env" title="Permalink to this headline">¶</a></h2>
 <p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> (Default), the values from <code class="docutils literal notranslate"><span class="pre">self.deps_env_info</span></code> (corresponding to the declared <code class="docutils literal notranslate"><span class="pre">env_info</span></code> in the <code class="docutils literal notranslate"><span class="pre">requires</span></code> and <code class="docutils literal notranslate"><span class="pre">build_requires</span></code>)
 will be automatically applied to the <code class="docutils literal notranslate"><span class="pre">os.environ</span></code>.</p>
 <p>Disable it setting <code class="docutils literal notranslate"><span class="pre">apply_env</span></code> to False if you want to control by yourself the environment variables
@@ -852,7 +852,7 @@ applied to your recipes.</p>
 </div>
 </div>
 <div class="section" id="in-local-cache">
-<span id="id3"></span><h2>in_local_cache<a class="headerlink" href="#in-local-cache" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>in_local_cache<a class="headerlink" href="#in-local-cache" title="Permalink to this headline">¶</a></h2>
 <p>A boolean attribute useful for conditional logic to apply in user folders local commands.
 It will return <cite>True</cite> if the conanfile resides in the local cache ( we are installing the package)
 and <cite>False</cite> if we are running the conanfile in a user folder (local Conan commands).</p>
@@ -891,7 +891,7 @@ $ conan build ..
 <p>But it will not output that when it is a transitive requirement or installed with <strong class="command">conan install</strong>.</p>
 </div>
 <div class="section" id="keep-imports">
-<span id="id4"></span><h2>keep_imports<a class="headerlink" href="#keep-imports" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>keep_imports<a class="headerlink" href="#keep-imports" title="Permalink to this headline">¶</a></h2>
 <p>Just before the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method is executed, if the conanfile has an <code class="docutils literal notranslate"><span class="pre">imports()</span></code> method, it is
 executed into the build folder, to copy binaries from dependencies that might be necessary for
 the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method to work. After the method finishes, those copied (imported) files are removed,
