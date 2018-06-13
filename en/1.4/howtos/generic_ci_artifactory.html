@@ -233,8 +233,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>If you are using <a class="reference internal" href="../integrations/jenkins.html#jenkins-integration"><span class="std std-ref">Jenkins with Conan and Artifactory</span></a>, with the
 <a class="reference external" href="https://www.jfrog.com/confluence/display/RTF/Jenkins+Artifactory+Plug-in">Jenkins Artifactory Plugin</a>,
 any Conan package downloaded or uploaded during your build will be automatically recorded in
-the BuilInfo json file, that will be automatically uploaded to the specified Artifactory instance.</p>
-<p>However, you can gather and upload that information using other CI infraestructure with the following steps:</p>
+the BuildInfo json file, that will be automatically uploaded to the specified Artifactory instance.</p>
+<p>However, you can gather and upload that information using other CI infrastructure with the following steps:</p>
 <ol class="arabic simple">
 <li>Before calling Conan the first time in your build, set the environment variable <cite>CONAN_TRACE_FILE</cite> to a
 file path. The generated file will contain the <a class="reference external" href="https://www.jfrog.com/confluence/display/RTF/Build+Integration#BuildIntegration-BuildInfoJSON">BuildInfo json</a>.</li>
@@ -247,7 +247,7 @@ artifact_property_build.timestamp=1487676992
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li>Call Conan any times you need, for example, if you are testing a Conan package and uploading it at the end, you will run
+<li>Call Conan as many times as you need.  For example, if you are testing a Conan package and uploading it at the end, you will run
 something similar to:</li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . user/stable <span class="c1"># Will retrieve the dependencies and create the package</span>
