@@ -220,7 +220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="profiles">
 <span id="id1"></span><h1>Profiles<a class="headerlink" href="#profiles" title="Permalink to this headline">¶</a></h1>
-<p>Profiles allows users to set a complete configurateion set for <strong>settings</strong>, <strong>options</strong>, <strong>environment variables</strong>, and <strong>build
+<p>Profiles allows users to set a complete configuration set for <strong>settings</strong>, <strong>options</strong>, <strong>environment variables</strong>, and <strong>build
 requirements</strong> in a file. They have this structure:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[settings]
 setting=value
@@ -238,17 +238,17 @@ Tool2/0.1@user/channel, Tool3/0.1@user/channel
 </pre></div>
 </div>
 <p>Profile files can be used with <code class="docutils literal notranslate"><span class="pre">-pr</span></code>/<code class="docutils literal notranslate"><span class="pre">--profile</span></code> option in <strong class="command">conan install</strong> and <strong class="command">conan create</strong> commands.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create demo/testing -pr<span class="o">=</span>myprofile
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing -pr<span class="o">=</span>myprofile
 </pre></div>
 </div>
-<p>Profiles can be located in different folders, for example, the default <code class="docutils literal notranslate"><span class="pre">&lt;userhome&gt;/.conan/profiles</span></code>, and be referenced by absolute or
+<p>Profiles can be located in different folders. For example, the default <em>&lt;userhome&gt;/.conan/profiles</em>, and be referenced by absolute or
 relative path:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install --profile /abs/path/to/profile  <span class="c1"># abs path</span>
-$ conan install --profile ./relpath/to/profile  <span class="c1"># resolved to current dir</span>
-$ conan install --profile profile  <span class="c1"># resolved to user/.conan/profiles/profile</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . --profile /abs/path/to/profile  <span class="c1"># abs path</span>
+$ conan install . --profile ./relpath/to/profile  <span class="c1"># resolved to current dir</span>
+$ conan install . --profile profile  <span class="c1"># resolved to user/.conan/profiles/profile</span>
 </pre></div>
 </div>
-<p>Listing existing profiles can be done like this:</p>
+<p>Listing existing profiles in the <em>profiles</em> folder can be done like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan profile list
 default
 myprofile1
@@ -261,11 +261,11 @@ myprofile2
 Configuration <span class="k">for</span> profile myprofile1:
 
 <span class="o">[</span>settings<span class="o">]</span>
-    <span class="nv">os</span><span class="o">=</span>Windows
-    <span class="nv">arch</span><span class="o">=</span>x86_64
-    <span class="nv">compiler</span><span class="o">=</span>Visual Studio
-    compiler.version<span class="o">=</span><span class="m">15</span>
-    <span class="nv">build_type</span><span class="o">=</span>Release
+<span class="nv">os</span><span class="o">=</span>Windows
+<span class="nv">arch</span><span class="o">=</span>x86_64
+<span class="nv">compiler</span><span class="o">=</span>Visual Studio
+compiler.version<span class="o">=</span><span class="m">15</span>
+<span class="nv">build_type</span><span class="o">=</span>Release
 <span class="o">[</span>options<span class="o">]</span>
 <span class="o">[</span>build_requires<span class="o">]</span>
 <span class="o">[</span>env<span class="o">]</span>
@@ -341,7 +341,7 @@ name from the default profile location in the local cache.</p>
 </div>
 <div class="section" id="variable-declaration">
 <h2>Variable declaration<a class="headerlink" href="#variable-declaration" title="Permalink to this headline">¶</a></h2>
-<p>In a profile you can declare variables that will be replaced automatically by conan before the profile is applied. The variables have to be
+<p>In a profile you can declare variables that will be replaced automatically by Conan before the profile is applied. The variables have to be
 declared at the top of the file, after the <code class="docutils literal notranslate"><span class="pre">include()</span></code> statements.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text"><em>myprofile</em></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
@@ -390,7 +390,7 @@ zlib:CXX=$GCC_PATH/g++
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>If you are working with Linux and you usually work with <code class="docutils literal notranslate"><span class="pre">gcc</span></code> compiler, but you have installed <code class="docutils literal notranslate"><span class="pre">clang</span></code> compiler and want to install some
+<p>If you are working with Linux and you usually work with <strong>gcc</strong> compiler, but you have installed <strong>clang</strong> compiler and want to install some
 package for <code class="docutils literal notranslate"><span class="pre">clang</span></code> compiler, you could do:</p>
 <ul class="simple">
 <li>Create a <code class="docutils literal notranslate"><span class="pre">.conan/profiles/clang</span></code> file:</li>
@@ -406,26 +406,26 @@ CXX=/usr/bin/clang++
 </pre></div>
 </div>
 <ul class="simple">
-<li>Execute conan install command passing the <code class="docutils literal notranslate"><span class="pre">--profile</span></code> or <code class="docutils literal notranslate"><span class="pre">-pr</span></code> parameter:</li>
+<li>Execute an install command passing the <strong class="command">--profile</strong> or <strong class="command">-pr</strong> parameter:</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conan install --profile clang
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . --profile clang
 </pre></div>
 </div>
-<p>Without profiles you would have needed to set the CC and CXX variables in the environment to point to your clang compiler and use <code class="docutils literal notranslate"><span class="pre">-s</span></code>
+<p>Without profiles you would have needed to set CC and CXX variables in the environment to point to your clang compiler and use <strong class="command">-s</strong>
 parameters to specify the settings:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CC</span><span class="o">=</span>/usr/bin/clang
-<span class="nb">export</span> <span class="nv">CXX</span><span class="o">=</span>/usr/bin/clang++
-conan install -s <span class="nv">compiler</span><span class="o">=</span>clang -s compiler.version<span class="o">=</span><span class="m">3</span>.5 -s compiler.libcxx<span class="o">=</span>libstdc++11
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">CC</span><span class="o">=</span>/usr/bin/clang
+$ <span class="nb">export</span> <span class="nv">CXX</span><span class="o">=</span>/usr/bin/clang++
+$ conan install -s <span class="nv">compiler</span><span class="o">=</span>clang -s compiler.version<span class="o">=</span><span class="m">3</span>.5 -s compiler.libcxx<span class="o">=</span>libstdc++11
 </pre></div>
 </div>
 <p>A profile can also be used in <strong class="command">conan create</strong> and <strong class="command">conan info</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create demo/testing --profile clang
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan create . demo/testing --profile clang
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <ul class="last simple">
-<li>Check the section <a class="reference internal" href="../devtools/build_requires.html#build-requires"><span class="std std-ref">Build requirements</span></a> to read more about its ussage in a profile.</li>
+<li>Check the section <a class="reference internal" href="../devtools/build_requires.html#build-requires"><span class="std std-ref">Build requirements</span></a> to read more about its usage in a profile.</li>
 <li>Check <a class="reference internal" href="commands/misc/profile.html#conan-profile"><span class="std std-ref">conan profile</span></a> for full reference.</li>
 <li>Check <a class="reference internal" href="config_files/default_profile.html#default-profile"><span class="std std-ref">profiles/default</span></a> for full reference.</li>
 <li>Related section: <a class="reference internal" href="../systems_cross_building/cross_building.html#cross-building"><span class="std std-ref">Cross building</span></a>.</li>
