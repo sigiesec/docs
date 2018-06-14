@@ -231,7 +231,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="conan-search">
 <span id="id1"></span><h1>conan search<a class="headerlink" href="#conan-search" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan search <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-o<span class="o">]</span> <span class="o">[</span>-q QUERY<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>--case-sensitive<span class="o">]</span>
-               <span class="o">[</span>--raw<span class="o">]</span> <span class="o">[</span>--table TABLE<span class="o">]</span>
+               <span class="o">[</span>--raw<span class="o">]</span> <span class="o">[</span>--table TABLE<span class="o">]</span> <span class="o">[</span>-j JSON<span class="o">]</span>
                <span class="o">[</span>pattern_or_reference<span class="o">]</span>
 </pre></div>
 </div>
@@ -261,6 +261,8 @@ optional arguments:
   --raw                 Print just the list of recipes
   --table TABLE         Outputs html file with a table of binaries. Only valid
                         for a reference search
+  -j JSON, --json JSON  json file path where the search information will be
+                        written to
 </pre></div>
 </div>
 <p><strong>Examples</strong></p>
