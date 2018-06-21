@@ -134,6 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#how-to-package-header-only-libraries">How to package header-only libraries?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#when-to-use-settings-or-options">When to use settings or options?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-obtain-the-dependents-of-a-given-package">How to obtain the dependents of a given package?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packages-got-outdated-when-uploading-an-unchanged-recipe-from-a-different-machine">Packages got outdated when uploading an unchanged recipe from a different machine</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
@@ -248,6 +249,12 @@ dependecy graph in case OpenSSL is changed we could type:</p>
 </pre></div>
 </div>
 <p>So, if OpenSSL is changed, we would need to rebuild it (of course) and rebuild Poco.</p>
+</div>
+<div class="section" id="packages-got-outdated-when-uploading-an-unchanged-recipe-from-a-different-machine">
+<h2>Packages got outdated when uploading an unchanged recipe from a different machine<a class="headerlink" href="#packages-got-outdated-when-uploading-an-unchanged-recipe-from-a-different-machine" title="Permalink to this headline">¶</a></h2>
+<p>Usually this is caused due to different line endings in Windows and Linux/MacOS. Normally this happens when Windows uploads it with CRLF
+while Linux/MacOS do it with only LF. Conan does not change the line endings to not interfere with user. We suggest going with LF line
+endings always. If this is being caused by git, it could be solved with <strong class="command">git config --system core.autocrlf input</strong>.</p>
 </div>
 </div>
 
