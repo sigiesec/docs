@@ -124,7 +124,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="../devtools.html">Package apps and devtools</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../mastering.html">Mastering conan</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="conanfile_py.html">Use conanfile.py for consumers</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Conditional settings, options and requirements</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conditional settings, options and requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constrain-settings-and-options">Constrain settings and options</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="version_ranges.html">Version ranges</a></li>
 <li class="toctree-l2"><a class="reference internal" href="policies.html">Build policies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="envvars.html">Environment variables</a></li>
@@ -255,9 +258,54 @@ necessary that the package dependencies use those options.</p>
        <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="s2">&quot;OpenSSL/1.0.2d@lasote/stable&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="section" id="constrain-settings-and-options">
+<h2>Constrain settings and options<a class="headerlink" href="#constrain-settings-and-options" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes there are libraries that are not compatible with specific settings like libraries
+that are not compatible with an architecture or options that only make sense for an operating system. It can be also useful when there are
+settings under development.</p>
+<p>There are two approaches for this situation:</p>
+<ul>
+<li><p class="first"><strong>Use</strong> <code class="docutils literal notranslate"><span class="pre">configure()</span></code> <strong>to raise an error for non-supported configurations</strong>:</p>
+<p>This approach is the first one evaluated when Conan loads the recipe so it is quite handy to perform checks of the input settings. It
+relies on the set of possible settings inside your <em>settings.yml</em> file so it can be used to constrain any recipe.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="n">ConanException</span><span class="p">(</span><span class="s2">&quot;This library is not compatible with Windows&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This same method is also valid for <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">config_options()</span></code> method and it is commonly used to remove options for one setting:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">config_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">os</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span><span class="p">:</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">fPIC</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Constrain settings inside a recipe</strong>:</p>
+<p>This approach constrains the settings inside a recipe to a subset of them and it is normally used in recipes that are never supposed to
+work out of the restricted settings.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+
+<span class="k">class</span> <span class="nc">MyConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myconanlibrary&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;os&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x86_64&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>The disadvantage of this is that possible settings are hardcoded in the recipe and in case new values are used in the future, it will
+require the recipe to be modified explicitly.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note the use of <code class="docutils literal notranslate"><span class="pre">None</span></code> value in the <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">compiler</span></code> and <code class="docutils literal notranslate"><span class="pre">build_type</span></code> settings described above will allow them to take the values
+from <em>settings.yml</em> file</p>
+</div>
+</li>
+</ul>
+<p>We strongly recommend the use if the first approach whenever it is possible and use the second one only for those cases where a stronger
+constrain is needed for a particular recipe.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">Check the section <a class="reference internal" href="../reference/conanfile/methods.html#method-configure-config-options"><span class="std std-ref">Reference/conanfile.py/configure(), config_options()</span></a> to find out more.</p>
+<p class="last">Check the reference section <a class="reference internal" href="../reference/conanfile/methods.html#method-configure-config-options"><span class="std std-ref">configure(), config_options()</span></a> to find out more.</p>
+</div>
 </div>
 </div>
 
