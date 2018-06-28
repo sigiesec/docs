@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan config &mdash; conan 1.4.5 documentation</title>
+  <title>conan config &mdash; conan 1.5.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.4.5 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.5.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan get" href="get.html"/>
         <link rel="prev" title="conan install" href="install.html"/>
@@ -297,8 +297,14 @@ These are the special files and the rules applied to merge them:</p>
 </tr>
 </tbody>
 </table>
+<p>The file <em>remotes.txt</em> is the only file listed above which does not have a direct counterpart in
+the <code class="docutils literal notranslate"><span class="pre">~/.conan</span></code> folder. Its format is a list of entries, one on each line, with the form</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">[bool]</span></code> (either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>) indicates whether SSL should be used to verify that remote.</p>
 <p>The local cache <em>registry.txt</em> file contains the remotes definitions, as well as the mapping from packages
-to remotes. In general it is not a good idea to add it to the installed files.</p>
+to remotes. In general it is not a good idea to add it to the installed files. That being said, the remote
+definitions part of the <em>registry.txt</em> file uses the format required for <em>remotes.txt</em>, so you may find it
+provides a helpful starting point when writing a <em>remotes.txt</em> to be packaged in a Conan
+client configuration.</p>
 <p>The specified URL will be stored in the <code class="docutils literal notranslate"><span class="pre">general.config_install</span></code> variable of the <code class="docutils literal notranslate"><span class="pre">conan.conf</span></code> file,
 so following calls to <strong class="command">conan config install</strong> command doesn’t need to specify the URL.</p>
 <p><strong>Examples</strong>:</p>
@@ -370,7 +376,7 @@ so following calls to <strong class="command">conan config install</strong> comm
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.4
+      Version: 1.5
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -397,7 +403,7 @@ so following calls to <strong class="command">conan config install</strong> comm
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.4.5',
+            VERSION:'1.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

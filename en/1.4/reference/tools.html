@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tools &mdash; conan 1.4.5 documentation</title>
+  <title>Tools &mdash; conan 1.5.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.4.5 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Reference" href="../reference.html"/>
         <link rel="next" title="Configuration files" href="config_files.html"/>
         <link rel="prev" title="RunEnvironment" href="build_helpers/run_environment.html"/>
@@ -452,7 +452,7 @@ Use <a class="reference internal" href="build_helpers/visual_studio.html#msbuild
 </div>
 <div class="section" id="tools-unzip">
 <h2>tools.unzip()<a class="headerlink" href="#tools-unzip" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Function mainly used in <code class="docutils literal notranslate"><span class="pre">source()</span></code>, but could be used in <code class="docutils literal notranslate"><span class="pre">build()</span></code> in special cases, as
@@ -472,6 +472,16 @@ and decompress them into the given destination folder (the current one by defaul
 <span class="n">tools</span><span class="o">.</span><span class="n">unzip</span><span class="p">(</span><span class="s2">&quot;myfile.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;myfolder&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">pattern=None</span></code> parameter if you want to filter specific files and
+paths to decompress from the archive.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
+
+<span class="c1"># Extract only files inside relative folder &quot;small&quot;</span>
+<span class="n">tools</span><span class="o">.</span><span class="n">unzip</span><span class="p">(</span><span class="s2">&quot;bigfile.zip&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;small/*&quot;</span><span class="p">)</span>
+<span class="c1"># Extract only txt files</span>
+<span class="n">tools</span><span class="o">.</span><span class="n">unzip</span><span class="p">(</span><span class="s2">&quot;bigfile.zip&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="docutils">
 <dt>Parameters:</dt>
 <dd><ul class="first last simple">
@@ -480,13 +490,17 @@ and decompress them into the given destination folder (the current one by defaul
 <li><strong>keep_permissions</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Keep permissions of files. <strong>WARNING:</strong> Can be dangerous if the zip
 was not created in a NIX system, the bits could produce undefined permission schema. Use only this option if you are sure that
 the zip was created correctly.</li>
+<li><strong>pattern</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Extract from the archive
+only paths matching the pattern. This should be a Unix shell-style
+wildcard, see <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch</a>
+documentation for more details.</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="tools-untargz">
 <h2>tools.untargz()<a class="headerlink" href="#tools-untargz" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">untargz</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">untargz</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Extract tar gz files (or in the family). This is the function called by the previous <code class="docutils literal notranslate"><span class="pre">unzip()</span></code>
@@ -497,6 +511,8 @@ unless the file had a different extension.</p>
 <span class="n">tools</span><span class="o">.</span><span class="n">untargz</span><span class="p">(</span><span class="s2">&quot;myfile.tar.gz&quot;</span><span class="p">)</span>
 <span class="c1"># or to extract in &quot;myfolder&quot; sub-folder</span>
 <span class="n">tools</span><span class="o">.</span><span class="n">untargz</span><span class="p">(</span><span class="s2">&quot;myfile.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;myfolder&quot;</span><span class="p">)</span>
+<span class="c1"># or to extract only txt files</span>
+<span class="n">tools</span><span class="o">.</span><span class="n">untargz</span><span class="p">(</span><span class="s2">&quot;myfile.tar.gz&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="docutils">
@@ -504,6 +520,10 @@ unless the file had a different extension.</p>
 <dd><ul class="first last simple">
 <li><strong>filename</strong> (Required): File to be unzipped.</li>
 <li><strong>destination</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>): Destination folder for <em>untargzed</em> files.</li>
+<li><strong>pattern</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Extract from the archive
+only paths matching the pattern. This should be a Unix shell-style
+wildcard, see <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch</a>
+documentation for more details.</li>
 </ul>
 </dd>
 </dl>
@@ -535,7 +555,7 @@ will be checked, if any of them doesn’t match, it will raise a <code class="do
 </dl>
 </div>
 <div class="section" id="tools-get-env">
-<span id="id2"></span><h2>tools.get_env()<a class="headerlink" href="#tools-get-env" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>tools.get_env()<a class="headerlink" href="#tools-get-env" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_env</span><span class="p">(</span><span class="n">env_key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -665,7 +685,7 @@ is not found, so nothing is actually replaced.</li>
 </dl>
 </div>
 <div class="section" id="tools-check-with-algorithm-sum">
-<span id="id3"></span><h2>tools.check_with_algorithm_sum()<a class="headerlink" href="#tools-check-with-algorithm-sum" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>tools.check_with_algorithm_sum()<a class="headerlink" href="#tools-check-with-algorithm-sum" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_with_algorithm_sum</span><span class="p">(</span><span class="n">algorithm_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1388,7 +1408,7 @@ them to achieve correct linking order.</p>
 </table>
 </div>
 <div class="section" id="tools-git">
-<span id="id4"></span><h2>tools.Git()<a class="headerlink" href="#tools-git" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>tools.Git()<a class="headerlink" href="#tools-git" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Git</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force_english</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -1579,7 +1599,7 @@ them to achieve correct linking order.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.4
+      Version: 1.5
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -1606,7 +1626,7 @@ them to achieve correct linking order.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.5',
+            VERSION:'1.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
