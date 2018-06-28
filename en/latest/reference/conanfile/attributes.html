@@ -927,6 +927,15 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
 <li><strong>username</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the login to authenticate with the remote.</li>
 <li><strong>password</strong> (Optional, Defauted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): When present, it will be used as the password to authenticate with the remote.</li>
 <li><strong>verify_ssl</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>): Verify SSL certificate of the specified <strong>url</strong>.</li>
+<li><dl class="first docutils">
+<dt><strong>submodule</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>):</dt>
+<dd><ul class="first last">
+<li><code class="docutils literal notranslate"><span class="pre">shallow</span></code>: Will sync the git submodules using <code class="docutils literal notranslate"><span class="pre">submodule</span> <span class="pre">sync</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">recursive</span></code>: Will sync the git submodules using <code class="docutils literal notranslate"><span class="pre">submodule</span> <span class="pre">sync</span> <span class="pre">--recursive</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <p>To know more about the usage of <code class="docutils literal notranslate"><span class="pre">scm</span></code> check:</p>
 <ul class="simple">
