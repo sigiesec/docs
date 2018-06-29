@@ -243,7 +243,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          <span class="c1"># All the lib folders will be available in LD_LIBRARY_PATH and DYLD_LIBRARY_PATH</span>
 </pre></div>
 </div>
-<p>Set environment variables:</p>
+<p>It sets the following environment variables:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -266,10 +266,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Security restrictions might apply in OSX
+(<a class="reference external" href="https://stackoverflow.com/questions/35568122/why-isnt-dyld-library-path-being-propagated-here">read this thread</a>), so the
+<code class="docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> environment variable is not directly transferred to the child process. In that case, you have to use it explicitly in
+your <em>conanfile.py</em>:</p>
+<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">env_build</span> <span class="o">=</span> <span class="n">RunEnvironment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tools</span><span class="o">.</span><span class="n">environment_append</span><span class="p">(</span><span class="n">env_build</span><span class="o">.</span><span class="n">vars</span><span class="p">):</span>
+        <span class="c1"># self.run(&#39;./myexetool&quot;) # won&#39;t work, even if &#39;DYLD_LIBRARY_PATH&#39; is in the env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;DYLD_LIBRARY_PATH=</span><span class="si">%s</span><span class="s1"> ./myexetool&quot; </span><span class="si">% o</span><span class="s1">s.environ[&#39;</span><span class="n">DYLD_LIBRARY_PATH</span><span class="s1">&#39;])</span>
+</pre></div>
+</div>
+</div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <ul class="last simple">
-<li><a class="reference internal" href="../tools.html#environment-append-tool"><span class="std std-ref">Reference/Tools/environment_append</span></a></li>
+<li><a class="reference internal" href="../../howtos/manage_shared_libraries/env_vars.html#manage-shared-libraries-env-vars"><span class="std std-ref">Manage Shared Libraries with Environment Variables</span></a></li>
+<li><a class="reference internal" href="../tools.html#environment-append-tool"><span class="std std-ref">tools.environment_append()</span></a></li>
 </ul>
 </div>
 </div>
