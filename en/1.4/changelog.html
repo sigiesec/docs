@@ -289,30 +289,35 @@ Please read more <a class="reference internal" href="introduction.html#stability
 <div class="section" id="june-2018">
 <h2>1.5.0 (27-June-2018)<a class="headerlink" href="#june-2018" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Feature: <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">search</span> <span class="pre">&lt;pkg-ref&gt;</span> <span class="pre">-r=all</span></code> now is able to search for binaries too in all remotes</li>
-<li>Feature: Dependency graph improvements: <code class="docutils literal notranslate"><span class="pre">build_requires</span></code> are represented in the graph (visible in <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">info</span></code>, also in the HTML graph). <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">info</span></code> commands shows extended information of the binaries status (represented in colors in HTML graph). The dependencies declaration order in recipes is respected (as long as it doesn’t break the dependency graph order).</li>
+<li>Feature: <strong class="command">conan search &lt;pkg-ref&gt; -r=all</strong> now is able to search for binaries too in all remotes</li>
+<li>Feature: Dependency graph improvements: <code class="docutils literal notranslate"><span class="pre">build_requires</span></code> are represented in the graph (visible in <strong class="command">conan info`</strong>, also in the
+HTML graph). <strong class="command">conan install</strong> and <strong class="command">conan info</strong> commands shows extended information of the binaries status (represented in
+colors in HTML graph). The dependencies declaration order in recipes is respected (as long as it doesn’t break the dependency graph order).</li>
 <li>Feature: improved remote management, it is possible to get binaries from different remotes.</li>
-<li>Feature: <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">user</span></code> command is now able to show authenticated users.</li>
-<li>Feature: New <code class="docutils literal notranslate"><span class="pre">pattern</span></code> argument to <code class="docutils literal notranslate"><span class="pre">tools.unzip()</span></code> and <code class="docutils literal notranslate"><span class="pre">tools.untargz</span></code> functions, that allow efficient extraction of certain files only.</li>
+<li>Feature: <strong class="command">conan user</strong> command is now able to show authenticated users.</li>
+<li>Feature: Added <strong class="command">conan user --json</strong> json output to the command.</li>
+<li>Feature: New <code class="docutils literal notranslate"><span class="pre">pattern</span></code> argument to <code class="docutils literal notranslate"><span class="pre">tools.unzip()</span></code> and <code class="docutils literal notranslate"><span class="pre">tools.untargz</span></code> functions, that allow efficient extraction of certain files
+only.</li>
 <li>Feature : Added Manjaro support for <code class="docutils literal notranslate"><span class="pre">SystemPackageTools</span></code>.</li>
-<li>Feature: Added <code class="docutils literal notranslate"><span class="pre">Macos</span></code> <code class="docutils literal notranslate"><span class="pre">version</span></code> subsettings in the default <code class="docutils literal notranslate"><span class="pre">settings.yml</span></code> file, to account for the “min OSX version” configuration.</li>
+<li>Feature: Added <code class="docutils literal notranslate"><span class="pre">Macos</span></code> <code class="docutils literal notranslate"><span class="pre">version</span></code> subsetting in the default <em>settings.yml</em> file, to account for the “min OSX version” configuration.</li>
 <li>Feature: SCM helper argument to recursively clone submodules</li>
-<li>Feature: SCM helper management of subfolder, allows using <code class="docutils literal notranslate"><span class="pre">exports</span></code> and <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code>, manage symlinks, and do not copy files that are “.gitignored”. Also, works better in the local development flow.</li>
-<li>Feature: Modifies user agent header to output the Conan client version and the Python version. Example: Conan/1.5.0 (Python 2.7.1)</li>
-<li>Fix: The <code class="docutils literal notranslate"><span class="pre">CMake</span></code> helper now doesn’t require a compiler input to deduce the default generator.</li>
-<li>Fix: <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">search</span> <span class="pre">&lt;pattern&gt;</span></code> now works consistently in local cache and remotes.</li>
-<li>Fix: proxy related environment variables are removed if <code class="docutils literal notranslate"><span class="pre">conan.conf</span></code> declares proxy configuration.</li>
+<li>Feature: SCM helper management of subfolder, allows using <code class="docutils literal notranslate"><span class="pre">exports</span></code> and <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code>, manage symlinks, and do not copy files that
+are <em>.gitignored</em>. Also, works better in the local development flow.</li>
+<li>Feature: Modifies user agent header to output the Conan client version and the Python version. Example: <code class="docutils literal notranslate"><span class="pre">Conan/1.5.0</span> <span class="pre">(Python</span> <span class="pre">2.7.1)</span></code></li>
+<li>Fix: The <code class="docutils literal notranslate"><span class="pre">CMake()</span></code> helper now doesn’t require a compiler input to deduce the default generator.</li>
+<li>Fix: <strong class="command">conan search &lt;pattern&gt;</strong> now works consistently in local cache and remotes.</li>
+<li>Fix: Proxy related environment variables are removed if <em>conan.conf</em> declares proxy configuration.</li>
 <li>Fix: Fixed the parsing of invalid JSON when Microsoft <code class="docutils literal notranslate"><span class="pre">vswhere</span></code> tool outputs invalid non utf-8 text.</li>
-<li>Fix: Applying <code class="docutils literal notranslate"><span class="pre">winsdk</span></code> and <code class="docutils literal notranslate"><span class="pre">vcvars_ver</span></code> to MSBuild and vcvars_command for VS 14 too.</li>
-<li>Fix: Workspaces now support <code class="docutils literal notranslate"><span class="pre">build_requires</span></code></li>
-<li>Fix: <code class="docutils literal notranslate"><span class="pre">CMake</span></code> helper now defines by default CMAKE_EXPORT_NO_PACKAGE_REGISTRY</li>
-<li>Fix: settings constraints declared in recipes now don’t error for single strings (instead of a list with a string element)</li>
+<li>Fix: Applying <code class="docutils literal notranslate"><span class="pre">winsdk</span></code> and <code class="docutils literal notranslate"><span class="pre">vcvars_ver</span></code> to MSBuild and <code class="docutils literal notranslate"><span class="pre">vcvars_command</span></code> for VS 14 too.</li>
+<li>Fix: Workspaces now support <code class="docutils literal notranslate"><span class="pre">build_requires</span></code>.</li>
+<li>Fix: <code class="docutils literal notranslate"><span class="pre">CMake()</span></code> helper now defines by default <code class="docutils literal notranslate"><span class="pre">CMAKE_EXPORT_NO_PACKAGE_REGISTRY</span></code>.</li>
+<li>Fix: Settings constraints declared in recipes now don’t error for single strings (instead of a list with a string element).</li>
 <li>Fix: <code class="docutils literal notranslate"><span class="pre">cmake_minimum_required()</span></code> is now before <code class="docutils literal notranslate"><span class="pre">project()</span></code> in templates and examples.</li>
-<li>Fix: CONAN_SYSREQUIRES_MODE=Disabled now doesn’t try to udpate the system packages registry.</li>
-<li>Bugfix: Fixed SCM origin path of windows folder (with backslashes)</li>
+<li>Fix: <code class="docutils literal notranslate"><span class="pre">CONAN_SYSREQUIRES_MODE=Disabled</span></code> now doesn’t try to update the system packages registry.</li>
+<li>Bugfix: Fixed SCM origin path of windows folder (with backslashes).</li>
 <li>Bugfix: Fixed SCM dictionary order when doing replacement.</li>
-<li>Bugfix: Fixed auto-detection of apple-clang 10.0</li>
-<li>Bugfix: Fixed bug when doing a <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">search</span></code> without registry file (just before installation)</li>
+<li>Bugfix: Fixed auto-detection of apple-clang 10.0.</li>
+<li>Bugfix: Fixed bug when doing a <strong class="command">conan search</strong> without registry file (just before installation).</li>
 </ul>
 </div>
 <div class="section" id="id2">
