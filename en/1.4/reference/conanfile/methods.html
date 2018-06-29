@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Methods &mdash; conan 1.5.0 documentation</title>
+  <title>Methods &mdash; conan 1.4.5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.5.0 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.4.5 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Output and Running" href="other.html"/>
         <link rel="prev" title="Attributes" href="attributes.html"/>
@@ -345,7 +345,7 @@ Nothing special is required here. We can just launch the tests from the last com
 <p>The actual creation of the package, once that it is built, is done in the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method. Using the <code class="docutils literal notranslate"><span class="pre">self.copy()</span></code> method, artifacts
 are copied from the build folder to the package folder.</p>
 <p>The syntax of <code class="docutils literal notranslate"><span class="pre">self.copy</span></code> inside <code class="docutils literal notranslate"><span class="pre">package()</span></code> is as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_path</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">excludes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="docutils">
@@ -482,8 +482,8 @@ consumers can use those executables easily:</p>
 <span class="bp">self</span><span class="o">.</span><span class="n">env_info</span><span class="o">.</span><span class="n">PATH</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../../mastering/virtualenv.html#virtual-environment-generator"><span class="std std-ref">virtualenv</span></a> generator will use the <code class="docutils literal notranslate"><span class="pre">self.env_info</span></code> variables to prepare a script to
-activate/deactive a virtual environment. However, this could be directly done using the <a class="reference internal" href="../generators/virtualrunenv.html#virtualrunenv-generator"><span class="std std-ref">virtualrunenv</span></a> generator.</p>
+<p>The <a class="reference internal" href="../../mastering/virtualenv.html#virtual-environment-generator"><span class="std std-ref">virtualenv</span></a> generator will use the self.env_info variables to prepare a script to activate/deactive
+a virtual environment.</p>
 <p>They will be automatically applied before calling the consumer <em>conanfile.py</em> methods <code class="docutils literal notranslate"><span class="pre">source()</span></code>, <code class="docutils literal notranslate"><span class="pre">build()</span></code>, <code class="docutils literal notranslate"><span class="pre">package()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">imports()</span></code>.</p>
 <p>If your recipe has requirements, you can access to your requirements <code class="docutils literal notranslate"><span class="pre">env_info</span></code> as well using the <code class="docutils literal notranslate"><span class="pre">deps_env_info</span></code> object.</p>
@@ -992,7 +992,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -1000,7 +1000,11 @@ of the installed package to deploy what it needs from its dependencies.</p>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
+                <dd><a href="/en/latest/index.html">1.5</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.4/index.html">1.4</a></dd>
            
         
            
@@ -1019,7 +1023,7 @@ of the installed package to deploy what it needs from its dependencies.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.5.0',
+            VERSION:'1.4.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

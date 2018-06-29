@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Recipe and sources in the same repo &mdash; conan 1.5.0 documentation</title>
+  <title>Recipe and sources in the same repo &mdash; conan 1.4.5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.0 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.5 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Packaging existing binaries" href="existing_binaries.html"/>
         <link rel="prev" title="Recipe and sources in a different repo" href="external_repo.html"/>
@@ -218,17 +218,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="recipe-and-sources-in-the-same-repo">
 <span id="package-repo"></span><h1>Recipe and sources in the same repo<a class="headerlink" href="#recipe-and-sources-in-the-same-repo" title="Permalink to this headline">¶</a></h1>
-<p>Sometimes it is more convenient to have the recipe and source code together in the same repository.
-This is true especially if you are developing and packaging your own library, and not one from a third-party.</p>
+<p>Sometimes, especially if you are developing and packaging your own libraries recipe (not third parties)
+it is more convenient to have the recipe together with your source code, in the same repository.</p>
 <p>There are two different approaches:</p>
-<ol class="arabic simple">
-<li>Using the <a class="reference internal" href="../reference/conanfile/attributes.html#exports-sources-attribute"><span class="std std-ref">exports sources attribute</span></a> of the conanfile to
-export the source code together with the recipe. This way the recipe is self-contained and will
-not need to fetch the code from external origins when building from sources. It can be considered
-a “snapshot” of the source code.</li>
-<li>Using the <a class="reference internal" href="../reference/conanfile/attributes.html#scm-attribute"><span class="std std-ref">scm attribute</span></a> of the conanfile to capture the remote and
-commit of your repository automatically.</li>
-</ol>
+<p>1. Using the <a class="reference internal" href="../reference/conanfile/attributes.html#exports-sources-attribute"><span class="std std-ref">exports sources attribute</span></a> of the conanfile to exporting all the source code
+together with the recipe. This way it is self-contained and it doesn’t require to fetch code from
+external origins when it is necessary to build from sources. It could be considered as a “snapshot”
+of the source code.</p>
+<p>2. Using the <a class="reference internal" href="../reference/conanfile/attributes.html#scm-attribute"><span class="std std-ref">scm attribute</span></a> of the conanfile to capture automatically
+the remote and commit of your repository.</p>
 <div class="section" id="exporting-the-sources-with-the-recipe-exports-sources">
 <h2>Exporting the sources with the recipe: <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code><a class="headerlink" href="#exporting-the-sources-with-the-recipe-exports-sources" title="Permalink to this headline">¶</a></h2>
 <p>This could be an appropriate approach if we want the package recipe to live in the same repository
@@ -237,8 +235,8 @@ as the source code it is packaging.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new Hello/0.1 -t -s
 </pre></div>
 </div>
-<p>A <em>src</em> folder will be created with the same “hello” source code as in the previous example. You
-can have a look at it, the code is straightforward.</p>
+<p>A <em>src</em> folder will be created with the same “hello” source code than in the previous example. You
+can have a look at it, is straightforward code.</p>
 <p>Now lets have a look to the <em>conanfile.py</em>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">CMake</span>
 
@@ -279,7 +277,7 @@ can have a look at it, the code is straightforward.</p>
 <ul class="simple">
 <li>Added the <code class="docutils literal notranslate"><span class="pre">exports_sources</span></code> field, to tell conan to copy all the files from the local <em>src</em>
 folder into the package recipe.</li>
-<li>Removed the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method, since it is no longer necessary to retrieve external sources.</li>
+<li>Removed the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method, it is not necessary anymore to retrieve external sources.</li>
 </ul>
 <p>Also, you can notice the two CMake lines:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/conanbuildinfo.cmake</span><span class="p">)</span>
@@ -383,7 +381,7 @@ It allows to speed up the development of your packages cloning from a local repo
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -391,7 +389,11 @@ It allows to speed up the development of your packages cloning from a local repo
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
+                <dd><a href="/en/latest/index.html">1.5</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.4/index.html">1.4</a></dd>
            
         
            
@@ -410,7 +412,7 @@ It allows to speed up the development of your packages cloning from a local repo
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.0',
+            VERSION:'1.4.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting started &mdash; conan 1.5.0 documentation</title>
+  <title>Getting started &mdash; conan 1.4.5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.0 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.5 documentation" href="../index.html"/>
         <link rel="up" title="Creating packages" href="../creating_packages.html"/>
         <link rel="next" title="Recipe and sources in a different repo" href="external_repo.html"/>
         <link rel="prev" title="Creating packages" href="../creating_packages.html"/>
@@ -249,7 +249,7 @@ test_package
 </pre></div>
 </div>
 <p>At the root level, there is a <em>conanfile.py</em> which is the main recipe file, the one actually
-defining our package. Also, there is a <em>test_package</em> folder, which contains a simple example
+defining our package. Also there is a <em>test_package</em> folder, which contains a simple example
 consuming project that will require and link with the created package. It is useful to make sure
 that our package is correctly created.</p>
 <p>Let’s have a look to the root package recipe <em>conanfile.py</em>:</p>
@@ -300,7 +300,7 @@ basics:</p>
 this example we are defining that any change to the OS, compiler, architecture or build type will
 generate a different binary package. Remember, Conan generates different binary packages for
 different introduced configuration (in this case settings) for the same recipe.</p>
-<p>Note that the platform where the recipe is running and the package is being built can be different from
+<p>Note that the platform where the recipe is running and the package is being build can be different from
 the final platform where the code will be running (<code class="docutils literal notranslate"><span class="pre">self.settings.os</span></code> and <code class="docutils literal notranslate"><span class="pre">self.settings.arch</span></code>) if
 the package is being cross-built. So if you want to apply a different build depending on the current
 build machine, you need to check it:</p>
@@ -323,13 +323,13 @@ static linkage).</p>
 </li>
 <li><p class="first">The <code class="docutils literal notranslate"><span class="pre">source()</span></code> method executes a <strong class="command">git clone</strong> to retrieve the sources from github. Other
 origins, as downloading a zip file are also available. As you can see, any manipulation of the
-code can be done, such as checking out any branch or tag, or patching the source code. In this example,
+code can be done, as checking out any branch or tag, or patching the source code. In this example,
 we are adding two lines to the existing CMake code, to ensure binary compatibility. Don’t worry
 too much about it now, we’ll visit it later.</p>
 </li>
 <li><p class="first">The <code class="docutils literal notranslate"><span class="pre">build()</span></code> first configures the project, then builds it, with standard CMake commands. The
 <code class="docutils literal notranslate"><span class="pre">CMake</span></code> object is just a helper to ease the translation of conan settings to CMake command line
-arguments. Remember that <strong>CMake is not strictly required</strong>. You can build packages directly
+arguments. Also remember that <strong>CMake is not strictly required</strong>. You can build packages directly
 invoking <strong>make</strong>, <strong>MSBuild</strong>, <strong>SCons</strong> or any other build system.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -395,7 +395,7 @@ found and <code class="docutils literal notranslate"><span class="pre">example</
 <p class="last">An important difference with respect to normal package recipes, is that this one does not need
 to declare a <code class="docutils literal notranslate"><span class="pre">requires</span></code> attribute, to depend on the <code class="docutils literal notranslate"><span class="pre">Hello/0.1&#64;demo/testing</span></code> package we are
 testing. This <code class="docutils literal notranslate"><span class="pre">requires</span></code> will be automatically injected by conan while running. You can
-however declare it explicitly, it will work, but you will have to remember to bump the version,
+however declare it explicitely, it will work, but you will have to remember to bump the version,
 and possibly the user and channel if you change them.</p>
 </div>
 </div>
@@ -441,8 +441,8 @@ $ conan create ...
 <p>We have used settings as <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">arch</span></code> and <code class="docutils literal notranslate"><span class="pre">compiler</span></code>. But the above package recipe also contains a
 <code class="docutils literal notranslate"><span class="pre">shared</span></code> option (defined as <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">=</span> <span class="pre">{&quot;shared&quot;:</span> <span class="pre">[True,</span> <span class="pre">False]}</span></code>). What is the difference between
 settings and options?</p>
-<p><strong>Settings</strong> are project-wide configuration, something that typically affects the whole project that
-is being built. For example, the Operating System or the architecture would be naturally the same for all
+<p><strong>Settings</strong> are project-wide configuration, something that typically affect to the whole project that
+is being built. For example the Operating System or the architecture would be naturally the same for all
 packages in a dependency graph, linking a Linux library for a Windows app, or
 mixing architectures is impossible.</p>
 <p>Settings cannot be defaulted in a package recipe. A recipe for a given library cannot say that its default
@@ -461,8 +461,8 @@ If no one else specifies something different, the package will be static.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -s MyPkg:compiler<span class="o">=</span>gcc -s <span class="nv">compiler</span><span class="o">=</span>clang ..
 </pre></div>
 </div>
-<p>This will use <code class="docutils literal notranslate"><span class="pre">gcc</span></code> for MyPkg and <code class="docutils literal notranslate"><span class="pre">clang</span></code> for the rest of the dependencies (extremely unusual case).</p>
-<p>You can also have a very widely-used option in many packages and set its value all at once with patterns, like:</p>
+<p>This will use <code class="docutils literal notranslate"><span class="pre">gcc</span></code> for MyPkg and <code class="docutils literal notranslate"><span class="pre">clang</span></code> for the rest of the dependencies (extremely unusual case)</p>
+<p>Or you can have a very widely used option in many packages and set its value all at once with patterns, like:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan install . -o *:shared<span class="o">=</span>True
 </pre></div>
 </div>
@@ -510,7 +510,7 @@ If no one else specifies something different, the package will be static.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -518,7 +518,11 @@ If no one else specifies something different, the package will be static.</p>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
+                <dd><a href="/en/latest/index.html">1.5</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.4/index.html">1.4</a></dd>
            
         
            
@@ -537,7 +541,7 @@ If no one else specifies something different, the package will be static.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.0',
+            VERSION:'1.4.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan user &mdash; conan 1.5.0 documentation</title>
+  <title>conan user &mdash; conan 1.4.5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.5.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.4.5 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan imports" href="imports.html"/>
         <link rel="prev" title="conan remote" href="remote.html"/>
@@ -234,7 +234,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-user">
 <span id="id1"></span><h1>conan user<a class="headerlink" href="#conan-user" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan user <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-p <span class="o">[</span>PASSWORD<span class="o">]]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>-j JSON<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan user <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-p <span class="o">[</span>PASSWORD<span class="o">]]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span>
 </pre></div>
 </div>
 <p>Authenticates against a remote with user/pass, caching the auth token. Useful
@@ -255,24 +255,17 @@ optional arguments:
                         password is requested interactively (not exposed)
   -r REMOTE, --remote REMOTE
                         Use the specified remote server
-  -j JSON, --json JSON  json file path where the user list will be written to
 </pre></div>
 </div>
 <p><strong>Examples</strong>:</p>
 <ul>
 <li><p class="first">List my user for each remote:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan user
-Current user of remote <span class="s1">&#39;conan-center&#39;</span> <span class="nb">set</span> to: <span class="s1">&#39;danimtb&#39;</span> <span class="o">[</span>Authenticated<span class="o">]</span>
-Current user of remote <span class="s1">&#39;bincrafters&#39;</span> <span class="nb">set</span> to: <span class="s1">&#39;None&#39;</span> <span class="o">(</span>anonymous<span class="o">)</span>
-Current user of remote <span class="s1">&#39;upload_repo&#39;</span> <span class="nb">set</span> to: <span class="s1">&#39;danimtb&#39;</span> <span class="o">[</span>Authenticated<span class="o">]</span>
-Current user of remote <span class="s1">&#39;conan-community&#39;</span> <span class="nb">set</span> to: <span class="s1">&#39;danimtb&#39;</span> <span class="o">[</span>Authenticated<span class="o">]</span>
-Current user of remote <span class="s1">&#39;the_remote&#39;</span> <span class="nb">set</span> to: <span class="s1">&#39;None&#39;</span> <span class="o">(</span>anonymous<span class="o">)</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Change <strong>bar</strong> remote user to <strong>foo</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan user foo -r bar
-Changed user of remote <span class="s1">&#39;bar&#39;</span> from <span class="s1">&#39;None&#39;</span> <span class="o">(</span>anonymous<span class="o">)</span> to <span class="s1">&#39;foo&#39;</span>
 </pre></div>
 </div>
 </li>
@@ -302,7 +295,7 @@ Change &#39;bar&#39; user from None (anonymous) to foo
 <a class="reference external" href="https://en.wikipedia.org/wiki/JSON_Web_Token">JWT</a>, so it gets a token (expirable by the
 server) checking the password against the remote credentials. If the password is correct, an
 authentication token will be obtained, and that token is the information cached locally. For
-any subsequent interaction with the remotes, the Conan client will only use that JWT token.</p>
+any subsequent interaction with the remotes, the conan client will only use that JWT token.</p>
 </div>
 </div>
 
@@ -346,7 +339,7 @@ any subsequent interaction with the remotes, the Conan client will only use that
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -354,7 +347,11 @@ any subsequent interaction with the remotes, the Conan client will only use that
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
+                <dd><a href="/en/latest/index.html">1.5</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.4/index.html">1.4</a></dd>
            
         
            
@@ -373,7 +370,7 @@ any subsequent interaction with the remotes, the Conan client will only use that
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.5.0',
+            VERSION:'1.4.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

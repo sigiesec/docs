@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Custom integrations &mdash; conan 1.5.0 documentation</title>
+  <title>Custom integrations &mdash; conan 1.4.5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.0 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.4.5 documentation" href="../index.html"/>
         <link rel="up" title="Integrations" href="../integrations.html"/>
         <link rel="next" title="Howtos" href="../howtos.html"/>
         <link rel="prev" title="SCons" href="scons.html"/>
@@ -235,14 +235,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="custom-integrations">
 <span id="other-generator"></span><h1>Custom integrations<a class="headerlink" href="#custom-integrations" title="Permalink to this headline">¶</a></h1>
-<p>If you intend to use a build system that does not have a built-in generator, you may still be
-able to do so. There are several options:</p>
+<p>If you intend to use other build system that has not a built-in generator, you might still be
+able to do so. There are several options.</p>
 <ul class="simple">
 <li>First, search in bintray. Generators can now be created and contributed by users as regular
-packages, so you can depend on them, use versioning, and evolve faster without depending on the
-conan releases. See <a class="reference internal" href="../howtos/custom_generators.html#dyn-generators"><span class="std std-ref">generator packages</span></a>.</li>
+packages, so you can depend on them, use versioning, evolve faster without depending on the
+conan releases, etc. Check <a class="reference internal" href="../howtos/custom_generators.html#dyn-generators"><span class="std std-ref">generator packages</span></a>.</li>
 <li>You can use the <strong>text or json generator</strong>. It will generate a text file, simple to read and to parse
-that you can easily parse with your tools to extract the required information.</li>
+that you can easily parse with your tools to extract the information.</li>
 <li>Use the <strong>conanfile data model</strong> and access its properties and values, so you can directly
 call your build system with that information, without requiring to generate a file.</li>
 <li>Write and <strong>create your own generator</strong>. So you can upload it, version and reuse it, as well
@@ -250,7 +250,7 @@ as share it with your team or community. Check <a class="reference internal" hre
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Need help integrating your build system? Tell us what you need. <a class="reference external" href="mailto:info&#37;&#52;&#48;conan&#46;io">info<span>&#64;</span>conan<span>&#46;</span>io</a></p>
+<p class="last">Need help to integrate your build system? Tell us what you need. <a class="reference external" href="mailto:info&#37;&#52;&#48;conan&#46;io">info<span>&#64;</span>conan<span>&#46;</span>io</a></p>
 </div>
 <div class="section" id="use-the-json-generator">
 <span id="json-integration"></span><h2>Use the JSON generator<a class="headerlink" href="#use-the-json-generator" title="Permalink to this headline">¶</a></h2>
@@ -446,7 +446,7 @@ and much more reusable to create a generator to simplify the task for your build
 <h2>Create your own generator<a class="headerlink" href="#create-your-own-generator" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways in which generators can be contributed:</p>
 <ul class="simple">
-<li>Forking and adding the new generator in the conan codebase. This will be a built-in generator.
+<li>Forking and adding the new generator in conan codebase. This will be a built-in generator.
 It might have a much slower release and update cycle, it needs to pass some tests before being accepted,
 but it has the advantage than no extra things are needed to use that generator (once released in conan)</li>
 <li>Creating a custom <a class="reference internal" href="../howtos/custom_generators.html#dyn-generators"><span class="std std-ref">generator package</span></a>. You can write a <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> and add
@@ -498,7 +498,7 @@ upgrades are much easier.</li>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.4
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -506,7 +506,11 @@ upgrades are much easier.</li>
         <dt>Versions</dt>
         
            
-                <dd><a href="/en/latest/index.html">1.4</a></dd>
+                <dd><a href="/en/latest/index.html">1.5</a></dd>
+           
+        
+           
+                <dd><a href="/en/1.4/index.html">1.4</a></dd>
            
         
            
@@ -525,7 +529,7 @@ upgrades are much easier.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.0',
+            VERSION:'1.4.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
