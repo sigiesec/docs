@@ -232,8 +232,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span id="id1"></span><h1>conan info<a class="headerlink" href="#conan-info" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan info <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--paths<span class="o">]</span> <span class="o">[</span>-bo BUILD_ORDER<span class="o">]</span> <span class="o">[</span>-g GRAPH<span class="o">]</span>
              <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span> <span class="o">[</span>-j <span class="o">[</span>JSON<span class="o">]]</span> <span class="o">[</span>-n ONLY<span class="o">]</span>
-             <span class="o">[</span>--package-filter <span class="o">[</span>PACKAGE_FILTER<span class="o">]]</span> <span class="o">[</span>-b <span class="o">[</span>BUILD<span class="o">]]</span> <span class="o">[</span>-e ENV<span class="o">]</span>
-             <span class="o">[</span>-o OPTIONS<span class="o">]</span> <span class="o">[</span>-pr PROFILE<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span> <span class="o">[</span>-s SETTINGS<span class="o">]</span> <span class="o">[</span>-u<span class="o">]</span>
+             <span class="o">[</span>--package-filter <span class="o">[</span>PACKAGE_FILTER<span class="o">]]</span> <span class="o">[</span>-db <span class="o">[</span>DRY_BUILD<span class="o">]]</span>
+             <span class="o">[</span>-b <span class="o">[</span>BUILD<span class="o">]]</span> <span class="o">[</span>-e ENV<span class="o">]</span> <span class="o">[</span>-o OPTIONS<span class="o">]</span> <span class="o">[</span>-pr PROFILE<span class="o">]</span> <span class="o">[</span>-r REMOTE<span class="o">]</span>
+             <span class="o">[</span>-s SETTINGS<span class="o">]</span> <span class="o">[</span>-u<span class="o">]</span>
              path_or_reference
 </pre></div>
 </div>
@@ -264,7 +265,7 @@ optional arguments:
                         will raise an error.
   -j [JSON], --json [JSON]
                         Only with --build_order option, return the information
-                        in a json. e.j --json=/path/to/filename.json or --json
+                        in a json. e.g --json=/path/to/filename.json or --json
                         to output the json
   -n ONLY, --only ONLY  Show only the specified fields: &quot;id&quot;, &quot;build_id&quot;,
                         &quot;remote&quot;, &quot;url&quot;, &quot;license&quot;, &quot;requires&quot;, &quot;update&quot;,
@@ -277,6 +278,9 @@ optional arguments:
                         Print information only for packages that match the
                         filter pattern e.g., MyPackage/1.2@user/channel or
                         MyPackage*
+  -db [DRY_BUILD], --dry-build [DRY_BUILD]
+                        Apply the --build argument to output the information,
+                        as it would be done by the install command
   -b [BUILD], --build [BUILD]
                         Given a build policy, return an ordered list of
                         packages that would be built from sources during the
