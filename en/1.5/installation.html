@@ -262,16 +262,17 @@ $ brew install conan
 </div>
 <div class="section" id="install-from-aur-arch-linux">
 <h2>Install from AUR (Arch Linux)<a class="headerlink" href="#install-from-aur-arch-linux" title="Permalink to this headline">¶</a></h2>
-<p>You can find the package <a class="reference external" href="https://aur.archlinux.org/packages/conan/">here</a>. The easiest way is using <strong>pacaur</strong> tool:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pacaur -S conan
+<p>The easiest way to install Conan on Arch Linux is by using one of the <a class="reference external" href="https://wiki.archlinux.org/index.php/AUR_helpers#Active">Arch User Repository (AUR) helpers</a>, eg. <strong>yay</strong>, <strong>aurman</strong>, or <strong>pakku</strong>.
+For example, the following command installs Conan using <code class="docutils literal notranslate"><span class="pre">yay</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ yay -S conan
 </pre></div>
 </div>
-<p>Or you can also use <code class="docutils literal notranslate"><span class="pre">makepkg</span></code> and install it following the <a class="reference external" href="https://wiki.archlinux.org/index.php/Arch_User_Repository">AUR docs: installing packages</a>.</p>
-<p>Just remember to install four Conan dependencies first. They are not in the official repositories but there are in <strong>AUR</strong> repository too:</p>
+<p>Alternatively, build and install Conan manually using <code class="docutils literal notranslate"><span class="pre">makepkg</span></code> and <code class="docutils literal notranslate"><span class="pre">pacman</span></code> as described in <a class="reference external" href="https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_packages">the Arch Wiki</a>.
+Conan build files can be downloaded from AUR: <a class="reference external" href="https://aur.archlinux.org/packages/conan/">https://aur.archlinux.org/packages/conan/</a>.
+Make sure to first install the three Conan dependencies which are also found in AUR:</p>
 <ul class="simple">
 <li>python-patch</li>
 <li>python-node-semver</li>
-<li>python-distro</li>
 <li>python-pluginbase</li>
 </ul>
 </div>
