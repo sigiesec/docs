@@ -299,6 +299,9 @@ These are the special files and the rules applied to merge them:</p>
 </table>
 <p>The file <em>remotes.txt</em> is the only file listed above which does not have a direct counterpart in
 the <code class="docutils literal notranslate"><span class="pre">~/.conan</span></code> folder. Its format is a list of entries, one on each line, with the form</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[remote name] [remote url] [bool]
+</pre></div>
+</div>
 <p>where <code class="docutils literal notranslate"><span class="pre">[bool]</span></code> (either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>) indicates whether SSL should be used to verify that remote.</p>
 <p>The local cache <em>registry.txt</em> file contains the remotes definitions, as well as the mapping from packages
 to remotes. In general it is not a good idea to add it to the installed files. That being said, the remote
