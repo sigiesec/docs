@@ -214,20 +214,20 @@ also actively used in FreeBSD and Solaris SunOS. There are also several addition
 <ol class="arabic simple">
 <li>The preferred and <strong>strongly recommended way to install Conan</strong> is from PyPI, the Python Package Index, using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command.</li>
 <li>There are other available installers for different systems, which might come with a bundled python interpreter, so that you don’t have to
-install python first. Please note that some of <strong>these installers might have some limitations</strong>, specially those created with pyinstaller
+install python first. Note that some of <strong>these installers might have some limitations</strong>, specially those created with pyinstaller
 (such as Windows exe &amp; Linux deb).</li>
-<li>Running conan from sources.</li>
+<li>Running Conan from sources.</li>
 </ol>
 <div class="section" id="install-with-pip-recommended">
 <h2>Install with pip (recommended)<a class="headerlink" href="#install-with-pip-recommended" title="Permalink to this headline">¶</a></h2>
-<p>To install Conan using <code class="docutils literal notranslate"><span class="pre">pip</span></code>, you need a python 2.7 or 3.X distribution installed in your machine. Modern python distros come
+<p>To install Conan using <code class="docutils literal notranslate"><span class="pre">pip</span></code>, you need Python 2.7 or 3.X distribution installed on your machine. Modern Python distros come
 with pip pre-installed. However, if necessary you can install pip by following the instructions in <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">pip docs</a>.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Python 2 will by deprecated soon by the Python maintainers. It is strongly recommended to use Python 3 for conan, especially if need to manage non-ascii filenames or file contents.
-Conan still supports Python 2, but some of the dependencies have started to be Python 3 only too. The roadmap for deprecating Python 2 support in Conan will be defined soon.</p>
+<p class="last">Python 2 will soon be deprecated by the Python maintainers. It is strongly recommended to use Python 3 with Conan, especially if need to manage non-ascii filenames or file contents.
+Conan still supports Python 2, however some of the dependencies have started to be supported only by Python 3. The roadmap for deprecating Python 2 support in Conan will be defined soon.</p>
 </div>
-<p>Install conan:</p>
+<p>Install Conan:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install conan
 </pre></div>
 </div>
@@ -235,20 +235,20 @@ Conan still supports Python 2, but some of the dependencies have started to be P
 <p class="first admonition-title">Important</p>
 <p><strong>Please READ carefully</strong></p>
 <ul class="last simple">
-<li>Make sure that your <strong>pip</strong> installation matches your <strong>python (2.7 or 3.X)</strong> one.</li>
-<li>In Linux if you want to install it globally, you might need <strong>sudo</strong> permissions.</li>
-<li>We strongly recommend using <strong>virtualenvs</strong> (virtualenvwrapper works great) for everything python related</li>
-<li>In <strong>Windows</strong> and with Python 2.7, you might need to use <strong>32bits</strong> python distribution (which is the Windows default one), instead
-of 64 bits.</li>
-<li>In <strong>OSX</strong>, specially latest versions that might have <strong>System Integrity Protection</strong>, pip might fail. Try with virtualenvs, or
-install with other user <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">conan</span></code>.</li>
-<li>If you are in Windows, and using python &lt;3.5, you might have problems if python is installed in a path with spaces, like
-“C:/Program Files(x86)/Python”. This is a known python’s limitation, not Conan’s. Install python in a path without spaces, use a
-virtualenv in another location or upgrade your python installation.</li>
-<li>In some Linux distros, like Linux Mint, it is possible that you need a restart (shell restart, or logout/system if not enough) after
+<li>Make sure that your <strong>pip</strong> installation matches your <strong>Python (2.7 or 3.X)</strong> version.</li>
+<li>In <strong>Linux</strong>, you may need <strong>sudo</strong> permissions to install Conan globally.</li>
+<li>We strongly recommend using <strong>virtualenvs</strong> (virtualenvwrapper works great) for everything related to Python.</li>
+<li>In <strong>Windows</strong> and Python 2.7, you may need to use <strong>32bit</strong> python distribution (which is the Windows default), instead
+of 64 bit.</li>
+<li>In <strong>OSX</strong>, especially the latest versions that may have <strong>System Integrity Protection</strong>, pip may fail. Try using virtualenvs, or
+install with another user <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">conan</span></code>.</li>
+<li>If you are using Windows and Python &lt;3.5, you may have issues if Python is installed in a path with spaces, such as
+“C:/Program Files(x86)/Python”. This is a known Python limitation, and is not related to Conan. Try installing Python in a path without spaces, use a
+virtualenv in another location or upgrade your Python installation.</li>
+<li>Some Linux distros, such as Linux Mint, require a restart (shell restart, or logout/system if not enough) after
 installation, so Conan is found in the path.</li>
-<li>Windows, Python 3 installation can fail installing the <code class="docutils literal notranslate"><span class="pre">wrapt</span></code> dependency because a bug in <strong>pip</strong>. Information about the issue and
-workarounds is here: <a class="reference external" href="https://github.com/GrahamDumpleton/wrapt/issues/112">https://github.com/GrahamDumpleton/wrapt/issues/112</a>.</li>
+<li>Windows, Python 3 installation can fail installing the <code class="docutils literal notranslate"><span class="pre">wrapt</span></code> dependency because of a bug in <strong>pip</strong>. Information about this issue and
+workarounds is available here: <a class="reference external" href="https://github.com/GrahamDumpleton/wrapt/issues/112">https://github.com/GrahamDumpleton/wrapt/issues/112</a>.</li>
 </ul>
 </div>
 </div>
@@ -283,11 +283,11 @@ Make sure to first install the three Conan dependencies which are also found in 
 </div>
 <div class="section" id="initial-configuration">
 <h2>Initial configuration<a class="headerlink" href="#initial-configuration" title="Permalink to this headline">¶</a></h2>
-<p>Let’s check if conan is correctly installed. In your console, run the following:</p>
+<p>Check if Conan is installed correctly. Run the following command in your console:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan
 </pre></div>
 </div>
-<p>You will see something similar to:</p>
+<p>The response should be similar to:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Consumer commands
   install    Installs the requirements specified in a conanfile <span class="o">(</span>.py or .txt<span class="o">)</span>.
   config     Manages configuration. Edits the conan.conf or installs config files.
@@ -299,7 +299,7 @@ Make sure to first install the three Conan dependencies which are also found in 
 </div>
 <div class="section" id="install-from-source">
 <h2>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
-<p>You can run conan directly from source code. First you need to install Python 2.7 or Python 3 and
+<p>You can run Conan directly from source code. First, you need to install Python 2.7 or Python 3 and
 pip.</p>
 <p>Clone (or download and unzip) the git repository and install its requirements:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/conan-io/conan.git
