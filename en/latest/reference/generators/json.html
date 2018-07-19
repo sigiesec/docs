@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>json &mdash; conan 1.5.2 documentation</title>
+  <title>json &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../../index.html"/>
         <link rel="up" title="Generators" href="../generators.html"/>
         <link rel="next" title="Profiles" href="../profiles.html"/>
         <link rel="prev" title="txt" href="text.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
@@ -155,6 +154,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#dependencies">dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deps-env-info">deps_env_info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deps-user-info">deps_user_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#settings">settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">options</a></li>
 </ul>
 </li>
 </ul>
@@ -244,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="json">
 <span id="json-generator"></span><h1>json<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h1>
-<p>A file named <em>conanbuildinfo.json</em> will be generated. It will contain the information about every dependency:</p>
+<p>A file named <em>conanbuildinfo.json</em> will be generated. It will contain the information about every dependency and the installed settings and options:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;deps_env_info&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;MY_ENV_VAR&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span>
@@ -276,6 +277,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
+  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;os&quot;</span><span class="p">:</span> <span class="s2">&quot;Linux&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;arch&quot;</span><span class="p">:</span> <span class="s2">&quot;armv7&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;curl&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;shared&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -301,6 +311,14 @@ ones that do not depend on other packages, will be first, and their direct depen
 <div class="section" id="deps-user-info">
 <h2>deps_user_info<a class="headerlink" href="#deps-user-info" title="Permalink to this headline">¶</a></h2>
 <p>The user variables defined by upstream dependencies</p>
+</div>
+<div class="section" id="settings">
+<h2>settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>The settings used during <cite>conan install</cite></p>
+</div>
+<div class="section" id="options">
+<h2>options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>The options of each dependency</p>
 </div>
 </div>
 
@@ -344,7 +362,7 @@ ones that do not depend on other packages, will be first, and their direct depen
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -352,7 +370,11 @@ ones that do not depend on other packages, will be first, and their direct depen
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -378,7 +400,7 @@ ones that do not depend on other packages, will be first, and their direct depen
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

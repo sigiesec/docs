@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan build &mdash; conan 1.5.2 documentation</title>
+  <title>conan build &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan package" href="package.html"/>
         <link rel="prev" title="conan source" href="source.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting started</a></li>
@@ -228,8 +227,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="conan-build">
 <span id="id1"></span><h1>conan build<a class="headerlink" href="#conan-build" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span>
-              <span class="o">[</span>-pf PACKAGE_FOLDER<span class="o">]</span> <span class="o">[</span>-sf SOURCE_FOLDER<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-b<span class="o">]</span> <span class="o">[</span>-bf BUILD_FOLDER<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> <span class="o">[</span>-i<span class="o">]</span> <span class="o">[</span>-t<span class="o">]</span>
+              <span class="o">[</span>-if INSTALL_FOLDER<span class="o">]</span> <span class="o">[</span>-pf PACKAGE_FOLDER<span class="o">]</span>
+              <span class="o">[</span>-sf SOURCE_FOLDER<span class="o">]</span>
               path
 </pre></div>
 </div>
@@ -244,18 +244,23 @@ folder will be configured as destination folder for the install step.</p>
 optional arguments:
   -h, --help            show this help message and exit
   -b, --build           Execute the build step (variable should_build=True).
-                        When specified, configure/install won&#39;t run unless
-                        --configure/--install specified
+                        When specified, configure/install/test won&#39;t run
+                        unless --configure/--install/--test specified
   -bf BUILD_FOLDER, --build-folder BUILD_FOLDER
                         Directory for the build process. Defaulted to the
                         current directory. A relative path to current
                         directory can also be specified
   -c, --configure       Execute the configuration step (variable
-                        should_configure=True). When specified, build/install
-                        won&#39;t run unless --build/--install specified
+                        should_configure=True). When specified,
+                        build/install/test won&#39;t run unless
+                        --build/--install/--test specified
   -i, --install         Execute the install step (variable
-                        should_install=True). When specified, configure/build
-                        won&#39;t run unless --configure/--build specified
+                        should_install=True). When specified,
+                        configure/build/test won&#39;t run unless
+                        --configure/--build/--test specified
+  -t, --test            Execute the test step (variable should_test=True).
+                        When specified, configure/build/install won&#39;t run
+                        unless --configure/--build/--install specified
   -if INSTALL_FOLDER, --install-folder INSTALL_FOLDER
                         Directory containing the conaninfo.txt and
                         conanbuildinfo.txt files (from previous &#39;conan
@@ -315,35 +320,21 @@ and generate the info files, and finally <strong class="command">conan build</st
 –build-folder, otherwise, you will need to specify a different folder in your build system to include
 the files generators file. e.j <code class="docutils literal notranslate"><span class="pre">conanbuildinfo.cmake</span></code></p>
 <p><strong>Example</strong>: Control the build stages</p>
-<p>Given a conanfile with this <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-    <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
-    <span class="n">cmake</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-    <span class="n">cmake</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>If nothing is specified, all three methods will be called. But using command line arguments, this can be changed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build . -c <span class="c1"># only run cmake.configure(). Other methods will do nothing</span>
-$ conan build . -b <span class="c1"># only run cmake.build(). Other methods will do nothing</span>
-$ conan build . -i <span class="c1"># only run cmake.install(). Other methods will do nothing</span>
+<p>You can control the build stages using <strong class="command">--configure</strong>/<strong class="command">--build</strong>/<strong class="command">--install</strong>/<strong class="command">--test</strong> arguments. Here is
+an example using the CMake build helper:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build . --confiure <span class="c1"># only run cmake.configure(). Other methods will do nothing</span>
+$ conan build . --build    <span class="c1"># only run cmake.build(). Other methods will do nothing</span>
+$ conan build . --install  <span class="c1"># only run cmake.install(). Other methods will do nothing</span>
+$ conan build . --test     <span class="c1"># only run cmake.test(). Other methods will do nothing</span>
 <span class="c1"># They can be combined</span>
-$ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), but not cmake.install()</span>
+$ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), but not cmake.install() nor cmake.test</span>
 </pre></div>
 </div>
-<p>Autotools and Meson helpers already implement the same functionality. For other build systems, you can use
-the following variables in the <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_configure</span><span class="p">:</span>
-        <span class="c1"># Run my configure stage</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_build</span><span class="p">:</span>
-        <span class="c1"># Run my build stage</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_install</span><span class="p">:</span> <span class="c1"># If my build has install, otherwise use package()</span>
-        <span class="c1"># Run my install stage</span>
-</pre></div>
+<p>If nothing is specified, all the methods will be called.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Read more about <a class="reference internal" href="../../conanfile/attributes.html#attribute-build-stages"><span class="std std-ref">should_configure, should_build, should_install, should_test</span></a>.</p>
 </div>
-<p>Note these <code class="docutils literal notranslate"><span class="pre">should_configure,</span> <span class="pre">should_build,</span> <span class="pre">should_install</span></code> variables will always be <code class="docutils literal notranslate"><span class="pre">True</span></code> while
-building in the local cache. They can only be modified for the local flow with <strong class="command">conan build</strong>.</p>
 </div>
 
 
@@ -386,7 +377,7 @@ building in the local cache. They can only be modified for the local flow with <
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -394,7 +385,11 @@ building in the local cache. They can only be modified for the local flow with <
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -420,7 +415,7 @@ building in the local cache. They can only be modified for the local flow with <
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

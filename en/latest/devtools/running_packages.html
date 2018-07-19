@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Running and deploying packages &mdash; conan 1.5.2 documentation</title>
+  <title>Running and deploying packages &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../index.html"/>
         <link rel="up" title="Package apps and devtools" href="../devtools.html"/>
         <link rel="next" title="Creating conan packages to install dev tools" href="create_installer_packages.html"/>
         <link rel="prev" title="Package apps and devtools" href="../devtools.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
@@ -307,7 +306,8 @@ with:</p>
 <div class="section" id="running-from-packages">
 <h2>Running from packages<a class="headerlink" href="#running-from-packages" title="Permalink to this headline">¶</a></h2>
 <p>If a dependency has an executable that we want to run in the conanfile it can be done directly in code
-using the <code class="docutils literal notranslate"><span class="pre">RunEnvironment</span></code> helper. For example, if we want to execute the <code class="docutils literal notranslate"><span class="pre">greet</span></code> app while building the <code class="docutils literal notranslate"><span class="pre">Consumer</span></code> package:</p>
+using the <code class="docutils literal notranslate"><span class="pre">run_environment=True</span></code> argument. It internally uses a <code class="docutils literal notranslate"><span class="pre">RunEnvironment</span></code> helper.
+For example, if we want to execute the <code class="docutils literal notranslate"><span class="pre">greet</span></code> app while building the <code class="docutils literal notranslate"><span class="pre">Consumer</span></code> package:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">ConanFile</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">RunEnvironment</span>
 
 <span class="k">class</span> <span class="nc">ConsumerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -317,9 +317,7 @@ using the <code class="docutils literal notranslate"><span class="pre">RunEnviro
     <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;Hello/0.1@user/testing&quot;</span>
 
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">env</span> <span class="o">=</span> <span class="n">RunEnvironment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">tools</span><span class="o">.</span><span class="n">environment_append</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">vars</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;greet&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span> <span class="n">run_environment</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now run <strong class="command">conan install</strong> and <strong class="command">conan build</strong> for this consumer recipe:</p>
@@ -329,13 +327,13 @@ Project: Running build<span class="o">()</span>
 Hello World!
 </pre></div>
 </div>
-<p>Instead of using the environment, it is also possible to access the path of the dependencies:</p>
+<p>Instead of using the environment, it is also possible to explicitly access the path of the dependencies:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deps_cpp_info</span><span class="p">[</span><span class="s2">&quot;Hello&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rootpath</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/greet&quot;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that this might not be enough if shared libraries exist. Using the <code class="docutils literal notranslate"><span class="pre">RunEnvironment</span></code> helper above
+<p>Note that this might not be enough if shared libraries exist. Using the <code class="docutils literal notranslate"><span class="pre">run_environment=True</span></code> helper above
 is a more complete solution.</p>
 <p>Finally, there is another approach: the package containing the executable can add its <em>bin</em> folder directly to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
 In this case the <strong>Hello</strong> package conanfile would contain:</p>
@@ -439,7 +437,7 @@ $ deactivate_run.sh <span class="c1"># $ source deactivate_run.sh in Unix/Linux<
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -447,7 +445,11 @@ $ deactivate_run.sh <span class="c1"># $ source deactivate_run.sh in Unix/Linux<
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -473,7 +475,7 @@ $ deactivate_run.sh <span class="c1"># $ source deactivate_run.sh in Unix/Linux<
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

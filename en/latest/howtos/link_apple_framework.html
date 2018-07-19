@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to link with Apple Frameworks &mdash; conan 1.5.2 documentation</title>
+  <title>How to link with Apple Frameworks &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../index.html"/>
         <link rel="up" title="Howtos" href="../howtos.html"/>
         <link rel="next" title="How to collect licenses of dependencies" href="collect_licenses.html"/>
         <link rel="prev" title="How to collaborate on other users’ packages" href="collaborate_packages.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
@@ -140,6 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="cmake_install.html">How to reuse cmake install for package() method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">How to link with Apple Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-package-apple-frameworks">How to package Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capture_version.html">How to capture package version from text or build files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="other_languages_package_manager.html">How to use Conan as other language package manager</a></li>
@@ -253,6 +253,33 @@ frameworks if we are building an executable and <code class="docutils literal no
 In the example above we are assigning in the last line <code class="docutils literal notranslate"><span class="pre">sharedlinkflags</span></code> with <code class="docutils literal notranslate"><span class="pre">exelinkflags</span></code>, so no matter what the consumer will build,
 it will indicate to the linker to link with the specified frameworks.</p>
 </div>
+<div class="section" id="how-to-package-apple-frameworks">
+<span id="package-apple-framework"></span><h1>How to package Apple Frameworks<a class="headerlink" href="#how-to-package-apple-frameworks" title="Permalink to this headline">¶</a></h1>
+<p>To package an Apple framework:</p>
+<ul class="simple">
+<li>Copy/Create a framework folder <code class="docutils literal notranslate"><span class="pre">XXX.framework</span></code> (being <code class="docutils literal notranslate"><span class="pre">XXX</span></code> the name of your framework),
+to your package folder, putting there all the subdirectories (<code class="docutils literal notranslate"><span class="pre">Headers</span></code>, <code class="docutils literal notranslate"><span class="pre">Modules</span></code>, etc).</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># If you have the framework folder built in your build_folder:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;XXX.framework/*&quot;</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c1"># Or build the destination folder:</span>
+    <span class="n">tools</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;XXX.framework/Headers&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;*.h&quot;</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="s2">&quot;XXX.framework/Headers&quot;</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Declare the framework in the <code class="docutils literal notranslate"><span class="pre">cpp_info</span></code> object.</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">exelinkflags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-framework XXX&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">sharedlinkflags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">exelinkflags</span>
+</pre></div>
+</div>
+</div>
 
 
            </div>
@@ -294,7 +321,7 @@ it will indicate to the linker to link with the specified frameworks.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -302,7 +329,11 @@ it will indicate to the linker to link with the specified frameworks.</p>
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -328,7 +359,7 @@ it will indicate to the linker to link with the specified frameworks.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

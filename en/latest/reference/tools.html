@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tools &mdash; conan 1.5.2 documentation</title>
+  <title>Tools &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../index.html"/>
         <link rel="up" title="Reference" href="../reference.html"/>
         <link rel="next" title="Configuration files" href="config_files.html"/>
         <link rel="prev" title="RunEnvironment" href="build_helpers/run_environment.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
@@ -147,6 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#tools-download">tools.download()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-ftp-download">tools.ftp_download()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-replace-in-file">tools.replace_in_file()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-run-environment">tools.run_environment()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-check-with-algorithm-sum">tools.check_with_algorithm_sum()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-patch">tools.patch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-environment-append">tools.environment_append()</a></li>
@@ -168,6 +168,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#tools-load">tools.load()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-mkdir-tools-rmdir">tools.mkdir(), tools.rmdir()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-which">tools.which()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-unix2dos">tools.unix2dos()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools-dos2unix">tools.dos2unix()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-touch">tools.touch()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-relative-dirs">tools.relative_dirs()</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tools-vswhere">tools.vswhere()</a></li>
@@ -451,13 +453,13 @@ Use <a class="reference internal" href="build_helpers/visual_studio.html#msbuild
 </dl>
 </div>
 <div class="section" id="tools-unzip">
-<h2>tools.unzip()<a class="headerlink" href="#tools-unzip" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>tools.unzip()<a class="headerlink" href="#tools-unzip" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Function mainly used in <code class="docutils literal notranslate"><span class="pre">source()</span></code>, but could be used in <code class="docutils literal notranslate"><span class="pre">build()</span></code> in special cases, as
 when retrieving pre-built binaries from the Internet.</p>
-<p>This function accepts <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar</span></code>, <code class="docutils literal notranslate"><span class="pre">.tzb2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar.bz2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tgz</span></code> and <code class="docutils literal notranslate"><span class="pre">.zip</span></code> files,
+<p>This function accepts <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar</span></code>, <code class="docutils literal notranslate"><span class="pre">.tzb2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar.bz2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tgz</span></code>, <code class="docutils literal notranslate"><span class="pre">.txz</span></code>, <code class="docutils literal notranslate"><span class="pre">tar.xz</span></code>, and <code class="docutils literal notranslate"><span class="pre">.zip</span></code> files,
 and decompress them into the given destination folder (the current one by default).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
 
@@ -530,7 +532,7 @@ documentation for more details.</li>
 </div>
 <div class="section" id="tools-get">
 <h2>tools.get()<a class="headerlink" href="#tools-get" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">md5</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">sha1</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">sha256</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filenname</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">md5</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">sha1</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">sha256</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Just a high level wrapper for download, unzip, and remove the temporary zip file once unzipped.
@@ -546,16 +548,19 @@ will be checked, if any of them doesn’t match, it will raise a <code class="do
 <dl class="docutils">
 <dt>Parameters:</dt>
 <dd><ul class="first last simple">
-<li><strong>url</strong> (Required): URL to download</li>
+<li><strong>url</strong> (Required): URL to download.</li>
+<li><strong>filename</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">`&quot;&quot;</span></code>): Specify the name of the compressed file if it cannot be deduced from URL.</li>
 <li><strong>md5</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): MD5 hash code to check the downloaded file.</li>
 <li><strong>sha1</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): SHA1 hash code to check the downloaded file.</li>
 <li><strong>sha256</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): SHA256 hash code to check the downloaded file.</li>
+<li><strong>keep_permissions</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Propagates parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
+<li><strong>pattern</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Propagates parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="tools-get-env">
-<span id="id3"></span><h2>tools.get_env()<a class="headerlink" href="#tools-get-env" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>tools.get_env()<a class="headerlink" href="#tools-get-env" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_env</span><span class="p">(</span><span class="n">env_key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -684,8 +689,15 @@ is not found, so nothing is actually replaced.</li>
 </dd>
 </dl>
 </div>
+<div class="section" id="tools-run-environment">
+<span id="id5"></span><h2>tools.run_environment()<a class="headerlink" href="#tools-run-environment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_environment</span><span class="p">(</span><span class="n">conanfile</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Context manager that sets temporary environment variables set by <span class="xref std std-ref">run_environment_reference</span>.</p>
+</div>
 <div class="section" id="tools-check-with-algorithm-sum">
-<span id="id4"></span><h2>tools.check_with_algorithm_sum()<a class="headerlink" href="#tools-check-with-algorithm-sum" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>tools.check_with_algorithm_sum()<a class="headerlink" href="#tools-check-with-algorithm-sum" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_with_algorithm_sum</span><span class="p">(</span><span class="n">algorithm_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1152,6 +1164,44 @@ when <code class="docutils literal notranslate"><span class="pre">no_copy_source
 </dd>
 </dl>
 </div>
+<div class="section" id="tools-unix2dos">
+<span id="id7"></span><h2>tools.unix2dos()<a class="headerlink" href="#tools-unix2dos" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unix2dos</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Converts line breaks in a text file from Unix format (LF) to DOS format (CRLF).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
+
+<span class="n">tools</span><span class="o">.</span><span class="n">unix2dos</span><span class="p">(</span><span class="s2">&quot;project.dsp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>filepath</strong> (Required): The file to convert.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tools-dos2unix">
+<span id="id8"></span><h2>tools.dos2unix()<a class="headerlink" href="#tools-dos2unix" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dos2unix</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Converts line breaks in a text file from DOS format (CRLF) to Unix format (LF).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
+
+<span class="n">tools</span><span class="o">.</span><span class="n">dos2unix</span><span class="p">(</span><span class="s2">&quot;dosfile.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><ul class="first last simple">
+<li><strong>filepath</strong> (Required): The file to convert.</li>
+</ul>
+</dd>
+</dl>
+</div>
 <div class="section" id="tools-touch">
 <h2>tools.touch()<a class="headerlink" href="#tools-touch" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">touch</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -1408,7 +1458,7 @@ them to achieve correct linking order.</p>
 </table>
 </div>
 <div class="section" id="tools-git">
-<span id="id5"></span><h2>tools.Git()<a class="headerlink" href="#tools-git" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>tools.Git()<a class="headerlink" href="#tools-git" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Git</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">force_english</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -1599,7 +1649,7 @@ them to achieve correct linking order.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -1607,7 +1657,11 @@ them to achieve correct linking order.</p>
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -1633,7 +1687,7 @@ them to achieve correct linking order.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

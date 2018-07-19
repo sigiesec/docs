@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Attributes &mdash; conan 1.5.2 documentation</title>
+  <title>Attributes &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Methods" href="methods.html"/>
         <link rel="prev" title="conanfile.py" href="../conanfile.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
@@ -146,6 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l4"><a class="reference internal" href="#exports">exports</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exports-sources">exports_sources</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generators">generators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#should-configure-should-build-should-install-should-test">should_configure, should_build, should_install, should_test</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#build-policy">build_policy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#short-paths">short_paths</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#no-copy-source">no_copy_source</a></li>
@@ -626,12 +626,50 @@ generated, but you can specify different generators and even use more than one.<
 </div>
 <p>Check the full <a class="reference internal" href="../../using_packages/conanfile_txt.html#generators"><span class="std std-ref">generators list</span></a>.</p>
 </div>
+<div class="section" id="should-configure-should-build-should-install-should-test">
+<span id="attribute-build-stages"></span><h2>should_configure, should_build, should_install, should_test<a class="headerlink" href="#should-configure-should-build-should-install-should-test" title="Permalink to this headline">¶</a></h2>
+<p>Read only variables defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>This variables allow you control the build stages of a recipe during a <strong class="command">conan build</strong> command with the optional arguments
+<strong class="command">--configure</strong>/<strong class="command">--build</strong>/<strong class="command">--install</strong>/<strong class="command">--test</strong>. For example, given this <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+    <span class="n">cmake</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+    <span class="n">cmake</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+    <span class="n">cmake</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If nothing is specified, all four methods will be called. But using command line arguments, this can be changed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan build . --configure  <span class="c1"># only run cmake.configure(). Other methods will do nothing</span>
+$ conan build . --build      <span class="c1"># only run cmake.build(). Other methods will do nothing</span>
+$ conan build . --install    <span class="c1"># only run cmake.install(). Other methods will do nothing</span>
+$ conan build . --test       <span class="c1"># only run cmake.test(). Other methods will do nothing</span>
+<span class="c1"># They can be combined</span>
+$ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), but not cmake.install() nor cmake.test()</span>
+</pre></div>
+</div>
+<p>Autotools and Meson helpers already implement the same functionality. For other build systems, you can use the these variables in the
+<code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_configure</span><span class="p">:</span>
+        <span class="c1"># Run my configure stage</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_build</span><span class="p">:</span>
+        <span class="c1"># Run my build stage</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_install</span><span class="p">:</span> <span class="c1"># If my build has install, otherwise use package()</span>
+        <span class="c1"># Run my install stage</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_test</span><span class="p">:</span>
+        <span class="c1"># Run my test stage</span>
+</pre></div>
+</div>
+<p>Note these <code class="docutils literal notranslate"><span class="pre">should_configure</span></code>, <code class="docutils literal notranslate"><span class="pre">should_build</span></code>, <code class="docutils literal notranslate"><span class="pre">should_install</span></code>, <code class="docutils literal notranslate"><span class="pre">should_test</span></code> variables will always be <code class="docutils literal notranslate"><span class="pre">True</span></code> while building in
+the cache and can be only modified for the local flow with <strong class="command">conan build</strong>.</p>
+</div>
 <div class="section" id="build-policy">
 <h2>build_policy<a class="headerlink" href="#build-policy" title="Permalink to this headline">¶</a></h2>
 <p>With the <code class="docutils literal notranslate"><span class="pre">build_policy</span></code> attribute the package creator can change the default conan’s build behavior.
 The allowed <code class="docutils literal notranslate"><span class="pre">build_policy</span></code> values are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">missing</span></code>: If no binary package is found, conan will build it without the need of invoke conan install with <strong>–build missing</strong> option.</li>
+<li><code class="docutils literal notranslate"><span class="pre">missing</span></code>: If no binary package is found, Conan will build it without the need of invoke <strong class="command">conan install --build missing</strong> option.</li>
 <li><code class="docutils literal notranslate"><span class="pre">always</span></code>: The package will be built always, <strong>retrieving each time the source code</strong> executing the “source” method.</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">PocoTimerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
@@ -985,7 +1023,7 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -993,7 +1031,11 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -1019,7 +1061,7 @@ to <a class="reference internal" href="../../devtools/running_packages.html#repa
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

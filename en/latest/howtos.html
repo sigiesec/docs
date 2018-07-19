@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Howtos &mdash; conan 1.5.2 documentation</title>
+  <title>Howtos &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,9 +40,9 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="index.html"/>
         <link rel="next" title="How to package header-only libraries" href="howtos/header_only.html"/>
-        <link rel="prev" title="Custom integrations" href="integrations/other.html"/>
+        <link rel="prev" title="Linting conanfile.py" href="integrations/pylint.html"/>
 
  <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -112,7 +112,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
@@ -139,6 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="howtos/cmake_install.html">How to reuse cmake install for package() method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/link_apple_framework.html">How to link with Apple Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtos/link_apple_framework.html#how-to-package-apple-frameworks">How to package Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/capture_version.html">How to capture package version from text or build files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/other_languages_package_manager.html">How to use Conan as other language package manager</a></li>
@@ -284,6 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="howtos/link_apple_framework.html">How to link with Apple Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos/link_apple_framework.html#how-to-package-apple-frameworks">How to package Apple Frameworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howtos/collect_licenses.html">How to collect licenses of dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howtos/capture_version.html">How to capture package version from text or build files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howtos/other_languages_package_manager.html">How to use Conan as other language package manager</a><ul>
@@ -318,7 +319,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="howtos/header_only.html" class="btn btn-neutral float-right" title="How to package header-only libraries" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="integrations/other.html" class="btn btn-neutral" title="Custom integrations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="integrations/pylint.html" class="btn btn-neutral" title="Linting conanfile.py" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -345,7 +346,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -353,7 +354,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -379,7 +384,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

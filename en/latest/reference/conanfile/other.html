@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Output and Running &mdash; conan 1.5.2 documentation</title>
+  <title>Output and Running &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../../index.html"/>
         <link rel="up" title="conanfile.py" href="../conanfile.html"/>
         <link rel="next" title="Generators" href="../generators.html"/>
         <link rel="prev" title="Methods" href="methods.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
@@ -238,8 +237,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Check the source code. You might be able to produce different outputs with different colors.</p>
 </div>
 <div class="section" id="running-commands">
-<h2>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">win_bash</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">subsystem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">msys_mingw</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span id="id1"></span><h2>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">win_bash</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">subsystem</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">msys_mingw</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">ignore_errors</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">run_environment</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">self.run()</span></code> is a helper to run system commands and throw exceptions when errors occur,
@@ -263,6 +263,11 @@ so that command errors are do not pass unnoticed. It is just a wrapper for <code
 <li><strong>win_bash</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): When True, it will run the configure/make commands inside a bash.</li>
 <li><strong>subsystem</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code> will autodetect the subsystem). Used to escape the command according to the specified subsystem.</li>
 <li><strong>msys_mingw</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) If the specified subsystem is MSYS2, will start it in MinGW mode (native windows development).</li>
+<li><strong>ignore_errors</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>). The method raises an exception if the command fails. If <code class="docutils literal notranslate"><span class="pre">ignore_errors=True</span></code>, it
+will not raise, and the user can use the return code instead to check for errors.</li>
+<li><strong>run_environment</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>). Applies a <code class="docutils literal notranslate"><span class="pre">RunEnvironment</span></code>, so the environment variables PATH, LD_LIBRARY_PATH,
+DYLIB_LIBRARY_PATH are defined in the command execution, adding the values of the “lib” and “bin” folders of the dependencies.
+Allows executables to be run using shared libraries from its dependencies easily.</li>
 </ul>
 </div>
 </div>
@@ -307,7 +312,7 @@ so that command errors are do not pass unnoticed. It is just a wrapper for <code
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -315,7 +320,11 @@ so that command errors are do not pass unnoticed. It is just a wrapper for <code
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -341,7 +350,7 @@ so that command errors are do not pass unnoticed. It is just a wrapper for <code
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

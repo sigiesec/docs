@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FAQ &mdash; conan 1.5.2 documentation</title>
+  <title>FAQ &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,8 +40,8 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="index.html"/>
-        <link rel="next" title="General" href="faq/general.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="index.html"/>
+        <link rel="next" title="Upgrading to conan 1.0" href="faq/conan1.0.html"/>
         <link rel="prev" title="Videos and links" href="videos.html"/>
 
  <!-- Google Tag Manager -->
@@ -112,7 +112,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
@@ -128,6 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="videos.html">Videos and links</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq/conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq/general.html">General</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq/using.html">Using conan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq/troubleshooting.html">Troubleshooting</a></li>
@@ -212,6 +212,13 @@ Please join us in the <code class="docutils literal notranslate"><span class="pr
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="faq/conan1.0.html">Upgrading to conan 1.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq/conan1.0.html#command-line-changes">Command line changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq/conan1.0.html#deprecations-removals">Deprecations/removals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq/conan1.0.html#settings-and-profiles-gcc-clang-versioning">Settings and profiles. Gcc/CLang versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq/conan1.0.html#new-features">New features</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="faq/general.html">General</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="faq/general.html#is-conan-cmake-based-or-is-cmake-a-requirement">Is Conan CMake based, or is CMake a requirement?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq/general.html#is-build-system-xxxxx-supported">Is build-system XXXXX supported?</a></li>
@@ -256,7 +263,7 @@ Please join us in the <code class="docutils literal notranslate"><span class="pr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="faq/general.html" class="btn btn-neutral float-right" title="General" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="faq/conan1.0.html" class="btn btn-neutral float-right" title="Upgrading to conan 1.0" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="videos.html" class="btn btn-neutral" title="Videos and links" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -286,7 +293,7 @@ Please join us in the <code class="docutils literal notranslate"><span class="pr
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -294,7 +301,11 @@ Please join us in the <code class="docutils literal notranslate"><span class="pr
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -320,7 +331,7 @@ Please join us in the <code class="docutils literal notranslate"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>conan config &mdash; conan 1.5.2 documentation</title>
+  <title>conan config &mdash; conan 1.6.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="conan 1.5.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="conan 1.6.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Commands" href="../../commands.html"/>
         <link rel="next" title="conan get" href="get.html"/>
         <link rel="prev" title="conan install" href="install.html"/>
@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../conan1.0.html">Upgrading to conan 1.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting started</a></li>
@@ -312,11 +311,20 @@ client configuration.</p>
 so following calls to <strong class="command">conan config install</strong> command doesn’t need to specify the URL.</p>
 <p><strong>Examples</strong>:</p>
 <ul>
-<li><p class="first">Install the configuration from an url:</p>
+<li><p class="first">Install the configuration from an URL:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan config install http://url/to/some/config.zip
 </pre></div>
 </div>
 <p>Conan config command stores the specified URL in the conan.conf <code class="docutils literal notranslate"><span class="pre">general.config_install</span></code> variable.</p>
+</li>
+<li><p class="first">Install the configuration from a git repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan config install http://github.com/user/conan_config/.git
+</pre></div>
+</div>
+<p>You can also force the git download by using <strong class="command">--type git</strong> (in case it is not deduced from URL automatically):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan config install http://github.com/user/conan_config/.git --type git
+</pre></div>
+</div>
 </li>
 <li><p class="first">Install from an url skipping SSL verification:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan config install http://url/to/some/config.zip --verify-ssl<span class="o">=</span>False
@@ -379,7 +387,7 @@ so following calls to <strong class="command">conan config install</strong> comm
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
-      Version: 1.5
+      Version: 1.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -387,7 +395,11 @@ so following calls to <strong class="command">conan config install</strong> comm
         <dt>Versions</dt>
         
           
-            <dd><a href="/en/latest/index.html">1.5</a></dd>
+            <dd><a href="/en/latest/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
           
         
           
@@ -413,7 +425,7 @@ so following calls to <strong class="command">conan config install</strong> comm
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.5.2',
+            VERSION:'1.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
