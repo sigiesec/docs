@@ -282,7 +282,8 @@ environment variables with all the information from the requirements: include di
 <div class="section" id="build">
 <h3>build()<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_file</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">upgrade_project</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">build_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-          <span class="n">parallel</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">force_vcvars</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">toolset</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">platforms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">use_env</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+          <span class="n">parallel</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">force_vcvars</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">toolset</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">platforms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">use_env</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+          <span class="n">vcvars_ver</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">winsdk_version</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Builds Visual Studio project with the given parameters. It will call <code class="docutils literal notranslate"><span class="pre">tools.msvc_build_command()</span></code>.</p>
@@ -316,6 +317,10 @@ solution uses “Win32” instead of “x86”). This dictionary will update the
 </div>
 </li>
 <li><p class="first"><strong>use_env</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>: Applies the argument <code class="docutils literal notranslate"><span class="pre">/p:UseEnv=true</span></code> to the <code class="docutils literal notranslate"><span class="pre">msbuild()</span></code> call.</p>
+</li>
+<li><p class="first"><strong>vcvars_ver</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Specifies the Visual Studio compiler toolset to use.</p>
+</li>
+<li><p class="first"><strong>winsdk_version</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Specifies the version of the Windows SDK to use.</p>
 </li>
 </ul>
 </dd>
@@ -429,7 +434,7 @@ Use it together with <a class="reference internal" href="../tools.html#tools"><s
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <ul class="last simple">
-<li><a class="reference internal" href="../tools.html#environment-append-tool"><span class="std std-ref">Reference/Tools/environment_append</span></a></li>
+<li><a class="reference internal" href="../tools.html#environment-append-tool"><span class="std std-ref">tools.environment_append()</span></a></li>
 </ul>
 </div>
 </div>
