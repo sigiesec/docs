@@ -224,7 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="admonition warning" id="run-environment-reference">
 <p class="first admonition-title">Warning</p>
 <p class="last">The <code class="docutils literal notranslate"><span class="pre">RunEnvironment</span></code> is no longer needed, at least explicitly in conanfile.py. It has been integrated
-in the <code class="docutils literal notranslate"><span class="pre">self.run(...,</span> <span class="pre">run_environment=True)</span></code> argument. Check <a class="reference internal" href="../conanfile/other.html#running-commands"><span class="std std-ref">self.run() docs</span></a>.</p>
+into the <code class="docutils literal notranslate"><span class="pre">self.run(...,</span> <span class="pre">run_environment=True)</span></code> argument. Check <a class="reference internal" href="../conanfile/other.html#running-commands"><span class="std std-ref">self.run() docs</span></a>.</p>
 </div>
 <div class="section" id="runenvironment">
 <h1>RunEnvironment<a class="headerlink" href="#runenvironment" title="Permalink to this headline">¶</a></h1>
@@ -283,7 +283,7 @@ your <em>conanfile.py</em>:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;DYLD_LIBRARY_PATH=</span><span class="si">%s</span><span class="s1"> ./myexetool&quot; </span><span class="si">% o</span><span class="s1">s.environ[&#39;</span><span class="n">DYLD_LIBRARY_PATH</span><span class="s1">&#39;])</span>
 </pre></div>
 </div>
-<p class="last">This is already automatically handled by the <code class="docutils literal notranslate"><span class="pre">self.run(...,</span> <span class="pre">run_environment=True)</span></code> argument.</p>
+<p class="last">This is already handled automatically by the <code class="docutils literal notranslate"><span class="pre">self.run(...,</span> <span class="pre">run_environment=True)</span></code> argument.</p>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
