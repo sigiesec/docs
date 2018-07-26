@@ -629,8 +629,8 @@ generated, but you can specify different generators and even use more than one.<
 <div class="section" id="should-configure-should-build-should-install-should-test">
 <span id="attribute-build-stages"></span><h2>should_configure, should_build, should_install, should_test<a class="headerlink" href="#should-configure-should-build-should-install-should-test" title="Permalink to this headline">¶</a></h2>
 <p>Read only variables defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-<p>This variables allow you control the build stages of a recipe during a <strong class="command">conan build</strong> command with the optional arguments
-<strong class="command">--configure</strong>/<strong class="command">--build</strong>/<strong class="command">--install</strong>/<strong class="command">--test</strong>. For example, given this <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
+<p>These variables allow you to control the build stages of a recipe during a <strong class="command">conan build</strong> command with the optional arguments
+<strong class="command">--configure</strong>/<strong class="command">--build</strong>/<strong class="command">--install</strong>/<strong class="command">--test</strong>. For example, consider this <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
@@ -648,7 +648,7 @@ $ conan build . --test       <span class="c1"># only run cmake.test(). Other met
 $ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), but not cmake.install() nor cmake.test()</span>
 </pre></div>
 </div>
-<p>Autotools and Meson helpers already implement the same functionality. For other build systems, you can use the these variables in the
+<p>Autotools and Meson helpers already implement the same functionality. For other build systems, you can use these variables in the
 <code class="docutils literal notranslate"><span class="pre">build()</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_configure</span><span class="p">:</span>
@@ -661,7 +661,7 @@ $ conan build . -c -b <span class="c1"># run cmake.configure() + cmake.build(), 
         <span class="c1"># Run my test stage</span>
 </pre></div>
 </div>
-<p>Note these <code class="docutils literal notranslate"><span class="pre">should_configure</span></code>, <code class="docutils literal notranslate"><span class="pre">should_build</span></code>, <code class="docutils literal notranslate"><span class="pre">should_install</span></code>, <code class="docutils literal notranslate"><span class="pre">should_test</span></code> variables will always be <code class="docutils literal notranslate"><span class="pre">True</span></code> while building in
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">should_configure</span></code>, <code class="docutils literal notranslate"><span class="pre">should_build</span></code>, <code class="docutils literal notranslate"><span class="pre">should_install</span></code>, <code class="docutils literal notranslate"><span class="pre">should_test</span></code> variables will always be <code class="docutils literal notranslate"><span class="pre">True</span></code> while building in
 the cache and can be only modified for the local flow with <strong class="command">conan build</strong>.</p>
 </div>
 <div class="section" id="build-policy">
@@ -669,7 +669,7 @@ the cache and can be only modified for the local flow with <strong class="comman
 <p>With the <code class="docutils literal notranslate"><span class="pre">build_policy</span></code> attribute the package creator can change the default conan’s build behavior.
 The allowed <code class="docutils literal notranslate"><span class="pre">build_policy</span></code> values are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">missing</span></code>: If no binary package is found, Conan will build it without the need of invoke <strong class="command">conan install --build missing</strong> option.</li>
+<li><code class="docutils literal notranslate"><span class="pre">missing</span></code>: If no binary package is found, Conan will build it without the need to invoke <strong class="command">conan install --build missing</strong> option.</li>
 <li><code class="docutils literal notranslate"><span class="pre">always</span></code>: The package will be built always, <strong>retrieving each time the source code</strong> executing the “source” method.</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">PocoTimerConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>

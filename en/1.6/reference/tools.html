@@ -460,7 +460,7 @@ Use <a class="reference internal" href="build_helpers/visual_studio.html#msbuild
 <p>Function mainly used in <code class="docutils literal notranslate"><span class="pre">source()</span></code>, but could be used in <code class="docutils literal notranslate"><span class="pre">build()</span></code> in special cases, as
 when retrieving pre-built binaries from the Internet.</p>
 <p>This function accepts <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar</span></code>, <code class="docutils literal notranslate"><span class="pre">.tzb2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar.bz2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tgz</span></code>, <code class="docutils literal notranslate"><span class="pre">.txz</span></code>, <code class="docutils literal notranslate"><span class="pre">tar.xz</span></code>, and <code class="docutils literal notranslate"><span class="pre">.zip</span></code> files,
-and decompress them into the given destination folder (the current one by default).</p>
+and decompresses them into the given destination folder (the current one by default).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conans</span> <span class="kn">import</span> <span class="n">tools</span>
 
 <span class="n">tools</span><span class="o">.</span><span class="n">unzip</span><span class="p">(</span><span class="s2">&quot;myfile.zip&quot;</span><span class="p">)</span>
@@ -549,12 +549,12 @@ will be checked, if any of them doesn’t match, it will raise a <code class="do
 <dt>Parameters:</dt>
 <dd><ul class="first last simple">
 <li><strong>url</strong> (Required): URL to download.</li>
-<li><strong>filename</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">`&quot;&quot;</span></code>): Specify the name of the compressed file if it cannot be deduced from URL.</li>
+<li><strong>filename</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">`&quot;&quot;</span></code>): Specify the name of the compressed file if it cannot be deduced from the URL.</li>
 <li><strong>md5</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): MD5 hash code to check the downloaded file.</li>
 <li><strong>sha1</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): SHA1 hash code to check the downloaded file.</li>
 <li><strong>sha256</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>): SHA256 hash code to check the downloaded file.</li>
-<li><strong>keep_permissions</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Propagates parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
-<li><strong>pattern</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Propagates parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
+<li><strong>keep_permissions</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Propagates the parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
+<li><strong>pattern</strong> (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>): Propagates the parameter to <a class="reference internal" href="#tools-unzip"><span class="std std-ref">tools.unzip()</span></a>.</li>
 </ul>
 </dd>
 </dl>
