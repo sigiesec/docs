@@ -211,23 +211,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="workflows">
 <span id="id1"></span><h1>Workflows<a class="headerlink" href="#workflows" title="Permalink to this headline">¶</a></h1>
-<p>This section summarizes some possible layouts and workflows while using conan together with other
-tools as an end-user, i.e. installing and consuming existing packages. For creating your own
-packages, have a look at the <a class="reference internal" href="../creating_packages.html#packaging"><span class="std std-ref">Packaging section</span></a>.</p>
-<p>In both cases, the recommended approach is to have a conanfile (either .py or .txt) at the root of
+<p>This section summarizes some possible layouts and workflows when using Conan together with other
+tools as an end-user for installing and consuming existing packages. To create your own
+packages, please refer to <a class="reference internal" href="../creating_packages.html#packaging"><span class="std std-ref">Creating Packages</span></a>.</p>
+<p>Whether you are working on a single configuration or a multi configuration project, in both cases, the recommended approach is to have a conanfile (either .py or .txt) at the root of
 your project.</p>
 <div class="section" id="single-configuration">
 <h2>Single configuration<a class="headerlink" href="#single-configuration" title="Permalink to this headline">¶</a></h2>
-<p>The single configuration is simple. It is the one that has been used so far for the examples and tutorials. In
-<a class="reference internal" href="../getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a>, we ran the <strong class="command">conan install ..</strong> command inside the <em>build</em> folder and the <em>conaninfo.txt</em> and
-<em>conanbuildinfo.cmake</em> files were generated there. The build folder is temporary, you should exclude it from version control, so those
-temporary files are excluded too.</p>
-<p><strong>Out-of-source builds</strong> are also supported. Let’s make a simple example:</p>
+<p>When working with a  single configuration, your conanfile will be quite simple as shown in the examples and tutorials we have used so far in this user guide. For example, in
+<a class="reference internal" href="../getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a>, we showed how you can run the <strong class="command">conan install ..</strong> command inside the <em>build</em> folder resulting in the <em>conaninfo.txt</em> and
+<em>conanbuildinfo.cmake</em> files being generated there too. Note that the build folder is temporary, so you should exclude it from version control to exclude these temporary files.</p>
+<p><strong>Out-of-source builds</strong> are also supported. Let’s look at a simple example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/example-hello.git
 $ conan install ./example-hello --build<span class="o">=</span>missing --install-folder example-hello-build
 </pre></div>
 </div>
-<p>So the layout will be:</p>
+<p>This will result in the following layout:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>example-hello-build
   conaninfo.txt
   conanbuildinfo.txt
@@ -244,9 +243,8 @@ $ cmake --build . --config Release
 $ ./bin/greet
 </pre></div>
 </div>
-<p>We have created a separate build configuration of the project, without affecting at all the original
-source directory. The benefit is that we can experiment freely, and even erase it and create a new
-build with a new configuration with different settings, if needed:</p>
+<p>We have created a separate build configuration of the project without affecting the original
+source directory in any way. The benefit is that we can freely experiment with the configuration, and, if necessary, erase the build folder, and rerun the build with a new configuration with different settings:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> example-hello-build <span class="o">&amp;&amp;</span> rm -rf *
 $ conan install ../example-hello -s <span class="nv">compiler</span><span class="o">=</span><span class="s2">&quot;&lt;other compiler&gt;&quot;</span> --build<span class="o">=</span>missing
 $ cmake ../example-hello -G <span class="s2">&quot;&lt;other generator&gt;&quot;</span>
@@ -256,11 +254,8 @@ $ cmake --build . --config Release
 </div>
 <div class="section" id="multi-configuration">
 <h2>Multi configuration<a class="headerlink" href="#multi-configuration" title="Permalink to this headline">¶</a></h2>
-<p>You can also manage different configurations, in-source or out of source, and you can switch between
-them without taking the extra step of re-issuing the <strong class="command">conan install</strong> command (even though this is
-not a speed-related issue, since the second time <strong class="command">conan install</strong> is executed with the same
-parameters, it will run very fast: packages are installed in the local cache, not inside the
-project).</p>
+<p>You can also manage different configurations, whether in-source or out of source, and switch between
+them without having to re-issue the <strong class="command">conan install</strong> command (Note however, that even if you did have to run <strong class="command">conan install</strong> again, since subsequent runs use the same parameters, they would be very fast since packages would already have been installed in the local cache rather than in the project)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/memsharded/example-hello.git
 $ conan install ./example-hello -s <span class="nv">build_type</span><span class="o">=</span>Debug --build<span class="o">=</span>missing -if example-hello-build/debug
 $ conan install ./example-hello -s <span class="nv">build_type</span><span class="o">=</span>Release --build<span class="o">=</span>missing -if example-hello-build/release
@@ -271,8 +266,8 @@ $ <span class="nb">cd</span> example-hello-build/release <span class="o">&amp;&a
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You can use the <code class="docutils literal notranslate"><span class="pre">--install-folder</span></code> or <code class="docutils literal notranslate"><span class="pre">-if</span></code> to specify where to generate the output files or
-create manually the directory and change to it before execute the <strong class="command">conan install</strong> command.</p>
+<p class="last">You can either use the <code class="docutils literal notranslate"><span class="pre">--install-folder</span></code> or <code class="docutils literal notranslate"><span class="pre">-if</span></code> flags to specify where to generate the output files, or
+manually create the output directory and navigate to it before executing the <strong class="command">conan install</strong> command.</p>
 </div>
 <p>So the layout will be:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>example-hello-build
@@ -293,7 +288,7 @@ example-hello
 </pre></div>
 </div>
 <p>Now you can switch between your build configurations in exactly the same way you do for CMake or
-other build systems, moving to the folder in which the build configuration lives, because the conan
+other build systems, by moving to the folder in which the build configuration is located, because the Conan
 configuration files for that build configuration will also be there.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> example-hello-build/debug <span class="o">&amp;&amp;</span> cmake --build . --config Debug <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ../..
 $ <span class="nb">cd</span> example-hello-build/release <span class="o">&amp;&amp;</span> cmake --build . --config Release <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ../..
