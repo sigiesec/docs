@@ -136,11 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l2"><a class="reference internal" href="python_code_reuse.html">How to reuse Python code in recipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="custom_generators.html">How to create and share a custom generator with generator packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manage_shared_libraries.html">How to manage shared libraries</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">How to reuse cmake install for package() method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#no-copy-source"><code class="docutils literal notranslate"><span class="pre">no_copy_source</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to reuse cmake install for package() method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collaborate_packages.html">How to collaborate on other users’ packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="link_apple_framework.html">How to link with Apple Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="link_apple_framework.html#how-to-package-apple-frameworks">How to package Apple Frameworks</a></li>
@@ -229,48 +225,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
   <div class="section" id="how-to-reuse-cmake-install-for-package-method">
 <span id="reuse-cmake-install"></span><h1>How to reuse cmake install for package() method<a class="headerlink" href="#how-to-reuse-cmake-install-for-package-method" title="Permalink to this headline">¶</a></h1>
-<p>It is possible that your project’s <em>CMakeLists.txt</em> has already defined some
-functionality that extracts the artifacts (headers, libraries, binaries) from
-the build and source folder to a predetermined place and does the post-processing (<em>e.g.</em>, strips rpaths). For example,
-one common practice is to use CMake <a class="reference external" href="https://cmake.org/cmake/help/latest/command/install.html">install</a> directive
-to that end.</p>
-<p>When using conan, the install phase of CMake is wrapped in the conan <code class="docutils literal notranslate"><span class="pre">package()</span></code> method.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method specifies the list of the necessary libraries, defines and flags for different
-build configurations for the consumers of the package. This is necessary as there is no possible way to extract this
-information from the CMake install automatically.</p>
-<div class="section" id="no-copy-source">
-<h2><code class="docutils literal notranslate"><span class="pre">no_copy_source</span></code><a class="headerlink" href="#no-copy-source" title="Permalink to this headline">¶</a></h2>
-<p>When <code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">False</span></code>, the building and packaging follows what we expect from the usual CMake pipeline.
-However, when <code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">True</span></code>, conan workflow might be surprising to users familiar with CMake, but still
-unfamiliar with intricacies of conan.</p>
-<p>Let us recap briefly the building and packaging process of conan and see then how a special case, when
-<code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">True</span></code> is set, affects the usage of conan with CMake.</p>
-<p>Conan retrieves the sources and put them in a source folder. Before compiling, conan creates a copy of the source folder
-into the build folder and starts the build. Once the build is done, conan creates the package by collecting the
-artifacts from the build folder using <code class="docutils literal notranslate"><span class="pre">package()</span></code> method. When <code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">False</span></code>, there is nothing unexpected
-in the workflow.</p>
-<p>If you set <code class="docutils literal notranslate"><span class="pre">no_copy_source</span> <span class="pre">=</span> <span class="pre">True</span></code>, conan still retrieves the sources, but does not copy them to the
-build folder. The build starts and once the artefacts are built, <code class="docutils literal notranslate"><span class="pre">package()</span></code> method needs to be called <em>twice</em>.
-First, source files are copied from the source folder into the package folder (which involves calling <code class="docutils literal notranslate"><span class="pre">package()</span></code>
-once) and second, artifacts are copied from the build folder into the package folder (which again calls <code class="docutils literal notranslate"><span class="pre">package()</span></code>
-for the second time).</p>
-<p>Please mind that CMake usually uses <code class="docutils literal notranslate"><span class="pre">install</span></code> directive to package both the artifacts and source code (<em>i.e.</em> header
-files) into the package folder. Hence calling <code class="docutils literal notranslate"><span class="pre">package()</span></code> twice, while having no side effects, is wasting a couple of
-cycles, since source code is already copied in the first invokation of <code class="docutils literal notranslate"><span class="pre">package()</span></code> and the install step will be done
-twice. Files will be simply overwritten, but install steps are sometimes time-expensive and this doubles the “packaging”
-time.</p>
-<p>This might be unintuitive if you only use CMake, but mind that conan needs to cater to many different build systems and
-scenarios (<em>e.g.</em> where you don’t control the CMake configuration directly) and hence this workflow, though potentially
-unintuitive, is indispensable.</p>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>The following excerpt shows how to build and package with CMake within conan. Mind that you need to configure CMake
-both in <code class="docutils literal notranslate"><span class="pre">build()</span></code> and in <code class="docutils literal notranslate"><span class="pre">package()</span></code> since these methods are called independently.</p>
+<p>It is possible that your project’s <em>CMakeLists.txt</em> has already defined some functionality that extracts the artifacts (headers, libraries,
+binaries) from the build and source folder to a predetermined place and does the post-processing (<em>e.g.</em>, strips rpaths). For example, one
+common practice is to use CMake <a class="reference external" href="https://cmake.org/cmake/help/latest/command/install.html">install</a> directive to that end.</p>
+<p>When using Conan, the install phase of CMake is wrapped in the <code class="docutils literal notranslate"><span class="pre">package()</span></code> method.</p>
+<p>The following excerpt shows how to build and package with CMake within Conan. Mind that you need to configure CMake both in <code class="docutils literal notranslate"><span class="pre">build()</span></code> and
+in <code class="docutils literal notranslate"><span class="pre">package()</span></code> since these methods are called independently.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">configure_cmake</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">cmake</span> <span class="o">=</span> <span class="n">CMake</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">cmake</span><span class="o">.</span><span class="n">definitions</span><span class="p">[</span><span class="s2">&quot;SOME_DEFINITION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="n">cmake</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
-    <span class="n">cmake</span><span class="o">.</span><span class="n">definitions</span><span class="p">[</span><span class="s2">&quot;SOME_DEFINITION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;On&quot;</span>
 
     <span class="k">return</span> <span class="n">cmake</span>
 
@@ -283,11 +247,22 @@ both in <code class="docutils literal notranslate"><span class="pre">build()</sp
     <span class="n">cmake</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">includedirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lib&#39;</span><span class="p">]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">bindirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;libname&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method specifies the list of the necessary libraries, defines and flags for different build configurations for the
+consumers of the package. This is necessary as there is no possible way to extract this
+information from the CMake install automatically.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Please mind that if you use <code class="docutils literal notranslate"><span class="pre">cmake.install()</span></code> in <code class="docutils literal notranslate"><span class="pre">package()</span></code>, it will be called twice if you are using
+<a class="reference internal" href="../reference/conanfile/attributes.html#no-copy-source"><span class="std std-ref">no_copy_source</span></a> attribute in your conanfile.</p>
+<p>CMake usually uses <code class="docutils literal notranslate"><span class="pre">install</span></code> directive to package both the artifacts and source code (<em>i.e.</em> header files) into the package folder.
+Hence calling <code class="docutils literal notranslate"><span class="pre">package()</span></code> twice, while having no side effects, is wasting a couple of cycles, since source code is already copied in
+the first invocation of <code class="docutils literal notranslate"><span class="pre">package()</span></code> and the install step will be done twice. Files will be simply overwritten, but install steps are
+sometimes time-expensive and this doubles the “packaging” time.</p>
+<p class="last">This might be unintuitive if you only use CMake, but mind that Conan needs to cater to many different build systems and scenarios
+(<em>e.g.</em> where you don’t control the CMake configuration directly) and hence this workflow is indispensable.</p>
 </div>
 </div>
 
